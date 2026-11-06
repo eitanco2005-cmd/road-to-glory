@@ -1,11 +1,9 @@
-# Owner actions (only you can do these)
+# Owner actions (money and accounts only)
 
-Priority order. Tick when done.
+You never contact anyone. You only set up the accounts that take payment.
 
-- [ ] 1. Enable GitHub Pages on this repo (Settings → Pages → deploy from branch `main`, folder `/docs`) — hosts the portfolio for free
-- [ ] 2. Create a Gumroad (or Lemon Squeezy) account + payout method
-- [ ] 3. Create a Fiverr and/or Upwork seller profile
-- [ ] 4. Tell the manager: your city/region + language(s) you can work in (sets the outreach niche)
-- [ ] 5. Send the first outreach batch (drafts will be in `outreach/`)
-- [ ] 6. Post launch posts (drafts will be in `marketing/`)
-- [ ] 7. Log every sale / client in `ops/STATUS.md` (or just tell the manager)
+- [ ] 1. Enable GitHub Pages (Settings → Pages → branch `main`, folder `/docs`)
+- [ ] 2. Create a Gumroad account + payout method
+- [ ] 3. Create an Etsy seller shop + payout method (one-time ~$15 setup fee, $0.20/listing)
+- [ ] 4. Upload the listings the workers prepare (copy, images and files will be ready to paste)
+- [ ] 5. Tell the manager whenever a sale lands

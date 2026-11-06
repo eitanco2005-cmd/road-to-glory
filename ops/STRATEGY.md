@@ -7,34 +7,32 @@
 - No spam, no fake reviews, no impersonation, no misleading claims. Every message to a
   real person is personal and sent by the owner.
 
-## Bets (ranked by speed to cash)
+## Bets (revised Day 1: inbound-only, self-serve)
+Owner rule: nobody contacts customers. The owner only handles accounts and money.
+So every sale must come through self-serve checkout, and traffic must come from
+marketplaces with built-in search or from content that ranks.
 
-### 1. Productized service — "Website in 48 hours" (PRIMARY, target $700+)
-Small local businesses (cafés, salons, trades, clinics) often have no site or a bad one.
-Offer a fixed-price, fast landing page: **$149 Starter / $299 Standard**, hosted free
-on GitHub Pages / Netlify, client buys own domain. 4–6 clients ≈ $1,000.
-AI does ~90% of the build work, so delivery time is small.
-Channels: Fiverr/Upwork gig, personal network, direct outreach to businesses with no site.
+### 1. Digital products on marketplaces with built-in traffic (PRIMARY)
+Etsy digital downloads / Gumroad Discover / template galleries. Buyers search,
+find, pay and download automatically. Products picked by Worker C's research.
+### 2. Website template pack (Worker B, already in progress)
+Sold on Gumroad + template marketplaces, previewed on our storefront.
+### 3. Passive traffic
+Storefront on GitHub Pages with SEO, plus free useful tools / public repos that link
+back to the products.
 
-### 2. Digital product — template pack (SECONDARY, target $300+)
-A pack of polished, responsive one-page HTML templates for local businesses
-(the same templates power bet #1, so work is reused). $19–29 on Gumroad / Lemon Squeezy.
-Distribution: Reddit/IndieHackers/X posts written for the owner to publish.
-
-### 3. Research & growth (supports 1 and 2)
-Pick the best niche, find where buyers are, write gig listings, outreach scripts,
-launch posts, pricing tests.
+The custom-website service is dropped: it needs client conversations.
 
 ## Milestones
 | Day | Milestone |
 |-----|-----------|
-| 3   | Portfolio site + 3 demo sites live; gig listings drafted |
-| 5   | Owner has Fiverr/Upwork + Gumroad accounts; template pack listed |
-| 7   | First outreach batch sent (owner); launch posts published |
-| 14  | First paying client; ≥ $250 revenue |
+| 3   | Storefront + demos live; marketplace research done |
+| 5   | Owner has Gumroad + Etsy accounts; first products listed |
+| 7   | 5+ products listed across marketplaces |
+| 14  | First sales; ≥ $150 revenue |
 | 21  | ≥ $600 revenue |
 | 30  | ≥ $1,000 profit |
 
 ## Kill / pivot rules
-- Day 10 with zero leads on bet #1 → change niche or channel.
+- Day 10 with zero sales → double down on whichever listing gets the most views/favourites.
 - Day 14 with < 5 product sales → drop price test / switch to bundle with service.
