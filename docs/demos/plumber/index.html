@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightflow Plumbing — 24/7 local plumber</title>
+<meta name="description" content="Brightflow Plumbing: fast, fixed-price repairs, leaks, boilers and bathrooms. 24/7 emergency call-outs. (Fictional demo site by Glory Sites.)">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e3b5c'/%3E%3Cpath d='M16 6c4 5 7 9 7 13a7 7 0 0 1-14 0c0-4 3-8 7-13z' fill='%2338bdf8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0e3b5c;
+    --navy-deep: #082a43;
+    --sky: #38bdf8;
+    --ice: #e6f0f7;
+    --orange: #f97316;
+    --orange-dark: #ea580c;
+    --ink: #0f1f2c;
+    --muted: #4b6072;
+    --line: #d6e3ee;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--ink); background: #fff; line-height: 1.6; padding-bottom: 72px; }
+  @media (min-width: 760px) { body { padding-bottom: 0; } }
+  img, svg { display: block; max-width: 100%; }
+  a { color: var(--navy); }
+  h1, h2, h3 { font-family: Archivo, Inter, sans-serif; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 .5em; }
+  h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); }
+  h2 { font-size: clamp(1.7rem, 4.5vw, 2.5rem); }
+  h3 { font-size: 1.15rem; font-weight: 700; }
+  p { margin: 0 0 1em; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 68px 0; }
+  .label { font: 700 .78rem/1 Archivo, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-dark); display: block; margin-bottom: .7rem; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .9rem 1.4rem; border-radius: 10px; font-weight: 700; text-decoration: none; border: 2px solid transparent; font-family: Archivo, sans-serif; letter-spacing: .01em; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-call { background: var(--orange); color: #fff; }
+  .btn-call:hover { background: var(--orange-dark); }
+  .btn-ghost { border-color: rgba(255,255,255,.5); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); }
+  .btn-navy { background: var(--navy); color: #fff; }
+
+  .demo-bar { background: #1f2937; color: #e5e7eb; font: 500 .8rem/1.4 system-ui, sans-serif; text-align: center; padding: 8px 12px; }
+  .demo-bar a { color: #a5b4fc; }
+
+  .alert { background: var(--orange); color: #fff; text-align: center; font-weight: 600; font-size: .92rem; padding: 9px 14px; }
+  .alert a { color: #fff; font-weight: 800; }
+
+  header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+  header .wrap { height: 66px; display: flex; justify-content: space-between; align-items: center; }
+  .brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--navy); font: 800 1.2rem Archivo, sans-serif; }
+  .brand svg { width: 34px; height: 34px; }
+  nav { display: none; gap: 1.5rem; }
+  nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
+  nav a:hover { color: var(--navy); }
+  .head-call { display: none; }
+  @media (min-width: 900px) { nav { display: flex; } .head-call { display: inline-flex; } }
+  .head-call-sm { padding: .5rem .8rem; font-size: .88rem; }
+  @media (min-width: 900px) { .head-call-sm { display: none; } }
+
+  .hero { background: var(--navy); color: #fff; position: relative; overflow: hidden; padding: 56px 0 72px; }
+  .hero::after { content: ""; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(56,189,248,.35), transparent 70%); }
+  .hero-grid { display: grid; gap: 40px; align-items: center; position: relative; z-index: 1; }
+  .hero p.lead { color: #c7dbea; font-size: 1.12rem; max-width: 34rem; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 1.6rem 0 1.4rem; }
+  .trust { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; list-style: none; padding: 0; margin: 0; color: #c7dbea; font-size: .93rem; }
+  .trust li::before { content: "✔"; color: var(--sky); margin-right: .45rem; }
+  .hero-card { background: #fff; color: var(--ink); border-radius: 18px; padding: 26px; box-shadow: 0 30px 60px -24px rgba(0,0,0,.5); }
+  .hero-card h3 { font-size: 1.3rem; }
+  .hero-card .big { font: 800 2rem/1 Archivo, sans-serif; color: var(--navy); margin: .3rem 0 .2rem; }
+  .hero-card .row { display: flex; justify-content: space-between; padding: .6rem 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  .hero-card .row b { color: var(--navy); }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.3fr 1fr; } .hero { padding: 84px 0 96px; } }
+
+  .svc-grid { display: grid; gap: 18px; margin-top: 32px; }
+  @media (min-width: 640px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .svc-grid { grid-template-columns: repeat(3, 1fr); } }
+  .svc { border: 1px solid var(--line); border-radius: 14px; padding: 24px; background: #fff; }
+  .svc .ic { width: 46px; height: 46px; border-radius: 12px; background: var(--ice); display: grid; place-items: center; margin-bottom: 14px; }
+  .svc .ic svg { width: 24px; height: 24px; stroke: var(--navy); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .svc p { color: var(--muted); font-size: .95rem; margin-bottom: .6rem; }
+  .svc .from { font-weight: 700; color: var(--navy); font-size: .92rem; }
+
+  .why { background: var(--ice); }
+  .why-grid { display: grid; gap: 36px; align-items: center; }
+  @media (min-width: 900px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .checks li { display: flex; gap: 14px; background: #fff; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--line); }
+  .checks li b { display: block; }
+  .checks li span { color: var(--muted); font-size: .93rem; }
+  .checks .n { flex: none; width: 32px; height: 32px; border-radius: 8px; background: var(--navy); color: #fff; display: grid; place-items: center; font: 800 .95rem Archivo, sans-serif; }
+
+  .areas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .areas span { background: #fff; border: 1px solid var(--line); padding: .35rem .8rem; border-radius: 999px; font-size: .9rem; }
+
+  .reviews-grid { display: grid; gap: 18px; margin-top: 28px; }
+  @media (min-width: 760px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+  .review { border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .review .stars { color: #f59e0b; letter-spacing: 2px; }
+  .review p { margin: .5rem 0 .8rem; }
+  .review small { color: var(--muted); }
+  .sample { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: #fff7ed; color: var(--orange-dark); border: 1px solid #fed7aa; padding: .15rem .5rem; border-radius: 6px; vertical-align: middle; margin-left: .3rem; }
+
+  .contact { background: var(--navy-deep); color: #c7dbea; }
+  .contact h2, .contact h3 { color: #fff; }
+  .contact-grid { display: grid; gap: 32px; }
+  @media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+  .contact table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+  .contact td { padding: .45rem 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .contact td:last-child { text-align: right; color: #fff; font-weight: 600; }
+  .contact address { font-style: normal; }
+  .contact a { color: #fff; }
+  .contact .box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 26px; }
+  .contact .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1rem; }
+
+  .site-footer { background: var(--navy-deep); color: #7c97ad; font-size: .88rem; padding: 0 0 40px; }
+  .site-footer .wrap { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .site-footer a { color: #c7dbea; }
+
+  .callbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; background: #fff; border-top: 1px solid var(--line); box-shadow: 0 -8px 24px rgba(0,0,0,.08); }
+  .callbar .btn { padding: .8rem; font-size: .95rem; }
+  @media (min-width: 760px) { .callbar { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">Demo site for a fictional business — built by <a href="../../">Glory Sites</a>. <a href="../../#contact">Want one like this?</a></div>
+<div class="alert">Burst pipe or no hot water? 24/7 emergency line: <a href="tel:+15550100789">(555) 010-0789</a></div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="8" fill="#0e3b5c"/><path d="M17 6c5 6 8 10 8 14a8 8 0 0 1-16 0c0-4 3-8 8-14z" fill="#38bdf8"/><path d="M13 21a4 4 0 0 0 4 4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      Brightflow
+    </a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-call head-call" href="tel:+15550100789">Call (555) 010-0789</a>
+    <a class="btn btn-call head-call-sm" href="tel:+15550100789">Call now</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="label" style="color:var(--sky)">Local · Licensed · Insured</span>
+        <h1>Leaks fixed fast. Prices agreed up front.</h1>
+        <p class="lead">Friendly, tidy plumbers serving Riverside and the surrounding towns. Repairs, boilers, drains and bathroom installs — with a fixed quote before we start, every time.</p>
+        <div class="actions">
+          <a class="btn btn-call" href="tel:+15550100789"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call for help now</a>
+          <a class="btn btn-ghost" href="#contact">Request a free quote</a>
+        </div>
+        <ul class="trust">
+          <li>60-min emergency response</li>
+          <li>No call-out fee in daytime</li>
+          <li>12-month workmanship guarantee</li>
+        </ul>
+      </div>
+      <div class="hero-card">
+        <h3>Typical prices</h3>
+        <p style="color:var(--muted);font-size:.92rem;margin:0">Fixed quote before any work. Sample prices.</p>
+        <div class="row"><span>Dripping tap repair</span><b>from $79</b></div>
+        <div class="row"><span>Blocked sink or toilet</span><b>from $95</b></div>
+        <div class="row"><span>Boiler service</span><b>from $110</b></div>
+        <div class="row"><span>Emergency call-out (night)</span><b>from $149</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <span class="label">What we do</span>
+      <h2>Plumbing &amp; heating services</h2>
+      <div class="svc-grid">
+        <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div><h3>Leaks &amp; burst pipes</h3><p>Fast leak detection and repair to stop damage before it spreads.</p><span class="from">From $89</span></div>
+        <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 14h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 14V5a2 2 0 0 1 4 0"/></svg></div><h3>Blocked drains</h3><p>Sinks, toilets, showers and outside drains cleared without the mess.</p><span class="from">From $95</span></div>
+        <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="14" r="3"/><path d="M9 7h6"/></svg></div><h3>Boilers &amp; heating</h3><p>Servicing, repairs and replacements. Radiators bled and balanced.</p><span class="from">From $110</span></div>
+        <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h18v2a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M5 12V6a2 2 0 0 1 2-2h1"/></svg></div><h3>Bathroom installs</h3><p>New suites, showers and tiling — planned, priced and finished on time.</p><span class="from">Free quote</span></div>
+        <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 3v6M16 3v6M5 9h14v3a7 7 0 0 1-14 0z"/><path d="M12 19v2"/></svg></div><h3>Taps, toilets &amp; fixtures</h3><p>Replacements and repairs for taps, cisterns, valves and outside taps.</p><span class="from">From $79</span></div>
+        <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>24/7 emergencies</h3><p>No heat, no water or a flood at 2am? We pick up the phone.</p><span class="from">From $149</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="why">
+    <div class="wrap why-grid">
+      <div>
+        <span class="label">Why Brightflow</span>
+        <h2>Straight answers and clean work</h2>
+        <p style="color:var(--muted)">We're a small family team, not a call centre. The person you speak to on the phone is the person who turns up.</p>
+        <h3 style="margin-top:1.6rem">Areas we cover</h3>
+        <div class="areas"><span>Riverside</span><span>Oak Hill</span><span>Millbrook</span><span>Eastgate</span><span>Stonebridge</span><span>+10 miles</span></div>
+      </div>
+      <ul class="checks">
+        <li><span class="n">1</span><div><b>Fixed quote first</b><span>You approve the price before we lift a spanner. No surprises.</span></div></li>
+        <li><span class="n">2</span><div><b>On time, or we call</b><span>Two-hour arrival windows and a text when we're on the way.</span></div></li>
+        <li><span class="n">3</span><div><b>Tidy, respectful work</b><span>Dust sheets, shoe covers and we take the rubbish with us.</span></div></li>
+        <li><span class="n">4</span><div><b>Guaranteed for 12 months</b><span>If our work fails, we come back and fix it free of charge.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <span class="label">Reviews <span class="sample">Sample text</span></span>
+      <h2>Neighbours who called us</h2>
+      <div class="reviews-grid">
+        <div class="review"><div class="stars" aria-label="5 stars">★★★★★</div><p>“Pipe burst on a Sunday night. They were here in 40 minutes and had it sorted within the hour.”</p><small>— Sample review, Oak Hill</small></div>
+        <div class="review"><div class="stars" aria-label="5 stars">★★★★★</div><p>“Gave me a fixed price for the new bathroom and stuck to it. Finished a day early.”</p><small>— Sample review, Riverside</small></div>
+        <div class="review"><div class="stars" aria-label="5 stars">★★★★★</div><p>“Honest advice — told me I didn't need a new boiler, just a repair. Saved me a fortune.”</p><small>— Sample review, Millbrook</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="label" style="color:var(--sky)">Get in touch</span>
+        <h2>Need a plumber? Let's talk.</h2>
+        <p>Call for the fastest response, or send a quick message with a photo of the problem and we'll reply with a price.</p>
+        <div class="actions">
+          <a class="btn btn-call" href="tel:+15550100789">Call (555) 010-0789</a>
+          <a class="btn btn-ghost" href="mailto:jobs@example.com?subject=Quote%20request&amp;body=Your%20name%3A%0AAddress%20%2F%20area%3A%0AWhat%27s%20the%20problem%3F%3A%0A(Attach%20a%20photo%20if%20you%20can)">Email for a quote</a>
+        </div>
+      </div>
+      <div class="box">
+        <h3>Office hours</h3>
+        <table>
+          <tr><td>Mon – Fri</td><td>7:30 – 18:00</td></tr>
+          <tr><td>Saturday</td><td>8:00 – 14:00</td></tr>
+          <tr><td>Emergencies</td><td>24 / 7 / 365</td></tr>
+        </table>
+        <address>
+          <b style="color:#fff">Brightflow Plumbing &amp; Heating</b><br>
+          Unit 4, Canal Yard, Riverside<br>
+          <a href="mailto:jobs@example.com">jobs@example.com</a>
+        </address>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© Brightflow Plumbing (fictional) · Unit 4, Canal Yard, Riverside</span>
+    <span>Site by <a href="../../">Glory Sites</a></span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a class="btn btn-call" href="tel:+15550100789">Call now</a>
+  <a class="btn btn-navy" href="#contact">Get a quote</a>
+</div>
+
+</body>
+</html>
