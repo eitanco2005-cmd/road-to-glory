@@ -4,9 +4,9 @@
 
 | Workstream | Worker session | Branch | State |
 |---|---|---|---|
-| A. Portfolio + demo sites | (spawning) | `ws/portfolio` | starting |
-| B. Template pack product | (spawning) | `ws/templates` | starting |
-| C. Research, listings, outreach | (spawning) | `ws/growth` | starting |
+| A. Portfolio + demo sites | session_01WwXrbPbxhGwWasxMo8LYk7 | `ws/portfolio` | working |
+| B. Template pack product | session_01WwXrbP6fLFaaRcinTiKUkb | `ws/templates` | working |
+| C. Research, listings, outreach | session_01WwXrbRCJUCe1AdD5J62AWu | `ws/growth` | working |
 
 ## Log
 - 2026-11-06: Strategy set (service-first, template pack second). Workers launched.
