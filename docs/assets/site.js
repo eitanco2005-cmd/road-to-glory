@@ -8,6 +8,12 @@
  */
 (function () {
   "use strict";
+  // Old GitHub Pages address -> permanent home on Netlify (keeps path + query).
+  if (/\.github\.io$/.test(location.hostname)) {
+    var rest = location.pathname.replace(/^\/road-to-glory/, "") || "/";
+    location.replace("https://tichnun.netlify.app" + rest + location.search + location.hash);
+    return;
+  }
   var me = document.currentScript || document.querySelector('script[src*="assets/site.js"]');
   var ASSETS = new URL(".", me ? me.src : location.href).href;
   var ROOT = new URL("../", ASSETS).href;

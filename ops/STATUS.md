@@ -1,6 +1,6 @@
 # Status board
 
-**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — site live since 2026-11-17 · 6 products, 4 bundles, 8 free tools, 24 guides, 47 pages
+**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — live at https://tichnun.netlify.app/ (brand: תכנון פלוס) · 6 products, 4 bundles, 8 free tools, 24 guides, 47 pages
 
 | Workstream | Worker session | Branch | State |
 |---|---|---|---|
@@ -28,3 +28,4 @@
 - 2026-11-17: Owner: never ask about sales; just report progress.
 - 2026-11-17 21:00: P2 QA (facts fixed, honest copy, a11y, spreadsheet bug fixes) + P2 SEO (12 guides, 2 tools: net-salary budget, savings goal) merged and published. e2e ALL PASSED. Sitemap 47 URLs.
 - 2026-11-17: Exposure: README links to site from GitHub; IndexNow key + tools/site/indexnow.py (Bing/DDG/ChatGPT search). Owner told: domain + Search Console are optional speed-ups, offered once, not pushed.
+- 2026-11-17: Moved to Netlify https://tichnun.netlify.app/ (deploys from main/docs). Rebranded to תכנון פלוס (all pages + downloads). Old github.io URLs auto-forward via site.js.
