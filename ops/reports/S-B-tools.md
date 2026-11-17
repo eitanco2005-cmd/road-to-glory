@@ -87,3 +87,24 @@ regression; products page shows both apps live.
 - Possible later: free tools list (`data/tools.json`) only links to `tools/<slug>/`, so the apps are not in the
   "כלים חינם" grid; could add a link field there if wanted.
 - IndexNow: submit the 8 new URLs after deploy (`tools/site/indexnow.py`).
+
+## Update 2 (manager: seating is the priority)
+- **English seating tool**: `docs/en/apps/seating/` (LTR, hreflang ↔ `apps/seating/`), product `seating-chart-en`,
+  **$9 USD** (my pick: ≈ ₪29, low-friction for a US "free seating chart maker" search). Same `app.js` as the Hebrew
+  tool, language chosen by `<html lang>`; each language keeps its own saved chart and its own unlock. Page has
+  SEO copy, how-to, FAQ + FAQPage/SoftwareApplication JSON-LD, og image `en/apps/seating/img/screen-1.png`.
+  Listed in `docs/data/products/index-en.json` (Stream A's catalogue) with `page: en/apps/seating/`.
+- **WhatsApp share + "chart ready" banner**: when everyone is seated with no conflicts, a banner offers the paid export
+  (one click → purchase dialog), the free watermarked PDF, and "Share on WhatsApp" (`https://wa.me/?text=` prefilled
+  with event name, guest/table counts and the tool link with utm tags; never guest names).
+- **CV**: kept modest; product page now leads with clean RTL PDF (hero point + FAQ "why not Word / a free PDF
+  converter").
+- **Merged `origin/ws/en` into `ws/apps`** to build on Stream A's per-product currency/language checkout. Conflict in
+  `checkout.js` resolved keeping both (unlock path now passes `en` → English messages, `en/thanks/` link).
+  **Fixed a ws/en bug in `docs/assets/site.js`**: `G.lang` was set before `var G` was defined, which threw on every
+  page (header/footer/catalog missing). One-line reorder; Stream A should take the same fix.
+- **Needs Stream A** (not in ws/en yet): `docs/en/thanks/` must handle `"unlock": true` products like
+  `docs/thanks/index.html` does (store `tp-unlocks[slug]`, link to `p.app`); `docs/en/legal/refund/` and `docs/en/`
+  home are linked from the English tool page and don't exist yet in ws/en.
+- Tests: `node tools/apps/e2e_apps.js` → 108 PASS (adds English USD flow, unlock isolation between products, LTR XLSX,
+  English watermark/escort list, WhatsApp link content, Hebrew banner).
