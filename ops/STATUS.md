@@ -1,6 +1,6 @@
 # Status board
 
-**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — site live since 2026-11-17
+**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — site live since 2026-11-17 · 6 products, 4 bundles, 8 free tools, 24 guides, 47 pages
 
 | Workstream | Worker session | Branch | State |
 |---|---|---|---|
@@ -26,3 +26,4 @@
 - 2026-11-17: 🚀 SITE LIVE https://eitanco2005-cmd.github.io/road-to-glory/ — PayPal buttons render on live pages, legal pages show seller. Phase 2 started (QA + SEO workers).
 - 2026-11-17: Owner decisions: no social media, no Grow for now, no HF token, no public sales tracking. Sales log endpoints stay empty (no-op). Profit tracking = PayPal emails; manager asks owner weekly (optional).
 - 2026-11-17: Owner: never ask about sales; just report progress.
+- 2026-11-17 21:00: P2 QA (facts fixed, honest copy, a11y, spreadsheet bug fixes) + P2 SEO (12 guides, 2 tools: net-salary budget, savings goal) merged and published. e2e ALL PASSED. Sitemap 47 URLs.
