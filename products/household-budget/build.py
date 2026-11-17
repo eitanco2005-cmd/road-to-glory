@@ -454,9 +454,10 @@ def build(year: int, demo: bool, path: Path):
     cell(ws, 8, 1, "שיעור חיסכון (מהכנסות)", None).font = f(True)
     cell(ws, 8, 2, "=IF(N(B4)=0,\"\",(B6+B7)/B4)", "formula", PCT, True)
     cell(ws, 9, 1, "חודשים עם נתונים", None).font = f(True)
-    cell(ws, 9, 2, f"=SUMPRODUCT(--({Y}!D{YS + 1}:O{YS + 1}>0))", "formula", "0", True)
+    has_data = f"(({Y}!D{YS}:O{YS}<>0)+({Y}!D{YS + 1}:O{YS + 1}<>0)>0)"
+    cell(ws, 9, 2, f"=SUMPRODUCT(--{has_data})", "formula", "0", True)
     cell(ws, 10, 1, "יתרה משוערת בעו\"ש היום", None).font = f(True)
-    cell(ws, 10, 2, f"=IF(B9=0,{S}!B6,INDEX({Y}!D{YS + 3}:O{YS + 3},1,B9))", "formula", ILS, True)
+    cell(ws, 10, 2, f"=IF(B9=0,{S}!B6,INDEX({Y}!D{YS + 3}:O{YS + 3},1,SUMPRODUCT(MAX({has_data}*{Y}!D3:O3))))", "formula", ILS, True)
     ws.conditional_formatting.add("B6", CellIsRule(operator="lessThan", formula=["0"], fill=fill("F8D7DA")))
 
     # groups table (for charts)
@@ -476,6 +477,7 @@ def build(year: int, demo: bool, path: Path):
     cell(ws, r, 6, "קבוצות אחרות (שהוספתם)", None).font = f(True)
     cell(ws, r, 7, f"={B}!R{LAST + 3}-SUM(G4:G{gl})", "formula", ILS)
     cell(ws, r, 8, f"={Y}!P{YS + 1}-SUM(H4:H{gl})", "formula", ILS)
+    cell(ws, r, 9, f"=IF(N(G{r})=0,\"\",H{r}/G{r})", "formula", PCT)
     gl = r
     ws.conditional_formatting.add(f"I4:I{gl}", CellIsRule(operator="greaterThan", formula=["1"], fill=fill("F8D7DA")))
 

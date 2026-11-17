@@ -158,7 +158,7 @@ def build(demo: bool, path: Path):
         ("1. «פרויקט»: שם, תאריך התחלה, התקציב המקסימלי שלכם ואחוז הבלת\"מ (ברירת מחדל 15%).", False),
         ("2. «עבודות»: שורה לכל עבודה – חדר, תחום, תיאור ואומדן ראשוני (כולל מע\"מ). כל עבודה מקבלת מספר קבוע (עמודה א').", False),
         ("3. «הצעות מחיר»: לכל עבודה רשמו את ההצעות שקיבלתם, עם מספר העבודה. סמנו אם המחיר כולל מע\"מ – הקובץ מוסיף 18% כשצריך,", False),
-        ("   מסמן את ההצעה הזולה ביותר ומראה את הפער. כשבוחרים קבלן, כתבו «כן» בעמודה «נבחרה?».", False),
+        ("   מסמן את ההצעה הזולה ביותר ומראה את הפער. כשבוחרים קבלן, כתבו «כן» בעמודה «נבחרה?» (הצעה אחת לכל עבודה).", False),
         ("4. «תשלומים»: כל תשלום (לקבלן, לספק, בחנות) עם מספר העבודה. «מתוכנן» = תשלום עתידי לפי הסכם, «שולם» = יצא מהחשבון.", False),
         ("5. «דשבורד»: כמה התחייבתם, כמה שולם, כמה נשאר, מה מצב הבלת\"מ ותזרים התשלומים לפי חודש.", False),
         ("", False),
@@ -306,6 +306,8 @@ def build(demo: bool, path: Path):
                            error="רשמו את מספר העבודה מגיליון «עבודות» (1–100)", errorTitle="מספר עבודה")
     ws.add_data_validation(dv_id)
     dv_id.add(f"A{Q_FIRST}:A{Q_LAST}")
+    # two quotes marked "chosen" for the same job would be summed twice in «עבודות» – flag it in red
+    ws.conditional_formatting.add(f"K{Q_FIRST}:K{Q_LAST}", FormulaRule(formula=[f'AND($K{Q_FIRST}="כן",COUNTIFS($A${Q_FIRST}:$A${Q_LAST},$A{Q_FIRST},$K${Q_FIRST}:$K${Q_LAST},"כן")>1)'], fill=fill("F8D7DA"), stopIfTrue=True))
     ws.conditional_formatting.add(f"A{Q_FIRST}:M{Q_LAST}", FormulaRule(formula=[f'$K{Q_FIRST}="כן"'], fill=fill("D9EAD3"), font=Font(bold=True)))
     ws.conditional_formatting.add(f"L{Q_FIRST}:L{Q_LAST}", FormulaRule(formula=[f'AND($G{Q_FIRST}<>"",$L{Q_FIRST}=0)'], fill=fill("B6D7A8")))
     ws.conditional_formatting.add(f"B{Q_FIRST}:B{Q_LAST}", FormulaRule(formula=[f'$B{Q_FIRST}="מספר עבודה לא קיים"'], fill=fill("F8D7DA")))
@@ -392,6 +394,13 @@ def build(demo: bool, path: Path):
         cell(ws, r, 6, f"=IF(D{r}=\"\",\"\",SUMIFS({W}!$H${W_FIRST}:$H${W_LAST},{W}!$B${W_FIRST}:$B${W_LAST},D{r}))", "formula", ILS)
         cell(ws, r, 7, f"=IF(D{r}=\"\",\"\",E{r}-F{r})", "formula", ILS)
     room_last = 4 + len(ROOMS) - 1
+    # catch-all: rooms the buyer adds to the list (beyond the built-in ones) or jobs with no room
+    r = room_last + 1
+    cell(ws, r, 4, "חדרים נוספים / ללא חדר", None).font = f(True)
+    cell(ws, r, 5, f"={W}!G{W_LAST + 2}-SUM(E4:E{room_last})", "formula", ILS)
+    cell(ws, r, 6, f"={W}!H{W_LAST + 2}-SUM(F4:F{room_last})", "formula", ILS)
+    cell(ws, r, 7, f"=E{r}-F{r}", "formula", ILS)
+    room_last = r
 
     # by trade
     t0 = 20
@@ -406,6 +415,13 @@ def build(demo: bool, path: Path):
         cell(ws, r, 6, f"=IF(D{r}=\"\",\"\",SUMIFS({W}!$H${W_FIRST}:$H${W_LAST},{W}!$C${W_FIRST}:$C${W_LAST},D{r}))", "formula", ILS)
         cell(ws, r, 7, f"=IF(OR(D{r}=\"\",N($B$5)=0),\"\",E{r}/$B$5)", "formula", PCT)
     trade_last = t0 + len(TRADES)
+    # catch-all: trades the buyer adds to the list or jobs with no trade
+    r = trade_last + 1
+    cell(ws, r, 4, "תחומים נוספים / ללא תחום", None).font = f(True)
+    cell(ws, r, 5, f"={W}!G{W_LAST + 2}-SUM(E{t0 + 1}:E{trade_last})", "formula", ILS)
+    cell(ws, r, 6, f"={W}!H{W_LAST + 2}-SUM(F{t0 + 1}:F{trade_last})", "formula", ILS)
+    cell(ws, r, 7, f"=IF(N($B$5)=0,\"\",E{r}/$B$5)", "formula", PCT)
+    trade_last = r
 
     # cash flow by month (12 months from start)
     c0 = 17
