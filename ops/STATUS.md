@@ -16,6 +16,7 @@
 | E. Hanukkah pack | session_01WwXrbQhAm2zpZGSQCbvZty | `ws/hanukkah` | building |
 | F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | building |
 | G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | building |
+| H. Speech writer | session_01WwXrbNU6eoXkk2izTax4LB | `ws/speeches` | building |
 
 **Money:** Revenue ₪0 · Fees ₪0 · Profit ₪0 / ₪3,600
 
