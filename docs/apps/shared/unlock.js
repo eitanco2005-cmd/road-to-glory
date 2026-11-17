@@ -1,8 +1,9 @@
-/* תכנון פלוס — pay-to-export unlock for the web apps.
+/* תכנון פלוס — pay-to-export unlock for the web apps (seating, CV).
  *
- * Purchases of products with "unlock": true are stored by assets/checkout.js (and the thanks page) in
- * localStorage "tp-unlocks" = {slug: {o: orderId, t: time, test: bool}} and announced with the window event
- * "site:unlocked". This is a client-side convenience, not DRM: it is honest and simple on purpose.
+ * Single site-wide mechanism (assets/checkout.js + thanks pages): a purchase of a product with "unlock": true is
+ * stored in localStorage "tp-unlock:<slug>" = {o: orderId, t: time, test: bool} and announced with the window
+ * event "tp:unlocked". The older "tp-unlocks" object / "site:unlocked" event (first ws/apps build) are still read as
+ * a compatibility alias. Client-side convenience, not DRM: honest and simple on purpose.
  * Test-mode unlocks (?test=1 purchases) only count while the page itself runs with ?test=1.
  *
  *   AppUnlock.isUnlocked(slug)
@@ -11,20 +12,25 @@
  */
 (function () {
   "use strict";
-  var KEY = "tp-unlocks";
+  var PREFIX = "tp-unlock:", LEGACY = "tp-unlocks";
   var TEST = new URLSearchParams(location.search).get("test") === "1";
   var EN = /^en/i.test(document.documentElement.lang || "");
   function L(he, en) { return EN ? en : he; }
   var listeners = [];
 
-  function all() { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } }
+  function rec(slug) {
+    try { var r = JSON.parse(localStorage.getItem(PREFIX + slug) || "null"); if (r && r.o) return r; } catch (e) {}
+    try { var all = JSON.parse(localStorage.getItem(LEGACY) || "{}") || {}; if (all[slug] && all[slug].o) return all[slug]; } catch (e) {}
+    return null;
+  }
   function isUnlocked(slug) {
-    var u = all()[slug];
-    return !!(u && u.o && (!u.test || TEST));
+    var u = rec(slug);
+    return !!(u && (!u.test || TEST));
   }
   function emit(slug) { listeners.forEach(function (fn) { try { fn(slug); } catch (e) { if (window.console) console.error(e); } }); }
+  window.addEventListener("tp:unlocked", function (e) { emit(e.detail && e.detail.slug); });
   window.addEventListener("site:unlocked", function (e) { emit(e.detail && e.detail.slug); });
-  window.addEventListener("storage", function (e) { if (e.key === KEY) emit(null); });
+  window.addEventListener("storage", function (e) { if (e.key && (e.key.indexOf(PREFIX) === 0 || e.key === LEGACY)) emit(null); });
 
   var dlg = null;
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -62,7 +68,7 @@
       note.className = "callout success-callout mt-2";
       note.setAttribute("role", "status");
       note.innerHTML = L("<strong>תודה! הגרסה המלאה פתוחה.</strong> אפשר לסגור את החלון ולייצא.", "<strong>Thank you! The full version is unlocked.</strong> Close this window and export.") +
-        (slug && all()[slug] ? ' <a href="' + esc(thanksUrl(slug)) + '" target="_blank" rel="noopener">' + L("דף אישור ההזמנה", "Order confirmation page") + "</a> " + L("(שמרו אותו כדי לפתוח את הגרסה המלאה גם במכשיר אחר).", "(keep it to unlock on another device).") : "");
+        (slug && rec(slug) ? ' <a href="' + esc(thanksUrl(slug)) + '" target="_blank" rel="noopener">' + L("דף אישור ההזמנה", "Order confirmation page") + "</a> " + L("(שמרו אותו כדי לפתוח את הגרסה המלאה גם במכשיר אחר).", "(keep it to unlock on another device).") : "");
       if (box) box.after(note);
       var b = document.createElement("button");
       b.type = "button"; b.className = "btn block mt-2"; b.textContent = L("סגירה והמשך", "Close and continue");
@@ -72,7 +78,7 @@
   });
 
   function thanksUrl(slug) {
-    var u = all()[slug] || {};
+    var u = rec(slug) || {};
     return new URL((EN ? "en/" : "") + "thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(u.o || "") + (u.test ? "&test=1" : ""), ROOT).href;
   }
   var ROOT = new URL("../../", (document.currentScript && document.currentScript.src) || location.href).href;

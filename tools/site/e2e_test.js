@@ -74,7 +74,7 @@ function waitFor(url, ms = 15000) {
     await page.goto(BASE, { waitUntil: "networkidle" });
     ok(await page.locator("#site-header .brand").count() === 1, "header injected");
     ok(await page.locator("#site-footer a[href$='legal/refund/']").count() === 1, "footer with legal links");
-    ok(await page.locator('[data-catalog="products"][data-rendered="1"] .product-card').count() === 6, "home grid has 6 products");
+    ok(await page.locator('[data-catalog="products"][data-rendered="1"] .product-card').count() >= 6, "home grid has 6+ products");
     ok(await page.locator('.product-card[data-slug="wedding-planner"] h3 a').count() === 1, "live product links to its page");
     ok(await page.locator('.product-card.is-soon').count() === 0, "no product left as 'soon'");
     ok(await page.locator('[data-catalog="tools"] .tool-card').count() === 8, "home lists 8 tools");

@@ -1,0 +1,37 @@
+{
+ "_note": "he<->en page pairs (Stream A). Read by build_sitemap.py.",
+ "pairs": [
+  {
+   "en": "en/",
+   "he": ""
+  },
+  {
+   "en": "en/planners/",
+   "he": "products/"
+  },
+  {
+   "en": "en/tools/",
+   "he": "tools/"
+  },
+  {
+   "en": "en/guides/",
+   "he": "guides/"
+  },
+  {
+   "en": "en/p/bar-mitzvah-planner/",
+   "he": "p/bar-mitzvah-planner/"
+  },
+  {
+   "en": "en/p/jewish-wedding-planner/",
+   "he": "p/wedding-planner/"
+  },
+  {
+   "en": "en/tools/bar-mitzvah-budget/",
+   "he": "tools/bar-mitzvah-cost/"
+  },
+  {
+   "en": "en/guides/jewish-wedding-checklist/",
+   "he": "guides/wedding-checklist/"
+  }
+ ]
+}

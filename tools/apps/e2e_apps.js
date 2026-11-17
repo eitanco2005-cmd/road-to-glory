@@ -67,7 +67,7 @@ async function testPay(page, slug) {
   await btn.click();
   await dlg.locator(".success-callout").waitFor({ timeout: 5000 });
   ok(page.url() === url, `${slug}: no redirect after payment`);
-  const stored = await page.evaluate(s => JSON.parse(localStorage.getItem("tp-unlocks") || "{}")[s], slug);
+  const stored = await page.evaluate(s => JSON.parse(localStorage.getItem("tp-unlock:" + s) || "null"), slug);
   ok(stored && /^TEST-/.test(stored.o) && stored.test === true, `${slug}: unlock token stored (${stored && stored.o})`);
   ok(await dlg.locator(`a[href*="thanks/?p=${slug}"]`).count() > 0, `${slug}: dialog offers the thanks page link`);
   await dlg.locator("button.btn.block.mt-2").click();
@@ -215,8 +215,8 @@ async function seatingEn(browser) {
   ok((await dlg.textContent()).includes("$9") && (await dlg.textContent()).includes("Prices in US dollars"), "English dialog: USD price and English checkout copy");
   await dlg.locator("[data-test-pay=seating-chart-en]").click();
   await dlg.locator(".success-callout").waitFor({ timeout: 5000 });
-  const u = await page.evaluate(() => JSON.parse(localStorage.getItem("tp-unlocks") || "{}"));
-  ok(u["seating-chart-en"] && !u["seating-chart"], "unlock stored for seating-chart-en only (Hebrew product stays locked)");
+  const u = await page.evaluate(() => [localStorage.getItem("tp-unlock:seating-chart-en"), localStorage.getItem("tp-unlock:seating-chart")]);
+  ok(u[0] && !u[1], "unlock stored for seating-chart-en only (Hebrew product stays locked)");
   const links = await dlg.locator('a[href*="thanks/"]').evaluateAll(as => as.map(a => a.getAttribute("href")));
   ok(links.length > 0 && links.every(h => h.includes("en/thanks/?p=seating-chart-en")), "order links point to en/thanks/");
   await dlg.locator("button.btn.block.mt-2").click();
@@ -226,6 +226,17 @@ async function seatingEn(browser) {
   ok(out.includes("By table") && /False|None/.test(out), "English XLSX: English sheets, left-to-right");
   ok(page.errors.length === 0, "no JS errors" + (page.errors.length ? ": " + page.errors.join(" | ") : ""));
   await page.context().close();
+  // English thanks page restores the unlock in a fresh browser; legacy "tp-unlocks" object still honoured
+  const p3 = await newPage(browser);
+  await p3.goto(BASE + "en/thanks/?p=seating-chart-en&o=REALORDER-EN");
+  await p3.waitForSelector("#ok:not([hidden])");
+  ok((await p3.textContent("#downloads")).includes("unlocked in this browser") && await p3.locator('#downloads a[href*="en/apps/seating/"]').count() === 1, "en/thanks explains the unlock and links back to the tool");
+  await p3.goto(BASE + "en/apps/seating/");
+  ok((await p3.textContent("#plan")).includes("Full version active"), "en/thanks link unlocks the English tool in a new browser");
+  await p3.evaluate(() => { localStorage.clear(); localStorage.setItem("tp-unlocks", JSON.stringify({ "seating-chart-en": { o: "OLD", t: 1, test: false } })); });
+  await p3.reload();
+  ok((await p3.textContent("#plan")).includes("Full version active"), "legacy tp-unlocks store still honoured (compat alias)");
+  await p3.context().close();
   for (const vp of [{ width: 375, height: 812 }, { width: 1280, height: 900 }]) {
     const p = await newPage(browser, vp);
     await p.goto(BASE + "en/apps/seating/?demo=1");
@@ -322,7 +333,7 @@ async function pages(browser) {
   await p.goto(BASE + "p/cv-builder/?test=1");
   await p.locator("[data-test-pay=cv-builder]").first().click();
   await p.waitForTimeout(300);
-  ok(await p.evaluate(() => !!JSON.parse(localStorage.getItem("tp-unlocks") || "{}")["cv-builder"]), "product page purchase stores the unlock");
+  ok(await p.evaluate(() => !!localStorage.getItem("tp-unlock:cv-builder")), "product page purchase stores the unlock");
   // regression: a normal file product still redirects to the thanks page (checkout.js backward compatible)
   await p.goto(BASE + "p/wedding-planner/?test=1");
   await p.locator("[data-test-pay=wedding-planner]").first().click();

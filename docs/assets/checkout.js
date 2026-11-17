@@ -13,8 +13,6 @@
  * A product is purchasable only if it is not a placeholder and has files or a Sheets copy link
  * (bundles: every member must be purchasable). Otherwise a "בקרוב" box is shown.
  *
- * Unlock products ("unlock": true in the JSON, used by the web apps under apps/): no redirect after capture;
- * the purchase is saved in localStorage "tp-unlocks" and the event "site:unlocked" is dispatched on window.
  * Currency: per product. JSON "currency" (default "ILS") + "price" (falls back to "price_ils"). The PayPal SDK is
  * loaded once per page with the currency of the first product rendered, so keep one currency per page; a product
  * in another currency on the same page shows an error instead of a wrong charge.
@@ -38,7 +36,7 @@
     secure: "Secure checkout with PayPal or any debit/credit card. No PayPal account needed",
     notes: ["One-time payment", "Instant download", "No sign-up"],
     legal: function (t, r) { return 'By purchasing you agree to the <a href="' + t + '">Terms</a> and the <a href="' + r + '">Refund policy</a>. Prices in US dollars.'; },
-    paid: "Payment received! Taking you to your download page…", unlocked: "Payment received! The full version is now unlocked in this browser.", orderLink: "Order confirmation page", testFlag: "TEST mode: no charge will be made",
+    paid: "Payment received! Taking you to your download page…", testFlag: "TEST mode: no charge will be made",
     testPay: "Test payment", loading: "Loading payment options…", unavailable: "Payment is not available right now. Please try again later.",
     confirming: "Confirming your payment…", declined: "Your payment method was declined. Please try another one.",
     cancelled: "Payment cancelled. You can try again any time.", error: "Something went wrong and you were not charged. Please refresh and try again.",
@@ -49,7 +47,7 @@
     secure: "תשלום מאובטח ב-PayPal או בכרטיס אשראי — אין צורך בחשבון PayPal",
     notes: ["תשלום חד-פעמי", "הורדה מיידית", "בלי הרשמה"],
     legal: function (t, r) { return 'ברכישה הנך מאשר/ת את <a href="' + t + '">התקנון</a> ואת <a href="' + r + '">מדיניות הביטולים</a>. המחיר סופי.'; },
-    paid: "התשלום התקבל! מעבירים אותך לדף ההורדה…", unlocked: "התשלום התקבל! הגרסה המלאה נפתחה בדפדפן הזה.", orderLink: "לדף אישור ההזמנה", testFlag: "מצב בדיקה (TEST) — לא יתבצע חיוב",
+    paid: "התשלום התקבל! מעבירים אותך לדף ההורדה…", testFlag: "מצב בדיקה (TEST) — לא יתבצע חיוב",
     testPay: "תשלום בדיקה", loading: "טוען את אפשרויות התשלום…", unavailable: "התשלום אינו זמין כרגע. נסו שוב מאוחר יותר.",
     confirming: "מאשרים את התשלום…", declined: "אמצעי התשלום נדחה. נסו אמצעי אחר.",
     cancelled: "התשלום בוטל. אפשר לנסות שוב בכל רגע.", error: "משהו השתבש בתשלום ולא בוצע חיוב. רעננו את הדף ונסו שוב.",
@@ -94,7 +92,7 @@
     return cache[slug];
   }
   function isDeliverable(p) {
-    return !!p && !p.placeholder && ((p.files && p.files.length > 0) || !!p.sheets_copy_url || !!p.unlock);
+    return !!p && !p.placeholder && ((p.files && p.files.length > 0) || !!p.sheets_copy_url || p.unlock === true);
   }
   /* -> {product, members[], available} */
   function resolve(slug) {
@@ -121,36 +119,26 @@
   function thanksUrl(slug, orderId, test, en) {
     return ROOT + (en ? "en/" : "") + "thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(orderId) + (test ? "&test=1" : "");
   }
-  /* Products with "unlock": true (web apps: pay to export) do not redirect: the purchase is stored in
-   * localStorage "tp-unlocks" and the page is told via the window event "site:unlocked" (see apps/shared/unlock.js). */
-  var UNLOCK_KEY = "tp-unlocks";
-  function storeUnlock(slug, orderId, test) {
-    try {
-      var all = JSON.parse(localStorage.getItem(UNLOCK_KEY) || "{}") || {};
-      if (!all[slug] || all[slug].test || !test) all[slug] = { o: orderId, t: Date.now(), test: !!test };
-      localStorage.setItem(UNLOCK_KEY, JSON.stringify(all));
-    } catch (e) {}
-  }
-  function unlocked(box, slug, orderId, amount, currency, status, test, en) {
-    storeUnlock(slug, orderId, test);
-    setMsg(box, "info", T.unlocked);
+  /* Unlock products ("unlock": true in the product JSON, e.g. web apps with paid export): store the unlock in this
+   * browser (localStorage "tp-unlock:<slug>"), fire "tp:unlocked" on window and stay on the page. */
+  function unlock(box, slug, orderId, amount, currency, status, test, en) {
+    var rec = { o: String(orderId), t: Date.now(), test: !!test };
+    try { localStorage.setItem("tp-unlock:" + slug, JSON.stringify(rec)); } catch (e) {}
+    try { window.dispatchEvent(new CustomEvent("tp:unlocked", { detail: { slug: slug, orderId: rec.o, test: rec.test } })); } catch (e) {}
+    setMsg(box, "info", en ? "Payment received! Clean exports are now unlocked in this browser." : "התשלום התקבל! ההורדות הנקיות נפתחו בדפדפן הזה.");
     var m = box.querySelector(".buy-msg");
     if (m) {
-      m.appendChild(document.createTextNode(" "));
       var a = document.createElement("a");
       a.href = thanksUrl(slug, orderId, test, en); a.target = "_blank"; a.rel = "noopener";
-      a.textContent = T.orderLink;
+      a.textContent = en ? " Order confirmation" : " לאישור ההזמנה";
       m.appendChild(a);
     }
-    var btns = box.querySelector(".buy-buttons");
-    if (btns) btns.hidden = true;
     sales().then(function () {
       return window.recordSale({ orderId: orderId, slug: slug, amount: amount, currency: currency, status: status, test: test });
     }).catch(function () {});
-    try { window.dispatchEvent(new CustomEvent("site:unlocked", { detail: { slug: slug, orderId: orderId, test: !!test } })); } catch (e) {}
   }
   function finish(box, slug, orderId, amount, currency, status, test, en, product) {
-    if (product && product.unlock) return unlocked(box, slug, orderId, amount, currency, status, test, en);
+    if (product && product.unlock === true) return unlock(box, slug, orderId, amount, currency, status, test, en);
     setMsg(box, "info", T.paid);
     var go = function () { location.href = thanksUrl(slug, orderId, test, en); };
     var timer = setTimeout(go, 2500); // never block the buyer on the sales log
@@ -311,7 +299,7 @@
       for (var i = 0; i < els.length; i++) renderOne(els[i], cfg);
     });
   }
-  window.SiteCheckout = { render: init, resolve: resolve, isTest: TEST, storeUnlock: storeUnlock };
+  window.SiteCheckout = { render: init, resolve: resolve, isTest: TEST };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

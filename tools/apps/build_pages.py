@@ -289,11 +289,12 @@ SEATING = {
     ],
     "related": """<div class="cta-box">
    <div><h2 style="font-size:1.25rem">מתכננים את כל החתונה?</h2>
-   <p><a href="../wedding-planner/">מתכנן החתונה באקסל</a> (₪49) מחבר תקציב, ספקים, תשלומים, אישורי הגעה ורישום צ'קים. את רשימת המוזמנים שלו אפשר להדביק ישר לכלי ההושבה.</p></div>
+   <p><a href="../wedding-planner/">מתכנן החתונה באקסל</a> (₪49) מחבר תקציב, ספקים, תשלומים, אישורי הגעה ורישום צ'קים, ואת רשימת המוזמנים שלו אפשר להדביק ישר לכלי ההושבה. להזמנה עצמה: <a href="../invitation-maker/">מעצב ההזמנות</a>.</p></div>
    <a class="btn" href="../wedding-planner/">למתכנן החתונה</a>
   </div>
   <h2 class="mt-4" style="font-size:1.3rem">מדריכים</h2>
   <ul>
+   <li><a href="../invitation-maker/">מעצב הזמנות לחתונה ולבר מצווה אונליין</a> – הזמנה מעוצבת לשליחה בוואטסאפ ולהדפסה</li>
    <li><a href="guides/how-to-seat-guests/">סידורי הושבה לחתונה: איך עושים את זה נכון, שלב אחר שלב</a></li>
    <li><a href="guides/tables-and-seats/">כמה שולחנות צריך? מחשבון וכללי אצבע לשולחן עגול ומלבני</a></li>
    <li><a href="../wedding-planner/guides/rsvp-seating-gifts/">אישורי הגעה, הושבה ורישום צ'קים – שיטה מסודרת</a></li>

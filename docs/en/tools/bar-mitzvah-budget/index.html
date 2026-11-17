@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bar Mitzvah Budget Calculator: Estimate the Cost | Tichnun Plus</title>
+<meta name="description" content="Free bar &amp; bat mitzvah budget calculator: estimate the total cost by guest count, kiddush or party, catering per person, DJ, photo, décor and more. Instant breakdown.">
+<link rel="canonical" href="https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/">
+<link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/">
+<link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/bar-mitzvah-cost/">
+<link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/bar-mitzvah-cost/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tichnun Plus">
+<meta property="og:title" content="Bar Mitzvah Budget Calculator: Estimate the Cost | Tichnun Plus">
+<meta property="og:description" content="Free bar &amp; bat mitzvah budget calculator: estimate the total cost by guest count, kiddush or party, catering per person, DJ, photo, décor and more. Instant breakdown.">
+<meta property="og:url" content="https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/">
+<meta property="og:image" content="https://tichnun.netlify.app/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "SoftwareApplication",
+   "name": "Bar mitzvah budget calculator",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Web browser",
+   "url": "https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "inLanguage": "en-US"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How much does a bar mitzvah cost on average?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "There is no reliable national average: costs range from a few thousand dollars for a kiddush and family dinner to well over $50,000 for big-city evening parties. Your guest count, location and style matter far more than any average."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is a bat mitzvah cheaper than a bar mitzvah?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not inherently. The cost depends on the celebration you choose, not on whether it's a bar or bat mitzvah."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who pays for a bar mitzvah?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Usually the parents, sometimes with help from grandparents. Synagogue fees for b'nai mitzvah preparation vary by congregation; ask yours."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What's the biggest expense?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For an evening party it's almost always catering and the venue, followed by entertainment (DJ, MC and dancers, or a band) and photography."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where do your default prices come from?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "They're rough starting points informed by published planning guides, adjusted for area. They are not quotes. Use the fine-tune section to replace them with your vendors' numbers."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://tichnun.netlify.app/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://tichnun.netlify.app/en/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Bar mitzvah budget calculator",
+     "item": "https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+<section class="hero">
+ <div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../en/">Home</a> <span aria-hidden="true">›</span> <a href="../../../en/tools/">Free tools</a> <span aria-hidden="true">›</span> <span aria-current="page">Bar mitzvah budget calculator</span></nav>
+  <h1>Bar mitzvah budget calculator: <span class="hl">what will it really cost?</span></h1>
+  <p class="lead">Enter your guest count and the kind of celebration you're planning. You get an itemized estimate for a bar or bat mitzvah in US dollars, with every assumption visible so you can replace it with real quotes.</p>
+ </div>
+</section>
+<section class="section alt">
+ <div class="container">
+  <div class="split">
+   <form class="tool-panel" id="bud" novalidate>
+    <div class="fields cols-2">
+     <div class="field"><label for="adults">Adult guests</label><input type="number" id="adults" min="0" step="1" value="100" inputmode="numeric"></div>
+     <div class="field"><label for="kids">Kids &amp; teens</label><input type="number" id="kids" min="0" step="1" value="40" inputmode="numeric"></div>
+    </div>
+    <div class="field"><span class="label" id="style-l">Type of celebration</span>
+     <div class="choices" role="radiogroup" aria-labelledby="style-l">
+      <label><input type="radio" name="style" value="kiddush"> Kiddush luncheon only</label>
+      <label><input type="radio" name="style" value="party" checked> Evening party</label>
+      <label><input type="radio" name="style" value="both"> Kiddush + evening party</label>
+     </div></div>
+    <div class="field"><span class="label" id="area-l">Where</span>
+     <div class="choices" role="radiogroup" aria-labelledby="area-l">
+      <label><input type="radio" name="area" value="low"> Lower-cost area</label>
+      <label><input type="radio" name="area" value="avg" checked> Average</label>
+      <label><input type="radio" name="area" value="high"> High-cost metro (NYC, LA, Bay Area…)</label>
+     </div></div>
+    <div class="fields cols-2">
+     <div class="field"><label for="ent">Music &amp; entertainment</label>
+      <select id="ent"><option value="0">None / playlist</option><option value="1500">DJ</option><option value="3500" selected>DJ + MC + dancers</option><option value="7000">Live band</option></select></div>
+     <div class="field"><label for="photo">Photo &amp; video</label>
+      <select id="photo"><option value="0">Friends / phones</option><option value="2000">Photographer</option><option value="3800" selected>Photo + video</option></select></div>
+     <div class="field"><label for="decor">Décor &amp; flowers</label>
+      <select id="decor"><option value="6">Simple</option><option value="18" selected>Moderate</option><option value="40">Elaborate</option></select></div>
+     <div class="field"><label for="extras">Extras (photo booth, games)</label>
+      <select id="extras"><option value="0" selected>None</option><option value="900">One attraction</option><option value="2200">Several</option></select></div>
+    </div>
+    <details class="mt-1"><summary><strong>Fine-tune the assumptions</strong></summary>
+     <div class="fields cols-2 mt-2">
+      <div class="field"><label for="pp">Party catering per adult ($)</label><input type="number" id="pp" min="0" step="1"><span class="hint">incl. tax &amp; service charge</span></div>
+      <div class="field"><label for="kpp">Kiddush per person ($)</label><input type="number" id="kpp" min="0" step="1"></div>
+      <div class="field"><label for="venue">Venue rental ($)</label><input type="number" id="venue" min="0" step="50"></div>
+      <div class="field"><label for="tutor">Tutor &amp; synagogue fees ($)</label><input type="number" id="tutor" min="0" step="50" value="1500"></div>
+      <div class="field"><label for="attire">Clothing for the family ($)</label><input type="number" id="attire" min="0" step="50" value="700"></div>
+      <div class="field"><label for="cont">Contingency (%)</label><input type="number" id="cont" min="0" max="50" step="1" value="10"></div>
+     </div>
+     <p class="small muted">Leave a field empty to use the default for your area and style. Kids' meals are estimated at 45% of the adult price; invitations at $4 per household (about 2.5 guests); favors at $8 per kid.</p>
+    </details>
+   </form>
+   <div>
+    <div class="result" aria-live="polite">
+     <div class="label">Estimated total</div>
+     <div class="big" id="total">$0</div>
+     <p class="mb-0" id="perguest"></p>
+    </div>
+    <div class="table-wrap mt-2"><table id="breakdown"><caption class="sr-only">Estimated cost by category</caption>
+     <thead><tr><th>Category</th><th class="num">Estimate</th><th>Share</th></tr></thead><tbody></tbody></table></div>
+    <p class="source mt-1">These are starting assumptions, not price quotes. Replace them with real quotes from your vendors.</p>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section">
+ <div class="container narrow prose">
+  <h2>What drives the cost</h2>
+  <ul>
+   <li><strong>Guest count × catering.</strong> Food and drink for the party is usually the biggest line, and kosher catering costs more.</li>
+   <li><strong>Kiddush vs evening party.</strong> A kiddush luncheon after services is far cheaper per person than a dinner party with a DJ.</li>
+   <li><strong>Where you live.</strong> Big-city venues and vendors can cost much more than the same party elsewhere.</li>
+   <li><strong>Entertainment.</strong> A DJ with an MC and dancers, or a live band, is often the second-biggest line.</li>
+   <li><strong>Weekend and season.</strong> Popular Saturday nights book early and cost more.</li>
+  </ul>
+  <p>Published estimates vary enormously, from a few thousand dollars for a kiddush and a family dinner to five or even six figures for big-city evening parties. Planning sites like The Bash list the guest count, the location and whether you hold a kiddush, a party or both as the main budget drivers, and a 2025 Philadelphia Inquirer report noted that some lavish parties top $100,000 while many families plan far smaller events. Treat any single "average" with care.</p>
+  <h2>Ways to spend less</h2>
+  <ul>
+   <li>Hold a Shabbat kiddush luncheon at the synagogue, plus a casual kids' party instead of a formal dinner.</li>
+   <li>Choose a Sunday brunch or an off-season date.</li>
+   <li>Trim the guest list first: every guest adds catering, seats, décor and favors.</li>
+   <li>Use digital invitations and RSVPs.</li>
+   <li>Put part of the budget toward a trip to Israel or the child's savings instead.</li>
+  </ul>
+  <h2>Sources</h2>
+  <ul class="source">
+   <li><a href="https://thebash.com/articles/bar-bat-mitzvah-budget-planner" target="_blank" rel="noopener">The Bash: How much does a bar/bat mitzvah cost?</a></li>
+   <li><a href="https://www.inquirer.com/consumer/bar-bat-mitzvah-planning-cost-budget-savings-philadelphia-20250305.html" target="_blank" rel="noopener">The Philadelphia Inquirer (March 2025): Bar and bat mitzvah planning costs</a></li>
+  </ul>
+  <h2>Questions</h2>
+  <div class="faq"><details><summary>How much does a bar mitzvah cost on average?</summary><p>There is no reliable national average: costs range from a few thousand dollars for a kiddush and family dinner to well over $50,000 for big-city evening parties. Your guest count, location and style matter far more than any average.</p></details><details><summary>Is a bat mitzvah cheaper than a bar mitzvah?</summary><p>Not inherently. The cost depends on the celebration you choose, not on whether it's a bar or bat mitzvah.</p></details><details><summary>Who pays for a bar mitzvah?</summary><p>Usually the parents, sometimes with help from grandparents. Synagogue fees for b'nai mitzvah preparation vary by congregation; ask yours.</p></details><details><summary>What&#x27;s the biggest expense?</summary><p>For an evening party it's almost always catering and the venue, followed by entertainment (DJ, MC and dancers, or a band) and photography.</p></details><details><summary>Where do your default prices come from?</summary><p>They're rough starting points informed by published planning guides, adjusted for area. They are not quotes. Use the fine-tune section to replace them with your vendors' numbers.</p></details></div>
+  <div class="mt-3"><div class="cta-box"><div><h2 style="font-size:1.2rem">Planning it for real?</h2><p>The Bar/Bat Mitzvah Planner turns this into a full plan: track the budget against signed contracts and payments, RSVPs and kids&#x27; meals, gifts and thank-you notes, aliyot and the candle-lighting ceremony, and seating. The dashboard shows where you stand at a glance.</p></div><div><a class="btn accent" href="../../../en/p/bar-mitzvah-planner/">See the planner ($19)</a></div></div></div>
+ </div>
+</section>
+
+</main>
+<footer id="site-footer"></footer>
+<script src="../../../assets/site.js"></script>
+<script>
+(function () {
+  "use strict";
+  // Starting assumptions (USD). Clearly labelled on the page as estimates to replace with quotes.
+  var AREA = { low: 0.8, avg: 1, high: 1.35 };
+  var PARTY_PP = { low: 70, avg: 95, high: 135 };
+  var KIDDUSH_PP = { low: 18, avg: 25, high: 35 };
+  var VENUE = { low: 1200, avg: 2500, high: 5000 };
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $("bud");
+  function radio(n) { return form.querySelector('input[name="' + n + '"]:checked').value; }
+  function num(id, dflt) { var v = $(id).value.trim(); var n = Number(v); return v === "" || !isFinite(n) || n < 0 ? dflt : n; }
+  function usd(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function calc() {
+    var a = num("adults", 0), k = num("kids", 0), g = a + k, style = radio("style"), area = radio("area"), f = AREA[area];
+    var party = style !== "kiddush", kid = style !== "party";
+    $("pp").placeholder = PARTY_PP[area]; $("kpp").placeholder = KIDDUSH_PP[area]; $("venue").placeholder = party ? VENUE[area] : 0;
+    var pp = num("pp", PARTY_PP[area]), kpp = num("kpp", KIDDUSH_PP[area]);
+    var rows = [];
+    if (party) {
+      rows.push(["Party catering & bar", a * pp + k * pp * 0.45]);
+      rows.push(["Venue rental", num("venue", VENUE[area])]);
+      rows.push(["Music & entertainment", Number($("ent").value) * f]);
+      rows.push(["Décor, flowers & centerpieces", Number($("decor").value) * g * f]);
+      rows.push(["Extras (photo booth, games)", Number($("extras").value) * f]);
+      rows.push(["Favors / swag", 8 * k]);
+    }
+    if (kid) rows.push(["Kiddush luncheon", g * kpp]);
+    if (!party) rows.push(["Kiddush décor & flowers", Math.min(Number($("decor").value), 10) * g * f]);
+    rows.push(["Photo & video", Number($("photo").value) * f * (party ? 1 : 0.5)]);
+    rows.push(["Invitations & postage", Math.ceil(g / 2.5) * 4]);
+    rows.push(["Clothing (family)", num("attire", 700)]);
+    rows.push(["Tutor & synagogue fees", num("tutor", 1500)]);
+    var sub = rows.reduce(function (s, r) { return s + r[1]; }, 0);
+    rows.push(["Contingency (" + num("cont", 10) + "%)", sub * num("cont", 10) / 100]);
+    var total = rows.reduce(function (s, r) { return s + r[1]; }, 0);
+    $("total").textContent = usd(total);
+    $("perguest").textContent = g ? "About " + usd(total / g) + " per guest (" + g + " guests). Range to plan for: " + usd(total * 0.85) + "–" + usd(total * 1.2) + "." : "Enter your guest count.";
+    var tb = document.querySelector("#breakdown tbody"); tb.innerHTML = "";
+    rows.sort(function (x, y) { return y[1] - x[1]; }).forEach(function (r) {
+      if (r[1] <= 0) return;
+      var pct = total ? r[1] / total * 100 : 0;
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + r[0] + '</td><td class="num">' + usd(r[1]) + '</td><td style="min-width:90px"><div class="meter" aria-hidden="true"><span style="width:' +
+        pct.toFixed(1) + '%"></span></div><span class="sr-only">' + pct.toFixed(0) + "%</span></td>";
+      tb.appendChild(tr);
+    });
+  }
+  form.addEventListener("input", calc);
+  form.addEventListener("change", calc);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  calc();
+})();
+
+</script>
+</body>
+</html>

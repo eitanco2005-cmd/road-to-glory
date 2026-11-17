@@ -1,0 +1,85 @@
+<section class="hero">
+ <div class="container">
+  {{CRUMBS}}
+  <h1>How much to give for a bar mitzvah? <span class="hl">A quick chai calculator</span></h1>
+  <p class="lead">Answer four questions and get a suggested gift for a bar or bat mitzvah, rounded to a multiple of $18 (chai, "life"), plus the range people commonly give.</p>
+ </div>
+</section>
+<section class="section alt">
+ <div class="container narrow">
+  <form class="tool-panel" id="gift-form" novalidate>
+   <div class="field"><span class="label" id="rel-l">How do you know the family?</span>
+    <div class="choices" role="radiogroup" aria-labelledby="rel-l">
+     <label><input type="radio" name="rel" value="teen"> I'm a classmate / teen friend</label>
+     <label><input type="radio" name="rel" value="acq"> Acquaintance / coworker</label>
+     <label><input type="radio" name="rel" value="friend" checked> Friend of the family</label>
+     <label><input type="radio" name="rel" value="close"> Close friend</label>
+     <label><input type="radio" name="rel" value="relative"> Relative (cousin, aunt, uncle)</label>
+     <label><input type="radio" name="rel" value="family"> Grandparent / very close family</label>
+    </div></div>
+   <div class="field"><span class="label" id="who-l">Who is the gift from?</span>
+    <div class="choices" role="radiogroup" aria-labelledby="who-l">
+     <label><input type="radio" name="who" value="1" checked> Just me</label>
+     <label><input type="radio" name="who" value="2"> A couple</label>
+     <label><input type="radio" name="who" value="3"> Our family (with kids)</label>
+    </div></div>
+   <div class="field"><span class="label" id="att-l">Are you attending?</span>
+    <div class="choices" role="radiogroup" aria-labelledby="att-l">
+     <label><input type="radio" name="att" value="party" checked> Service and party</label>
+     <label><input type="radio" name="att" value="service"> Service / kiddush only</label>
+     <label><input type="radio" name="att" value="no"> Not attending</label>
+    </div></div>
+   <div class="field"><span class="label" id="area-l">Where do you live?</span>
+    <div class="choices" role="radiogroup" aria-labelledby="area-l">
+     <label><input type="radio" name="area" value="0.85"> Lower-cost area</label>
+     <label><input type="radio" name="area" value="1" checked> Average</label>
+     <label><input type="radio" name="area" value="1.2"> Big, high-cost city</label>
+    </div></div>
+   <div class="result" aria-live="polite">
+    <div class="label">Suggested gift</div>
+    <div class="big" id="amount">$108</div>
+    <p class="mb-0" id="explain"></p>
+    <p class="small muted mt-1 mb-0" id="range"></p>
+   </div>
+  </form>
+  <h2 class="mt-4">Chai amounts at a glance</h2>
+  <div class="table-wrap"><table id="chai-table">
+   <thead><tr><th>Amount</th><th>Chai</th><th>Commonly given by</th></tr></thead>
+   <tbody>
+    <tr data-v="18"><td class="num">$18</td><td>1 × chai</td><td>Kids and teens giving on their own; a card when you can't attend</td></tr>
+    <tr data-v="36"><td class="num">$36</td><td>2 × chai</td><td>Classmates and teen friends; acquaintances</td></tr>
+    <tr data-v="54"><td class="num">$54</td><td>3 × chai</td><td>Coworkers and acquaintances; teen friends who are close</td></tr>
+    <tr data-v="72"><td class="num">$72</td><td>4 × chai</td><td>Friends of the family attending alone</td></tr>
+    <tr data-v="108"><td class="num">$108</td><td>6 × chai</td><td>Friends of the family; couples who know the family</td></tr>
+    <tr data-v="180"><td class="num">$180</td><td>10 × chai</td><td>Close friends and relatives; couples attending the party</td></tr>
+    <tr data-v="360"><td class="num">$360</td><td>20 × chai</td><td>Close relatives; families giving together</td></tr>
+    <tr data-v="540"><td class="num">$540+</td><td>30 × chai</td><td>Grandparents and very close family (often much more, or a savings gift)</td></tr>
+   </tbody></table></div>
+  <p class="source mt-1">Ranges summarize common US guidance from etiquette and parenting sites (see sources below). They're not rules: give what is comfortable for you.</p>
+ </div>
+</section>
+<section class="section">
+ <div class="container narrow prose">
+  <h2>Why multiples of 18?</h2>
+  <p>In Hebrew, letters double as numbers (gematria). The word <em>chai</em>, "life", is spelled chet (8) and yud (10), which add up to 18. Giving in multiples of 18 is a way of wishing the bar or bat mitzvah a long, good life, and the same custom is common for tzedakah (charity) donations. As ReformJudaism.org puts it, it's a symbolic custom, not a requirement.</p>
+  <h2>How people decide the amount</h2>
+  <ul>
+   <li><strong>Closeness comes first.</strong> Family and close friends give more than classmates or coworkers.</li>
+   <li><strong>A couple or a family usually gives one larger gift</strong> rather than one gift each.</li>
+   <li><strong>You don't have to "cover your plate".</strong> Some people think about what the party costs per guest, but most etiquette guides say a bar mitzvah gift is about the child, not the catering bill.</li>
+   <li><strong>Teens giving their own gift</strong> typically give $18–$54. A thoughtful card matters more than the amount.</li>
+   <li><strong>Can't attend?</strong> Sending a gift is still a kind gesture, often a little less than if you were attending.</li>
+  </ul>
+  <h2>Check, cash or Venmo?</h2>
+  <p>Checks made out to the bar or bat mitzvah (or a parent) are traditional and easy to track. Cash in a card works, and many families are fine with Zelle or Venmo now. Some guests give Israel Bonds, a contribution to the child's mitzvah project, or a donation in their honor. Bring the card to the party, or mail it if you're not attending.</p>
+  <h2>Sources</h2>
+  <ul class="source">
+   <li><a href="https://reformjudaism.org/learning/answers-jewish-questions/why-do-jews-give-gifts-and-charitable-donations-multiples-18" target="_blank" rel="noopener">ReformJudaism.org: Why do Jews give gifts and charitable donations in multiples of 18?</a></li>
+   <li><a href="https://www.jewishboston.com/growing-up-my-parents-used-to-give-money-gifts-in-multiples-of-18-i-know-this-number-chai-has-a-special-significance-to-the-jews-but-i-dont-know-why-whats-so-special-about-it/" target="_blank" rel="noopener">JewishBoston: Why gifts in multiples of 18?</a></li>
+   <li><a href="https://yourteenmag.com/social-life/how-much-money-to-give-for-bar-mitzvah" target="_blank" rel="noopener">Your Teen: How much money to give for a bar mitzvah</a></li>
+  </ul>
+  <h2>Questions</h2>
+  {{FAQ}}
+  <div class="mt-3">{{CTA}}</div>
+ </div>
+</section>

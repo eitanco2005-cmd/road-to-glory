@@ -32,6 +32,10 @@
       "category": "money"
     },
     {
+      "slug": "invitation-maker",
+      "category": "events"
+    },
+    {
       "slug": "seating-chart",
       "category": "apps"
     },

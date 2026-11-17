@@ -90,9 +90,9 @@
   }
   function list(p) {
     if (p.unlock) { // web app (pay to export): the purchase unlocks clean exports in this browser
-      try {
-        var k2 = "tp-unlocks", u = JSON.parse(localStorage.getItem(k2) || "{}") || {};
-        if (!u[p.slug] || u[p.slug].test || !test) { u[p.slug] = { o: order, t: Date.now(), test: test }; localStorage.setItem(k2, JSON.stringify(u)); }
+      try { // same store as assets/checkout.js: localStorage "tp-unlock:<slug>"
+        var k2 = "tp-unlock:" + p.slug, u = JSON.parse(localStorage.getItem(k2) || "null");
+        if (!u || u.test || !test) localStorage.setItem(k2, JSON.stringify({ o: order, t: Date.now(), test: test }));
       } catch (e) {}
       return '<div class="callout"><strong>הגרסה המלאה פתוחה בדפדפן הזה.</strong> חזרו לכלי והייצוא הנקי זמין מיד. ' +
         'עובדים במכשיר או בדפדפן אחר? פתחו בו את הקישור לדף הזה, והגרסה המלאה תיפתח גם שם.</div>' +
@@ -104,6 +104,7 @@
     if (p.sheets_copy_url) {
       items.push('<li><a class="dl sheets" href="' + esc(p.sheets_copy_url) + '" target="_blank" rel="noopener"><span class="ic">' + SHEET + '</span><span>יצירת עותק ב-Google Sheets</span><span class="ext">SHEETS</span></a></li>');
     }
+    if (!items.length && p.unlock && p.app) return '<p class="callout success">ההורדות הנקיות נפתחו בדפדפן שבו שילמתם. <a class="btn small" href="' + esc(G.url(p.app)) + '">חזרה למעצב ולהורדות</a></p>';
     if (!items.length) return '<p class="callout warn">הקבצים של המוצר הזה עדיין בהכנה. כתבו לנו עם מספר ההזמנה ונשלח אותם מיד כשיהיו מוכנים, או נחזיר את הכסף.</p>';
     return '<ul class="downloads">' + items.join("") + "</ul>";
   }
