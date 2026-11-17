@@ -1,0 +1,13 @@
+{
+  "slug": "money-bundle",
+  "title": "חבילת כסף ובית",
+  "subtitle": "תקציב משק בית Pro + מתכנן תקציב שיפוץ",
+  "price_ils": 59,
+  "bundle_of": [
+    "household-budget",
+    "renovation-budget"
+  ],
+  "files": [],
+  "sheets_copy_url": null,
+  "tool": null
+}
