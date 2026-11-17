@@ -20,7 +20,7 @@ REPO = pathlib.Path(__file__).resolve().parents[2]
 DOCS = REPO / "docs"
 DEFAULT_BASE = BASE_URL
 EXCLUDE_DIRS = {"thanks", "dl", "assets", "data"}
-PRIORITY = {"": "1.0", "products": "0.9", "tools": "0.9", "p": "0.9", "legal": "0.3"}
+PRIORITY = {"": "1.0", "products": "0.9", "tools": "0.9", "p": "0.9", "apps": "0.9", "legal": "0.3"}
 
 
 def lastmod(path):

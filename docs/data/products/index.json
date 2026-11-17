@@ -3,7 +3,8 @@
   "categories": {
     "events": "אירועים ושמחות",
     "money": "כסף ובית",
-    "business": "עסקים ועצמאים"
+    "business": "עסקים ועצמאים",
+    "apps": "כלים אונליין"
   },
   "products": [
     {
@@ -29,6 +30,14 @@
     {
       "slug": "renovation-budget",
       "category": "money"
+    },
+    {
+      "slug": "seating-chart",
+      "category": "apps"
+    },
+    {
+      "slug": "cv-builder",
+      "category": "apps"
     }
   ],
   "bundles": [

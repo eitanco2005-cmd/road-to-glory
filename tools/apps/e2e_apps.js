@@ -279,6 +279,16 @@ async function pages(browser) {
   await p.locator("[data-test-pay=cv-builder]").first().click();
   await p.waitForTimeout(300);
   ok(await p.evaluate(() => !!JSON.parse(localStorage.getItem("tp-unlocks") || "{}")["cv-builder"]), "product page purchase stores the unlock");
+  // regression: a normal file product still redirects to the thanks page (checkout.js backward compatible)
+  await p.goto(BASE + "p/wedding-planner/?test=1");
+  await p.locator("[data-test-pay=wedding-planner]").first().click();
+  await p.waitForURL(/thanks\/\?p=wedding-planner&o=TEST-/, { timeout: 8000 });
+  await p.waitForSelector("#ok:not([hidden])");
+  ok(await p.locator("#downloads a.dl").count() > 0 && await p.isVisible("#howto"), "file product: redirect to thanks page with downloads (unchanged)");
+  // catalog shows the apps with their own badge
+  await p.goto(BASE + "products/");
+  await p.waitForTimeout(400);
+  ok((await p.textContent("[data-category=apps]")).includes("כלי אונליין · חינם לשימוש") && await p.locator("[data-category=apps] .product-card:not(.is-soon)").count() === 2, "products page lists both apps as live with the app badge");
   await p.context().close();
 }
 

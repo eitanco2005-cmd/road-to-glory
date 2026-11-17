@@ -30,7 +30,7 @@
     return Promise.all([G.getJSON("data/products/index.json"), G.getJSON("data/tools.json").catch(function () { return { tools: [] }; })]);
   }
   function product(slug) { return G.getJSON("data/products/" + slug + ".json").catch(function () { return null; }); }
-  function deliverable(p) { return !!p && !p.placeholder && ((p.files && p.files.length) || !!p.sheets_copy_url); }
+  function deliverable(p) { return !!p && !p.placeholder && ((p.files && p.files.length) || !!p.sheets_copy_url || !!p.unlock); }
 
   function productCard(p, cat, catLabel, live) {
     var url = G.productUrl(p.slug);
@@ -45,7 +45,7 @@
       "<h3>" + (soon ? esc(p.title) : '<a href="' + url + '">' + esc(p.title) + "</a>") + "</h3>" +
       '<p class="sub">' + esc(p.subtitle || "") + "</p>" +
       '<div class="meta"><span class="price">' + G.formatILS(p.price_ils) + "</span>" +
-      (soon ? '<span class="badge soon">בקרוב</span>' : '<span class="badge accent">אקסל + Google Sheets</span>') +
+      (soon ? '<span class="badge soon">בקרוב</span>' : '<span class="badge accent">' + esc(p.badge || "אקסל + Google Sheets") + "</span>") +
       "</div></div></article>";
   }
 
