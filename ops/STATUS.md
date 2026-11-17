@@ -22,3 +22,4 @@
 - 2026-11-17: W4 merged: עוסק פטור tracker + quote pack, ceiling + VAT calculators, 4 guides. Sitemap 16 URLs. Open: Google Sheets copy links.
 - 2026-11-17: W2 merged: wedding + bar mitzvah planners, event bundle, 2 calculators, 4 guides.
 - 2026-11-17: W3 merged. **Phase 1 build complete**: 6 products + 4 bundles, 6 free tools, 12 guides, 32-URL sitemap, full e2e ALL PASSED. Waiting on owner: repo public + Pages + push-to-main OK, seller name/email.
+- 2026-11-17: Seller details filled (owner approved name + email for the site). Pushed to main for GitHub Pages.

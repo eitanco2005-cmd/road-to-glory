@@ -8,8 +8,8 @@ window.GLORY_CONFIG = {
   CURRENCY: "ILS",
   SALES_ENDPOINT: "",
   VISITS_ENDPOINT: "",
-  SELLER_NAME: "SELLER_NAME",
-  SELLER_EMAIL: "SELLER_EMAIL",
+  SELLER_NAME: "איתן כהן",
+  SELLER_EMAIL: "eitanco2005@gmail.com",
   BRAND: "Glory",
   /* Apple Pay / Google Pay via PayPal: keep false until the PayPal account is eligible and the domain is
      registered (see ops/reports/W1-platform.md). true only loads the SDK component; buttons are not rendered yet. */

@@ -53,7 +53,7 @@ function waitFor(url, ms = 15000) {
   fs.writeFileSync(cfgPath, fs.readFileSync(cfgPath, "utf8")
     .replace('SALES_ENDPOINT: ""', `SALES_ENDPOINT: "http://127.0.0.1:${API}/sale"`)
     .replace('VISITS_ENDPOINT: ""', `VISITS_ENDPOINT: "http://127.0.0.1:${API}/visit"`)
-    .replace('SELLER_EMAIL: "SELLER_EMAIL"', 'SELLER_EMAIL: "help@example.com"'));
+    .replace(/SELLER_EMAIL: "[^"]*"/, 'SELLER_EMAIL: "help@example.com"'));
 
   const web = spawn("python3", ["-m", "http.server", String(WEB), "--bind", "127.0.0.1"], { cwd: tmp, stdio: "ignore" });
   const api = spawn("python3", ["-m", "uvicorn", "app:app", "--port", String(API), "--host", "127.0.0.1"], {
