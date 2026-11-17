@@ -27,7 +27,7 @@ def build_product(c):
     path = f"p/{c['slug']}"
     bc = breadcrumbs([("דף הבית", "../../"), ("מוצרים", "../../products/"), (c["crumb"], None)])
     shots = "\n".join(
-        f'<figure><a href="img/screen-{i}.png" target="_blank" rel="noopener"><img src="img/screen-{i}.png" '
+        f'<figure><a href="img/screen-{i}.webp" target="_blank" rel="noopener"><img src="img/screen-{i}.webp" '
         f'alt="{esc(c["shot_alt"])} – {esc(cap)}" loading="lazy" width="1100" height="650"></a>'
         f'<figcaption>{esc(cap)}</figcaption></figure>'
         for i, cap in enumerate(SHOT_CAPTIONS, start=1))
@@ -128,7 +128,7 @@ def build_product(c):
 
 COMMON_FAQ_TAIL = [
     ("זה עובד ב-Google Sheets?",
-     "כן. הקובץ נבנה כך שכל הנוסחאות, הרשימות הנפתחות והעיצוב המותנה עובדים גם ב-Google Sheets: מעלים ל-Google Drive ופותחים עם Google Sheets. "
+     "כן. הקובץ נבנה בלי מאקרו ובלי פונקציות שקיימות רק באקסל, כדי שיעבוד גם ב-Google Sheets: מעלים ל-Google Drive ופותחים עם Google Sheets. ייתכנו הבדלים קטנים בעיצוב ובגרפים. "
      "כך אפשר לעבוד עליו יחד מכמה טלפונים."),
     ("יש פקודות מאקרו? צריך להתקין משהו?",
      "לא. רק נוסחאות רגילות של Excel, בלי מאקרו ובלי תוספים. עובד ב-Excel 2016 ומעלה, Excel 365, Excel לטלפון, Google Sheets ו-LibreOffice."),

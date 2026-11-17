@@ -164,7 +164,8 @@ def design_sheet(wb, idx, t, example):
     c(ws, "F2", "הצעת מחיר", Font(name=fn, size=20, bold=True, color="FFFFFF" if t["band"] else main), align=LEFT)
     ws.merge_cells("B4:G4")
     hdr_small = Font(name=fn, size=10, color="FFFFFF" if t["band"] else "475569")
-    c(ws, "B4", f'=TRIM({B}!B4&" "&{B}!B5&"  ·  "&{B}!B6&"  ·  "&{B}!B7&"  ·  "&{B}!B8)', hdr_small)
+    # skip the "·" separator for empty business fields so a half-filled header has no dangling dots
+    c(ws, "B4", f'=TRIM({B}!B4&" "&{B}!B5&IF({B}!B6="","","  ·  "&{B}!B6)&IF({B}!B7="","","  ·  "&{B}!B7)&IF({B}!B8="","","  ·  "&{B}!B8))', hdr_small)
     ws.row_dimensions[2].height = 26
     ws.row_dimensions[3].height = 26
     ws.row_dimensions[4].height = 20
@@ -322,6 +323,7 @@ def instructions(wb):
         ("ערכת הצעות מחיר – הוראות", 18, True),
         ("1. בגיליון 'פרטי העסק' ממלאים פעם אחת: שם, סוג עוסק, טלפון, תנאים. הם יופיעו אוטומטית בכל 5 העיצובים.", 11, False),
         ("2. בוחרים עיצוב (גיליונות 1–5), ממלאים פרטי לקוח ושורות פריטים בתאים הצהובים. הסכומים, ההנחה והמע\"מ מחושבים לבד.", 11, False),
+        ("   תאריך ההצעה מתמלא אוטומטית בתאריך של היום ומתעדכן בכל פתיחה של הקובץ. כדי לקבע אותו – הקלידו את התאריך בתא (Ctrl+;).", 11, False),
         ("3. 'סוג עוסק' קובע את המע\"מ: עוסק מורשה / חברה – מתווסף מע\"מ; עוסק פטור – ללא מע\"מ.", 11, False),
         ("4. מחירים ליחידה נרשמים לפני מע\"מ.", 11, False),
         ("5. עיצוב 5 ('לפי מחירון'): בוחרים פריט מרשימה, והמחיר והיחידה נמשכים מהמחירון שבגיליון 'פרטי העסק'.", 11, False),

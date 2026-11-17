@@ -143,19 +143,19 @@
       '<div class="cols">' +
       "<div><a class=\"brand\" href=\"" + G.url("") + "\">" + LOGO + "<span>Glory</span></a>" +
       '<p class="muted small mt-1">קבצי אקסל ו-Google Sheets מוכנים בעברית לתכנון חתונה, תקציב משפחתי ועסק קטן. תשלום מאובטח ב-PayPal והורדה מיידית.</p></div>' +
-      "<div><h3>מוצרים</h3><ul>" +
+      "<div><h2 class=\"footer-h\">מוצרים</h2><ul>" +
       '<li><a href="' + G.productUrl("wedding-planner") + '">מתכנן חתונה</a></li>' +
       '<li><a href="' + G.productUrl("household-budget") + '">תקציב משק בית</a></li>' +
       '<li><a href="' + G.productUrl("osek-patur-tracker") + '">מעקב עוסק פטור</a></li>' +
       '<li><a href="' + G.url("products/") + '">כל המוצרים והחבילות</a></li>' +
       "</ul></div>" +
-      "<div><h3>כלים חינם</h3><ul>" +
+      "<div><h2 class=\"footer-h\">כלים חינם</h2><ul>" +
       '<li><a href="' + G.toolUrl("wedding-gift") + '">כמה לשים בחתונה</a></li>' +
       '<li><a href="' + G.toolUrl("budget-503020") + '">מחשבון 50/30/20</a></li>' +
       '<li><a href="' + G.toolUrl("vat-calculator") + '">מחשבון מע״מ</a></li>' +
       '<li><a href="' + G.url("tools/") + '">כל הכלים</a></li>' +
       "</ul></div>" +
-      "<div><h3>מידע</h3><ul>" +
+      "<div><h2 class=\"footer-h\">מידע</h2><ul>" +
       '<li><a href="' + G.url("legal/terms/") + '">תקנון ותנאי מכירה</a></li>' +
       '<li><a href="' + G.url("legal/refund/") + '">מדיניות ביטולים והחזרים</a></li>' +
       '<li><a href="' + G.url("legal/privacy/") + '">מדיניות פרטיות</a></li>' +
@@ -177,8 +177,29 @@
     }).catch(function () {});
   }
 
+  /* ---------- a11y: wide tables scroll horizontally, so make the scroll box keyboard-reachable ---------- */
+  function a11yTables() {
+    var w = document.querySelectorAll(".table-wrap");
+    var seen = {};
+    for (var i = 0; i < w.length; i++) {
+      if (!w[i].hasAttribute("tabindex")) w[i].setAttribute("tabindex", "0");
+      if (!w[i].hasAttribute("role")) {
+        // label each table by its caption or nearest preceding heading so landmarks stay unique
+        var cap = w[i].querySelector("caption"), h = null, el = w[i];
+        while (el && !h) { el = el.previousElementSibling || el.parentElement; if (el && /^H[2-4]$/.test(el.tagName)) h = el; }
+        var label = (cap && cap.textContent) || (h && h.textContent) || "";
+        w[i].setAttribute("role", "region");
+        label = "טבלה" + (label ? ": " + label.trim() : "");
+        if (seen[label]) label += " " + (i + 1);
+        seen[label] = 1;
+        w[i].setAttribute("aria-label", label);
+      }
+    }
+  }
+
   function init() {
     ensureHead();
+    a11yTables();
     renderHeader();
     G.config().then(renderFooter, function () { renderFooter({}); });
     recordVisit();

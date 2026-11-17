@@ -15,7 +15,7 @@
   --primary-hover: #0a5751;
   --primary-ink: #ffffff;
   --primary-soft: #e2f1ee;
-  --accent: #c98410;
+  --accent: #8f5a00; /* darkened from #c98410 for WCAG AA text contrast */
   --accent-strong: #f0b44c;
   --accent-soft: #fcf0d9;
   --success: #1d7a46;
@@ -181,7 +181,7 @@ main { display: block; min-height: 60vh; }
 .site-footer { margin-top: 3rem; background: var(--surface-2); border-top: 1px solid var(--border); padding-block: 2.25rem 1.5rem; font-size: .95rem; }
 .site-footer .cols { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
 @media (min-width: 720px) { .site-footer .cols { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
-.site-footer h3 { font-size: 1rem; margin-bottom: .6rem; }
+.site-footer h3, .site-footer h2.footer-h { font-size: 1rem; margin-bottom: .6rem; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: .35rem; }
 .site-footer a { color: var(--text); text-decoration: none; }

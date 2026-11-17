@@ -27,6 +27,8 @@ def render(cfg, outdir, prefix):
     for name, png in zip(order, pages):
         dst = os.path.join(outdir, f"{prefix}-{list(AREAS).index(name)+1}.png")
         subprocess.run(["convert", png, "-trim", "-bordercolor", "white", "-border", "24", "-resize", "1400x>", dst], check=True)
+        # page <img> uses a WebP copy (~55% smaller); the PNG stays for og:image
+        subprocess.run(["convert", dst, "-quality", "82", dst[:-4] + ".webp"], check=True)
         out.append(dst)
     shutil.rmtree(tmp)
     return out
