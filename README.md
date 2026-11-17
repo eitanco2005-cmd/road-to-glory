@@ -11,6 +11,17 @@ Hebrew Excel / Google Sheets planners and free online calculators for Israeli ho
 - [תבניות הצעת מחיר](https://tichnun.netlify.app/p/price-quote-pack/) · [מתכנן תקציב שיפוץ](https://tichnun.netlify.app/p/renovation-budget/) · [מחשבון עלות שיפוץ](https://tichnun.netlify.app/tools/renovation-cost/)
 - [כל המדריכים](https://tichnun.netlify.app/guides/)
 
+## RTL Landing Kit (free, MIT) — RTL landing page templates for Hebrew & Arabic
+
+Open-source **right-to-left landing page templates** built only on CSS logical properties: the same HTML works RTL
+(Hebrew, Arabic) and LTR. Plain HTML/CSS plus a Tailwind CSS variant, with a he/ar/en language switcher. No framework.
+
+- Source: [`devkit/`](devkit/) · [README & screenshots](devkit/README.md) · [MIT license](devkit/LICENSE)
+- Live demos: https://tichnun.netlify.app/devkit/ · [Download zip](https://tichnun.netlify.app/devkit/rtl-landing-kit-free.zip)
+- **Pro pack** (12 more templates + RTL navbars, forms, pricing, dashboards): https://tichnun.netlify.app/devkit/#pro
+
+![RTL Landing Kit — Launch template in Hebrew](devkit/screenshots/launch-he.png)
+
 ---
 Project docs: `ops/PLAN.md` (master plan), `ops/STATUS.md` (status), `docs/` (site source).
 Site base URL and brand live in `tools/site/site_config.py` (`BASE_URL`, `BRAND`) and `docs/assets/config.js` (`SITE_URL`).

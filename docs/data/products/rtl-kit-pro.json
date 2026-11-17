@@ -1,0 +1,17 @@
+{
+  "slug": "rtl-kit-pro",
+  "title": "RTL Landing Kit Pro",
+  "subtitle": "12 RTL landing page templates + components (navbars, forms, pricing, dashboards). HTML/CSS, Hebrew & Arabic ready.",
+  "currency": "USD",
+  "price_usd": 24,
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "RTL Landing Kit Pro v1.0 (zip: 12 templates, components, free kit, README, license)",
+      "path": "dl/zvc8s5ykj4hwzgxz/rtl-landing-kit-pro-v1.0.zip"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": null,
+  "_note": "English USD product sold on docs/devkit/ via assets/paykit.js (not checkout.js, which is ILS-only). Not listed in index.json on purpose. Built by products/rtl-kit-pro/build.py."
+}

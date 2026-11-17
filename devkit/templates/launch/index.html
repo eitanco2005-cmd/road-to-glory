@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mivne — ניהול פרויקטים לצוותים | תבנית SaaS</title>
+<meta name="description" content="מבנה מחבר משימות, לוחות זמנים ותקציב לדשבורד אחד בעברית — כדי שתפסיקו לרדוף אחרי עדכונים בווטסאפ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Noto+Kufi+Arabic:wght@400;500;700;800&family=Inter:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../../css/rtl-kit.css">
+</head>
+<body>
+<a class="skip" href="#main"><span data-i18n="skip">דילוג לתוכן</span></a>
+<header class="nav">
+ <div class="container">
+  <a class="brand" href="#"><span class="brand-mark" aria-hidden="true"></span><span data-i18n="brand">מבנה</span></a>
+  <button class="menu-btn" type="button" data-menu aria-expanded="false"><span class="sr-only" data-i18n="menu">תפריט</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <ul class="nav-links"><li><a href="#features"><span data-i18n="n1">יכולות</span></a></li><li><a href="#how"><span data-i18n="n2">איך זה עובד</span></a></li><li><a href="#pricing"><span data-i18n="n3">מחירים</span></a></li><li><a href="#faq"><span data-i18n="n4">שאלות</span></a></li></ul>
+  <div class="nav-tools"><label class="sr-only" for="lang">Language / שפה / اللغة</label><select id="lang" class="lang-select" data-lang-switch><option value="he">עברית</option><option value="ar">العربية</option><option value="en">English</option></select><a class="btn sm" href="#faq"><span data-i18n="n_cta">נסו חינם</span></a></div>
+ </div>
+</header>
+<main id="main">
+<section class="hero">
+ <div class="container split">
+  <div>
+   <span class="eyebrow" data-i18n="eyebrow">חדש: דוחות אוטומטיים</span>
+   <h1 data-i18n="h1">כל הפרויקטים של הצוות. <span class="hl">במקום אחד.</span></h1>
+   <p class="lead" data-i18n="lead">מבנה מחבר משימות, לוחות זמנים ותקציב לדשבורד אחד בעברית — כדי שתפסיקו לרדוף אחרי עדכונים בווטסאפ.</p>
+   <div class="row"><a class="btn" href="#signup"><span data-i18n="cta1">התחילו 14 יום חינם</span> <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="#how"><span data-i18n="cta2">צפו בהדגמה</span></a></div>
+   <p class="hero-note" data-i18n="note">בלי כרטיס אשראי · ביטול בכל רגע</p>
+  </div>
+  <div class="mock" aria-hidden="true">
+   <div class="mock-bar"><i></i><i></i><i></i></div>
+   <div class="mock-body">
+    <div class="mock-side"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="mock-main">
+     <div class="mock-kpis"><div><span data-i18n="k1">משימות פתוחות</span><b><bdi>24</bdi></b></div><div><span data-i18n="k2">בזמן</span><b><bdi>92%</bdi></b></div><div><span data-i18n="k3">תקציב</span><b><bdi>68%</bdi></b></div></div>
+     <div class="mock-chart"><i style="block-size:40%"></i><i style="block-size:65%"></i><i style="block-size:50%"></i><i style="block-size:80%"></i><i style="block-size:70%"></i><i style="block-size:95%"></i><i style="block-size:60%"></i></div>
+     <span class="mock-line" style="inline-size:80%"></span><span class="mock-line" style="inline-size:55%"></span>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section alt" id="features">
+ <div class="container">
+  <div class="section-head center"><span class="eyebrow" data-i18n="fh_eyebrow">יכולות</span><h2 data-i18n="fh">כל מה שצוות צריך, בלי מה שלא</h2><p class="lead mb-0" data-i18n="fl">בנוי מהיסוד לעברית ולערבית: ממשק מימין לשמאל, תאריכים מקומיים ושבוע שמתחיל ביום ראשון.</p></div>
+  <div class="grid c3"><article class="card feature"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM9 5v14M14 5v14"/></svg></div><h3 data-i18n="f1">לוחות משימות</h3><p data-i18n="f1d">קנבן, רשימה או ציר זמן — כל אחד עובד בתצוגה שנוחה לו.</p></article><article class="card feature"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3 data-i18n="f2">דוחות אוטומטיים</h3><p data-i18n="f2d">סיכום שבועי נשלח לבד, עם מה הושלם ומה מתעכב.</p></article><article class="card feature"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3 data-i18n="f3">הרשאות מדויקות</h3><p data-i18n="f3d">לקוחות רואים רק את מה שצריך. הצוות רואה הכול.</p></article><article class="card feature"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0zM12 16v5"/></svg></div><h3 data-i18n="f4">אינטגרציות</h3><p data-i18n="f4d">יומן, מייל וחשבוניות — מתחברים בקליק.</p></article><article class="card feature"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3 data-i18n="f5">אבטחה</h3><p data-i18n="f5d">הצפנה מלאה, גיבוי יומי ושרתים באירופה.</p></article><article class="card feature"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg></div><h3 data-i18n="f6">תמיכה בעברית</h3><p data-i18n="f6d">צוות אמיתי שעונה בצ'אט בשעות העבודה.</p></article></div>
+ </div>
+</section>
+<section class="section" id="how">
+ <div class="container">
+  <div class="section-head"><h2 data-i18n="sh">מתחילים בשלושה צעדים</h2></div>
+  <div class="steps"><div class="step"><h3 data-i18n="s1">פותחים חשבון</h3><p class="muted mb-0" data-i18n="s1d">דקה אחת, בלי התקנה.</p></div><div class="step"><h3 data-i18n="s2">מזמינים את הצוות</h3><p class="muted mb-0" data-i18n="s2d">קישור אחד לכולם.</p></div><div class="step"><h3 data-i18n="s3">מייבאים פרויקטים</h3><p class="muted mb-0" data-i18n="s3d">מאקסל, Trello או Asana.</p></div></div>
+ </div>
+</section>
+<section class="section alt" id="pricing">
+ <div class="container">
+  <div class="section-head center"><h2 data-i18n="ph">מחיר פשוט ושקוף</h2><p class="lead mb-0" data-i18n="pl">משלמים לפי משתמש. משנים תוכנית מתי שרוצים.</p></div>
+  <div class="pricing"><article class="card plan"><h3 data-i18n="p1">בסיסי</h3><p class="muted mb-0" data-i18n="p1d">לצוותים קטנים</p><div class="price"><span data-i18n="p1p">₪0</span> <small><span data-i18n="p1u">/ לתמיד</span></small></div><ul><li><span data-i18n="p1a">עד 3 משתמשים</span></li><li><span data-i18n="p1b">5 פרויקטים</span></li><li><span data-i18n="p1c">אפליקציה לנייד</span></li></ul><a class="btn ghost" href="#signup"><span data-i18n="p1btn">מתחילים</span></a></article><article class="card plan featured"><span class="tag" data-i18n="p2tag">מומלץ</span><h3 data-i18n="p2">צוות</h3><p class="muted mb-0" data-i18n="p2d">הכי פופולרי</p><div class="price"><span data-i18n="p2p">₪39</span> <small><span data-i18n="p2u">/ משתמש לחודש</span></small></div><ul><li><span data-i18n="p2a">פרויקטים ללא הגבלה</span></li><li><span data-i18n="p2b">דוחות אוטומטיים</span></li><li><span data-i18n="p2c">הרשאות ללקוחות</span></li></ul><a class="btn" href="#signup"><span data-i18n="p2btn">14 יום חינם</span></a></article><article class="card plan"><h3 data-i18n="p3">ארגון</h3><p class="muted mb-0" data-i18n="p3d">לחברות</p><div class="price"><span data-i18n="p3p">בהתאמה</span> <small><span data-i18n="p3u"></span></small></div><ul><li><span data-i18n="p3a">SSO והרשאות מתקדמות</span></li><li><span data-i18n="p3b">מנהל לקוח ייעודי</span></li><li><span data-i18n="p3c">הסכם SLA</span></li></ul><a class="btn ghost" href="#signup"><span data-i18n="p3btn">דברו איתנו</span></a></article></div>
+ </div>
+</section>
+<section class="section" id="faq">
+ <div class="container">
+  <div class="section-head center"><h2 data-i18n="qh">שאלות נפוצות</h2></div>
+  <div class="faq"><details><summary><span data-i18n="q1">האם יש תקופת ניסיון?</span></summary><div><p class="mb-0" data-i18n="a1">כן, 14 יום על תוכנית צוות, בלי כרטיס אשראי.</p></div></details><details><summary><span data-i18n="q2">אפשר לייבא נתונים?</span></summary><div><p class="mb-0" data-i18n="a2">כן — מאקסל, CSV, Trello ו-Asana.</p></div></details><details><summary><span data-i18n="q3">איפה נשמרים הנתונים?</span></summary><div><p class="mb-0" data-i18n="a3">בשרתים מוצפנים באירופה, עם גיבוי יומי.</p></div></details></div>
+ </div>
+</section>
+<section class="section" id="signup" style="padding-block-start:0">
+ <div class="container">
+  <div class="cta-band">
+   <div><h2 data-i18n="ch">מוכנים להתחיל?</h2><p data-i18n="cl">הצטרפו לרשימה ונשלח לכם מדריך התחלה קצר.</p></div>
+   <form class="form" data-demo>
+     <div class="inline-form"><label class="sr-only" for="em">אימייל</label>
+      <input id="em" type="email" dir="ltr" required autocomplete="email" placeholder="you@example.com">
+      <button class="btn light" type="submit"><span data-i18n="cbtn">הרשמה</span></button></div>
+     <p class="form-ok" data-ok hidden tabindex="-1"><span data-i18n="cok">תודה! נשלח אליכם מייל בקרוב.</span></p>
+    </form>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="footer">
+ <div class="container">
+  <div class="cols">
+   <div><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"></span><span data-i18n="brand">מבנה</span></a></div>
+   <div><h4><span data-i18n="f_product">מוצר</span></h4><ul><li><a href="#"><span data-i18n="n1">יכולות</span></a></li><li><a href="#"><span data-i18n="n3">מחירים</span></a></li></ul></div>
+   <div><h4><span data-i18n="f_company">חברה</span></h4><ul><li><a href="#"><span data-i18n="f_about">אודות</span></a></li><li><a href="#"><span data-i18n="f_jobs">דרושים</span></a></li><li><a href="#"><span data-i18n="f_contact">צור קשר</span></a></li></ul></div>
+   <div><h4><span data-i18n="f_legal">משפטי</span></h4><ul><li><a href="#"><span data-i18n="f_terms">תנאי שימוש</span></a></li><li><a href="#"><span data-i18n="f_privacy">פרטיות</span></a></li><li><a href="#"><span data-i18n="f_access">נגישות</span></a></li></ul></div>
+  </div>
+  <div class="fine"><span data-i18n="f_rights">© 2026 כל הזכויות שמורות.</span><span data-i18n="f_made">נבנה עם RTL Landing Kit</span></div>
+ </div>
+</footer>
+<script type="application/json" id="i18n" data-default="he">{
+ "he": {
+  "skip": "דילוג לתוכן",
+  "menu": "תפריט",
+  "lang": "שפה",
+  "f_product": "מוצר",
+  "f_company": "חברה",
+  "f_legal": "משפטי",
+  "f_about": "אודות",
+  "f_jobs": "דרושים",
+  "f_contact": "צור קשר",
+  "f_terms": "תנאי שימוש",
+  "f_privacy": "פרטיות",
+  "f_access": "נגישות",
+  "f_rights": "© 2026 כל הזכויות שמורות.",
+  "f_made": "נבנה עם RTL Landing Kit",
+  "email_ph": "you@example.com",
+  "email_l": "אימייל",
+  "_title": "Mivne — ניהול פרויקטים לצוותים | תבנית SaaS",
+  "brand": "מבנה",
+  "n1": "יכולות",
+  "n2": "איך זה עובד",
+  "n3": "מחירים",
+  "n4": "שאלות",
+  "n_cta": "נסו חינם",
+  "eyebrow": "חדש: דוחות אוטומטיים",
+  "h1": "כל הפרויקטים של הצוות. <span class=\"hl\">במקום אחד.<\/span>",
+  "lead": "מבנה מחבר משימות, לוחות זמנים ותקציב לדשבורד אחד בעברית — כדי שתפסיקו לרדוף אחרי עדכונים בווטסאפ.",
+  "cta1": "התחילו 14 יום חינם",
+  "cta2": "צפו בהדגמה",
+  "note": "בלי כרטיס אשראי · ביטול בכל רגע",
+  "k1": "משימות פתוחות",
+  "k2": "בזמן",
+  "k3": "תקציב",
+  "fh_eyebrow": "יכולות",
+  "fh": "כל מה שצוות צריך, בלי מה שלא",
+  "fl": "בנוי מהיסוד לעברית ולערבית: ממשק מימין לשמאל, תאריכים מקומיים ושבוע שמתחיל ביום ראשון.",
+  "f1": "לוחות משימות",
+  "f1d": "קנבן, רשימה או ציר זמן — כל אחד עובד בתצוגה שנוחה לו.",
+  "f2": "דוחות אוטומטיים",
+  "f2d": "סיכום שבועי נשלח לבד, עם מה הושלם ומה מתעכב.",
+  "f3": "הרשאות מדויקות",
+  "f3d": "לקוחות רואים רק את מה שצריך. הצוות רואה הכול.",
+  "f4": "אינטגרציות",
+  "f4d": "יומן, מייל וחשבוניות — מתחברים בקליק.",
+  "f5": "אבטחה",
+  "f5d": "הצפנה מלאה, גיבוי יומי ושרתים באירופה.",
+  "f6": "תמיכה בעברית",
+  "f6d": "צוות אמיתי שעונה בצ'אט בשעות העבודה.",
+  "sh": "מתחילים בשלושה צעדים",
+  "s1": "פותחים חשבון",
+  "s1d": "דקה אחת, בלי התקנה.",
+  "s2": "מזמינים את הצוות",
+  "s2d": "קישור אחד לכולם.",
+  "s3": "מייבאים פרויקטים",
+  "s3d": "מאקסל, Trello או Asana.",
+  "ph": "מחיר פשוט ושקוף",
+  "pl": "משלמים לפי משתמש. משנים תוכנית מתי שרוצים.",
+  "p1": "בסיסי",
+  "p1d": "לצוותים קטנים",
+  "p1p": "₪0",
+  "p1u": "/ לתמיד",
+  "p1a": "עד 3 משתמשים",
+  "p1b": "5 פרויקטים",
+  "p1c": "אפליקציה לנייד",
+  "p1btn": "מתחילים",
+  "p2": "צוות",
+  "p2d": "הכי פופולרי",
+  "p2p": "₪39",
+  "p2u": "/ משתמש לחודש",
+  "p2a": "פרויקטים ללא הגבלה",
+  "p2b": "דוחות אוטומטיים",
+  "p2c": "הרשאות ללקוחות",
+  "p2btn": "14 יום חינם",
+  "p2tag": "מומלץ",
+  "p3": "ארגון",
+  "p3d": "לחברות",
+  "p3p": "בהתאמה",
+  "p3u": "",
+  "p3a": "SSO והרשאות מתקדמות",
+  "p3b": "מנהל לקוח ייעודי",
+  "p3c": "הסכם SLA",
+  "p3btn": "דברו איתנו",
+  "qh": "שאלות נפוצות",
+  "q1": "האם יש תקופת ניסיון?",
+  "a1": "כן, 14 יום על תוכנית צוות, בלי כרטיס אשראי.",
+  "q2": "אפשר לייבא נתונים?",
+  "a2": "כן — מאקסל, CSV, Trello ו-Asana.",
+  "q3": "איפה נשמרים הנתונים?",
+  "a3": "בשרתים מוצפנים באירופה, עם גיבוי יומי.",
+  "ch": "מוכנים להתחיל?",
+  "cl": "הצטרפו לרשימה ונשלח לכם מדריך התחלה קצר.",
+  "cbtn": "הרשמה",
+  "cok": "תודה! נשלח אליכם מייל בקרוב."
+ },
+ "ar": {
+  "skip": "انتقل إلى المحتوى",
+  "menu": "القائمة",
+  "lang": "اللغة",
+  "f_product": "المنتج",
+  "f_company": "الشركة",
+  "f_legal": "قانوني",
+  "f_about": "من نحن",
+  "f_jobs": "وظائف",
+  "f_contact": "اتصل بنا",
+  "f_terms": "شروط الاستخدام",
+  "f_privacy": "الخصوصية",
+  "f_access": "إمكانية الوصول",
+  "f_rights": "© 2026 جميع الحقوق محفوظة.",
+  "f_made": "صُمّم باستخدام RTL Landing Kit",
+  "email_ph": "you@example.com",
+  "email_l": "البريد الإلكتروني",
+  "_title": "Mivne — إدارة المشاريع للفرق | قالب SaaS",
+  "brand": "مبنى",
+  "n1": "الميزات",
+  "n2": "كيف يعمل",
+  "n3": "الأسعار",
+  "n4": "الأسئلة",
+  "n_cta": "جرّب مجانًا",
+  "eyebrow": "جديد: تقارير تلقائية",
+  "h1": "كل مشاريع فريقك. <span class=\"hl\">في مكان واحد.<\/span>",
+  "lead": "يجمع مبنى المهام والجداول الزمنية والميزانية في لوحة واحدة بالعربية — لتتوقف عن ملاحقة التحديثات في واتساب.",
+  "cta1": "ابدأ تجربة 14 يومًا",
+  "cta2": "شاهد العرض",
+  "note": "بدون بطاقة ائتمان · إلغاء في أي وقت",
+  "k1": "مهام مفتوحة",
+  "k2": "في الموعد",
+  "k3": "الميزانية",
+  "fh_eyebrow": "الميزات",
+  "fh": "كل ما يحتاجه الفريق، ولا شيء زائد",
+  "fl": "مبني من الأساس للعربية والعبرية: واجهة من اليمين إلى اليسار، وتواريخ محلية، وأسبوع يبدأ يوم الأحد.",
+  "f1": "لوحات المهام",
+  "f1d": "كانبان أو قائمة أو خط زمني — كلٌّ يعمل بالعرض الذي يناسبه.",
+  "f2": "تقارير تلقائية",
+  "f2d": "ملخص أسبوعي يُرسَل تلقائيًا بما أُنجز وما تأخّر.",
+  "f3": "صلاحيات دقيقة",
+  "f3d": "العملاء يرون ما يلزم فقط، والفريق يرى كل شيء.",
+  "f4": "تكاملات",
+  "f4d": "التقويم والبريد والفواتير — اربطها بنقرة.",
+  "f5": "الأمان",
+  "f5d": "تشفير كامل ونسخ احتياطي يومي وخوادم في أوروبا.",
+  "f6": "دعم بالعربية",
+  "f6d": "فريق حقيقي يرد عبر الدردشة في ساعات العمل.",
+  "sh": "ابدأ في ثلاث خطوات",
+  "s1": "أنشئ حسابًا",
+  "s1d": "دقيقة واحدة، بلا تثبيت.",
+  "s2": "ادعُ فريقك",
+  "s2d": "رابط واحد للجميع.",
+  "s3": "استورد مشاريعك",
+  "s3d": "من Excel أو Trello أو Asana.",
+  "ph": "أسعار بسيطة وواضحة",
+  "pl": "تدفع حسب المستخدم، وتغيّر الخطة متى شئت.",
+  "p1": "أساسي",
+  "p1d": "للفرق الصغيرة",
+  "p1p": "$0",
+  "p1u": "/ للأبد",
+  "p1a": "حتى 3 مستخدمين",
+  "p1b": "5 مشاريع",
+  "p1c": "تطبيق للجوال",
+  "p1btn": "ابدأ الآن",
+  "p2": "فريق",
+  "p2d": "الأكثر شيوعًا",
+  "p2p": "$12",
+  "p2u": "/ مستخدم شهريًا",
+  "p2a": "مشاريع غير محدودة",
+  "p2b": "تقارير تلقائية",
+  "p2c": "صلاحيات للعملاء",
+  "p2btn": "14 يومًا مجانًا",
+  "p2tag": "موصى به",
+  "p3": "مؤسسة",
+  "p3d": "للشركات",
+  "p3p": "حسب الطلب",
+  "p3u": "",
+  "p3a": "SSO وصلاحيات متقدمة",
+  "p3b": "مدير حساب مخصص",
+  "p3c": "اتفاقية SLA",
+  "p3btn": "تواصل معنا",
+  "qh": "الأسئلة الشائعة",
+  "q1": "هل توجد فترة تجريبية؟",
+  "a1": "نعم، 14 يومًا على خطة الفريق، بدون بطاقة ائتمان.",
+  "q2": "هل يمكن استيراد البيانات؟",
+  "a2": "نعم — من Excel وCSV وTrello وAsana.",
+  "q3": "أين تُحفظ البيانات؟",
+  "a3": "على خوادم مشفّرة في أوروبا مع نسخ احتياطي يومي.",
+  "ch": "مستعد للبدء؟",
+  "cl": "انضم إلى القائمة وسنرسل لك دليل بدء قصيرًا.",
+  "cbtn": "اشترك",
+  "cok": "شكرًا! سنراسلك قريبًا."
+ },
+ "en": {
+  "skip": "Skip to content",
+  "menu": "Menu",
+  "lang": "Language",
+  "f_product": "Product",
+  "f_company": "Company",
+  "f_legal": "Legal",
+  "f_about": "About",
+  "f_jobs": "Careers",
+  "f_contact": "Contact",
+  "f_terms": "Terms",
+  "f_privacy": "Privacy",
+  "f_access": "Accessibility",
+  "f_rights": "© 2026 All rights reserved.",
+  "f_made": "Built with RTL Landing Kit",
+  "email_ph": "you@example.com",
+  "email_l": "Email",
+  "_title": "Mivne — project management for teams | SaaS template",
+  "brand": "Mivne",
+  "n1": "Features",
+  "n2": "How it works",
+  "n3": "Pricing",
+  "n4": "FAQ",
+  "n_cta": "Try free",
+  "eyebrow": "New: automatic reports",
+  "h1": "All your team's projects. <span class=\"hl\">One place.<\/span>",
+  "lead": "Mivne brings tasks, timelines and budget into one dashboard — so you stop chasing updates in group chats.",
+  "cta1": "Start 14-day free trial",
+  "cta2": "Watch demo",
+  "note": "No credit card · Cancel anytime",
+  "k1": "Open tasks",
+  "k2": "On time",
+  "k3": "Budget",
+  "fh_eyebrow": "Features",
+  "fh": "Everything a team needs, nothing it doesn't",
+  "fl": "Built for right-to-left from day one, and just as good left-to-right: the same markup, mirrored by CSS.",
+  "f1": "Task boards",
+  "f1d": "Kanban, list or timeline — everyone works in the view they like.",
+  "f2": "Automatic reports",
+  "f2d": "A weekly summary of what shipped and what's late, sent for you.",
+  "f3": "Fine-grained access",
+  "f3d": "Clients see only what they need. Your team sees everything.",
+  "f4": "Integrations",
+  "f4d": "Calendar, email and invoicing — connect in one click.",
+  "f5": "Security",
+  "f5d": "Full encryption, daily backups, EU servers.",
+  "f6": "Human support",
+  "f6d": "Real people answering chat during business hours.",
+  "sh": "Get started in three steps",
+  "s1": "Create an account",
+  "s1d": "One minute, nothing to install.",
+  "s2": "Invite your team",
+  "s2d": "One link for everyone.",
+  "s3": "Import projects",
+  "s3d": "From Excel, Trello or Asana.",
+  "ph": "Simple, transparent pricing",
+  "pl": "Pay per user. Switch plans whenever you like.",
+  "p1": "Starter",
+  "p1d": "For small teams",
+  "p1p": "$0",
+  "p1u": "/ forever",
+  "p1a": "Up to 3 users",
+  "p1b": "5 projects",
+  "p1c": "Mobile app",
+  "p1btn": "Get started",
+  "p2": "Team",
+  "p2d": "Most popular",
+  "p2p": "$12",
+  "p2u": "/ user / month",
+  "p2a": "Unlimited projects",
+  "p2b": "Automatic reports",
+  "p2c": "Client access",
+  "p2btn": "14 days free",
+  "p2tag": "Recommended",
+  "p3": "Enterprise",
+  "p3d": "For companies",
+  "p3p": "Custom",
+  "p3u": "",
+  "p3a": "SSO & advanced roles",
+  "p3b": "Dedicated manager",
+  "p3c": "SLA agreement",
+  "p3btn": "Talk to us",
+  "qh": "Frequently asked questions",
+  "q1": "Is there a free trial?",
+  "a1": "Yes, 14 days on the Team plan, no credit card.",
+  "q2": "Can I import data?",
+  "a2": "Yes — from Excel, CSV, Trello and Asana.",
+  "q3": "Where is data stored?",
+  "a3": "On encrypted EU servers with daily backups.",
+  "ch": "Ready to start?",
+  "cl": "Join the list and we'll send you a short getting-started guide.",
+  "cbtn": "Sign up",
+  "cok": "Thanks! We'll email you soon."
+ }
+}</script>
+<script src="../../js/rtl-kit.js"></script>
+</body>
+</html>

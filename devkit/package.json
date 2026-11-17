@@ -1,0 +1,15 @@
+{
+  "name": "rtl-landing-kit",
+  "version": "1.0.0",
+  "description": "Responsive RTL (Hebrew/Arabic) landing page templates: plain CSS with logical properties + Tailwind variant.",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:tw": "tailwindcss -c tailwind/tailwind.config.js -i tailwind/input.css -o css/tailwind.css --minify",
+    "build": "python3 tools/build_free.py && npm run build:tw"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.16"
+  },
+  "keywords": ["rtl", "hebrew", "arabic", "landing-page", "template", "tailwind", "css-logical-properties"]
+}

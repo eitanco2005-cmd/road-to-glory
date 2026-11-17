@@ -1,0 +1,21 @@
+RTL Landing Kit Pro — License (v1.0)
+
+Copyright (c) 2026 Tichnun Plus. Thank you for buying the Pro pack.
+
+YOU MAY
+- Use the templates and components in unlimited projects, for yourself or for your clients,
+  commercial or not.
+- Modify them in any way.
+- Ship them as part of a website, web app or product that end users use.
+
+YOU MAY NOT
+- Resell, share or redistribute the templates or components themselves, on their own or in a
+  template pack, theme, UI kit or similar product (free or paid), or publish them in a public repository.
+
+The free templates in the free/ folder stay under the MIT License (see the free kit on GitHub).
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO EVENT SHALL THE AUTHORS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM ITS USE.
+
+Questions or a refund within 14 days: reply to your PayPal receipt or write to the email on
+https://tichnun.netlify.app/devkit/
