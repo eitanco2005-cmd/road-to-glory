@@ -1,0 +1,25 @@
+{
+  "slug": "hanukkah-activity-pack-en",
+  "title": "Hanukkah Activity Pack 2026",
+  "subtitle": "20 printable pages: coloring, mazes, word search, dreidel game, candle chart & blessings",
+  "price": 12,
+  "price_ils": 12,
+  "currency": "USD",
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "Hanukkah Activity Pack 2026 – 20 printable pages (PDF, US Letter)",
+      "path": "dl/ztr55y1nafqbzkx5/hanukkah-activity-pack-en-Letter.pdf"
+    },
+    {
+      "label": "Same pack in A4 size (PDF)",
+      "path": "dl/ztr55y1nafqbzkx5/hanukkah-activity-pack-en-A4.pdf"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "latke-calculator",
+  "thanks_path": "en/hanukkah/thanks/",
+  "url": "en/hanukkah/activity-pack/",
+  "image": "en/hanukkah/img/pack-cover.webp",
+  "_note": "USD product: price is in USD (price_ils mirrors it for older readers); see checkout.js 'currency'."
+}
