@@ -12,3 +12,4 @@
 - 2026-11-06: Strategy set (service-first, template pack second). Workers launched.
 - 2026-11-06: Owner rule: no outreach. Pivoted to inbound-only self-serve digital products. A → storefront, C → marketplace research.
 - 2026-11-17: Owner finished PayPal Business upgrade + Live app "Glory Store". Client ID saved in config/paypal.json. Worker R (session_01WwXrbNKGphm4dNn1Fu2Vqx, ws/research) researching Hebrew products. Workers A/B/C archived.
+- 2026-11-17: Master plan written (ops/PLAN.md). Research merged.
