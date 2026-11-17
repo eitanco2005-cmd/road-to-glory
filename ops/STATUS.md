@@ -14,7 +14,7 @@
 | B. Pay-to-export apps | session_01WwXrbRBox2nqBk9W4FzQz7 | `ws/apps` | building |
 | C+D. Tips/upsells + RTL kit | session_01WwXrbR2nUUh11PJf4AM8EV | `ws/tipskit` | building |
 | E. Hanukkah pack | session_01WwXrbQhAm2zpZGSQCbvZty | `ws/hanukkah` | building |
-| F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | building |
+| F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | DROPPED (research: free Ministry competition) |
 | G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | building |
 | H. Speech writer | session_01WwXrbNU6eoXkk2izTax4LB | `ws/speeches` | CANCELLED by owner |
 
@@ -41,3 +41,4 @@
 - 2026-11-17: Wave 2 launched: E (Hanukkah pack, urgent), F (kids/teacher worksheets), G (invitation maker).
 - 2026-11-17: Wave 3 launched: H (speech & greeting writer, non-spreadsheet).
 - 2026-11-17: Stream H cancelled by owner ("bad idea"); worker stopped and archived.
+- 2026-11-17: Deep research done (reports/Realistic paths to 1000 dollars.md). Verdict: distribution is the binding constraint; $1k odds ≈1–2% (30d), 2–4% (60d), 5–8% (90d) under current rules. Portfolio: double down on seating-chart pay-to-export (he+en, WhatsApp share) + English USD planners; keep CV builder (differentiate), spreadsheets/calculators, RTL kit, tips cheap; invitation maker folded into wedding tools; Hanukkah = 2027 asset; DROP worksheets, mass AI pages, bounties, awesome-list PR campaigns. Next: WhatsApp share on all calculators, per-query English pages, IndexNow each deploy, GitHub repo polish, day-45 review (~Jan 1).
