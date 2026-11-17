@@ -1,0 +1,47 @@
+{
+  "_note": "Free tools index (W1). Tool pages live in docs/tools/<slug>/ (owned by product workers).",
+  "tools": [
+    {
+      "slug": "wedding-gift",
+      "title": "כמה לשים בחתונה? מחשבון 2026",
+      "description": "לפי קרבה, מקום האירוע, יום בשבוע ואם מגיעים לבד או בזוג",
+      "product": "wedding-planner",
+      "icon": "💍"
+    },
+    {
+      "slug": "budget-503020",
+      "title": "מחשבון תקציב 50/30/20",
+      "description": "מכניסים הכנסה נטו ומקבלים חלוקה מומלצת בשקלים",
+      "product": "household-budget",
+      "icon": "📊"
+    },
+    {
+      "slug": "osek-patur-ceiling",
+      "title": "מחשבון תקרת עוסק פטור 2026",
+      "description": "כמה נשאר לכם עד התקרה ומתי צפוי לעבור אותה",
+      "product": "osek-patur-tracker",
+      "icon": "📈"
+    },
+    {
+      "slug": "vat-calculator",
+      "title": "מחשבון מע״מ 18%",
+      "description": "הוספה והורדה של מע״מ בקליק, כולל סכום להצעת מחיר",
+      "product": "price-quote-pack",
+      "icon": "🧾"
+    },
+    {
+      "slug": "bar-mitzvah-cost",
+      "title": "מחשבון עלות בר/בת מצווה",
+      "description": "הערכת עלות לפי מספר מוזמנים, סוג אירוע וספקים",
+      "product": "bar-mitzvah-planner",
+      "icon": "🎉"
+    },
+    {
+      "slug": "renovation-cost",
+      "title": "מחשבון עלות שיפוץ",
+      "description": "הערכת תקציב לשיפוץ לפי חדרים, שטח ורמת גימור",
+      "product": "renovation-budget",
+      "icon": "🛠️"
+    }
+  ]
+}

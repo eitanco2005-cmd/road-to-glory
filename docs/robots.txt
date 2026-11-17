@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /road-to-glory/thanks/
+Disallow: /road-to-glory/dl/
+
+Sitemap: https://eitanco2005-cmd.github.io/road-to-glory/sitemap.xml
