@@ -1,0 +1,13 @@
+{
+  "slug": "event-bundle",
+  "title": "חבילת אירועים",
+  "subtitle": "מתכנן חתונה + מתכנן בר/בת מצווה",
+  "price_ils": 69,
+  "bundle_of": [
+    "wedding-planner",
+    "bar-mitzvah-planner"
+  ],
+  "files": [],
+  "sheets_copy_url": null,
+  "tool": null
+}

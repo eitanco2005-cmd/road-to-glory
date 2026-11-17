@@ -1,0 +1,17 @@
+{
+  "slug": "everything-bundle",
+  "title": "הכול בחבילה אחת",
+  "subtitle": "כל 6 הקבצים — אירועים, כסף ובית, עסק",
+  "price_ils": 129,
+  "bundle_of": [
+    "wedding-planner",
+    "household-budget",
+    "osek-patur-tracker",
+    "bar-mitzvah-planner",
+    "price-quote-pack",
+    "renovation-budget"
+  ],
+  "files": [],
+  "sheets_copy_url": null,
+  "tool": null
+}
