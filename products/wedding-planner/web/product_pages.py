@@ -40,14 +40,14 @@ def build_product(c):
   {bc}
   <div class="split">
    <div>
-    <span class="eyebrow">{c['eyebrow']}</span>
     <h1>{c['h1']}</h1>
-    <p class="lead">{c['lead']}</p>
-    <ul class="hero-points">{points}</ul>
-    <p class="mt-2"><a href="#screens">לצילומי מסך ↓</a> · <a href="#inside">מה בפנים ↓</a></p>
+    <p class="lead">{c['one_liner']}</p>
    </div>
-   <div id="buy">
-    <div class="buy" data-product="{c['slug']}"></div>
+   <div id="buy" class="buy" data-product="{c['slug']}" data-compact="1"></div>
+   <div>
+    <ul class="hero-points">{points}</ul>
+    <p class="mt-2">{c['lead']}</p>
+    <p class="small muted">{c['eyebrow']} · <a href="#screens">צילומי מסך ↓</a> · <a href="#inside">מה בפנים ↓</a></p>
    </div>
   </div>
  </div>
@@ -145,6 +145,7 @@ WEDDING = dict(
     desc="קובץ אקסל לתכנון חתונה בעברית: תקציב מול ספקים, רשימת מוזמנים ואישורי הגעה, רישום צ'קים ותודות, לוח תשלומים, צ'קליסט והושבה. עובד גם ב-Google Sheets. ₪49, הורדה מיידית.",
     ld_name="מתכנן חתונה באקסל ו-Google Sheets", shot_alt="מתכנן חתונה באקסל",
     eyebrow="אקסל + Google Sheets · ₪49 · הורדה מיידית",
+    one_liner="תקציב, מוזמנים, צ'קים, ספקים ותשלומים – קובץ אקסל / Google Sheets אחד בעברית שמסדר את כל החתונה.",
     h1="מתכנן חתונה באקסל: <span class=\"hl\">כל החתונה בקובץ אחד</span>",
     lead="תקציב, ספקים ותשלומים, רשימת מוזמנים עם אישורי הגעה, רישום צ'קים ותודות, צ'קליסט והושבה. "
          "ממלאים פעם אחת, והדשבורד מראה בכל רגע כמה התחייבתם, כמה שילמתם, מי עוד לא אישר הגעה – והאם המתנות יכסו את האירוע.",
@@ -183,6 +184,7 @@ BAR = dict(
     desc="קובץ אקסל לתכנון בר או בת מצווה בעברית: תקציב מול ספקים, מוזמנים ואישורי הגעה, רישום מתנות, תשלומים, צ'קליסט כולל עלייה לתורה והושבה. גם ב-Google Sheets. ₪39.",
     ld_name="מתכנן בר / בת מצווה באקסל ו-Google Sheets", shot_alt="מתכנן בר מצווה באקסל",
     eyebrow="אקסל + Google Sheets · ₪39 · הורדה מיידית",
+    one_liner="תקציב, מוזמנים, מתנות, ספקים וצ'קליסט עם עלייה לתורה – קובץ אקסל / Google Sheets אחד בעברית.",
     h1="מתכנן בר / בת מצווה: <span class=\"hl\">שמחה מסודרת, בלי לחץ</span>",
     lead="תקציב, ספקים ותשלומים, מוזמנים ואישורי הגעה (כולל החברים של חתן/כלת השמחה), מתנות ותודות, צ'קליסט עם עלייה לתורה ותפילין, והושבה. "
          "דשבורד אחד מראה איפה אתם עומדים.",

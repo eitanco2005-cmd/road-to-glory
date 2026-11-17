@@ -43,6 +43,11 @@ The workbook has these sheets: הוראות, הגדרות, דשבורד, תקצ�
   - Wedding: the example table on the page matches the calculator's output.
   - Bar mitzvah: the default scenario gives ₪61,247 total. The cost-guide table (₪61k / ₪48k / ₪31k) was computed with the same logic.
 
+## Update after W1 merge
+- I merged `origin/claude/epic-heisenberg-h552gc` into `ws/events`. The product JSON conflicts were resolved in favour of W2's versions, so none of them carries `placeholder` any more.
+- The product page heroes now follow the manager's order: H1 → one sentence → compact buy box → the rest. At 375×667 the pay button's bottom edge is at 526px (wedding) and 497px (bar mitzvah), so it is above the fold.
+- `node tools/site/e2e_test.js` → **ALL PASSED** (it needed `pip install fastapi uvicorn` here). My own suite passes too: 8 pages × 2 widths, links, and test purchases for both products and the bundle.
+
 ## Decisions
 1. **One engine, two configs.** The bar mitzvah build imports the engine from `products/wedding-planner/`, which keeps everything within W2's owned paths.
 2. **Blank file plus filled example file.** Users who are short on time don't have to delete sample rows, and the screenshots stay honest because they come from a real file.
