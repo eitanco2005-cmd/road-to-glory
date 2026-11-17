@@ -69,7 +69,7 @@
 
   function toolCard(t, live) {
     var inner = '<span class="ic" aria-hidden="true">' + esc(t.icon || "🧮") + "</span><div><h3>" + esc(t.title) + "</h3><p>" +
-      esc(t.description || "") + "</p>" + (live ? "" : '<span class="badge soon mt-1">בקרוב</span>') + "</span>";
+      esc(t.description || "") + "</p>" + (live ? "" : '<span class="badge soon mt-1">בקרוב</span>') + "</div>";
     return live
       ? '<a class="card tool-card" href="' + G.toolUrl(t.slug) + '" data-slug="' + esc(t.slug) + '">' + inner + "</a>"
       : '<div class="card tool-card" data-slug="' + esc(t.slug) + '">' + inner + "</div>";

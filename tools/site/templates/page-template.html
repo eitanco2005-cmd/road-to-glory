@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- Glory product / tool page template (W1). Copy to docs/p/<slug>/index.html or docs/tools/<slug>/index.html.
+     Paths below assume depth 2 (docs/p/<slug>/). Replace every ALL_CAPS placeholder.
+     Classes used here are defined in docs/assets/site.css. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEARCH_PHRASE_TITLE | Glory</title>
+<meta name="description" content="META_DESCRIPTION_HE">
+<link rel="canonical" href="https://eitanco2005-cmd.github.io/road-to-glory/p/SLUG/">
+<meta property="og:type" content="product">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Glory">
+<meta property="og:title" content="OG_TITLE">
+<meta property="og:description" content="META_DESCRIPTION_HE">
+<meta property="og:url" content="https://eitanco2005-cmd.github.io/road-to-glory/p/SLUG/">
+<meta property="og:image" content="https://eitanco2005-cmd.github.io/road-to-glory/p/SLUG/screen-1.png">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"PRODUCT_TITLE","description":"META_DESCRIPTION_HE",
+ "image":["https://eitanco2005-cmd.github.io/road-to-glory/p/SLUG/screen-1.png"],"brand":{"@type":"Brand","name":"Glory"},
+ "offers":{"@type":"Offer","price":"49.00","priceCurrency":"ILS","availability":"https://schema.org/InStock",
+ "url":"https://eitanco2005-cmd.github.io/road-to-glory/p/SLUG/"}}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="פירורי לחם"><a href="../../">ראשי</a><span aria-hidden="true">›</span><a href="../../products/">מוצרים</a><span aria-hidden="true">›</span>PRODUCT_SHORT</nav>
+      <div class="split">
+        <div>
+          <h1>H1_WITH_SEARCH_PHRASE</h1>
+          <p class="lead">LEAD_PARAGRAPH</p>
+          <ul class="hero-points"><li>POINT_1</li><li>POINT_2</li><li>POINT_3</li></ul>
+        </div>
+        <!-- Buy box: price/title come from docs/data/products/SLUG.json. Add ?test=1 to the URL to test. -->
+        <div class="buy" data-product="SLUG"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>מה בקובץ</h2>
+      <div class="screens">
+        <figure><img src="screen-1.png" alt="ALT_TEXT" width="1280" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+        <figure><img src="screen-2.png" alt="ALT_TEXT" width="1280" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free tool page pattern:
+  <div class="tool-panel">
+    <div class="fields cols-2">
+      <div class="field"><label for="x">תווית</label><div class="input-affix"><input id="x" type="number" inputmode="decimal"><span class="affix">₪</span></div><span class="hint">רמז</span></div>
+    </div>
+    <div class="result" aria-live="polite"><div class="label">התוצאה</div><div class="big">₪0</div></div>
+  </div>
+  <div class="cta-box mt-3"><div><h3>רוצים את כל זה בקובץ מוכן?</h3><p>…</p></div><a class="btn" href="../../p/SLUG/">לפרטים ₪49</a></div>
+  Other blocks: .kpis/.kpi, .meter(.warn|.danger)>span[style=width:x%], .choices>label>input[type=radio], .callout(.warn), .source, .table-wrap>table -->
+
+  <section class="section alt">
+    <div class="container narrow">
+      <h2>שאלות נפוצות</h2>
+      <div class="faq">
+        <details><summary>QUESTION</summary><p>ANSWER</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="../../assets/site.js"></script>
+<script src="../../assets/checkout.js"></script>
+</body>
+</html>
