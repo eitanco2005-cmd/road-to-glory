@@ -75,7 +75,7 @@ TX = {
             ("לביבות למבוגר", 4, "יח'"), ("לביבות לילד", 2, "יח'"), ("לביבות מקילו תפוחי אדמה", 20, "יח'"),
             ("בצל לקילו תפוחי אדמה", 1, "יח'"), ("ביצים לקילו תפוחי אדמה", 2, "יח'"), ("קמח לקילו תפוחי אדמה", 40, "גרם"),
             ("שמן טיגון לקילו תפוחי אדמה", 0.25, "ליטר"), ("סופגניות למבוגר", 1.5, "יח'"), ("סופגניות לילד", 1, "יח'"),
-            ("סופגניות ממנה (500 גרם קמח)", 16, "יח'"), ("שמן טיגון למנה של סופגניות", 0.5, "ליטר"), ("ריבה לסופגנייה", 15, "גרם"),
+            ("סופגניות ממנה (500 גרם קמח)", 16, "יח'"), ("שמן טיגון למנה של סופגניות (מינ׳ 1 ל׳)", 0.5, "ליטר"), ("ריבה לסופגנייה", 15, "גרם"),
             ("שמנת / יוגורט לאדם", 50, "גרם"), ("רסק תפוחים לאדם", 50, "גרם"), ("שתייה לאדם", 0.5, "ליטר"),
             ("מטבעות שוקולד לילד", 5, "יח'"), ("צלחות לאדם", 2, "יח'"), ("מפיות לאדם", 3, "יח'"), ("כוסות לאדם", 2, "יח'"),
             ("נרות לחנוכייה לכל החג", 44, "יח'"),
@@ -151,7 +151,7 @@ TX = {
             ("Latkes per adult", 4, "pcs"), ("Latkes per kid", 2, "pcs"), ("Latkes per lb of potatoes", 9, "pcs"),
             ("Onions per lb of potatoes", 0.5, "pcs"), ("Eggs per lb of potatoes", 1, "pcs"), ("Flour / matzo meal per lb of potatoes", 2, "tbsp"),
             ("Frying oil per lb of potatoes", 0.5, "cups"), ("Doughnuts per adult", 1.5, "pcs"), ("Doughnuts per kid", 1, "pcs"),
-            ("Doughnuts per batch (4 cups flour)", 16, "pcs"), ("Frying oil per doughnut batch", 2, "cups"), ("Jelly per doughnut", 1, "tbsp"),
+            ("Doughnuts per batch (4 cups flour)", 16, "pcs"), ("Frying oil per doughnut batch (min. 4 cups)", 2, "cups"), ("Jelly per doughnut", 1, "tbsp"),
             ("Sour cream per person", 2, "tbsp"), ("Applesauce per person", 2, "tbsp"), ("Drinks per person", 16, "fl oz"),
             ("Chocolate gelt per kid", 5, "pcs"), ("Plates per person", 2, "pcs"), ("Napkins per person", 3, "pcs"), ("Cups per person", 2, "pcs"),
             ("Candles per menorah (all 8 nights)", 44, "pcs"),
@@ -425,7 +425,7 @@ def build(lang, example=False):
             "suf_milk": f'=IF({make},{batches}*250,0)',
             "suf_butter": f'=IF({make},{batches}*50,0)',
             "suf_jam": f'=IF({make},B{{suf}}*{A["s_jam"]},0)',
-            "suf_oil": f'=IF({make},ROUNDUP({batches}*{A["s_oil"]},1),0)',
+            "suf_oil": f'=IF({make},MAX(1,ROUNDUP({batches}*{A["s_oil"]},1)),0)',
         }
     else:
         F = {
@@ -443,7 +443,7 @@ def build(lang, example=False):
             "suf_milk": f'=IF({make},{batches}*1,0)',
             "suf_butter": f'=IF({make},{batches}*4,0)',
             "suf_jam": f'=IF({make},B{{suf}}*{A["s_jam"]},0)',
-            "suf_oil": f'=IF({make},ROUNDUP({batches}*{A["s_oil"]},1),0)',
+            "suf_oil": f'=IF({make},MAX(4,ROUNDUP({batches}*{A["s_oil"]},1)),0)',
         }
     ppl = f"({AD}+{KD})"
     F.update({
