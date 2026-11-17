@@ -140,7 +140,7 @@ CATS = [
     ("חיסכון", "חיסכון לכל ילד / חיסכון לילדים", EXP, SAVE, 100),
     ("חיסכון", "השקעות / קרן השתלמות עצמאית", EXP, SAVE, 500),
     ("חיסכון", "חיסכון למטרה (רכב, חופשה, שיפוץ)", EXP, SAVE, 400),
-    ("חובות", "החזר הלוואה", EXP, SAVE, 0),
+    ("חובות", "החזר הלוואה", EXP, SAVE, 1200),
     ("חובות", "החזר כרטיס אשראי / מינוס", EXP, SAVE, 0),
     ("שונות", "הוצאות לא צפויות", EXP, NEED, 300),
     ("שונות", "אחר", EXP, WANT, 0),
@@ -259,7 +259,7 @@ def build(year: int, demo: bool, path: Path):
         cell(ws, r, 2, name, "input")
         cell(ws, r, 3, typ, "input")
         cell(ws, r, 4, cls or None, "input")
-        cell(ws, r, 5, amt, "input", ILS)
+        cell(ws, r, 5, amt if demo else None, "input", ILS)
         for m in range(12):
             cell(ws, r, 6 + m, f"=IF($E{r}=\"\",\"\",$E{r})", "input", ILS)
         cell(ws, r, 18, f"=IF($B{r}=\"\",\"\",SUM(F{r}:Q{r}))", "formula", ILS, bold=True)
@@ -431,7 +431,7 @@ def build(year: int, demo: bool, path: Path):
     ws = wb.create_sheet("דשבורד", 1)
     title(ws, f"דשבורד {year}")
     ws["A1"] = f"=\"דשבורד {year}\"&IF({S}!$B$5=\"\",\"\",\" · \"&{S}!$B$5)"
-    for col, w in zip("ABCDEFGHIJ", [24, 15, 15, 15, 4, 26, 14, 14, 14, 14]):
+    for col, w in zip("ABCDEFGHIJ", [31, 15, 15, 12, 4, 26, 14, 14, 11, 4]):
         ws.column_dimensions[col].width = w
     # KPI block
     head(ws, 3, 1, "מדד")
@@ -542,11 +542,12 @@ def build(year: int, demo: bool, path: Path):
     c4.set_categories(Reference(ws, min_col=1, min_row=r1 + 1, max_row=r1 + 12))
     c4.height, c4.width = 8, 13
     c4.legend = None
+    c4.series[0].smooth = False
     ws.add_chart(c4, "U22")
 
     c5 = BarChart()
     c5.type = "col"
-    c5.title = "50/30/20: יעד מול בפועל"
+    c5.title = "בדיקת 50/30/20"
     c5.add_data(Reference(ws, min_col=2, min_row=r0, max_row=r0 + 3), titles_from_data=True)
     c5.add_data(Reference(ws, min_col=4, min_row=r0, max_row=r0 + 3), titles_from_data=True)
     c5.set_categories(Reference(ws, min_col=1, min_row=r0 + 1, max_row=r0 + 3))

@@ -354,7 +354,7 @@ def build(demo: bool, path: Path):
     ws = wb.create_sheet("דשבורד", 1)
     title(ws, "דשבורד שיפוץ")
     ws["A1"] = f"=\"דשבורד שיפוץ\"&IF({S}!B4=\"\",\"\",\" · \"&{S}!B4)"
-    for col, w in zip("ABCDEFGHIJ", [30, 16, 14, 22, 14, 14, 14, 4, 16, 14]):
+    for col, w in zip("ABCDEFGHIJ", [38, 30, 14, 22, 14, 14, 14, 4, 16, 14]):
         ws.column_dimensions[col].width = w
     head(ws, 3, 1, "מצב התקציב")
     head(ws, 3, 2, "סכום")

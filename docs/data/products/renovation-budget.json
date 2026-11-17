@@ -1,0 +1,16 @@
+{
+  "slug": "renovation-budget",
+  "title": "מתכנן תקציב שיפוץ",
+  "subtitle": "אקסל בעברית: עבודות לפי חדר, השוואת הצעות מחיר, לוח תשלומים, בלת\"מ ודשבורד + רשימת בדיקה לקבלן",
+  "price_ils": 39,
+  "bundle_of": [],
+  "files": [
+    {"label": "מתכנן תקציב שיפוץ (קובץ ריק לעבודה)", "path": "dl/1c9ed6b2319083a3/renovation-budget.xlsx"},
+    {"label": "קובץ דוגמה מלא – שיפוץ דירת 3 חדרים", "path": "dl/1c9ed6b2319083a3/renovation-budget-example.xlsx"},
+    {"label": "רשימת בדיקה לפני חתימה עם קבלן (Word)", "path": "dl/1c9ed6b2319083a3/renovation-contractor-checklist.docx"}
+  ],
+  "sheets_copy_url": null,
+  "tool": "renovation-cost",
+  "url": "p/renovation-budget/",
+  "image": "p/renovation-budget/img/dashboard.webp"
+}
