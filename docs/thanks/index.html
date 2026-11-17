@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>תודה על הרכישה — ההורדה שלך | Glory</title>
+<meta name="description" content="דף ההורדה של ההזמנה שלך ב-Glory.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+  <section class="section">
+    <div class="container narrow">
+      <noscript><p class="noscript">כדי להציג את קישורי ההורדה יש להפעיל JavaScript בדפדפן.</p></noscript>
+
+      <div id="loading" class="center muted">טוען את ההזמנה…</div>
+
+      <div id="error" hidden>
+        <h1>לא מצאנו את ההזמנה</h1>
+        <p>הקישור לדף ההורדה חסר או שגוי. אם שילמת, קישור ההורדה נשמר בכתובת של הדף שאליו הועברת אחרי התשלום.</p>
+        <p id="error-support"></p>
+        <a class="btn" href="../">חזרה לדף הבית</a>
+      </div>
+
+      <div id="ok" hidden>
+        <div class="check-big" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <p id="test-flag" class="badge accent" hidden>הזמנת בדיקה (TEST) — לא בוצע חיוב</p>
+        <h1>תודה! הקבצים שלך מוכנים</h1>
+        <p class="lead muted">אפשר להוריד עכשיו. <strong>שמרו את הקישור לדף הזה</strong> (סימנייה או מייל לעצמכם) כדי להוריד שוב בעתיד.</p>
+        <div class="btn-row mb-2">
+          <button type="button" class="btn secondary small" id="copy-link">העתקת הקישור לדף</button>
+          <button type="button" class="btn secondary small" id="print">הדפסת אישור</button>
+        </div>
+
+        <h2 class="mt-3">הורדות</h2>
+        <div id="downloads"></div>
+
+        <div class="callout mt-3">
+          <strong>איך מתחילים?</strong>
+          <ol class="mb-0">
+            <li><strong>באקסל:</strong> פותחים את הקובץ, ואם מופיע פס צהוב לוחצים "הפעל עריכה". מתחילים בגיליון "הוראות".</li>
+            <li><strong>ב-Google Sheets:</strong> לוחצים על "יצירת עותק ב-Google Sheets" ואז "יצירת עותק". העותק נשמר ב-Drive שלכם ורק אתם רואים אותו.</li>
+            <li>ממלאים רק את התאים הצבועים. כל השאר מחושב לבד.</li>
+          </ol>
+        </div>
+
+        <h2 class="mt-3">סיכום ההזמנה</h2>
+        <div class="receipt">
+          <dl>
+            <dt>מוצר</dt><dd id="r-title"></dd>
+            <dt>סכום</dt><dd id="r-price" class="num"></dd>
+            <dt>מספר הזמנה</dt><dd><span id="r-order" class="ltr num"></span></dd>
+            <dt>תאריך</dt><dd id="r-date" class="num"></dd>
+            <dt>אמצעי תשלום</dt><dd>PayPal</dd>
+          </dl>
+          <p class="small muted mt-2 mb-0">אישור התשלום הרשמי נשלח אליכם במייל מ-PayPal. דף זה אינו חשבונית מס.</p>
+        </div>
+
+        <h2 class="mt-3">צריכים עזרה?</h2>
+        <p id="support">קובץ לא נפתח או משהו לא ברור? כתבו לנו וצרפו את מספר ההזמנה. נענה בהקדם. פרטים ב<a href="../legal/refund/">מדיניות הביטולים וההחזרים</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="../assets/site.js"></script>
+<script>
+(function () {
+  "use strict";
+  var G = window.GLORY, esc = G.escape;
+  var q = new URLSearchParams(location.search);
+  var slug = q.get("p") || "", order = q.get("o") || "", test = q.get("test") === "1";
+  var $ = function (id) { return document.getElementById(id); };
+  var FILE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
+  var SHEET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 9h8M8 13h8M8 17h8M12 9v8"/></svg>';
+
+  function fail() { $("loading").hidden = true; $("error").hidden = false; }
+  function ext(path) { var m = /\.([a-z0-9]+)(?:$|\?)/i.exec(path || ""); return m ? m[1].toUpperCase() : ""; }
+  function fileUrl(path) {
+    if (/^https?:\/\//.test(path)) return path;
+    return G.url(String(path).replace(/^\/+/, "").replace(/^docs\//, ""));
+  }
+  function list(p) {
+    var items = (p.files || []).map(function (f) {
+      return '<li><a class="dl" href="' + esc(fileUrl(f.path)) + '" download><span class="ic">' + FILE + "</span><span>" + esc(f.label) + '</span><span class="ext">' + esc(ext(f.path)) + "</span></a></li>";
+    });
+    if (p.sheets_copy_url) {
+      items.push('<li><a class="dl sheets" href="' + esc(p.sheets_copy_url) + '" target="_blank" rel="noopener"><span class="ic">' + SHEET + '</span><span>יצירת עותק ב-Google Sheets</span><span class="ext">SHEETS</span></a></li>');
+    }
+    if (!items.length) return '<p class="callout warn">הקבצים של המוצר הזה עדיין בהכנה. כתבו לנו עם מספר ההזמנה ונשלח אותם מיד כשיהיו מוכנים, או נחזיר את הכסף.</p>';
+    return '<ul class="downloads">' + items.join("") + "</ul>";
+  }
+
+  if (!/^[a-z0-9-]+$/.test(slug) || !order || order.length > 64) return fail();
+
+  Promise.all([G.getJSON("data/products/" + slug + ".json"), G.config()]).then(function (r) {
+    var p = r[0], cfg = r[1];
+    var members = p.bundle_of || [];
+    return Promise.all(members.map(function (s) { return G.getJSON("data/products/" + s + ".json").catch(function () { return null; }); }))
+      .then(function (ms) { return { p: p, ms: ms.filter(Boolean), cfg: cfg }; });
+  }).then(function (d) {
+    var p = d.p, cfg = d.cfg;
+    document.title = "תודה! ההורדה של " + p.title + " | Glory";
+    var html;
+    if (d.ms.length) {
+      html = d.ms.map(function (m) { return '<h3 class="mt-2">' + esc(m.title) + "</h3>" + list(m); }).join("");
+      if ((p.files && p.files.length) || p.sheets_copy_url) html += '<h3 class="mt-2">בונוס בחבילה</h3>' + list(p);
+    } else {
+      html = list(p);
+    }
+    $("downloads").innerHTML = html;
+    $("r-title").textContent = p.title;
+    $("r-price").textContent = G.formatILS(p.price_ils);
+    $("r-order").textContent = order;
+    $("r-date").textContent = new Date().toLocaleDateString("he-IL");
+    $("test-flag").hidden = !test;
+    var email = cfg.SELLER_EMAIL && cfg.SELLER_EMAIL !== "SELLER_EMAIL" ? cfg.SELLER_EMAIL : "";
+    if (email) {
+      var subj = encodeURIComponent("עזרה בהזמנה " + order);
+      $("support").innerHTML = 'קובץ לא נפתח או משהו לא ברור? כתבו לנו ל-<a href="mailto:' + esc(email) + "?subject=" + subj + '">' + esc(email) +
+        "</a> וצרפו את מספר ההזמנה. פרטים ב<a href=\"" + G.url("legal/refund/") + "\">מדיניות הביטולים וההחזרים</a>.";
+    }
+    $("loading").hidden = true; $("ok").hidden = false;
+    try { // remember purchases in this browser so the buyer can find the page again
+      var k = "glory-orders", arr = JSON.parse(localStorage.getItem(k) || "[]");
+      if (!arr.some(function (x) { return x.o === order; })) { arr.push({ p: slug, o: order, t: Date.now(), test: test }); localStorage.setItem(k, JSON.stringify(arr.slice(-30))); }
+    } catch (e) {}
+  }).catch(fail);
+
+  $("copy-link").addEventListener("click", function () {
+    var b = this, done = function () { b.textContent = "הקישור הועתק ✓"; };
+    if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, function () { prompt("העתיקו את הקישור:", location.href); });
+    else prompt("העתיקו את הקישור:", location.href);
+  });
+  $("print").addEventListener("click", function () { window.print(); });
+})();
+</script>
+</body>
+</html>
