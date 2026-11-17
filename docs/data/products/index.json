@@ -3,7 +3,8 @@
   "categories": {
     "events": "אירועים ושמחות",
     "money": "כסף ובית",
-    "business": "עסקים ועצמאים"
+    "business": "עסקים ועצמאים",
+    "apps": "כלים אונליין"
   },
   "products": [
     {
@@ -33,6 +34,14 @@
     {
       "slug": "invitation-maker",
       "category": "events"
+    },
+    {
+      "slug": "seating-chart",
+      "category": "apps"
+    },
+    {
+      "slug": "cv-builder",
+      "category": "apps"
     }
   ],
   "bundles": [

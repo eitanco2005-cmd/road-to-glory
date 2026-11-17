@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בניית קורות חיים בעברית אונליין – חינם, 4 תבניות | תכנון פלוס</title>
+<meta name="description" content="בונה קורות חיים בעברית ובאנגלית: ממלאים טופס ורואים את קורות החיים מתעדכנים בזמן אמת. 4 תבניות נקיות שמתאימות למערכות סינון (ATS), כולל שירות צבאי. בלי הרשמה, הנתונים נשארים אצלכם.">
+<link rel="canonical" href="https://tichnun.netlify.app/apps/cv/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="תכנון פלוס">
+<meta property="og:title" content="בניית קורות חיים בעברית אונליין – חינם, 4 תבניות">
+<meta property="og:description" content="טופס פשוט, תצוגה חיה, עברית ואנגלית, תבניות שמערכות סינון קוראות. בלי הרשמה.">
+<meta property="og:url" content="https://tichnun.netlify.app/apps/cv/">
+<meta property="og:image" content="https://tichnun.netlify.app/p/cv-builder/img/screen-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../shared/apps.css">
+<link rel="stylesheet" href="app.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"SoftwareApplication","name":"בונה קורות חיים – תכנון פלוס","applicationCategory":"BusinessApplication","operatingSystem":"Web",
+  "url":"https://tichnun.netlify.app/apps/cv/","inLanguage":["he","en"],
+  "description":"בונה קורות חיים בעברית ובאנגלית עם תצוגה חיה ו-4 תבניות שמתאימות ל-ATS. שימוש חינם עם PDF עם סימן מים; PDF נקי ו-Word בתשלום חד-פעמי.",
+  "offers":[{"@type":"Offer","price":"0","priceCurrency":"ILS","description":"עריכה ותצוגה + PDF עם סימן מים"},{"@type":"Offer","price":"19","priceCurrency":"ILS","description":"PDF נקי + קובץ Word"}]},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"דף הבית","item":"https://tichnun.netlify.app/"},{"@type":"ListItem","position":2,"name":"בונה קורות חיים","item":"https://tichnun.netlify.app/p/cv-builder/"},{"@type":"ListItem","position":3,"name":"הכלי","item":"https://tichnun.netlify.app/apps/cv/"}]}
+]}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+ <section class="container app-hero">
+  <nav class="breadcrumbs" aria-label="פירורי לחם"><a href="../../">דף הבית</a> <span aria-hidden="true">›</span> <a href="../../p/cv-builder/">בונה קורות חיים</a> <span aria-hidden="true">›</span> <span aria-current="page">הכלי</span></nav>
+  <h1>בניית קורות חיים בעברית ובאנגלית</h1>
+  <p class="lead">ממלאים את הטופס ורואים את קורות החיים מתעדכנים לידו (בטלפון: לשונית "תצוגה"). בלי הרשמה: הכל נשמר רק בדפדפן שלכם.</p>
+  <span id="plan" class="plan-pill">גרסה חינמית</span>
+ </section>
+
+ <div class="container" id="app">
+  <div class="app-toolbar" role="toolbar" aria-label="פעולות">
+   <div class="lang-switch" role="group" aria-label="שפת קורות החיים">
+    <button type="button" data-lang="he" aria-pressed="true">עברית</button>
+    <button type="button" data-lang="en" aria-pressed="false">English</button>
+   </div>
+   <span class="grow"></span>
+   <button type="button" class="btn ghost" data-act="sample">דוגמה</button>
+   <details class="menu">
+    <summary class="btn accent">הורדה ▾</summary>
+    <div class="menu-list">
+     <button type="button" data-act="print">הדפסה / PDF (חינם, עם סימן מים)</button>
+     <button type="button" data-act="pdf-clean" data-paid>PDF נקי <span class="lock">🔒</span></button>
+     <button type="button" data-act="docx" data-paid>קובץ Word (DOCX) <span class="lock">🔒</span></button>
+    </div>
+   </details>
+   <details class="menu">
+    <summary class="btn ghost" aria-label="עוד פעולות">⋯</summary>
+    <div class="menu-list">
+     <button type="button" data-act="backup">שמירת גיבוי (קובץ)</button>
+     <button type="button" data-act="restore">שחזור מגיבוי</button>
+     <button type="button" data-act="reset">מחיקת הכל</button>
+    </div>
+   </details>
+   <input id="file-json" type="file" accept=".json,application/json" hidden>
+  </div>
+
+  <div class="app-tabs" role="tablist" aria-label="תצוגה">
+   <button type="button" role="tab" data-tab="form" aria-selected="true">עריכה</button>
+   <button type="button" role="tab" data-tab="preview" aria-selected="false">תצוגה</button>
+  </div>
+
+  <div class="cv-layout" data-show="form">
+   <div class="cv-form-wrap">
+    <form id="cv-form" class="cv-form" autocomplete="on" onsubmit="return false">
+     <div class="panel" style="margin-bottom:.6rem">
+      <div class="design-row">
+       <div><div class="small muted mb-0">תבנית</div><div class="tpl-pick"></div></div>
+       <div><div class="small muted">צבע</div><div class="accent-pick"></div></div>
+      </div>
+      <button type="button" class="btn ghost small" id="copy-he" data-act="copy-he" hidden>העתקת התוכן מהגרסה העברית כבסיס לתרגום</button>
+     </div>
+
+     <details class="sec" open><summary>פרטים אישיים</summary><div class="sec-body">
+      <div class="fields cols-2">
+       <div class="field"><label for="f-name">שם מלא</label><input id="f-name" type="text" data-field="name" maxlength="80" autocomplete="name"></div>
+       <div class="field"><label for="f-title">תפקיד / כותרת</label><input id="f-title" type="text" data-field="title" maxlength="100" placeholder="למשל: מנהל/ת פרויקטים"></div>
+       <div class="field"><label for="f-phone">טלפון</label><input id="f-phone" type="text" data-field="phone" maxlength="40" autocomplete="tel" inputmode="tel"></div>
+       <div class="field"><label for="f-email">אימייל</label><input id="f-email" type="text" data-field="email" maxlength="80" autocomplete="email" inputmode="email"></div>
+       <div class="field"><label for="f-city">עיר מגורים</label><input id="f-city" type="text" data-field="city" maxlength="60"></div>
+       <div class="field"><label for="f-links">קישורים (לינקדאין, תיק עבודות; שורה לכל קישור)</label><textarea id="f-links" rows="2" data-field="links" maxlength="400"></textarea></div>
+      </div>
+      <p class="small muted mb-0">לא צריך תעודת זהות, כתובת מלאה, מצב משפחתי או תמונה: מערכות סינון ומגייסים לא צריכים אותם.</p>
+     </div></details>
+
+     <details class="sec" open><summary>תמצית מקצועית</summary><div class="sec-body">
+      <div class="field"><label for="f-summary">2–4 שורות: מי אתם, במה אתם חזקים ומה אתם מחפשים</label><textarea id="f-summary" rows="4" data-field="summary" maxlength="1200"></textarea></div>
+     </div></details>
+
+     <details class="sec" open><summary>ניסיון תעסוקתי</summary><div class="sec-body"><div id="list-experience"></div></div></details>
+     <details class="sec"><summary>שירות צבאי / לאומי</summary><div class="sec-body"><div id="list-military"></div></div></details>
+     <details class="sec"><summary>השכלה</summary><div class="sec-body"><div id="list-education"></div></div></details>
+     <details class="sec"><summary>כישורים ושפות</summary><div class="sec-body">
+      <div class="field"><label for="f-skills">כישורים (מופרדים בפסיק)</label><textarea id="f-skills" rows="3" data-field="skills" maxlength="800" placeholder="Excel, ניהול צוות, SQL, שירות לקוחות"></textarea></div>
+      <div class="field"><label for="f-langs">שפות (שורה לכל שפה)</label><textarea id="f-langs" rows="3" data-field="languages" maxlength="400" placeholder="עברית – שפת אם&#10;אנגלית – ברמה גבוהה"></textarea></div>
+     </div></details>
+     <details class="sec"><summary>מדורים נוספים (התנדבות, קורסים…)</summary><div class="sec-body"><div id="list-extra"></div></div></details>
+    </form>
+   </div>
+
+   <div class="cv-preview-wrap">
+    <div class="panel">
+     <div id="cv-scale"><div id="cv-page" class="cv"></div></div>
+     <p class="preview-note">הקו האפור מסמן סוף עמוד A4. ב-PDF הטקסט נשאר טקסט אמיתי, כך שמערכות סינון (ATS) יכולות לקרוא אותו.</p>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <section class="container app-info">
+  <div class="grid cols-2">
+   <div class="card pad-lg">
+    <h2>מה חינם ומה בתשלום?</h2>
+    <p><strong>חינם:</strong> כל הטופס, 4 התבניות, עברית ואנגלית, תצוגה חיה, גיבוי, והדפסה / PDF עם סימן מים.</p>
+    <p><strong>גרסה מלאה, ₪19 חד-פעמי:</strong> PDF נקי בלי סימן מים וקובץ Word (DOCX) לעריכה. נפתח מיד אחרי התשלום, בלי הרשמה.</p>
+    <button type="button" class="btn accent" data-act="unlock">לפתיחת הגרסה המלאה</button>
+   </div>
+   <div class="card pad-lg">
+    <h2>טיפים קצרים</h2>
+    <ul class="mb-0">
+     <li>עמוד אחד מספיק לרוב המשרות; שניים למי שיש לו 10+ שנות ניסיון.</li>
+     <li>כתבו הישגים עם מספרים ("הורדתי עלויות ב-20%"), לא רק תחומי אחריות.</li>
+     <li>השתמשו במילים מתוך מודעת המשרה: מערכות סינון מחפשות אותן.</li>
+    </ul>
+    <p class="mt-2 mb-0">עוד: <a href="../../p/cv-builder/guides/how-to-write-cv/">איך כותבים קורות חיים בעברית</a> · <a href="../../p/cv-builder/guides/cv-in-english/">קורות חיים באנגלית ומערכות ATS</a></p>
+   </div>
+  </div>
+ </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="../../assets/site.js"></script>
+<script src="../../assets/checkout.js"></script>
+<script src="../shared/zip.js"></script>
+<script src="../shared/unlock.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

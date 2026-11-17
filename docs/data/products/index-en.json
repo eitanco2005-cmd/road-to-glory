@@ -16,6 +16,10 @@
     {
       "slug": "jewish-holiday-planner",
       "page": "en/p/jewish-holiday-planner/"
+    },
+    {
+      "slug": "seating-chart-en",
+      "page": "en/apps/seating/"
     }
   ],
   "bundles": [
