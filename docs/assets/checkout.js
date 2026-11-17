@@ -116,8 +116,10 @@
   }
   function price2(n) { return (Math.round(Number(n) * 100) / 100).toFixed(2); }
 
-  function thanksUrl(slug, orderId, test, en) {
-    return ROOT + (en ? "en/" : "") + "thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(orderId) + (test ? "&test=1" : "");
+  function thanksUrl(slug, orderId, test, en, product) {
+    var tp = product && product.thanks_path;
+    var base = tp && /^[a-z0-9\/-]+\/$/.test(tp) ? tp : (en ? "en/" : "") + "thanks/";
+    return ROOT + base + "?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(orderId) + (test ? "&test=1" : "");
   }
   /* Unlock products ("unlock": true in the product JSON, e.g. web apps with paid export): store the unlock in this
    * browser (localStorage "tp-unlock:<slug>"), fire "tp:unlocked" on window and stay on the page. */
@@ -140,7 +142,7 @@
   function finish(box, slug, orderId, amount, currency, status, test, en, product) {
     if (product && product.unlock === true) return unlock(box, slug, orderId, amount, currency, status, test, en);
     setMsg(box, "info", T.paid);
-    var go = function () { location.href = thanksUrl(slug, orderId, test, en); };
+    var go = function () { location.href = thanksUrl(slug, orderId, test, en, product); };
     var timer = setTimeout(go, 2500); // never block the buyer on the sales log
     sales().then(function () {
       return window.recordSale({ orderId: orderId, slug: slug, amount: amount, currency: currency, status: status, test: test });
