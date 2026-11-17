@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>עיצוב הזמנה אונליין בעברית – חתונה, בר מצווה, יום הולדת | תכנון פלוס</title>
+<meta name="description" content="מעצב הזמנות אונליין בעברית: בוחרים עיצוב מתוך 12, ממלאים שמות, תאריך עברי אוטומטי, שעות ומקום, ורואים תצוגה חיה. תצוגה מקדימה חינם, קובץ נקי לוואטסאפ ו-PDF לדפוס ב-₪19.">
+<link rel="canonical" href="https://tichnun.netlify.app/apps/invite/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="תכנון פלוס">
+<meta property="og:title" content="מעצב הזמנות אונליין בעברית | תכנון פלוס">
+<meta property="og:description" content="12 עיצובים מקוריים לחתונה, בר/בת מצווה, יום הולדת וברית. תאריך עברי אוטומטי, תצוגה חיה, הורדה לוואטסאפ ו-PDF לדפוס.">
+<meta property="og:url" content="https://tichnun.netlify.app/apps/invite/">
+<meta property="og:image" content="https://tichnun.netlify.app/p/invitation-maker/img/screen-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@400;700&family=David+Libre:wght@400;700&family=Bellefair&family=Noto+Rashi+Hebrew:wght@400;700&family=Suez+One&family=Secular+One&family=Karantina:wght@400;700&family=Amatic+SC:wght@400;700&family=Varela+Round&family=Rubik:wght@400;700&family=Heebo:wght@400;700&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="app.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"מעצב הזמנות אונליין – תכנון פלוס","url":"https://tichnun.netlify.app/apps/invite/","applicationCategory":"DesignApplication","operatingSystem":"Web","inLanguage":"he","offers":{"@type":"Offer","price":"19","priceCurrency":"ILS"}}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main" class="inv-app">
+ <div class="container">
+  <nav class="breadcrumbs" aria-label="פירורי לחם"><a href="../../">דף הבית</a> <span aria-hidden="true">›</span> <a href="../../p/invitation-maker/">מעצב הזמנות</a> <span aria-hidden="true">›</span> <span aria-current="page">עיצוב הזמנה</span></nav>
+  <h1>עיצוב הזמנה אונליין</h1>
+  <p class="muted mb-0">בוחרים עיצוב, ממלאים פרטים ורואים את ההזמנה מתעדכנת. הכל נשמר רק בדפדפן שלכם.</p>
+  <noscript><p class="noscript">המעצב עובד עם JavaScript. יש להפעיל JavaScript בדפדפן.</p></noscript>
+
+  <h2 class="inv-step"><span class="n">1</span>בחירת עיצוב</h2>
+  <div class="inv-chips" role="group" aria-label="סינון לפי סוג אירוע" id="cats"></div>
+  <div class="inv-gallery" id="gallery" aria-label="עיצובים"></div>
+
+  <div class="inv-work">
+   <div class="inv-preview-wrap" id="preview-wrap">
+    <canvas class="inv-preview" id="preview" width="440" height="622" role="img" aria-label="תצוגה מקדימה של ההזמנה"></canvas>
+    <p class="inv-preview-note" id="preview-note">תצוגה מקדימה עם סימן מים. ההורדה הנקייה נפתחת אחרי רכישה.</p>
+   </div>
+
+   <div class="inv-form">
+    <h2 class="inv-step"><span class="n">2</span>הפרטים</h2>
+    <form id="form" autocomplete="off" onsubmit="return false">
+     <fieldset>
+      <legend>טקסטים</legend>
+      <div class="fields">
+       <div class="field"><label for="f-top">שורת פתיחה</label><input type="text" id="f-top" data-k="top" maxlength="80"></div>
+       <div class="field"><label for="f-title">כותרת / סוג האירוע</label><input type="text" id="f-title" data-k="title" maxlength="40"><div class="hint">למשל: בר מצווה, בת מצווה, ברית מילה, 40. אפשר להשאיר ריק.</div></div>
+       <div class="field"><label for="f-names">שמות</label><textarea id="f-names" data-k="names" rows="2" maxlength="80"></textarea><div class="hint">שורה חדשה = שורה חדשה בהזמנה.</div>
+        <div class="inv-row mt-1"><label for="f-namesize" class="small">גודל השמות</label><input type="range" id="f-namesize" min="70" max="130" step="5" value="100" style="flex:1"></div></div>
+       <div class="field"><label for="f-invite">נוסח ההזמנה</label><textarea id="f-invite" data-k="invite" rows="3" maxlength="300"></textarea>
+        <div class="inv-row mt-1"><label for="f-wording" class="small">נוסחים מוכנים:</label><select id="f-wording" style="flex:1"></select></div></div>
+      </div>
+     </fieldset>
+     <fieldset>
+      <legend>תאריך ושעות</legend>
+      <div class="fields">
+       <div class="field"><label for="f-date">תאריך האירוע</label><input type="date" id="f-date" data-k="date">
+        <div class="inv-hebdate" id="hebdate" aria-live="polite"></div>
+        <div class="inv-checks">
+         <label><input type="checkbox" id="c-day" checked> יום בשבוע</label>
+         <label><input type="checkbox" id="c-heb" checked> תאריך עברי</label>
+         <label><input type="checkbox" id="c-greg" checked> תאריך לועזי</label>
+         <label><input type="checkbox" id="c-eve"> אחרי השקיעה („אור ל…“)</label>
+        </div></div>
+       <div class="field"><label for="f-times">שעות</label><input type="text" id="f-times" data-k="times" maxlength="80"><div class="hint">למשל: קבלת פנים 19:30 · חופה 20:30</div></div>
+      </div>
+     </fieldset>
+     <fieldset>
+      <legend>מקום</legend>
+      <div class="fields two">
+       <div class="field"><label for="f-venue">מקום האירוע</label><input type="text" id="f-venue" data-k="venue" maxlength="60"></div>
+       <div class="field"><label for="f-address">כתובת</label><input type="text" id="f-address" data-k="address" maxlength="80"></div>
+      </div>
+     </fieldset>
+     <fieldset>
+      <legend>משפחה ושורה תחתונה</legend>
+      <div class="fields two">
+       <div class="field"><label for="f-pr">הורים / משפחה (ימין)</label><textarea id="f-pr" data-k="parentsR" rows="2" maxlength="120"></textarea></div>
+       <div class="field"><label for="f-pl">הורים (שמאל, לא חובה)</label><textarea id="f-pl" data-k="parentsL" rows="2" maxlength="120"></textarea></div>
+      </div>
+      <div class="field mt-1"><label for="f-footer">שורה תחתונה</label><input type="text" id="f-footer" data-k="footer" maxlength="90"><div class="hint">למשל: אישור הגעה, קישור לוויז, „נשמח לראותכם“.</div></div>
+     </fieldset>
+     <fieldset>
+      <legend>צבעים וגופנים</legend>
+      <div class="field"><span class="label">צבעים</span><div class="inv-swatches" id="swatches"></div></div>
+      <div class="fields two mt-1">
+       <div class="field"><label for="f-fd">גופן כותרות ושמות</label><select id="f-fd"></select></div>
+       <div class="field"><label for="f-fb">גופן טקסט</label><select id="f-fb"></select></div>
+      </div>
+      <p class="small muted mt-1 mb-0">כל הגופנים חינמיים ברישיון OFL (Google Fonts). <button type="button" class="inv-link" id="reset-style">החזרת העיצוב המקורי</button></p>
+     </fieldset>
+    </form>
+
+    <h2 class="inv-step" id="export"><span class="n">3</span>הורדה</h2>
+    <div class="inv-export">
+     <h3>תצוגה מקדימה – חינם</h3>
+     <p class="small muted">קובץ PNG ברזולוציה נמוכה עם סימן מים, כדי לשלוח לבן/בת הזוג או למשפחה לאישור.</p>
+     <button type="button" class="btn secondary block" id="dl-free">הורדת תצוגה מקדימה (PNG)</button>
+
+     <div class="inv-locked" id="locked">
+      <h3 class="mt-2">הורדה נקייה – ₪19</h3>
+      <ul class="small">
+       <li>PNG נקי באיכות גבוהה (2000×2828) לוואטסאפ ולמייל</li>
+       <li>PDF לבית דפוס בגודל A5 או A6, עם 3 מ״מ בליד</li>
+       <li>PDF להדפסה בבית: 2 או 4 הזמנות על דף A4 עם סימני חיתוך</li>
+       <li>תשלום אחד לדפדפן הזה: אפשר לתקן ולהוריד שוב כמה שרוצים</li>
+      </ul>
+      <div class="buy" data-product="invitation-maker" data-label="הזמנה נקייה: PNG + PDF להדפסה"></div>
+     </div>
+
+     <div class="inv-paid" id="paid" hidden>
+      <span class="inv-badge-ok">✓ ההורדות הנקיות פתוחות</span>
+      <button type="button" class="btn block" id="dl-png">הורדת PNG באיכות גבוהה</button>
+      <button type="button" class="btn secondary block" id="share" hidden>שיתוף (וואטסאפ ועוד)</button>
+      <div class="inv-pdf">
+       <label for="pdf-kind" class="small"><strong>PDF להדפסה</strong></label>
+       <select id="pdf-kind">
+        <option value="a5">A5 (14.8×21 ס״מ) לבית דפוס, עם בליד 3 מ״מ</option>
+        <option value="a6">A6 (10.5×14.8 ס״מ) לבית דפוס, עם בליד 3 מ״מ</option>
+        <option value="a4x2">דף A4 להדפסה בבית: 2 הזמנות + סימני חיתוך</option>
+        <option value="a4x4">דף A4 להדפסה בבית: 4 הזמנות + סימני חיתוך</option>
+       </select>
+       <button type="button" class="btn secondary block" id="dl-pdf">הורדת PDF</button>
+      </div>
+     </div>
+     <p class="inv-status" id="status" role="status"></p>
+    </div>
+    <p class="small muted mt-2">טיפ: לפני הדפסה בכמות, הדפיסו עותק אחד ובדקו שמות, תאריך וכתובת. <a href="../../p/invitation-maker/guides/wedding-invitation-wording/">נוסחים לחתונה</a> · <a href="../../p/invitation-maker/guides/bar-mitzvah-invitation-wording/">נוסחים לבר/בת מצווה</a> · <a href="../../p/invitation-maker/guides/print-invitations/">איך מדפיסים הזמנות</a></p>
+   </div>
+  </div>
+ </div>
+ <div class="inv-bar"><a class="btn secondary small" href="#preview-wrap">תצוגה</a><a class="btn small" href="#export">הורדה</a></div>
+</main>
+<footer id="site-footer"></footer>
+<script src="../../assets/site.js"></script>
+<script src="unlock.js"></script>
+<script src="hebdate.js"></script>
+<script src="templates.js"></script>
+<script src="pdf.js"></script>
+<script src="app.js"></script>
+<script src="../../assets/checkout.js"></script>
+</body>
+</html>

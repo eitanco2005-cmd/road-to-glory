@@ -60,7 +60,7 @@
     return cache[slug];
   }
   function isDeliverable(p) {
-    return !!p && !p.placeholder && ((p.files && p.files.length > 0) || !!p.sheets_copy_url);
+    return !!p && !p.placeholder && ((p.files && p.files.length > 0) || !!p.sheets_copy_url || p.unlock === true);
   }
   /* -> {product, members[], available} */
   function resolve(slug) {
@@ -83,7 +83,27 @@
   function thanksUrl(slug, orderId, test) {
     return ROOT + "thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(orderId) + (test ? "&test=1" : "");
   }
-  function finish(box, slug, orderId, amount, currency, status, test) {
+  /* Unlock products ("unlock": true in the product JSON, e.g. web apps with paid export): store the unlock in this
+   * browser (localStorage "tp-unlock:<slug>", same format as apps' unlock.js), fire "tp:unlocked" on window and stay on
+   * the page, so the app enables the paid exports at once. The thanks page link is still shown as a receipt. */
+  function unlock(box, slug, orderId, amount, currency, status, test) {
+    var rec = { o: String(orderId), t: Date.now(), test: !!test };
+    try { localStorage.setItem("tp-unlock:" + slug, JSON.stringify(rec)); } catch (e) {}
+    try { window.dispatchEvent(new CustomEvent("tp:unlocked", { detail: { slug: slug, orderId: rec.o, test: rec.test } })); } catch (e) {}
+    setMsg(box, "info", "התשלום התקבל! ההורדות הנקיות נפתחו בדפדפן הזה.");
+    var m = box.querySelector(".buy-msg");
+    if (m) {
+      var a = document.createElement("a");
+      a.href = thanksUrl(slug, orderId, test); a.target = "_blank"; a.rel = "noopener";
+      a.textContent = " לאישור ההזמנה";
+      m.appendChild(a);
+    }
+    sales().then(function () {
+      return window.recordSale({ orderId: orderId, slug: slug, amount: amount, currency: currency, status: status, test: test });
+    }).catch(function () {});
+  }
+  function finish(box, slug, orderId, amount, currency, status, test, product) {
+    if (product && product.unlock === true) return unlock(box, slug, orderId, amount, currency, status, test);
     setMsg(box, "info", "התשלום התקבל! מעבירים אותך לדף ההורדה…");
     var go = function () { location.href = thanksUrl(slug, orderId, test); };
     var timer = setTimeout(go, 2500); // never block the buyer on the sales log
@@ -134,7 +154,7 @@
     b.addEventListener("click", function () {
       b.disabled = true;
       var id = "TEST-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
-      finish(box, p.slug, id, Number(p.price_ils), CURRENCY, "COMPLETED", true);
+      finish(box, p.slug, id, Number(p.price_ils), CURRENCY, "COMPLETED", true, p);
     });
     box.querySelector(".buy-buttons").appendChild(b);
   }
@@ -199,7 +219,7 @@
             var amt = cap && cap.amount ? Number(cap.amount.value) : Number(value);
             var cur = cap && cap.amount ? cap.amount.currency_code : CURRENCY;
             var status = (cap && cap.status) || det.status || "";
-            finish(box, p.slug, det.id || data.orderID, amt, cur, status, false);
+            finish(box, p.slug, det.id || data.orderID, amt, cur, status, false, p);
           });
         },
         onCancel: function () { setMsg(box, "info", "התשלום בוטל. אפשר לנסות שוב בכל רגע."); },
