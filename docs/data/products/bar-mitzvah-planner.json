@@ -1,11 +1,23 @@
 {
   "slug": "bar-mitzvah-planner",
-  "title": "מתכנן בר/בת מצווה",
-  "subtitle": "תקציב, מוזמנים, ספקים ולוח זמנים לאירוע בלי לחץ",
+  "title": "מתכנן בר / בת מצווה באקסל ו-Google Sheets",
+  "subtitle": "תקציב, מוזמנים ואישורי הגעה, מתנות, ספקים, תשלומים, צ'קליסט כולל עלייה לתורה, והושבה",
   "price_ils": 39,
   "bundle_of": [],
-  "files": [],
+  "files": [
+    {
+      "label": "מתכנן בר/בת המצווה (Excel, ריק – להתחיל לעבוד)",
+      "path": "dl/3lvcpz0f1kr21brs/bar-bat-mitzvah-planner-glory.xlsx"
+    },
+    {
+      "label": "קובץ דוגמה ממולא (להתרשמות)",
+      "path": "dl/3lvcpz0f1kr21brs/bar-bat-mitzvah-planner-glory-example.xlsx"
+    },
+    {
+      "label": "נוסחים מוכנים, לוח זמנים וצ'קליסט להדפסה (Word)",
+      "path": "dl/3lvcpz0f1kr21brs/bar-bat-mitzvah-planner-glory-messages.docx"
+    }
+  ],
   "sheets_copy_url": null,
-  "tool": "bar-mitzvah-cost",
-  "placeholder": true
+  "tool": "bar-mitzvah-cost"
 }
