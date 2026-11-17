@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כיס — האפליקציה שמסדרת את הכסף | תבנית אפליקציה</title>
+<meta name="description" content="כיס ממיין את ההוצאות לבד, מזכיר לפני חיוב קבוע ועוזר לחסוך למטרות — בלי טבלאות ובלי כאב ראש.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Noto+Kufi+Arabic:wght@400;500;700;800&family=Inter:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../../css/rtl-kit.css">
+<style>:root{--c-primary:#e11d48;--c-primary-soft:#ffe4ea;--c-accent:#8b5cf6}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--c-primary:#fb7185;--c-primary-soft:#3b1520}}</style>
+</head>
+<body>
+<a class="skip" href="#main"><span data-i18n="skip">דילוג לתוכן</span></a>
+<header class="nav">
+ <div class="container">
+  <a class="brand" href="#"><span class="brand-mark" aria-hidden="true"></span><span data-i18n="brand">כיס</span></a>
+  <button class="menu-btn" type="button" data-menu aria-expanded="false"><span class="sr-only" data-i18n="menu">תפריט</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <ul class="nav-links"><li><a href="#features"><span data-i18n="n1">יכולות</span></a></li><li><a href="#privacy"><span data-i18n="n2">פרטיות</span></a></li><li><a href="#faq"><span data-i18n="n3">שאלות</span></a></li><li><a href="#download"><span data-i18n="n4">הורדה</span></a></li></ul>
+  <div class="nav-tools"><label class="sr-only" for="lang">Language / שפה / اللغة</label><select id="lang" class="lang-select" data-lang-switch><option value="he">עברית</option><option value="ar">العربية</option><option value="en">English</option></select><a class="btn sm" href="#download"><span data-i18n="n_cta">להורדה</span></a></div>
+ </div>
+</header>
+<main id="main">
+<section class="hero">
+ <div class="container split">
+  <div>
+   <span class="eyebrow" data-i18n="eyebrow">זמין ל-iOS ול-Android</span>
+   <h1 data-i18n="h1">יודעים לאן הולך <span class="hl">כל שקל</span></h1>
+   <p class="lead" data-i18n="lead">כיס ממיין את ההוצאות לבד, מזכיר לפני חיוב קבוע ועוזר לחסוך למטרות — בלי טבלאות ובלי כאב ראש.</p>
+   <div class="row"><a class="btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3c-1.2.1-2.6.9-3.3 2-.7.9-1.2 2.3-1 3.5 1.3.1 2.6-.7 3.4-1.7.7-1 1.1-2.3.9-3.8zM19.5 17c-.6 1.4-1 2-1.8 3.2-1.1 1.6-2.7 1.6-3.4 1.6-1 0-1.5-.6-3-.6s-2 .6-3 .6c-.8 0-2.2-.1-3.4-1.7C2.6 17 2.3 12.9 3.9 10.6c1-1.5 2.6-2.4 4.1-2.4s2.5.8 3.8.8 2.1-.8 3.9-.8c1.3 0 2.8.7 3.8 2-3.3 1.8-2.8 6.6 0 6.8z"/></svg><span data-i18n="store1">הורדה ב-App Store</span></a><a class="btn ghost" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg><span data-i18n="store2">הורדה ב-Google Play</span></a></div>
+   <p class="hero-note" data-i18n="note">חינם · בלי פרסומות</p>
+  </div>
+  <div class="phone" aria-hidden="true">
+     <div class="ph-card primary"><span data-i18n="ph_bal">יתרה החודש</span><b><bdi dir="ltr" data-i18n="ph_amt">₪4,280</bdi></b></div>
+     <div class="ph-card row" style="justify-content:space-between"><span data-i18n="ph_r1">סופר</span><bdi>−312</bdi></div>
+     <div class="ph-card row" style="justify-content:space-between"><span data-i18n="ph_r2">דלק</span><bdi>−180</bdi></div>
+     <div class="ph-card"><span data-i18n="ph_r3">חיסכון לחופשה</span><div style="block-size:8px;border-radius:4px;background:var(--c-border);margin-block-start:.5rem"><div style="inline-size:64%;block-size:100%;border-radius:4px;background:var(--c-primary)"></div></div></div>
+    </div>
+ </div>
+</section>
+<section class="section alt" id="features">
+ <div class="container">
+  <div class="section-head center"><h2 data-i18n="fh">פשוט. חכם. בעברית.</h2></div>
+  <div class="grid c3"><article class="card feature text-center"><div class="icon-tile" style="margin-inline:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><h3 data-i18n="f1">מיון אוטומטי</h3><p data-i18n="f1d">כל הוצאה נכנסת לקטגוריה הנכונה, ואפשר לתקן בהחלקה.</p></article><article class="card feature text-center"><div class="icon-tile" style="margin-inline:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg></div><h3 data-i18n="f2">תזכורות לפני חיוב</h3><p data-i18n="f2d">מנויים, ביטוחים והוראות קבע — מקבלים התראה יומיים לפני.</p></article><article class="card feature text-center"><div class="icon-tile" style="margin-inline:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div><h3 data-i18n="f3">יעדי חיסכון</h3><p data-i18n="f3d">מגדירים מטרה, והאפליקציה מראה כמה לשים בצד כל שבוע.</p></article></div>
+  <div class="stats mt-2"><div class="stat"><b><bdi dir="ltr" data-i18n="st1">4.8</bdi></b><span data-i18n="st1l">דירוג ממוצע (דוגמה)</span></div><div class="stat"><b><bdi data-i18n="st2">2 דק׳</bdi></b><span data-i18n="st2l">הגדרה ראשונית</span></div><div class="stat"><b><bdi dir="ltr" data-i18n="st3">0</bdi></b><span data-i18n="st3l">פרסומות</span></div></div>
+ </div>
+</section>
+<section class="section" id="privacy">
+ <div class="container split">
+  <div class="card raised" style="display:grid;place-items:center;min-block-size:240px"><div class="icon-tile" style="inline-size:96px;block-size:96px;border-radius:28px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div></div>
+  <div><h2 data-i18n="pvh">הנתונים שלכם נשארים שלכם</h2><p class="lead" data-i18n="pvl">המידע מוצפן על המכשיר. אנחנו לא מוכרים נתונים ולא מציגים פרסומות.</p></div>
+ </div>
+</section>
+<section class="section alt" id="faq">
+ <div class="container">
+  <div class="section-head center"><h2 data-i18n="qh">שאלות נפוצות</h2></div>
+  <div class="faq"><details><summary><span data-i18n="q1">כמה זה עולה?</span></summary><div><p class="mb-0" data-i18n="a1">האפליקציה חינמית. יש מנוי פרימיום אופציונלי ליכולות מתקדמות.</p></div></details><details><summary><span data-i18n="q2">צריך לחבר את חשבון הבנק?</span></summary><div><p class="mb-0" data-i18n="a2">לא חובה. אפשר להזין ידנית או לייבא קובץ.</p></div></details><details><summary><span data-i18n="q3">עובד גם בערבית?</span></summary><div><p class="mb-0" data-i18n="a3">כן. הממשק כולו זמין בעברית, בערבית ובאנגלית.</p></div></details></div>
+ </div>
+</section>
+<section class="section" id="download">
+ <div class="container">
+  <div class="cta-band">
+   <div><h2 data-i18n="dh">מתחילים לחסוך עוד היום</h2><p data-i18n="dl">הורידו את כיס בחינם והגדירו את החודש הראשון בשתי דקות.</p></div>
+   <div class="row"><a class="btn light" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3c-1.2.1-2.6.9-3.3 2-.7.9-1.2 2.3-1 3.5 1.3.1 2.6-.7 3.4-1.7.7-1 1.1-2.3.9-3.8zM19.5 17c-.6 1.4-1 2-1.8 3.2-1.1 1.6-2.7 1.6-3.4 1.6-1 0-1.5-.6-3-.6s-2 .6-3 .6c-.8 0-2.2-.1-3.4-1.7C2.6 17 2.3 12.9 3.9 10.6c1-1.5 2.6-2.4 4.1-2.4s2.5.8 3.8.8 2.1-.8 3.9-.8c1.3 0 2.8.7 3.8 2-3.3 1.8-2.8 6.6 0 6.8z"/></svg><span data-i18n="store1">הורדה ב-App Store</span></a><a class="btn light" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg><span data-i18n="store2">הורדה ב-Google Play</span></a></div>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="footer">
+ <div class="container">
+  <div class="cols">
+   <div><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"></span><span data-i18n="brand">כיס</span></a></div>
+   <div><h4><span data-i18n="f_product">מוצר</span></h4><ul><li><a href="#"><span data-i18n="n1">יכולות</span></a></li><li><a href="#"><span data-i18n="n3">שאלות</span></a></li></ul></div>
+   <div><h4><span data-i18n="f_company">חברה</span></h4><ul><li><a href="#"><span data-i18n="f_about">אודות</span></a></li><li><a href="#"><span data-i18n="f_jobs">דרושים</span></a></li><li><a href="#"><span data-i18n="f_contact">צור קשר</span></a></li></ul></div>
+   <div><h4><span data-i18n="f_legal">משפטי</span></h4><ul><li><a href="#"><span data-i18n="f_terms">תנאי שימוש</span></a></li><li><a href="#"><span data-i18n="f_privacy">פרטיות</span></a></li><li><a href="#"><span data-i18n="f_access">נגישות</span></a></li></ul></div>
+  </div>
+  <div class="fine"><span data-i18n="f_rights">© 2026 כל הזכויות שמורות.</span><span data-i18n="f_made">נבנה עם RTL Landing Kit</span></div>
+ </div>
+</footer>
+<script type="application/json" id="i18n" data-default="he">{
+ "he": {
+  "skip": "דילוג לתוכן",
+  "menu": "תפריט",
+  "lang": "שפה",
+  "f_product": "מוצר",
+  "f_company": "חברה",
+  "f_legal": "משפטי",
+  "f_about": "אודות",
+  "f_jobs": "דרושים",
+  "f_contact": "צור קשר",
+  "f_terms": "תנאי שימוש",
+  "f_privacy": "פרטיות",
+  "f_access": "נגישות",
+  "f_rights": "© 2026 כל הזכויות שמורות.",
+  "f_made": "נבנה עם RTL Landing Kit",
+  "email_ph": "you@example.com",
+  "email_l": "אימייל",
+  "_title": "כיס — האפליקציה שמסדרת את הכסף | תבנית אפליקציה",
+  "brand": "כיס",
+  "n1": "יכולות",
+  "n2": "פרטיות",
+  "n3": "שאלות",
+  "n4": "הורדה",
+  "n_cta": "להורדה",
+  "eyebrow": "זמין ל-iOS ול-Android",
+  "h1": "יודעים לאן הולך <span class=\"hl\">כל שקל<\/span>",
+  "lead": "כיס ממיין את ההוצאות לבד, מזכיר לפני חיוב קבוע ועוזר לחסוך למטרות — בלי טבלאות ובלי כאב ראש.",
+  "store1": "הורדה ב-App Store",
+  "store2": "הורדה ב-Google Play",
+  "note": "חינם · בלי פרסומות",
+  "ph_bal": "יתרה החודש",
+  "ph_amt": "₪4,280",
+  "ph_r1": "סופר",
+  "ph_r2": "דלק",
+  "ph_r3": "חיסכון לחופשה",
+  "fh": "פשוט. חכם. בעברית.",
+  "f1": "מיון אוטומטי",
+  "f1d": "כל הוצאה נכנסת לקטגוריה הנכונה, ואפשר לתקן בהחלקה.",
+  "f2": "תזכורות לפני חיוב",
+  "f2d": "מנויים, ביטוחים והוראות קבע — מקבלים התראה יומיים לפני.",
+  "f3": "יעדי חיסכון",
+  "f3d": "מגדירים מטרה, והאפליקציה מראה כמה לשים בצד כל שבוע.",
+  "st1": "4.8",
+  "st1l": "דירוג ממוצע (דוגמה)",
+  "st2": "2 דק׳",
+  "st2l": "הגדרה ראשונית",
+  "st3": "0",
+  "st3l": "פרסומות",
+  "pvh": "הנתונים שלכם נשארים שלכם",
+  "pvl": "המידע מוצפן על המכשיר. אנחנו לא מוכרים נתונים ולא מציגים פרסומות.",
+  "qh": "שאלות נפוצות",
+  "q1": "כמה זה עולה?",
+  "a1": "האפליקציה חינמית. יש מנוי פרימיום אופציונלי ליכולות מתקדמות.",
+  "q2": "צריך לחבר את חשבון הבנק?",
+  "a2": "לא חובה. אפשר להזין ידנית או לייבא קובץ.",
+  "q3": "עובד גם בערבית?",
+  "a3": "כן. הממשק כולו זמין בעברית, בערבית ובאנגלית.",
+  "dh": "מתחילים לחסוך עוד היום",
+  "dl": "הורידו את כיס בחינם והגדירו את החודש הראשון בשתי דקות."
+ },
+ "ar": {
+  "skip": "انتقل إلى المحتوى",
+  "menu": "القائمة",
+  "lang": "اللغة",
+  "f_product": "المنتج",
+  "f_company": "الشركة",
+  "f_legal": "قانوني",
+  "f_about": "من نحن",
+  "f_jobs": "وظائف",
+  "f_contact": "اتصل بنا",
+  "f_terms": "شروط الاستخدام",
+  "f_privacy": "الخصوصية",
+  "f_access": "إمكانية الوصول",
+  "f_rights": "© 2026 جميع الحقوق محفوظة.",
+  "f_made": "صُمّم باستخدام RTL Landing Kit",
+  "email_ph": "you@example.com",
+  "email_l": "البريد الإلكتروني",
+  "_title": "جيب — التطبيق الذي ينظّم أموالك | قالب تطبيق",
+  "brand": "جيب",
+  "n1": "الميزات",
+  "n2": "الخصوصية",
+  "n3": "الأسئلة",
+  "n4": "التنزيل",
+  "n_cta": "نزّل الآن",
+  "eyebrow": "متوفر على iOS وAndroid",
+  "h1": "اعرف أين يذهب <span class=\"hl\">كل شيكل<\/span>",
+  "lead": "يصنّف جيب مصاريفك تلقائيًا، ويذكّرك قبل كل دفعة ثابتة، ويساعدك على الادخار لأهدافك — بلا جداول وبلا صداع.",
+  "store1": "نزّل من App Store",
+  "store2": "نزّل من Google Play",
+  "note": "مجاني · بلا إعلانات",
+  "ph_bal": "رصيد هذا الشهر",
+  "ph_amt": "₪4,280",
+  "ph_r1": "السوبرماركت",
+  "ph_r2": "الوقود",
+  "ph_r3": "ادخار للعطلة",
+  "fh": "بسيط. ذكي. بالعربية.",
+  "f1": "تصنيف تلقائي",
+  "f1d": "كل مصروف يدخل الفئة الصحيحة، ويمكن تعديله بسحبة.",
+  "f2": "تذكير قبل الدفع",
+  "f2d": "الاشتراكات والتأمينات والأوامر الثابتة — تنبيه قبل يومين.",
+  "f3": "أهداف الادخار",
+  "f3d": "حدّد هدفًا، وسيُظهر لك التطبيق كم تدّخر كل أسبوع.",
+  "st1": "4.8",
+  "st1l": "متوسط التقييم (مثال)",
+  "st2": "دقيقتان",
+  "st2l": "الإعداد الأولي",
+  "st3": "0",
+  "st3l": "إعلانات",
+  "pvh": "بياناتك تبقى لك",
+  "pvl": "المعلومات مشفّرة على جهازك. لا نبيع البيانات ولا نعرض إعلانات.",
+  "qh": "الأسئلة الشائعة",
+  "q1": "كم يكلّف؟",
+  "a1": "التطبيق مجاني، مع اشتراك مميز اختياري لميزات متقدمة.",
+  "q2": "هل يجب ربط الحساب البنكي؟",
+  "a2": "ليس إلزاميًا. يمكنك الإدخال يدويًا أو استيراد ملف.",
+  "q3": "هل يعمل بالعبرية أيضًا؟",
+  "a3": "نعم. الواجهة كاملة بالعربية والعبرية والإنجليزية.",
+  "dh": "ابدأ الادخار اليوم",
+  "dl": "نزّل جيب مجانًا وجهّز شهرك الأول في دقيقتين."
+ },
+ "en": {
+  "skip": "Skip to content",
+  "menu": "Menu",
+  "lang": "Language",
+  "f_product": "Product",
+  "f_company": "Company",
+  "f_legal": "Legal",
+  "f_about": "About",
+  "f_jobs": "Careers",
+  "f_contact": "Contact",
+  "f_terms": "Terms",
+  "f_privacy": "Privacy",
+  "f_access": "Accessibility",
+  "f_rights": "© 2026 All rights reserved.",
+  "f_made": "Built with RTL Landing Kit",
+  "email_ph": "you@example.com",
+  "email_l": "Email",
+  "_title": "Kis — the app that sorts out your money | App template",
+  "brand": "Kis",
+  "n1": "Features",
+  "n2": "Privacy",
+  "n3": "FAQ",
+  "n4": "Download",
+  "n_cta": "Download",
+  "eyebrow": "Available on iOS and Android",
+  "h1": "Know where <span class=\"hl\">every dollar<\/span> goes",
+  "lead": "Kis sorts your spending automatically, reminds you before recurring charges and helps you save for goals — no spreadsheets.",
+  "store1": "Download on the App Store",
+  "store2": "Get it on Google Play",
+  "note": "Free · No ads",
+  "ph_bal": "This month",
+  "ph_amt": "$1,180",
+  "ph_r1": "Groceries",
+  "ph_r2": "Fuel",
+  "ph_r3": "Vacation fund",
+  "fh": "Simple. Smart. In your language.",
+  "f1": "Auto-categorize",
+  "f1d": "Every expense lands in the right category; fix it with a swipe.",
+  "f2": "Reminders before charges",
+  "f2d": "Subscriptions, insurance, standing orders — alerted two days ahead.",
+  "f3": "Savings goals",
+  "f3d": "Set a goal and see how much to put aside each week.",
+  "st1": "4.8",
+  "st1l": "Avg. rating (sample)",
+  "st2": "2 min",
+  "st2l": "Setup",
+  "st3": "0",
+  "st3l": "Ads",
+  "pvh": "Your data stays yours",
+  "pvl": "Data is encrypted on your device. We don't sell data or show ads.",
+  "qh": "Frequently asked questions",
+  "q1": "How much does it cost?",
+  "a1": "The app is free. An optional premium plan adds advanced features.",
+  "q2": "Do I have to connect my bank?",
+  "a2": "No. Enter expenses manually or import a file.",
+  "q3": "Does it work in Arabic and Hebrew?",
+  "a3": "Yes. The whole interface is available in Hebrew, Arabic and English.",
+  "dh": "Start saving today",
+  "dl": "Download Kis for free and set up your first month in two minutes."
+ }
+}</script>
+<script src="../../js/rtl-kit.js"></script>
+</body>
+</html>

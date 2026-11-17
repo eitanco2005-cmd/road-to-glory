@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* language-aware fonts + mirrored icons (the only custom CSS the Tailwind variant needs) */
+@layer base {
+  :lang(he) body { font-family: Heebo, Assistant, system-ui, sans-serif; }
+  :lang(ar) body { font-family: "Noto Kufi Arabic", Tajawal, Tahoma, sans-serif; line-height: 1.8; }
+  :lang(en) body { font-family: Inter, system-ui, sans-serif; }
+  [dir="rtl"] .flip { transform: scaleX(-1); }
+  .nav[data-open] .nav-links { display: flex; }
+}

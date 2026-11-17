@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RTL Landing Kit — free Hebrew & Arabic RTL landing page templates (HTML, CSS, Tailwind)</title>
+<meta name="description" content="Free MIT-licensed RTL landing page templates for Hebrew and Arabic, built with CSS logical properties. Plain HTML/CSS and Tailwind versions, live demos. Pro pack: 12 more templates and RTL components for $24.">
+<link rel="canonical" href="https://tichnun.netlify.app/devkit/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RTL Landing Kit — RTL landing page templates for Hebrew & Arabic">
+<meta property="og:description" content="Free, open-source RTL templates built on CSS logical properties. Same HTML works RTL and LTR.">
+<meta property="og:url" content="https://tichnun.netlify.app/devkit/">
+<meta property="og:image" content="https://tichnun.netlify.app/devkit/img/free-launch.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M21 10l-8 6 8 6' stroke='white' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Heebo:wght@700;800&family=Noto+Kufi+Arabic:wght@700&display=swap">
+<link rel="stylesheet" href="demos/css/rtl-kit.css">
+<style>
+  .shot { border-radius: var(--radius); border: 1px solid var(--c-border); box-shadow: var(--shadow); overflow: hidden; background: var(--c-surface); }
+  .shot img { inline-size: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+  .demo-card { display: grid; gap: .75rem; }
+  .demo-card h3 { margin: 0; }
+  .demo-links { display: flex; flex-wrap: wrap; gap: .4rem .9rem; font-weight: 600; font-size: .95rem; }
+  .pro-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
+  .pro-grid figure { margin: 0; }
+  .pro-grid figcaption { font-size: .9rem; color: var(--c-muted); margin-block-start: .4rem; font-weight: 600; }
+  .buy-card { position: sticky; inset-block-start: 88px; }
+  .buy-price { font-size: 3rem; font-weight: 800; line-height: 1; }
+  .buy-price small { font-size: 1rem; color: var(--c-muted); font-weight: 500; }
+  .pay { margin-block-start: 1rem; min-block-size: 50px; }
+  .buy-msg { margin-block-start: .75rem; padding: .7rem .9rem; border-radius: var(--radius-sm); font-weight: 600; font-size: .95rem; }
+  .buy-msg.info { background: var(--c-primary-soft); }
+  .buy-msg.error { background: #fee2e2; color: #991b1b; }
+  .buy-loading { display: flex; gap: .6rem; align-items: center; color: var(--c-muted); min-block-size: 48px; }
+  .spinner { inline-size: 18px; block-size: 18px; border-radius: 50%; border: 3px solid var(--c-border); border-block-start-color: var(--c-primary); animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .test-flag { background: #fef3c7; color: #92400e; font-weight: 700; padding: .4rem .7rem; border-radius: 8px; font-size: .85rem; margin-block-end: .75rem; }
+  .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88rem; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-sm); padding: 1rem 1.1rem; overflow-x: auto; white-space: pre; line-height: 1.6; }
+  .rtl-word { font-family: Heebo, sans-serif; }
+  .rtl-word[lang=ar] { font-family: "Noto Kufi Arabic", sans-serif; }
+  .vs { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+  .btn.gh { background: #14161f; color: #fff; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"RTL Landing Kit","description":"Free MIT-licensed RTL landing page templates for Hebrew and Arabic built with CSS logical properties, with Tailwind variants.","codeRepository":"https://github.com/eitanco2005-cmd/road-to-glory/tree/main/devkit","license":"https://opensource.org/licenses/MIT","programmingLanguage":["HTML","CSS","JavaScript"],"inLanguage":["en","he","ar"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"RTL Landing Kit Pro","description":"12 responsive RTL landing page templates plus RTL components (navbars, forms, pricing, dashboards) in plain HTML and CSS, Hebrew and Arabic ready.","image":"https://tichnun.netlify.app/devkit/img/pro-dashboard.jpg","brand":{"@type":"Brand","name":"RTL Landing Kit"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://tichnun.netlify.app/devkit/#pro"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+ <div class="container">
+  <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span>RTL Landing Kit</a>
+  <button class="menu-btn" type="button" data-menu aria-expanded="false"><span class="sr-only">Menu</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <ul class="nav-links"><li><a href="#demos">Demos</a></li><li><a href="#how">How it works</a></li><li><a href="#pro">Pro</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <div class="nav-tools"><a class="btn sm gh" href="https://github.com/eitanco2005-cmd/road-to-glory/tree/main/devkit" rel="noopener">GitHub</a></div>
+ </div>
+</header>
+<main id="main">
+<section class="hero">
+ <div class="container split">
+  <div>
+   <span class="eyebrow">Free · MIT · No framework</span>
+   <h1>Landing pages that read <span class="hl">right-to-left</span>.</h1>
+   <p class="lead">Responsive templates for Hebrew and Arabic sites, built only on CSS logical properties. The same HTML works RTL and LTR — flip <code>dir</code> and the page mirrors itself. Plain CSS and Tailwind versions.</p>
+   <div class="row">
+    <a class="btn" href="rtl-landing-kit-free.zip" download>Download free kit (zip)</a>
+    <a class="btn ghost" href="https://github.com/eitanco2005-cmd/road-to-glory/tree/main/devkit" rel="noopener">View on GitHub</a>
+   </div>
+   <p class="hero-note">3 templates × (plain CSS + Tailwind) × 3 languages · <a href="#pro">Pro: 12 more templates for $24</a></p>
+  </div>
+  <a class="shot" href="demos/templates/launch/index.html" aria-label="Open the Launch template demo"><img src="img/free-launch.jpg" alt="Launch SaaS template rendered right-to-left in Hebrew" width="1280" height="800"></a>
+ </div>
+</section>
+
+<section class="section alt" id="demos">
+ <div class="container">
+  <div class="section-head"><h2>Live demos</h2><p class="lead mb-0">Each demo has a language switcher in the navbar: עברית, العربية, English. Watch the layout mirror.</p></div>
+  <div class="grid c3">
+   <article class="demo-card"><a class="shot" href="demos/templates/launch/index.html"><img src="img/free-launch.jpg" alt="Launch template" loading="lazy" width="1280" height="800"></a><h3>Launch — SaaS</h3><p class="muted mb-0">Hero with dashboard mockup, features, steps, pricing, FAQ, signup.</p>
+    <div class="demo-links"><a href="demos/templates/launch/index.html">Hebrew</a><a href="demos/templates/launch/index.html?lang=ar">Arabic</a><a href="demos/templates/launch/index.html?lang=en">English</a><a href="demos/templates/launch/tailwind.html">Tailwind</a></div></article>
+   <article class="demo-card"><a class="shot" href="demos/templates/studio/index.html"><img src="img/free-studio.jpg" alt="Studio template" loading="lazy" width="1280" height="800"></a><h3>Studio — agency</h3><p class="muted mb-0">Stats, services, work grid, process steps, contact form.</p>
+    <div class="demo-links"><a href="demos/templates/studio/index.html">Hebrew</a><a href="demos/templates/studio/index.html?lang=ar">Arabic</a><a href="demos/templates/studio/index.html?lang=en">English</a><a href="demos/templates/studio/tailwind.html">Tailwind</a></div></article>
+   <article class="demo-card"><a class="shot" href="demos/templates/pocket/index.html"><img src="img/free-pocket.jpg" alt="Pocket template" loading="lazy" width="1280" height="800"></a><h3>Pocket — mobile app</h3><p class="muted mb-0">Phone mockup, store buttons, features, privacy, FAQ.</p>
+    <div class="demo-links"><a href="demos/templates/pocket/index.html">Hebrew</a><a href="demos/templates/pocket/index.html?lang=ar">Arabic</a><a href="demos/templates/pocket/index.html?lang=en">English</a><a href="demos/templates/pocket/tailwind.html">Tailwind</a></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="how">
+ <div class="container">
+  <div class="section-head"><h2>How it works</h2><p class="lead mb-0">No <code>left</code>, no <code>right</code>, no second stylesheet.</p></div>
+  <div class="vs">
+   <div><h3>Logical properties</h3><div class="code">.card {
+  padding-inline: 1.5rem;          /* not left/right */
+  border-inline-start: 4px solid;  /* right in RTL, left in LTR */
+  text-align: start;
+}
+.badge { inset-inline-end: 1rem; }</div></div>
+   <div><h3>Bidi-safe data</h3><div class="code">&lt;p&gt;המחיר: &lt;bdi&gt;₪1,250&lt;/bdi&gt; לחודש&lt;/p&gt;
+&lt;input type="email" dir="ltr"&gt;   /* aligned to end */
+&lt;svg class="flip"&gt;…arrow…&lt;/svg&gt;
+:lang(ar) body { font-family: "Noto Kufi Arabic"; }</div></div>
+  </div>
+  <div class="grid c3 mt-2">
+   <article class="card feature"><h3>One markup, three languages</h3><p><span class="rtl-word" lang="he">עברית</span>, <span class="rtl-word" lang="ar">العربية</span> and English from the same file, with fonts and line height per language.</p></article>
+   <article class="card feature"><h3>Plain CSS or Tailwind</h3><p>17 KB of readable CSS, or Tailwind 3.4 with logical utilities: <code>ms-</code>, <code>ps-</code>, <code>start-</code>, <code>text-start</code>.</p></article>
+   <article class="card feature"><h3>Accessible &amp; fast</h3><p>Skip link, labelled forms, focus styles, dark mode, reduced motion. No images required: mockups are pure CSS.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="pro">
+ <div class="container">
+  <div class="split" style="align-items:start">
+   <div>
+    <span class="eyebrow">RTL Landing Kit Pro</span>
+    <h2>12 more templates + a library of RTL components</h2>
+    <p class="lead">Same rules, same CSS, no framework. Ready for real Hebrew and Arabic businesses: Israeli phone and address fields, shekel prices, Sunday-first schedules.</p>
+    <div class="pro-grid">
+     <figure><img class="shot" src="img/pro-dashboard.jpg" alt="SaaS dashboard template: sidebar, KPI cards, chart, orders table" loading="lazy" width="1280" height="800"><figcaption>SaaS dashboard</figcaption></figure>
+     <figure><img class="shot" src="img/pro-restaurant.jpg" alt="Restaurant template" loading="lazy" width="1280" height="800"><figcaption>Restaurant / café</figcaption></figure>
+     <figure><img class="shot" src="img/pro-real-estate.jpg" alt="Real estate template with search form" loading="lazy" width="1280" height="800"><figcaption>Real estate</figcaption></figure>
+     <figure><img class="shot" src="img/pro-clinic.jpg" alt="Clinic template with booking" loading="lazy" width="1280" height="800"><figcaption>Clinic + 3-step booking</figcaption></figure>
+     <figure><img class="shot" src="img/pro-law-firm.jpg" alt="Law firm template" loading="lazy" width="1280" height="800"><figcaption>Law firm / consultants</figcaption></figure>
+     <figure><img class="shot" src="img/pro-course.jpg" alt="Online course template" loading="lazy" width="1280" height="800"><figcaption>Online course</figcaption></figure>
+     <figure><img class="shot" src="img/pro-conference.jpg" alt="Conference template" loading="lazy" width="1280" height="800"><figcaption>Conference / event</figcaption></figure>
+     <figure><img class="shot" src="img/pro-product.jpg" alt="Product store template" loading="lazy" width="1280" height="800"><figcaption>Product store</figcaption></figure>
+     <figure><img class="shot" src="img/pro-nonprofit.jpg" alt="Nonprofit template" loading="lazy" width="1280" height="800"><figcaption>Nonprofit + donations</figcaption></figure>
+     <figure><img class="shot" src="img/pro-fitness.jpg" alt="Fitness studio template" loading="lazy" width="1280" height="800"><figcaption>Fitness studio</figcaption></figure>
+     <figure><img class="shot" src="img/pro-portfolio.jpg" alt="Portfolio template" loading="lazy" width="1280" height="800"><figcaption>Portfolio / photographer</figcaption></figure>
+     <figure><img class="shot" src="img/pro-waitlist.jpg" alt="Waitlist template" loading="lazy" width="1280" height="800"><figcaption>Waitlist / coming soon</figcaption></figure>
+     <figure><img class="shot" src="img/pro-components.jpg" alt="Components library: forms" loading="lazy" width="1280" height="800"><figcaption>Components library</figcaption></figure>
+     <figure><img class="shot" src="img/pro-dashboard-mobile.jpg" alt="Dashboard on a phone" loading="lazy" width="390" height="844" style="aspect-ratio:16/10;object-fit:cover"><figcaption>Every page is responsive</figcaption></figure>
+    </div>
+   </div>
+   <aside class="card raised buy-card" aria-labelledby="buy-h">
+    <div id="test-flag" class="test-flag" hidden>TEST MODE — no real payment</div>
+    <h3 id="buy-h">RTL Landing Kit Pro</h3>
+    <div class="buy-price">$24 <small>one-time</small></div>
+    <ul class="check-list">
+     <li>12 complete templates (list on the left)</li>
+     <li>Components: 4 navbars (dropdown, mega menu, side drawer), 4 forms (contact, login, multi-step, Israeli checkout), 3 pricing blocks, dashboard KPI cards, tables &amp; SVG charts, tabs, timeline, modal, toast</li>
+     <li>Plain HTML + CSS, ~4 KB optional JS</li>
+     <li>Unlimited personal &amp; client projects</li>
+     <li>Instant zip download, free v1.x updates</li>
+    </ul>
+    <div class="pay" id="pay"></div>
+    <p class="muted" style="font-size:.88rem;margin-block:.75rem 0">Secure checkout by PayPal — card or PayPal account. Price in USD. 14-day refund if it's not for you: reply to your PayPal receipt.</p>
+   </aside>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="faq">
+ <div class="container">
+  <div class="section-head center"><h2>FAQ</h2></div>
+  <div class="faq">
+   <details><summary>Is the free kit really free for commercial work?</summary><div><p class="mb-0">Yes. MIT license: use it for clients and products, no attribution required.</p></div></details>
+   <details><summary>Do I need Tailwind?</summary><div><p class="mb-0">No. Every template works with one plain CSS file. The Tailwind variant is there if your stack already uses Tailwind 3.4+.</p></div></details>
+   <details><summary>Does it work for Persian or Urdu?</summary><div><p class="mb-0">The layout does (any RTL language). Add your font in the <code>--font-*</code> variables and a <code>:lang()</code> rule.</p></div></details>
+   <details><summary>Are the Pro templates in Arabic too?</summary><div><p class="mb-0">They ship with Hebrew placeholder text and Arabic typography built in: set <code>lang="ar"</code> and replace the text. The free templates include full Arabic copy and a language switcher you can reuse.</p></div></details>
+   <details><summary>Which browsers?</summary><div><p class="mb-0">Current Chrome, Edge, Firefox and Safari.</p></div></details>
+   <details><summary>How do I get the Pro files after paying?</summary><div><p class="mb-0">You're taken straight to a download page. Bookmark it: the link keeps working for updates.</p></div></details>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="footer">
+ <div class="container">
+  <div class="fine" style="border:0;margin:0;padding:0"><span>© 2026 RTL Landing Kit by <a href="../">Tichnun Plus</a>. Free kit: MIT license.</span><span><a href="../legal/terms/">Terms</a> · <a href="../legal/privacy/">Privacy</a> · <a href="../legal/refund/">Refunds</a></span></div>
+ </div>
+</footer>
+<script src="demos/js/rtl-kit.js"></script>
+<script src="../assets/paykit.js"></script>
+<script>
+(function () {
+  "use strict";
+  var ROOT = new URL("../", location.href).href;
+  var flag = document.getElementById("test-flag");
+  if (window.PayKit.isTest) flag.hidden = false;
+  fetch(ROOT + "data/products/rtl-kit-pro.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (p) {
+    window.PayKit.render(document.getElementById("pay"), {
+      amount: Number(p.price_usd), currency: "USD", sku: p.slug, name: p.title, locale: "en_US", lang: "en", brand: "RTL Landing Kit",
+      testLabel: "Test payment $" + p.price_usd + " (TEST)",
+      onPaid: function (info) {
+        location.href = "thanks/?o=" + encodeURIComponent(info.orderId) + (info.test ? "&test=1" : "");
+      }
+    });
+  }).catch(function () { document.getElementById("pay").textContent = "Checkout is unavailable right now. Please try again later."; });
+  // privacy-friendly visit count (same endpoint as the main site; no cookies)
+  window.PayKit.config().then(function () { return window.PayKit.loadScript(ROOT + "assets/sales.js"); })
+    .then(function () { if (window.recordVisit) window.recordVisit(location.pathname); }).catch(function () {});
+})();
+</script>
+</body>
+</html>

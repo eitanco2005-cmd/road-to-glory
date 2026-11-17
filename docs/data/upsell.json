@@ -1,0 +1,15 @@
+{
+  "_note": "Thanks-page one-time offer (docs/assets/upsell.js). complement: bought slug -> offered slug. Offered at discount_pct off, once per browser. Product pages show the smallest bundle containing the product automatically (from products/index.json).",
+  "discount_pct": 20,
+  "complement": {
+    "wedding-planner": "household-budget",
+    "bar-mitzvah-planner": "household-budget",
+    "household-budget": "renovation-budget",
+    "renovation-budget": "household-budget",
+    "osek-patur-tracker": "price-quote-pack",
+    "price-quote-pack": "osek-patur-tracker",
+    "event-bundle": "household-budget",
+    "money-bundle": "osek-patur-tracker",
+    "freelancer-bundle": "household-budget"
+  }
+}

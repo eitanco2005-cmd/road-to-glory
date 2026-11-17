@@ -266,8 +266,17 @@
     }
   }
 
+  /* ---------- optional features: tip jar on free tools, upsells on product + thanks pages ---------- */
+  function features() {
+    var path = location.pathname;
+    if ((document.documentElement.lang || "he").slice(0, 2) !== "he") return; // Hebrew site only (not /en/, devkit)
+    if (/\/tools\/[a-z0-9-]+\/(?:index\.html)?$/.test(path)) G.loadScript("tip.js").catch(function () {});
+    if (/\/p\/[a-z0-9-]+\/(?:index\.html)?$/.test(path) || /\/thanks\/(?:index\.html)?$/.test(path)) G.loadScript("upsell.js").catch(function () {});
+  }
+
   function init() {
     ensureHead();
+    features();
     a11yTables();
     renderHeader();
     G.config().then(renderFooter, function () { renderFooter({}); });

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank you — your RTL Landing Kit Pro download</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../demos/css/rtl-kit.css">
+<style>
+  .dl { display: flex; gap: 1rem; align-items: center; padding: 1rem 1.2rem; border: 1px solid var(--c-border); border-radius: var(--radius); text-decoration: none; color: var(--c-text); font-weight: 700; background: var(--c-bg); }
+  .dl:hover { border-color: var(--c-primary); }
+  .dl .ic { inline-size: 44px; block-size: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--c-primary-soft); color: var(--c-primary); flex: none; }
+  .receipt dl { display: grid; grid-template-columns: auto 1fr; gap: .4rem 1.5rem; margin: 0; }
+  .receipt dt { color: var(--c-muted); }
+  .receipt dd { margin: 0; font-weight: 600; }
+  .flag { background: #fef3c7; color: #92400e; font-weight: 700; padding: .4rem .7rem; border-radius: 8px; display: inline-block; }
+  @media print { .no-print { display: none; } }
+</style>
+</head>
+<body>
+<header class="nav"><div class="container"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true"></span>RTL Landing Kit</a></div></header>
+<main id="main" class="section">
+ <div class="container" style="max-inline-size:720px">
+  <noscript><p>Please enable JavaScript to see your download link.</p></noscript>
+  <p id="loading" class="muted">Loading your order…</p>
+  <div id="error" hidden>
+   <h1>We couldn't find this order</h1>
+   <p>The link is missing or incomplete. If you paid, your download link is the address of the page you were sent to after paying. Reply to your PayPal receipt and we'll send it again.</p>
+   <a class="btn" href="../">Back to RTL Landing Kit</a>
+  </div>
+  <div id="ok" hidden>
+   <p id="test" class="flag" hidden>Test order — no payment was taken</p>
+   <h1>Thank you! Your download is ready.</h1>
+   <p class="lead"><strong>Bookmark this page</strong> (or email the link to yourself) to download again and get v1.x updates.</p>
+   <div id="files" class="stack"></div>
+   <div class="row no-print" style="margin-block:1rem 2rem"><button class="btn ghost sm" id="copy" type="button">Copy link to this page</button><button class="btn ghost sm" id="print" type="button">Print receipt</button></div>
+   <h2 style="font-size:1.3rem">Getting started</h2>
+   <ol><li>Unzip and open <code>index.html</code> in your browser.</li><li>Copy a template from <code>templates/</code> together with <code>css/</code> and <code>js/</code>.</li><li>Read <code>README.md</code> for theming, Arabic and forms.</li></ol>
+   <h2 style="font-size:1.3rem">Order</h2>
+   <div class="card receipt"><dl><dt>Product</dt><dd id="r-title"></dd><dt>Price</dt><dd id="r-price"></dd><dt>Order</dt><dd><bdi id="r-order"></bdi></dd><dt>Date</dt><dd id="r-date"></dd><dt>Paid with</dt><dd>PayPal</dd></dl>
+    <p class="muted mb-0" style="margin-block-start:1rem;font-size:.9rem">PayPal emails you the official payment receipt. Questions or a refund within 14 days: <span id="support">reply to that receipt</span>.</p></div>
+  </div>
+ </div>
+</main>
+<script src="../../assets/config.js"></script>
+<script>
+(function () {
+  "use strict";
+  var q = new URLSearchParams(location.search), order = q.get("o") || "", test = q.get("test") === "1";
+  var ROOT = new URL("../../", location.href).href;
+  var $ = function (id) { return document.getElementById(id); };
+  function fail() { $("loading").hidden = true; $("error").hidden = false; }
+  if (!order || order.length > 64 || !/^[A-Za-z0-9-]+$/.test(order)) return fail();
+  fetch(ROOT + "data/products/rtl-kit-pro.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (p) {
+    var box = $("files");
+    (p.files || []).forEach(function (f) {
+      var a = document.createElement("a");
+      a.className = "dl"; a.href = ROOT + f.path; a.setAttribute("download", "");
+      a.innerHTML = '<span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span><span></span>';
+      a.lastChild.textContent = f.label;
+      box.appendChild(a);
+    });
+    $("r-title").textContent = p.title;
+    $("r-price").textContent = "$" + Number(p.price_usd).toFixed(2) + " USD";
+    $("r-order").textContent = order;
+    $("r-date").textContent = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    $("test").hidden = !test;
+    var cfg = window.SITE_CONFIG || {};
+    if (cfg.SELLER_EMAIL && cfg.SELLER_EMAIL !== "SELLER_EMAIL") {
+      var a = document.createElement("a");
+      a.href = "mailto:" + cfg.SELLER_EMAIL + "?subject=" + encodeURIComponent("RTL Landing Kit Pro order " + order);
+      a.textContent = cfg.SELLER_EMAIL;
+      $("support").textContent = "reply to that receipt or write to ";
+      $("support").appendChild(a);
+    }
+    $("loading").hidden = true; $("ok").hidden = false;
+  }).catch(fail);
+  $("copy").addEventListener("click", function () {
+    var b = this;
+    if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(function () { b.textContent = "Link copied ✓"; });
+    else prompt("Copy this link:", location.href);
+  });
+  $("print").addEventListener("click", function () { window.print(); });
+})();
+</script>
+</body>
+</html>
