@@ -1,0 +1,15 @@
+{
+  "slug": "cv-builder",
+  "title": "בונה קורות חיים בעברית – גרסה מלאה",
+  "subtitle": "4 תבניות נקיות, עברית ואנגלית, מתאים למערכות סינון (ATS); בגרסה המלאה: PDF נקי ו-Word",
+  "price_ils": 19,
+  "bundle_of": [],
+  "files": [],
+  "unlock": true,
+  "app": "apps/cv/",
+  "app_name": "בונה קורות החיים",
+  "badge": "כלי אונליין · חינם לשימוש",
+  "image": "p/cv-builder/img/screen-1.webp",
+  "sheets_copy_url": null,
+  "tool": null
+}

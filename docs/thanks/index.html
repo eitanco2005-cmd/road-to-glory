@@ -43,7 +43,7 @@
         <h2 class="mt-3">הורדות</h2>
         <div id="downloads"></div>
 
-        <div class="callout mt-3">
+        <div class="callout mt-3" id="howto">
           <strong>איך מתחילים?</strong>
           <ol class="mb-0">
             <li><strong>באקסל:</strong> פותחים את הקובץ, ואם מופיע פס צהוב לוחצים "הפעל עריכה". מתחילים בגיליון "הוראות".</li>
@@ -89,6 +89,15 @@
     return G.url(String(path).replace(/^\/+/, "").replace(/^docs\//, ""));
   }
   function list(p) {
+    if (p.unlock) { // web app (pay to export): the purchase unlocks clean exports in this browser
+      try {
+        var k2 = "tp-unlocks", u = JSON.parse(localStorage.getItem(k2) || "{}") || {};
+        if (!u[p.slug] || u[p.slug].test || !test) { u[p.slug] = { o: order, t: Date.now(), test: test }; localStorage.setItem(k2, JSON.stringify(u)); }
+      } catch (e) {}
+      return '<div class="callout"><strong>הגרסה המלאה פתוחה בדפדפן הזה.</strong> חזרו לכלי והייצוא הנקי זמין מיד. ' +
+        'עובדים במכשיר או בדפדפן אחר? פתחו בו את הקישור לדף הזה, והגרסה המלאה תיפתח גם שם.</div>' +
+        (p.app ? '<p class="mt-2"><a class="btn accent" href="' + esc(G.url(p.app) + (test ? "?test=1" : "")) + '">חזרה ל' + esc(p.app_name || "כלי") + "</a></p>" : "");
+    }
     var items = (p.files || []).map(function (f) {
       return '<li><a class="dl" href="' + esc(fileUrl(f.path)) + '" download><span class="ic">' + FILE + "</span><span>" + esc(f.label) + '</span><span class="ext">' + esc(ext(f.path)) + "</span></a></li>";
     });
@@ -117,6 +126,7 @@
       html = list(p);
     }
     $("downloads").innerHTML = html;
+    if (p.unlock) { $("howto").hidden = true; document.querySelector("#ok h1").textContent = "תודה! הגרסה המלאה פתוחה"; }
     $("r-title").textContent = p.title;
     $("r-price").textContent = G.formatILS(p.price_ils);
     $("r-order").textContent = order;

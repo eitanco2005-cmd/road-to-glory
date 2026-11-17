@@ -13,6 +13,9 @@
  * A product is purchasable only if it is not a placeholder and has files or a Sheets copy link
  * (bundles: every member must be purchasable). Otherwise a "בקרוב" box is shown.
  *
+ * Unlock products ("unlock": true in the JSON, used by the web apps under apps/): no redirect after capture;
+ * the purchase is saved in localStorage "tp-unlocks" and the event "site:unlocked" is dispatched on window.
+ *
  * Apple Pay / Google Pay: config ENABLE_APPLEPAY / ENABLE_GOOGLEPAY (default false) only load the SDK components.
  * Rendering those buttons is NOT implemented yet: it needs merchant eligibility in the PayPal account,
  * Apple Pay domain verification and the separate Google Pay JS. See ops/reports/W1-platform.md.
@@ -60,7 +63,7 @@
     return cache[slug];
   }
   function isDeliverable(p) {
-    return !!p && !p.placeholder && ((p.files && p.files.length > 0) || !!p.sheets_copy_url);
+    return !!p && !p.placeholder && ((p.files && p.files.length > 0) || !!p.sheets_copy_url || !!p.unlock);
   }
   /* -> {product, members[], available} */
   function resolve(slug) {
@@ -83,7 +86,36 @@
   function thanksUrl(slug, orderId, test) {
     return ROOT + "thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(orderId) + (test ? "&test=1" : "");
   }
-  function finish(box, slug, orderId, amount, currency, status, test) {
+  /* Products with "unlock": true (web apps: pay to export) do not redirect: the purchase is stored in
+   * localStorage "tp-unlocks" and the page is told via the window event "site:unlocked" (see apps/shared/unlock.js). */
+  var UNLOCK_KEY = "tp-unlocks";
+  function storeUnlock(slug, orderId, test) {
+    try {
+      var all = JSON.parse(localStorage.getItem(UNLOCK_KEY) || "{}") || {};
+      if (!all[slug] || all[slug].test || !test) all[slug] = { o: orderId, t: Date.now(), test: !!test };
+      localStorage.setItem(UNLOCK_KEY, JSON.stringify(all));
+    } catch (e) {}
+  }
+  function unlocked(box, slug, orderId, amount, currency, status, test) {
+    storeUnlock(slug, orderId, test);
+    setMsg(box, "info", "התשלום התקבל! הגרסה המלאה נפתחה בדפדפן הזה.");
+    var m = box.querySelector(".buy-msg");
+    if (m) {
+      m.appendChild(document.createTextNode(" "));
+      var a = document.createElement("a");
+      a.href = thanksUrl(slug, orderId, test); a.target = "_blank"; a.rel = "noopener";
+      a.textContent = "לדף אישור ההזמנה";
+      m.appendChild(a);
+    }
+    var btns = box.querySelector(".buy-buttons");
+    if (btns) btns.hidden = true;
+    sales().then(function () {
+      return window.recordSale({ orderId: orderId, slug: slug, amount: amount, currency: currency, status: status, test: test });
+    }).catch(function () {});
+    try { window.dispatchEvent(new CustomEvent("site:unlocked", { detail: { slug: slug, orderId: orderId, test: !!test } })); } catch (e) {}
+  }
+  function finish(box, slug, orderId, amount, currency, status, test, product) {
+    if (product && product.unlock) return unlocked(box, slug, orderId, amount, currency, status, test);
     setMsg(box, "info", "התשלום התקבל! מעבירים אותך לדף ההורדה…");
     var go = function () { location.href = thanksUrl(slug, orderId, test); };
     var timer = setTimeout(go, 2500); // never block the buyer on the sales log
@@ -134,7 +166,7 @@
     b.addEventListener("click", function () {
       b.disabled = true;
       var id = "TEST-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
-      finish(box, p.slug, id, Number(p.price_ils), CURRENCY, "COMPLETED", true);
+      finish(box, p.slug, id, Number(p.price_ils), CURRENCY, "COMPLETED", true, p);
     });
     box.querySelector(".buy-buttons").appendChild(b);
   }
@@ -199,7 +231,7 @@
             var amt = cap && cap.amount ? Number(cap.amount.value) : Number(value);
             var cur = cap && cap.amount ? cap.amount.currency_code : CURRENCY;
             var status = (cap && cap.status) || det.status || "";
-            finish(box, p.slug, det.id || data.orderID, amt, cur, status, false);
+            finish(box, p.slug, det.id || data.orderID, amt, cur, status, false, p);
           });
         },
         onCancel: function () { setMsg(box, "info", "התשלום בוטל. אפשר לנסות שוב בכל רגע."); },
@@ -238,7 +270,7 @@
       for (var i = 0; i < els.length; i++) renderOne(els[i], cfg);
     });
   }
-  window.SiteCheckout = { render: init, resolve: resolve, isTest: TEST };
+  window.SiteCheckout = { render: init, resolve: resolve, isTest: TEST, storeUnlock: storeUnlock };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

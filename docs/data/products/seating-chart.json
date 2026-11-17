@@ -1,0 +1,15 @@
+{
+  "slug": "seating-chart",
+  "title": "סידורי הושבה אונליין – גרסה מלאה",
+  "subtitle": "כלי גרירה והושבה אוטומטית בחינם; בגרסה המלאה: PDF נקי, ייצוא לאקסל וכרטיסי שולחן",
+  "price_ils": 29,
+  "bundle_of": [],
+  "files": [],
+  "unlock": true,
+  "app": "apps/seating/",
+  "app_name": "כלי סידורי ההושבה",
+  "badge": "כלי אונליין · חינם לשימוש",
+  "image": "p/seating-chart/img/screen-1.webp",
+  "sheets_copy_url": null,
+  "tool": null
+}
