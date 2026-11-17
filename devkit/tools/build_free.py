@@ -58,7 +58,10 @@ class T:
 
     def bdi(self, key):
         """Numbers/amounts: isolated from the surrounding text direction, still translatable."""
-        return f'<bdi data-i18n="{key}">{self.d["he"][key]}</bdi>'
+        v = self.d["he"][key]
+        # pure numbers/symbols ("120+", "92%") are LTR in every language; values with words keep dir=auto
+        d = "" if any(c.isalpha() for c in v) else ' dir="ltr"'
+        return f'<bdi{d} data-i18n="{key}">{v}</bdi>'
 
     def raw(self, key):
         return self.d["he"][key]
