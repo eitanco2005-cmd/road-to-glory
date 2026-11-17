@@ -1,12 +1,15 @@
-# road-to-glory
+# Glory — Hebrew planning spreadsheets & free calculators
 
-Goal: **$1,000 profit within 30 days** (Day 1 = 2026-11-06, deadline = 2026-12-06).
+🌐 **Live site: https://eitanco2005-cmd.github.io/road-to-glory/**
 
-Run by a manager Claude session that orchestrates worker sessions. Humans own all
-accounts, payments and anything that is sent to real people.
+Hebrew Excel / Google Sheets planners and free online calculators for Israeli households and freelancers:
 
-- `ops/PLAN.md` – **the master plan (start here)**
-- `ops/STRATEGY.md` – early strategy notes (superseded by PLAN.md)
-- `ops/STATUS.md` – live status board (updated by the manager)
-- `ops/OWNER_ACTIONS.md` – things only the owner can do (accounts, payouts, sending)
-- `ops/briefs/` – one brief per workstream / worker session
+- [מתכנן חתונה באקסל](https://eitanco2005-cmd.github.io/road-to-glory/p/wedding-planner/) · [מחשבון כמה לשים בחתונה](https://eitanco2005-cmd.github.io/road-to-glory/tools/wedding-gift/)
+- [אקסל תקציב משק בית 2027](https://eitanco2005-cmd.github.io/road-to-glory/p/household-budget/) · [מחשבון תקציב 50/30/20](https://eitanco2005-cmd.github.io/road-to-glory/tools/budget-503020/)
+- [אקסל לעוסק פטור 2026](https://eitanco2005-cmd.github.io/road-to-glory/p/osek-patur-tracker/) · [מחשבון תקרת עוסק פטור](https://eitanco2005-cmd.github.io/road-to-glory/tools/osek-patur-ceiling/) · [מחשבון מע״מ](https://eitanco2005-cmd.github.io/road-to-glory/tools/vat-calculator/)
+- [מתכנן בר/בת מצווה](https://eitanco2005-cmd.github.io/road-to-glory/p/bar-mitzvah-planner/) · [מחשבון עלות בר מצווה](https://eitanco2005-cmd.github.io/road-to-glory/tools/bar-mitzvah-cost/)
+- [תבניות הצעת מחיר](https://eitanco2005-cmd.github.io/road-to-glory/p/price-quote-pack/) · [מתכנן תקציב שיפוץ](https://eitanco2005-cmd.github.io/road-to-glory/p/renovation-budget/) · [מחשבון עלות שיפוץ](https://eitanco2005-cmd.github.io/road-to-glory/tools/renovation-cost/)
+- [כל המדריכים](https://eitanco2005-cmd.github.io/road-to-glory/guides/)
+
+---
+Project docs: `ops/PLAN.md` (master plan), `ops/STATUS.md` (status), `docs/` (site source).

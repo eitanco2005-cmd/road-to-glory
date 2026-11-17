@@ -27,3 +27,4 @@
 - 2026-11-17: Owner decisions: no social media, no Grow for now, no HF token, no public sales tracking. Sales log endpoints stay empty (no-op). Profit tracking = PayPal emails; manager asks owner weekly (optional).
 - 2026-11-17: Owner: never ask about sales; just report progress.
 - 2026-11-17 21:00: P2 QA (facts fixed, honest copy, a11y, spreadsheet bug fixes) + P2 SEO (12 guides, 2 tools: net-salary budget, savings goal) merged and published. e2e ALL PASSED. Sitemap 47 URLs.
+- 2026-11-17: Exposure: README links to site from GitHub; IndexNow key + tools/site/indexnow.py (Bing/DDG/ChatGPT search). Owner told: domain + Search Console are optional speed-ups, offered once, not pushed.
