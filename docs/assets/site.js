@@ -22,8 +22,8 @@
 
   var EN = /^en/i.test(document.documentElement.getAttribute("lang") || "");
   var BRAND = EN ? "Tichnun Plus" : "תכנון פלוס";
-  G.lang = EN ? "en" : "he";
   var G = (window.SITE = window.SITE || {});
+  G.lang = EN ? "en" : "he";
   G.root = ROOT;
   G.assets = ASSETS;
   G.url = function (p) { return new URL(p || "", ROOT).href; };
