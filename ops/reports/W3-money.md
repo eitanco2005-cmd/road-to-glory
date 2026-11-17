@@ -71,8 +71,17 @@ Branch `ws/money`. Status: **done, ready to merge**. Written 2026-11-17.
 - **Renovation estimator method.** The level mapping uses part of each range: basic = bottom 40%, standard = middle 30–70%, high = top 40%. Electrical and plumbing scale with area relative to 90 m², clamped to 0.6–2×. All of this is written on the page.
 - **Page styles.** The small set of extra CSS lives inline in each page (`.w3-*` classes), so I didn't touch W1's `assets/`.
 
+## Update after the platform merge
+- I merged `origin/claude/epic-heisenberg-h552gc` into `ws/money`. The two product JSON conflicts were resolved by keeping W3's versions, which have no `placeholder` flag.
+- Product page heroes now follow the template order: H1 → one sentence → compact buy box → points → screenshot. At 375×667 the first pay button ends at y=497, above the fold. Test-mode purchase reaches `thanks/` for both products, and all 6 downloads return 200.
+- `node tools/site/e2e_test.js`: everything passes except 2 checks, and both are **expected**:
+  - "placeholder product shows 'soon'" hard-codes `household-budget` as a placeholder.
+  - "non-deliverable bundle disabled" hard-codes `money-bundle`.
+
+  Both products are deliverable now, so these assertions need to point at a product that is still a placeholder. That file is W1-owned (`tools/site/**`), so I didn't edit it.
+
 ## For the manager / left to do
-1. **Merge conflict:** W1 created placeholder `docs/data/products/household-budget.json` and `renovation-budget.json` on `ws/platform`. **Keep W3's versions.** They have files, so they're purchasable.
+1. **Merge conflict:** resolved, see the update above.
 2. **Sitemap (W1-owned):** add these 8 URLs:
    - `p/household-budget/`, `p/renovation-budget/`
    - `tools/budget-503020/`, `tools/renovation-cost/`

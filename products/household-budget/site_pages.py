@@ -24,22 +24,20 @@ body = """
     {CRUMBS}
     <div class="split">
       <div>
-        <span class="badge accent">מוכן לינואר 2027</span>
-        <h1 class="mt-1">אקסל תקציב משק בית 2027: תקציב משפחתי Pro</h1>
-        <p class="lead">קובץ אחד שמראה לאן הולך הכסף של הבית: תכנון לכל חודש, מעקב מול מה שקרה בפועל, יעדי חיסכון, הלוואות ודשבורד שמתעדכן לבד. בעברית, מימין לשמאל, עם הקטגוריות שיש באמת בבית ישראלי.</p>
-        <ul class="hero-points">
-          <li>56 קטגוריות ישראליות מוכנות</li>
-          <li>מתוכנן מול בפועל לכל חודש</li>
-          <li>Excel ו-Google Sheets</li>
-          <li>הורדה מיידית</li>
-        </ul>
-        <div class="mt-3" id="buy"><div class="buy" data-product="household-budget"></div></div>
-        <p class="w3-note mt-1">רוצים קודם לנסות? <a href="{up}tools/budget-503020/">מחשבון 50/30/20 החינמי</a> נותן חלוקה מומלצת בשקלים בתוך דקה.</p>
+        <h1>אקסל תקציב משק בית 2027: תקציב משפחתי Pro</h1>
+        <p class="lead">קובץ אחד לתכנון ומעקב אחרי כל ההכנסות וההוצאות של הבית, עם הקטגוריות שיש באמת בבית ישראלי.</p>
       </div>
-      <div>
-        <img class="w3-hero-img" src="img/dashboard.webp" width="1400" height="700" alt="דשבורד תקציב משק בית: הכנסות מול הוצאות, התפלגות לפי קבוצות ובדיקת 50/30/20" fetchpriority="high">
-      </div>
+      <div id="buy" class="buy" data-product="household-budget" data-compact="1"></div>
+      <ul class="hero-points">
+        <li>מוכן לינואר 2027</li>
+        <li>56 קטגוריות ישראליות מוכנות</li>
+        <li>מתוכנן מול בפועל לכל חודש</li>
+        <li>Excel ו-Google Sheets</li>
+        <li>הורדה מיידית</li>
+      </ul>
     </div>
+    <p class="w3-note mt-2">רוצים קודם לנסות? <a href="{up}tools/budget-503020/">מחשבון 50/30/20 החינמי</a> נותן חלוקה מומלצת בשקלים בתוך דקה.</p>
+    <img class="w3-hero-img mt-3" src="img/dashboard.webp" width="1400" height="700" alt="דשבורד תקציב משק בית: הכנסות מול הוצאות, התפלגות לפי קבוצות ובדיקת 50/30/20" fetchpriority="high">
   </div>
 </section>
 
