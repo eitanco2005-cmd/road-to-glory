@@ -46,3 +46,14 @@
 - Download file names are ASCII (`invitation-<template>-<date>.png`): Chromium dropped Hebrew names for blob downloads.
 - No photo/logo upload (FAQ says "not yet"). Possible next steps: photo upload, parasha auto-fill, RSVP QR code.
 - og:image uses `p/invitation-maker/img/screen-1.png` (template collage).
+
+## Follow-up (manager scope change)
+- Kept all 12 templates: they were already working and tested, so removing any would only cost time. The manager asked for wedding + mitzvah as the minimum.
+- **WhatsApp**: the app has a free "פתיחת הודעה בוואטסאפ" button (wa.me prefilled with names, wording, Hebrew + Gregorian date,
+  hours, venue and a Waze navigation link; the user sends the invitation image first). Optional checkbox adds a link to the maker
+  (off by default, so guests don't get our link unless the couple chooses it). The product page has a "שליחה לחבר/ה בוואטסאפ"
+  wa.me link with Hebrew text + the maker URL.
+- **Wedding tools integration**: links to the maker from wedding-planner (done earlier) and the wedding-gift calculator; the maker
+  app and product page link to the seating chart (`p/seating-chart/`, lives on ws/apps; resolves after merge), wedding-gift and
+  wedding-planner. **Still needed (ws/apps owns those files):** a link from `docs/apps/seating/` and `docs/p/seating-chart/` to
+  `../../p/invitation-maker/` (or `../invitation-maker/` from the product page).

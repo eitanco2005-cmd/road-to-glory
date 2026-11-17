@@ -147,7 +147,7 @@
     S.template = t.id; S.palette = 0; S.accent = null; S.fonts = null;
     if (!S.edited[t.cat]) { var d = S.texts[t.cat] && S.texts[t.cat].date; S.texts[t.cat] = textsFor(t.cat, t); if (d) S.texts[t.cat].date = d; }
     if (quiet) return;
-    save(); fillForm(); drawThumbs(); draw();
+    save(); fillForm(); drawThumbs(); draw(); syncWa();
   }
 
   /* ---------- form ---------- */
@@ -294,6 +294,28 @@
     }).catch(function (e) { if (window.console) console.error(e); status("לא הצלחנו ליצור PDF. נסו שוב או בחרו גודל אחר."); });
   });
 
+  /* WhatsApp: wa.me with a prefilled Hebrew message (image must be sent separately; wa.me can't attach files) */
+  function waText() {
+    var t = S.texts[cat()], L = [];
+    var head = [t.title, t.names].filter(function (x) { return x && x.trim(); }).map(function (x) { return x.replace(/\n+/g, " ").trim(); }).join(" · ");
+    if (head) L.push("*" + head + "*");
+    if (t.invite) L.push(t.invite.replace(/\n+/g, " ").trim());
+    var d = I.composeDate(Object.assign(renderState(), { showDay: true, showHeb: true, showGreg: true }));
+    if (d.length) L.push("📅 " + d.map(function (x) { return x.text; }).join(" | "));
+    if (t.times) L.push("🕖 " + t.times.trim());
+    var place = [t.venue, t.address].filter(function (x) { return x && x.trim(); }).join(", ");
+    if (place) { L.push("📍 " + place); L.push("ניווט: https://waze.com/ul?q=" + encodeURIComponent(place) + "&navigate=yes"); }
+    if (t.footer) L.push(t.footer.trim());
+    if ($("wa-credit").checked) L.push("\n(ההזמנה עוצבה במעצב ההזמנות של תכנון פלוס: https://tichnun.netlify.app/apps/invite/)");
+    return L.join("\n");
+  }
+  function syncWa() { $("wa").href = "https://wa.me/?text=" + encodeURIComponent(waText()); }
+  $("wa").addEventListener("click", function () { syncWa(); track("whatsapp"); });
+  $("wa-credit").addEventListener("change", syncWa);
+  function syncWaLater() { setTimeout(syncWa, 0); } // after the form handlers have updated the state
+  $("form").addEventListener("input", syncWaLater);
+  $("form").addEventListener("change", syncWaLater);
+
   function syncLock() {
     var u = unlocked();
     $("locked").hidden = u; $("paid").hidden = !u;
@@ -307,6 +329,6 @@
   window.addEventListener("storage", function (e) { if (e.key === "tp-unlock:" + SLUG) syncLock(); });
   var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
-  buildCats(); buildGallery(); bindForm(); fillForm(); syncCats(); syncLock();
+  buildCats(); buildGallery(); bindForm(); fillForm(); syncCats(); syncLock(); syncWa();
   window.InviteApp = { state: function () { return S; }, draw: draw, unlocked: unlocked };
 })();
