@@ -1,0 +1,23 @@
+{
+  "slug": "passover-seder-planner",
+  "lang": "en",
+  "currency": "USD",
+  "price": 15,
+  "title": "Passover Seder Planner (Excel & Google Sheets)",
+  "subtitle": "Guests for one or two seders, shopping list scaled by head count, menu, haggadah parts, prep timeline",
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "The planner (Excel, blank: start here)",
+      "path": "dl/2zw7zvvwvjwjx5ut/passover-seder-planner.xlsx"
+    },
+    {
+      "label": "Filled-in example (to see how it works)",
+      "path": "dl/2zw7zvvwvjwjx5ut/passover-seder-planner-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "seder-shopping-calculator",
+  "page": "en/p/passover-seder-planner/",
+  "image": "en/p/passover-seder-planner/img/screen-1.webp"
+}

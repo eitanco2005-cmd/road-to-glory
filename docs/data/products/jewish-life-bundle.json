@@ -1,0 +1,18 @@
+{
+  "slug": "jewish-life-bundle",
+  "lang": "en",
+  "currency": "USD",
+  "price": 49,
+  "title": "Jewish Life Bundle: all 4 planners",
+  "subtitle": "Bar/Bat Mitzvah, Jewish Wedding, Passover Seder and Holiday Hosting planners: $49 instead of $73",
+  "bundle_of": [
+    "bar-mitzvah-planner-en",
+    "jewish-wedding-planner",
+    "passover-seder-planner",
+    "jewish-holiday-planner"
+  ],
+  "files": [],
+  "sheets_copy_url": null,
+  "tool": null,
+  "page": "en/planners/"
+}

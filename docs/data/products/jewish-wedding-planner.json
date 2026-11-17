@@ -1,0 +1,23 @@
+{
+  "slug": "jewish-wedding-planner",
+  "lang": "en",
+  "currency": "USD",
+  "price": 24,
+  "title": "Jewish Wedding Planner (Excel & Google Sheets)",
+  "subtitle": "Budget, vendors & payments, guests & RSVPs, ketubah & chuppah honors, seating, checklist, day-of timeline",
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "The planner (Excel, blank: start here)",
+      "path": "dl/m8gvkisyw6as1zfi/jewish-wedding-planner.xlsx"
+    },
+    {
+      "label": "Filled-in example (to see how it works)",
+      "path": "dl/m8gvkisyw6as1zfi/jewish-wedding-planner-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": null,
+  "page": "en/p/jewish-wedding-planner/",
+  "image": "en/p/jewish-wedding-planner/img/screen-1.webp"
+}
