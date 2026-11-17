@@ -46,8 +46,8 @@ function waitFor(url, ms = 15000) {
   fs.mkdirSync(path.join(site, "p/wedding-planner"), { recursive: true });
   fs.writeFileSync(path.join(site, "p/wedding-planner/index.html"), `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>fixture</title><link rel="stylesheet" href="../../assets/site.css"></head>
-<body><header id="site-header"></header><main><div class="container section"><h1>מתכנן חתונה</h1>
-<div class="buy" data-product="wedding-planner"></div></div></main><footer id="site-footer"></footer>
+<body><header id="site-header"></header><main><section class="hero"><div class="container"><div class="split"><div><h1>מתכנן חתונה באקסל ו-Google Sheets</h1>
+<p class="lead">תקציב, מוזמנים, מתנות וספקים בקובץ אחד.</p></div><div class="buy" data-product="wedding-planner" data-compact="1"></div></div></div></section></main><footer id="site-footer"></footer>
 <script src="../../assets/site.js"></script><script src="../../assets/checkout.js"></script></body></html>`);
   const cfgPath = path.join(site, "assets/config.js");
   fs.writeFileSync(cfgPath, fs.readFileSync(cfgPath, "utf8")
@@ -129,6 +129,41 @@ function waitFor(url, ms = 15000) {
       else console.log("SKIP live PayPal: " + await page.locator('.buy[data-product="event-bundle"] .buy-msg').innerText());
     } catch (e) { console.log("SKIP live PayPal: timeout"); }
     if (SHOTS) await page.locator("#bundles").screenshot({ path: path.join(SHOTS, "bundles-live.png") });
+
+    // 4b. live SDK on a product page: card (guest) funding eligible, SDK url params, mobile above-the-fold
+    try {
+      const m = await browser.newContext({ viewport: { width: 375, height: 812 }, deviceScaleFactor: 2 });
+      const mp = await m.newPage();
+      await mp.goto(BASE + "p/wedding-planner/", { waitUntil: "domcontentloaded" });
+      await mp.waitForSelector(".buy iframe", { timeout: 20000 });
+      const src = await mp.evaluate(() => [...document.scripts].map(s => s.src).find(s => s.includes("paypal.com/sdk/js")));
+      ok(/currency=ILS/.test(src) && /intent=capture/.test(src) && /enable-funding=card/.test(src) && !/disable-funding/.test(src), "SDK url: ILS, capture, enable-funding=card, nothing disabled");
+      const elig = await mp.evaluate(() => ({ paypal: paypal.Buttons({ fundingSource: paypal.FUNDING.PAYPAL }).isEligible(), card: paypal.Buttons({ fundingSource: paypal.FUNDING.CARD }).isEligible() }));
+      ok(elig.paypal, "PayPal funding eligible");
+      ok(elig.card, "guest card funding eligible (no PayPal account needed)");
+      await mp.waitForTimeout(1500);
+      const box = await mp.locator(".buy .buy-box").boundingBox();
+      const firstBtn = await mp.locator(".buy iframe").first().boundingBox();
+      ok(box && firstBtn && firstBtn.y + firstBtn.height <= 812, "price + first pay button above the fold at 375px (bottom " + Math.round(firstBtn && firstBtn.y + firstBtn.height) + ")");
+      if (SHOTS) await mp.screenshot({ path: path.join(SHOTS, "product-375-live-paypal.png") });
+      await m.close();
+    } catch (e) { console.log("SKIP live SDK checks: " + e.message.split("\n")[0]); }
+
+    // 4c. SDK blocked -> Hebrew error + working retry button
+    {
+      const c = await browser.newContext({ viewport: { width: 375, height: 812 } });
+      const bp = await c.newPage();
+      await bp.route(/paypal\.com/, r => r.abort());
+      await bp.goto(BASE + "p/wedding-planner/", { waitUntil: "domcontentloaded" });
+      await bp.waitForSelector(".buy-msg.error", { timeout: 15000 });
+      ok(await bp.locator(".buy button", { hasText: "לנסות שוב" }).count() === 1, "SDK failure shows Hebrew error + retry");
+      if (SHOTS) await bp.locator(".buy").screenshot({ path: path.join(SHOTS, "buybox-sdk-error.png") });
+      await bp.unroute(/paypal\.com/);
+      await bp.locator(".buy button", { hasText: "לנסות שוב" }).click();
+      try { await bp.waitForSelector(".buy iframe", { timeout: 20000 }); ok(true, "retry loads PayPal"); }
+      catch (e) { console.log("SKIP retry->PayPal (network)"); }
+      await c.close();
+    }
 
     // 5. tools, legal, 404
     for (const p of ["tools/", "legal/terms/", "legal/refund/", "legal/privacy/", "legal/accessibility/"]) {

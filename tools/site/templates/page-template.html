@@ -38,11 +38,12 @@
       <div class="split">
         <div>
           <h1>H1_WITH_SEARCH_PHRASE</h1>
-          <p class="lead">LEAD_PARAGRAPH</p>
-          <ul class="hero-points"><li>POINT_1</li><li>POINT_2</li><li>POINT_3</li></ul>
+          <p class="lead">ONE_SHORT_LEAD_SENTENCE</p>
         </div>
-        <!-- Buy box: price/title come from docs/data/products/SLUG.json. Add ?test=1 to the URL to test. -->
-        <div class="buy" data-product="SLUG"></div>
+        <!-- Buy box: price/title come from docs/data/products/SLUG.json. Add ?test=1 to the URL to test.
+             Keep it right after the H1 + one short sentence so it is above the fold at 375px (owner priority). -->
+        <div class="buy" data-product="SLUG" data-compact="1"></div>
+        <ul class="hero-points"><li>POINT_1</li><li>POINT_2</li><li>POINT_3</li></ul>
       </div>
     </div>
   </section>

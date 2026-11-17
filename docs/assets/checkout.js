@@ -12,6 +12,10 @@
  *   data-label="..."   override the title line
  * A product is purchasable only if it is not a placeholder and has files or a Sheets copy link
  * (bundles: every member must be purchasable). Otherwise a "בקרוב" box is shown.
+ *
+ * Apple Pay / Google Pay: config ENABLE_APPLEPAY / ENABLE_GOOGLEPAY (default false) only load the SDK components.
+ * Rendering those buttons is NOT implemented yet: it needs merchant eligibility in the PayPal account,
+ * Apple Pay domain verification and the separate Google Pay JS. See ops/reports/W1-platform.md.
  */
 (function () {
   "use strict";
@@ -105,7 +109,8 @@
       (compact ? "" : '<div class="buy-title">' + esc(label) + "</div>") +
       '<div class="buy-price" aria-label="מחיר">' + money(p.price_ils) + "</div></div>" +
       '<div class="buy-buttons"></div>' +
-      '<p class="buy-note"><span>תשלום מאובטח ב-PayPal</span><span>אפשר בכרטיס אשראי, בלי חשבון</span><span>הורדה מיידית</span></p>' +
+      '<p class="buy-secure">תשלום מאובטח ב-PayPal או בכרטיס אשראי — אין צורך בחשבון PayPal</p>' +
+      '<p class="buy-note"><span>תשלום חד-פעמי</span><span>הורדה מיידית</span><span>בלי הרשמה</span></p>' +
       '<p class="buy-legal">ברכישה הנך מאשר/ת את <a href="' + ROOT + 'legal/terms/">התקנון</a> ואת <a href="' + ROOT + 'legal/refund/">מדיניות הביטולים</a>. המחיר סופי.</p>' +
       "</div>";
     return el.querySelector(".buy-box");
@@ -116,6 +121,7 @@
     box.querySelector(".buy-buttons").innerHTML =
       '<button type="button" class="btn block" disabled aria-disabled="true">בקרוב — המוצר בהכנה</button>';
     box.querySelector(".buy-note").remove();
+    box.querySelector(".buy-secure").remove();
     box.querySelector(".buy-legal").remove();
   }
 
@@ -137,8 +143,13 @@
   function loadSdk(cfg) {
     if (window.paypal && window.paypal.Buttons) return Promise.resolve(window.paypal);
     if (!sdkPromise) {
+      // enable-funding=card: show the guest "Debit or Credit Card" button (no PayPal account needed).
+      // No disable-funding: every source PayPal offers the buyer stays available.
+      var comps = ["buttons"];
+      if (cfg.ENABLE_APPLEPAY) comps.push("applepay");
+      if (cfg.ENABLE_GOOGLEPAY) comps.push("googlepay");
       var base = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(cfg.PAYPAL_CLIENT_ID) +
-        "&currency=" + CURRENCY + "&intent=capture&components=buttons";
+        "&currency=" + CURRENCY + "&intent=capture&enable-funding=card&components=" + comps.join(",");
       sdkPromise = loadScript(base + "&locale=he_IL")
         .catch(function () { return loadScript(base); }) // unsupported locale -> retry without it
         .then(function () {
@@ -154,7 +165,7 @@
     var box = shell(el, info);
     var p = info.product;
     var holder = box.querySelector(".buy-buttons");
-    holder.innerHTML = '<div class="spinner" aria-label="טוען אפשרויות תשלום"></div>';
+    holder.innerHTML = '<div class="buy-loading" role="status"><div class="spinner" aria-hidden="true"></div>טוען את אפשרויות התשלום…</div>';
     if (!cfg.PAYPAL_CLIENT_ID) { holder.innerHTML = ""; setMsg(box, "error", "התשלום אינו זמין כרגע. נסו שוב מאוחר יותר."); return; }
     var value = price2(p.price_ils);
     var name = String(p.title || p.slug).slice(0, 127);
@@ -199,8 +210,11 @@
       }).render(holder);
     }).catch(function (e) {
       if (window.console) console.error(e);
-      holder.innerHTML = "";
-      setMsg(box, "error", "לא הצלחנו לטעון את PayPal. ייתכן שחוסם פרסומות מונע זאת — כבו אותו לאתר זה ורעננו.");
+      holder.innerHTML = '<div class="buy-msg error" role="alert" style="margin-top:0">לא הצלחנו לטעון את מערכת התשלום. בדקו את החיבור לאינטרנט, או כבו חוסם פרסומות לאתר זה, ונסו שוב.</div>';
+      var retry = document.createElement("button");
+      retry.type = "button"; retry.className = "btn block mt-2"; retry.textContent = "לנסות שוב";
+      retry.addEventListener("click", function () { renderPayPal(el, info, cfg); });
+      holder.appendChild(retry);
     });
   }
 

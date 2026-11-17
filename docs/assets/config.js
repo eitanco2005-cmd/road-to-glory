@@ -10,5 +10,9 @@ window.GLORY_CONFIG = {
   VISITS_ENDPOINT: "",
   SELLER_NAME: "SELLER_NAME",
   SELLER_EMAIL: "SELLER_EMAIL",
-  BRAND: "Glory"
+  BRAND: "Glory",
+  /* Apple Pay / Google Pay via PayPal: keep false until the PayPal account is eligible and the domain is
+     registered (see ops/reports/W1-platform.md). true only loads the SDK component; buttons are not rendered yet. */
+  ENABLE_APPLEPAY: false,
+  ENABLE_GOOGLEPAY: false
 };

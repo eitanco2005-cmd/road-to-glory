@@ -1,6 +1,6 @@
 # W1 Platform: report
 
-Branch `ws/platform`. Everything in the W1 brief is built. The test-mode checkout passes end to end (27/27 checks), and live PayPal buttons render in ILS with the real client id.
+Branch `ws/platform`. Everything in the W1 brief is built, plus the manager's payment-ease follow-up. The e2e test passes all 33 checks, including live SDK checks against www.paypal.com with the real client id (no payment was completed).
 
 ## What's built
 | Item | Where |
@@ -19,6 +19,19 @@ Branch `ws/platform`. Everything in the W1 brief is built. The test-mode checkou
 | Build scripts | `tools/site/build_site.py` (pre-renders catalogue cards into HTML, then sitemap + robots), `build_sitemap.py` |
 | E2E test | `tools/site/e2e_test.js`; screenshots in `ops/reports/w1/` |
 | Page template for W2–W4 | `tools/site/templates/page-template.html` |
+
+## Payment flow (how a buyer pays)
+1. **Product page.** The buy box sits right under the H1 and one short sentence, so at 375px the price and the first pay button are above the fold (button bottom at 482px of 812, checked by e2e). It shows the price in ₪ and, under the buttons: "תשלום מאובטח ב-PayPal או בכרטיס אשראי — אין צורך בחשבון PayPal". No cart, no sign-up, no email form: PayPal collects the email.
+2. **Loading.** The box first shows a spinner with "טוען את אפשרויות התשלום…". checkout.js then loads the PayPal JS SDK once per page:
+   `https://www.paypal.com/sdk/js?client-id=<live id>&currency=ILS&intent=capture&enable-funding=card&components=buttons&locale=he_IL`
+   No funding source is disabled. If `he_IL` were rejected it retries without a locale.
+3. **Buttons.** PayPal renders a Hebrew yellow "PayPal" button and a black **"כרטיס אשראי"** guest-card button. The card button opens PayPal's card form inline, with no PayPal account. e2e confirms both funding sources are eligible for this merchant (`isEligible()`). Screenshot: `ops/reports/w1/product-375-live-paypal.png`.
+4. **One click.** The click creates the order in the browser (`actions.order.create`): amount and title come from `docs/data/products/<slug>.json`, `ILS`, one `DIGITAL_GOODS` item, `NO_SHIPPING`, `PAY_NOW`. The buyer approves in the PayPal popup or the inline card form.
+5. **Capture.** `onApprove` calls `actions.order.capture()`. A declined card (`INSTRUMENT_DECLINED`) restarts the flow with a Hebrew message. A cancel shows "התשלום בוטל…". Other errors say that nothing was charged.
+6. **Record + deliver.** `recordSale()` is sent to the sales endpoint, then the buyer is redirected to `thanks/?p=<slug>&o=<orderId>` (never waiting more than 2.5 s). The thanks page shows downloads, a Sheets copy link and a receipt-style summary. PayPal emails the buyer its own receipt.
+7. **SDK failure** (ad-blocker, network): the buyer sees a Hebrew error with a **"לנסות שוב"** button that reloads the SDK (`ops/reports/w1/buybox-sdk-error.png`).
+8. **Apple Pay / Google Pay.** Flags `ENABLE_APPLEPAY` / `ENABLE_GOOGLEPAY` in `config.js`, default `false`. When true they only add the SDK components. **The wallet buttons themselves aren't implemented yet.** They need the PayPal account to be eligible for these methods (Israel availability unconfirmed), Apple Pay domain verification (a `.well-known` file on the domain, which a GitHub *project* site can't serve at the host root) and Google's `pay.js`. Revisit once there's a custom domain. Card + PayPal already cover the wallet use case on mobile.
+9. **Test mode.** `?test=1` replaces PayPal with a yellow test button that fakes a successful capture (`TEST-…` order, logged with `test:true`).
 
 ## Decisions
 - **Placeholder JSONs.** All 6 products carry `"placeholder": true`, `files: []`. checkout.js only sells a product if it is not a placeholder **and** has files or a Sheets link. Otherwise it shows a disabled "בקרוב" button, so nobody can pay for a file that doesn't exist yet. Bundles are sellable only when every member product is. **When merging W2–W4, take their `docs/data/products/<slug>.json`** (add/add conflict): their files have no `placeholder` flag.
@@ -44,4 +57,4 @@ Branch `ws/platform`. Everything in the W1 brief is built. The test-mode checkou
 - Download links are visible in the public product JSONs, so anyone who reads the JSON can get the files without paying. The contract accepts this ("low prices make this a small loss"). Stronger protection would need a server: the endpoint could issue signed links after PayPal verification.
 - `robots.txt` is ignored on a GitHub *project* site, because it has to be at the host root. Submit the sitemap in Search Console instead.
 - I couldn't build the Docker image here (no Docker). `app.py` is covered by `test_app.py` and by the e2e test running it under uvicorn.
-- PayPal button images didn't load in the headless sandbox (network), but the button iframes rendered. A real ₪1 purchase is still the manager's final check.
+- No real payment has been made. A real ₪1 purchase is still the manager's final check.
