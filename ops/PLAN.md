@@ -132,7 +132,7 @@ Workers run in parallel on their own branches. The manager reviews and merges in
 
 | Metric | Where it comes from |
 |---|---|
-| Sales, revenue, fees, **profit** | Your PayPal emails: I ask once a week, answering is optional (owner chose no public tracking) |
+| Sales, revenue, fees, **profit** | Your PayPal emails: not tracked by us (owner: no public tracking, no questions). Reports cover progress + traffic signals only |
 | Visits per page | A simple, privacy-friendly visit counter on the site |
 | Conversion (visits → sales) | The two above |
 | Google impressions | Only if you verify the site in Google Search Console (optional, about 2 min) |
