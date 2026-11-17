@@ -1,22 +1,34 @@
-/* תכנון פלוס — seating chart planner (client-side only; data in localStorage "tp-seating-v1").
- * Free: full on-screen use + watermarked print/PDF. Paid (product "seating-chart"): clean PDF, XLSX, table cards.
+/* תכנון פלוס / Tichnun Plus — seating chart planner (client-side only; data in localStorage).
+ * One codebase, two languages: <html lang="he"> (apps/seating/, ₪29, product "seating-chart") or
+ * <html lang="en"> (en/apps/seating/, USD, product "seating-chart-en"). Each language keeps its own saved chart.
+ * Free: full on-screen use + watermarked print/PDF. Paid: clean PDF, XLSX, table cards.
  */
 (function () {
   "use strict";
-  var SLUG = "seating-chart";
-  var KEY = "tp-seating-v1";
-  var DEFAULT_SIDES = ["צד הכלה", "צד החתן", "משותף"];
-  var SIDE_COLORS = { "צד הכלה": "#c2417a", "צד החתן": "#2a6fb0", "משותף": "#0e6b63" };
+  var EN = /^en/i.test(document.documentElement.lang || "");
+  function L(he, en) { return EN ? en : he; }
+  var SLUG = L("seating-chart", "seating-chart-en");
+  var KEY = L("tp-seating-v1", "tp-seating-en-v1");
+  var PRICE = L("₪29", "$9");
+  var APP_URL = L("https://tichnun.netlify.app/apps/seating/", "https://tichnun.netlify.app/en/apps/seating/");
+  var DEFAULT_SIDES = L(["צד הכלה", "צד החתן", "משותף"], ["Bride's side", "Groom's side", "Both"]);
+  var SIDE_COLORS = {};
+  SIDE_COLORS[DEFAULT_SIDES[0]] = "#c2417a"; SIDE_COLORS[DEFAULT_SIDES[1]] = "#2a6fb0"; SIDE_COLORS[DEFAULT_SIDES[2]] = "#0e6b63";
   var PALETTE = ["#8a5cc2", "#c06a12", "#2f8a3e", "#b3261e", "#1b7f9a", "#7a6a12"];
-  var UNLOCK_FEATS = ["PDF נקי בלי סימן מים (מפת שולחנות + רשימת כניסה לפי א-ב)", "ייצוא לאקסל: הושבה לפי שולחן, רשימת מוזמנים ושולחנות", "כרטיסי שולחן מוכנים להדפסה (מספר השולחן ושמות היושבים)", "תשלום חד-פעמי, לכל האירועים שתתכננו בדפדפן הזה"];
+  var NO_TABLE = L("ללא שולחן", "No table");
+  var NO_GROUP = L("ללא קבוצה", "No group");
+  var TABLE_WORD = L("שולחן", "Table");
+  var UNLOCK_TITLE = L("הגרסה המלאה של סידור ההושבה · ₪29", "Seating chart full version · $9");
+  var UNLOCK_FEATS = L(
+    ["PDF נקי בלי סימן מים (מפת שולחנות + רשימת כניסה לפי א-ב)", "ייצוא לאקסל: הושבה לפי שולחן, רשימת מוזמנים ושולחנות", "כרטיסי שולחן מוכנים להדפסה (מספר השולחן ושמות היושבים)", "תשלום חד-פעמי, לכל האירועים שתתכננו בדפדפן הזה"],
+    ["Clean PDF without watermark (table map + A–Z escort list)", "Excel export: seating by table, guest list and tables", "Printable table cards (table number + guest names)", "One-time payment, for every event you plan in this browser"]);
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function uid() { return Math.random().toString(36).slice(2, 9); }
   function num(v, d) { var n = parseInt(v, 10); return isFinite(n) && n > 0 ? n : d; }
-  function collator() { try { return new Intl.Collator("he"); } catch (e) { return { compare: function (a, b) { return a < b ? -1 : a > b ? 1 : 0; } }; } }
-  var coll = collator();
+  var coll = (function () { try { return new Intl.Collator(L("he", "en")); } catch (e) { return { compare: function (a, b) { return a < b ? -1 : a > b ? 1 : 0; } }; } })();
 
   /* ---------- state ---------- */
   function blank() { return { v: 1, title: "", date: "", guests: [], tables: [], apart: [] }; }
@@ -31,7 +43,7 @@
   var saveTimer = null;
   function save() {
     clearTimeout(saveTimer);
-    saveTimer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast("לא הצלחנו לשמור בדפדפן (אחסון מלא או חסום)"); } }, 150);
+    saveTimer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast(L("לא הצלחנו לשמור בדפדפן (אחסון מלא או חסום)", "Couldn't save in this browser (storage full or blocked)")); } }, 150);
   }
   var undoStack = [];
   function mutate(fn) {
@@ -41,8 +53,8 @@
     save(); render();
   }
   function undo() {
-    if (!undoStack.length) return toast("אין מה לבטל");
-    S = JSON.parse(undoStack.pop()); save(); render(); toast("הפעולה האחרונה בוטלה");
+    if (!undoStack.length) return toast(L("אין מה לבטל", "Nothing to undo"));
+    S = JSON.parse(undoStack.pop()); save(); render(); toast(L("הפעולה האחרונה בוטלה", "Undone"));
   }
 
   function guest(id) { for (var i = 0; i < S.guests.length; i++) if (S.guests[i].id === id) return S.guests[i]; return null; }
@@ -69,22 +81,26 @@
   function conflictsOf(t) {
     var gs = tableGuests(t.id), out = [];
     var used = gs.reduce(function (s, g) { return s + g.n; }, 0);
-    if (used > t.seats) out.push("חריגה: " + used + " אנשים ב-" + t.seats + " מקומות");
+    if (used > t.seats) out.push(L("חריגה: " + used + " אנשים ב-" + t.seats + " מקומות", "Over capacity: " + used + " people in " + t.seats + " seats"));
     for (var i = 0; i < gs.length; i++) for (var j = i + 1; j < gs.length; j++) {
-      if (isApart(gs[i].id, gs[j].id)) out.push(gs[i].name + " ו" + gs[j].name + " ביקשו לא לשבת יחד");
+      if (isApart(gs[i].id, gs[j].id)) out.push(L(gs[i].name + " ו" + gs[j].name + " ביקשו לא לשבת יחד", gs[i].name + " and " + gs[j].name + " should not sit together"));
     }
     return out;
   }
-  function tableLabel(t) { return t ? t.name : "ללא שולחן"; }
-  function sortedTables() { return S.tables.slice(); }
+  function tableLabel(t) { return t ? t.name : NO_TABLE; }
+  function totals() {
+    var total = S.guests.reduce(function (s, g) { return s + g.n; }, 0);
+    var un = S.guests.filter(function (g) { return !g.table; }).reduce(function (s, g) { return s + g.n; }, 0);
+    return { total: total, un: un, seated: total - un };
+  }
 
   /* ---------- parsing ---------- */
   var HEAD = {
-    name: /^(שם|שם מלא|שם האורח|שם המוזמן|מוזמן|אורח|name|guest|full name)$/i,
-    n: /^(כמות|מספר|מס'|מס׳|מספר אנשים|מוזמנים|מאשרים|אנשים|count|qty|guests|party size|seats)$/i,
+    name: /^(שם|שם מלא|שם האורח|שם המוזמן|מוזמן|אורח|name|guest|guest name|full name|names?)$/i,
+    n: /^(כמות|מספר|מס'|מס׳|מספר אנשים|מוזמנים|מאשרים|אנשים|count|qty|quantity|guests|party size|seats|people|#)$/i,
     side: /^(צד|side)$/i,
-    group: /^(קבוצה|קטגוריה|שיוך|group|category)$/i,
-    table: /^(שולחן|מס' שולחן|מספר שולחן|table)$/i
+    group: /^(קבוצה|קטגוריה|שיוך|group|category|relationship)$/i,
+    table: /^(שולחן|מס' שולחן|מספר שולחן|table|table number|table #)$/i
   };
   function mapHeader(row) {
     var map = {}, hit = 0;
@@ -107,17 +123,18 @@
       if (!name) return;
       var nRaw = map.n !== undefined ? String(r[map.n] || "").trim() : "";
       var n = num(nRaw, 1);
-      // "משפחת כהן 4" / "משפחת כהן (4)" in a single cell
+      // "משפחת כהן 4" / "The Cohens (4)" in a single cell
       if (map.n === undefined || !nRaw) {
         var m = /^(.*?)[\s(×x*]+(\d{1,2})\)?$/.exec(name);
         if (m && m[1].trim()) { name = m[1].trim(); n = num(m[2], 1); }
       }
+      var tbl = map.table !== undefined ? String(r[map.table] || "").trim() : "";
+      if (tbl === "ללא שולחן" || tbl === "No table") tbl = "";
       out.push({
         id: uid(), name: name.slice(0, 80), n: Math.min(n, 60),
         side: String((map.side !== undefined && r[map.side]) || defaults.side || "").trim().slice(0, 40),
         group: String((map.group !== undefined && r[map.group]) || defaults.group || "").trim().slice(0, 40),
-        table: null,
-        _table: map.table !== undefined ? String(r[map.table] || "").trim().replace(/^ללא שולחן$/, "") : ""
+        table: null, _table: tbl
       });
     });
     return out;
@@ -142,21 +159,19 @@
     return rows;
   }
   function parsePaste(text) {
-    var lines = text.split(/\r?\n/).filter(function (l) { return l.trim(); });
-    var rows = lines.map(function (l) {
+    return text.split(/\r?\n/).filter(function (l) { return l.trim(); }).map(function (l) {
       if (l.indexOf("\t") >= 0) return l.split("\t");
       if (/[,;]/.test(l)) return l.split(/\s*[,;]\s*/);
       return [l];
     });
-    return rows;
   }
   function addImported(list) {
-    if (!list.length) { toast("לא נמצאו שמות לייבוא"); return 0; }
+    if (!list.length) { toast(L("לא נמצאו שמות לייבוא", "No names found to import")); return 0; }
     mutate(function () {
       list.forEach(function (g) {
         if (g._table) {
-          var t = S.tables.filter(function (t) { return t.name === g._table || t.name === "שולחן " + g._table; })[0];
-          if (!t) { t = { id: uid(), name: /^\d+$/.test(g._table) ? "שולחן " + g._table : g._table, seats: 10, shape: "round" }; S.tables.push(t); }
+          var t = S.tables.filter(function (t) { return t.name === g._table || t.name === TABLE_WORD + " " + g._table; })[0];
+          if (!t) { t = { id: uid(), name: /^\d+$/.test(g._table) ? TABLE_WORD + " " + g._table : g._table, seats: 10, shape: "round" }; S.tables.push(t); }
           g.table = t.id;
         }
         delete g._table;
@@ -185,7 +200,6 @@
       var affinity = function (tid, k) { return tableGuests(tid).filter(function (o) { return key(o) === k; }).length; };
       var sameSide = function (tid, side) { return tableGuests(tid).filter(function (o) { return o.side === side; }).length; };
       list.forEach(function (c) {
-        // 1) whole cluster in one table: prefer a table already holding this cluster, then best fit
         var cands = S.tables.filter(function (t) { return free[t.id] >= c.total && okAll(c.gs, t.id); });
         if (cands.length) {
           cands.sort(function (a, b) { return (affinity(b.id, c.key) - affinity(a.id, c.key)) || (free[a.id] - free[b.id]); });
@@ -194,7 +208,6 @@
           free[t.id] -= c.total;
           return;
         }
-        // 2) split: fill the emptiest compatible tables, keeping the cluster together as much as possible
         c.gs.forEach(function (g) {
           var opts = S.tables.filter(function (t) { return free[t.id] >= g.n && okWith(g, t.id); });
           if (!opts.length) { left.push(g); return; }
@@ -206,21 +219,20 @@
       });
     });
     var missing = left.reduce(function (s, g) { return s + g.n; }, 0);
-    if (!S.tables.length) toast("קודם מוסיפים שולחנות");
-    else if (missing) toast("שובצו " + placed + " אנשים. " + missing + " נשארו בלי מקום: הוסיפו שולחנות או מקומות.");
-    else toast("שובצו " + placed + " אנשים. אפשר לגרור ולתקן ידנית (ובטל מחזיר אחורה).");
+    if (!S.tables.length) toast(L("קודם מוסיפים שולחנות", "Add tables first"));
+    else if (missing) toast(L("שובצו " + placed + " אנשים. " + missing + " נשארו בלי מקום: הוסיפו שולחנות או מקומות.", "Seated " + placed + " people. " + missing + " still need a seat: add tables or seats."));
+    else toast(L("שובצו " + placed + " אנשים. אפשר לגרור ולתקן ידנית (ובטל מחזיר אחורה).", "Seated " + placed + " people. Drag to adjust (Undo goes back)."));
   }
 
   /* ---------- rendering ---------- */
   var filter = { q: "", side: "", group: "" };
-  function chip(g, inTable) {
+  function chip(g, inUnassigned) {
     var hit = filter.q && g.name.toLowerCase().indexOf(filter.q.toLowerCase()) >= 0;
     var hasApart = S.apart.some(function (p) { return p[0] === g.id || p[1] === g.id; });
     return '<button type="button" class="g-chip' + (hit ? " hit" : "") + '" data-gid="' + g.id + '" style="--side:' + sideColor(g.side) + '" title="' + esc(g.name + (g.side ? " · " + g.side : "") + (g.group ? " · " + g.group : "")) + '">' +
       '<span class="g-name">' + esc(g.name) + "</span>" +
       (g.n > 1 ? '<span class="g-n">' + g.n + "</span>" : "") +
-      (hasApart ? '<span class="g-apart" title="יש בקשת הרחקה" aria-label="יש בקשת הרחקה">⇹</span>' : "") +
-      (inTable ? "" : (g.group ? '<span class="g-group">' + esc(g.group) + "</span>" : "")) +
+      (hasApart ? '<span class="g-apart" title="' + L("יש בקשת הרחקה", "Keep-apart request") + '" aria-label="' + L("יש בקשת הרחקה", "Keep-apart request") + '">⇹</span>' : "") +
       "</button>";
   }
   function tableSvg(t, used) {
@@ -248,65 +260,84 @@
   function render() {
     var unlocked = window.AppUnlock && AppUnlock.isUnlocked(SLUG);
     $("#plan").className = "plan-pill" + (unlocked ? " full" : "");
-    $("#plan").innerHTML = unlocked ? "✓ גרסה מלאה פעילה" : 'גרסה חינמית · <button type="button" data-act="unlock">מה בגרסה המלאה?</button>';
+    $("#plan").innerHTML = unlocked ? L("✓ גרסה מלאה פעילה", "✓ Full version active") : L("גרסה חינמית", "Free version") + ' · <button type="button" data-act="unlock">' + L("מה בגרסה המלאה?", "What's in the full version?") + "</button>";
     $$("[data-paid]").forEach(function (b) { var l = b.querySelector(".lock"); if (l) l.hidden = !!unlocked; });
     if (document.activeElement !== $("#ev-title")) $("#ev-title").value = S.title || "";
     if (document.activeElement !== $("#ev-date")) $("#ev-date").value = S.date || "";
 
-    // datalists
     $("#dl-sides").innerHTML = sides().map(function (s) { return '<option value="' + esc(s) + '">'; }).join("");
     $("#dl-groups").innerHTML = groups().map(function (s) { return '<option value="' + esc(s) + '">'; }).join("");
-    var fs = $("#f-side"), fg = $("#f-group");
-    fs.innerHTML = '<option value="">כל הצדדים</option>' + sides().map(function (s) { return '<option' + (s === filter.side ? " selected" : "") + ">" + esc(s) + "</option>"; }).join("");
-    fg.innerHTML = '<option value="">כל הקבוצות</option>' + groups().map(function (s) { return '<option' + (s === filter.group ? " selected" : "") + ">" + esc(s) + "</option>"; }).join("");
+    $("#f-side").innerHTML = '<option value="">' + L("כל הצדדים", "All sides") + "</option>" + sides().map(function (s) { return "<option" + (s === filter.side ? " selected" : "") + ">" + esc(s) + "</option>"; }).join("");
+    $("#f-group").innerHTML = '<option value="">' + L("כל הקבוצות", "All groups") + "</option>" + groups().map(function (s) { return "<option" + (s === filter.group ? " selected" : "") + ">" + esc(s) + "</option>"; }).join("");
 
-    // unassigned list, grouped
     var un = S.guests.filter(function (g) {
       return !g.table && (!filter.side || g.side === filter.side) && (!filter.group || g.group === filter.group) &&
         (!filter.q || g.name.toLowerCase().indexOf(filter.q.toLowerCase()) >= 0);
     });
     var byGroup = {};
-    un.forEach(function (g) { var k = g.group || "ללא קבוצה"; (byGroup[k] = byGroup[k] || []).push(g); });
-    var keys = Object.keys(byGroup).sort(function (a, b) { return a === "ללא קבוצה" ? 1 : b === "ללא קבוצה" ? -1 : coll.compare(a, b); });
-    var unTotal = S.guests.filter(function (g) { return !g.table; }).reduce(function (s, g) { return s + g.n; }, 0);
-    $("#un-count").textContent = unTotal;
+    un.forEach(function (g) { var k = g.group || NO_GROUP; (byGroup[k] = byGroup[k] || []).push(g); });
+    var keys = Object.keys(byGroup).sort(function (a, b) { return a === NO_GROUP ? 1 : b === NO_GROUP ? -1 : coll.compare(a, b); });
+    var T = totals();
+    $("#un-count").textContent = T.un;
     $("#unassigned").innerHTML = keys.length ? keys.map(function (k) {
       var gs = byGroup[k].sort(function (a, b) { return coll.compare(a.name, b.name); });
-      return '<div class="u-group"><div class="u-head">' + esc(k) + ' <span class="muted">(' + gs.reduce(function (s, g) { return s + g.n; }, 0) + ")</span></div><div class=\"chips\">" + gs.map(function (g) { return chip(g, true); }).join("") + "</div></div>";
-    }).join("") : '<p class="empty muted">' + (S.guests.length ? (unTotal ? "אין תוצאות לסינון הזה." : "כל המוזמנים שובצו 🎉") : "עוד אין מוזמנים. הוסיפו שמות למעלה, הדביקו רשימה או ייבאו קובץ.") + "</p>";
+      return '<div class="u-group"><div class="u-head">' + esc(k) + ' <span class="muted">(' + gs.reduce(function (s, g) { return s + g.n; }, 0) + ')</span></div><div class="chips">' + gs.map(function (g) { return chip(g, true); }).join("") + "</div></div>";
+    }).join("") : '<p class="empty muted">' + (S.guests.length ? (T.un ? L("אין תוצאות לסינון הזה.", "No matches for this filter.") : L("כל המוזמנים שובצו 🎉", "Everyone is seated 🎉")) : L("עוד אין מוזמנים. הוסיפו שמות למעלה, הדביקו רשימה או ייבאו קובץ.", "No guests yet. Add names above, paste a list or import a file.")) + "</p>";
 
-    // tables
-    var total = S.guests.reduce(function (s, g) { return s + g.n; }, 0);
-    var seated = total - unTotal;
     var seatsTotal = S.tables.reduce(function (s, t) { return s + t.seats; }, 0);
     var conflicts = 0;
-    $("#tables").innerHTML = S.tables.length ? sortedTables().map(function (t) {
+    $("#tables").innerHTML = S.tables.length ? S.tables.map(function (t) {
       var gs = tableGuests(t.id).sort(function (a, b) { return coll.compare(a.group || "", b.group || "") || coll.compare(a.name, b.name); });
       var used = gs.reduce(function (s, g) { return s + g.n; }, 0);
       var cf = conflictsOf(t); conflicts += cf.length;
       return '<article class="t-card' + (cf.length ? " conflict" : "") + (used === t.seats ? " full" : "") + '" data-tid="' + t.id + '">' +
-        '<header><button type="button" class="t-name" data-edit-table="' + t.id + '" title="עריכת שולחן">' + esc(t.name) + ' <span aria-hidden="true">✎</span></button>' +
+        '<header><button type="button" class="t-name" data-edit-table="' + t.id + '" title="' + L("עריכת שולחן", "Edit table") + '">' + esc(t.name) + ' <span aria-hidden="true">✎</span></button>' +
         '<span class="t-occ' + (used > t.seats ? " over" : "") + '">' + used + "/" + t.seats + "</span></header>" +
         tableSvg(t, used) +
-        '<div class="chips drop" data-drop="' + t.id + '">' + (gs.length ? gs.map(function (g) { return chip(g, false); }).join("") : '<span class="drop-hint">גררו לכאן מוזמנים</span>') + "</div>" +
+        '<div class="chips drop" data-drop="' + t.id + '">' + (gs.length ? gs.map(function (g) { return chip(g, false); }).join("") : '<span class="drop-hint">' + L("גררו לכאן מוזמנים", "Drag guests here") + "</span>") + "</div>" +
         (cf.length ? '<ul class="t-warn">' + cf.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul>" : "") +
         "</article>";
-    }).join("") : '<div class="empty-tables"><p>עוד אין שולחנות.</p><button type="button" class="btn" data-act="add-tables">הוספת שולחנות</button></div>';
+    }).join("") : '<div class="empty-tables"><p>' + L("עוד אין שולחנות.", "No tables yet.") + '</p><button type="button" class="btn" data-act="add-tables">' + L("הוספת שולחנות", "Add tables") + "</button></div>";
 
     $("#stats").innerHTML =
-      stat(total, "מוזמנים") + stat(seated, "שובצו") + stat(unTotal, "בלי שולחן", unTotal ? "warn" : "") +
-      stat(S.tables.length, "שולחנות") + stat(Math.max(0, seatsTotal - seated), "מקומות פנויים") +
-      stat(conflicts, "התנגשויות", conflicts ? "bad" : "");
-    var need = total - seatsTotal;
-    $("#capacity-hint").textContent = need > 0 ? "חסרים " + need + " מקומות לכל המוזמנים (" + Math.ceil(need / 10) + " שולחנות של 10)." : "";
+      stat(T.total, L("מוזמנים", "guests")) + stat(T.seated, L("שובצו", "seated")) + stat(T.un, L("בלי שולחן", "unseated"), T.un ? "warn" : "") +
+      stat(S.tables.length, L("שולחנות", "tables")) + stat(Math.max(0, seatsTotal - T.seated), L("מקומות פנויים", "free seats")) +
+      stat(conflicts, L("התנגשויות", "conflicts"), conflicts ? "bad" : "");
+    var need = T.total - seatsTotal;
+    $("#capacity-hint").textContent = need > 0 ? L("חסרים " + need + " מקומות לכל המוזמנים (" + Math.ceil(need / 10) + " שולחנות של 10).", need + " more seats needed (" + Math.ceil(need / 10) + " tables of 10).") : "";
+
+    // "chart ready" banner: export + WhatsApp share once everyone is seated without conflicts
+    var ready = T.total > 0 && T.un === 0 && S.tables.length > 0 && conflicts === 0;
+    var banner = $("#ready");
+    banner.hidden = !ready;
+    if (ready) {
+      banner.innerHTML = '<div><strong>' + L("סידור ההושבה מוכן 🎉", "Your seating chart is ready 🎉") + "</strong> " +
+        '<span class="muted">' + L(T.total + " אורחים ב-" + S.tables.length + " שולחנות", T.total + " guests at " + S.tables.length + " tables") + "</span></div>" +
+        '<div class="btn-row">' +
+        (unlocked
+          ? '<button type="button" class="btn small" data-act="pdf-clean">' + L("PDF להדפסה", "Print / PDF") + '</button><button type="button" class="btn small secondary" data-act="xlsx">' + L("אקסל", "Excel") + '</button><button type="button" class="btn small secondary" data-act="cards">' + L("כרטיסי שולחן", "Table cards") + "</button>"
+          : '<button type="button" class="btn small accent" data-act="pdf-clean">' + L("PDF נקי + אקסל + כרטיסים · ", "Clean PDF + Excel + cards · ") + PRICE + '</button><button type="button" class="btn small secondary" data-act="print">' + L("PDF חינם (עם סימן מים)", "Free PDF (watermarked)") + "</button>") +
+        '<a class="btn small wa" data-act="whatsapp" href="' + esc(waUrl()) + '" target="_blank" rel="noopener">' + WA_ICON + L("שיתוף בוואטסאפ", "Share on WhatsApp") + "</a></div>";
+    }
   }
   function stat(v, l, cls) { return '<div class="stat ' + (cls || "") + '"><b class="num">' + v + "</b><span>" + l + "</span></div>"; }
+
+  /* ---------- WhatsApp share (wa.me; text + link to the free tool, never the guest list) ---------- */
+  var WA_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3 1 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.4z"/></svg>';
+  function waUrl() {
+    var T = totals();
+    var link = APP_URL + "?utm_source=whatsapp&utm_medium=share&utm_campaign=seating";
+    var text = L(
+      "סיימנו את סידורי ההושבה" + (S.title ? " ל" + S.title : "") + " 🎉 " + T.total + " אורחים ב-" + S.tables.length + " שולחנות. עשינו את זה בכלי חינמי בעברית, בלי הרשמה: ",
+      "Our seating chart" + (S.title ? " for " + S.title : "") + " is done 🎉 " + T.total + " guests at " + S.tables.length + " tables. Made it with this free tool, no sign-up: ");
+    return "https://wa.me/?text=" + encodeURIComponent(text + link);
+  }
 
   /* ---------- dialogs ---------- */
   function dialog(html, onSubmit, onReady) {
     var d = document.createElement("dialog");
     d.className = "app-dialog";
-    d.innerHTML = '<form method="dialog" class="dlg-close-row"><button class="dlg-x" aria-label="סגירה" value="close">×</button></form>' + html;
+    d.innerHTML = '<form method="dialog" class="dlg-close-row"><button class="dlg-x" aria-label="' + L("סגירה", "Close") + '" value="close">×</button></form>' + html;
     document.body.appendChild(d);
     d.addEventListener("close", function () { d.remove(); });
     d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
@@ -319,9 +350,8 @@
     return d;
   }
   function tableOptions(sel) {
-    return '<option value="">ללא שולחן</option>' + S.tables.map(function (t) {
-      var used = load_(t.id);
-      return '<option value="' + t.id + '"' + (t.id === sel ? " selected" : "") + ">" + esc(t.name) + " (" + used + "/" + t.seats + ")</option>";
+    return '<option value="">' + NO_TABLE + "</option>" + S.tables.map(function (t) {
+      return '<option value="' + t.id + '"' + (t.id === sel ? " selected" : "") + ">" + esc(t.name) + " (" + load_(t.id) + "/" + t.seats + ")</option>";
     }).join("");
   }
 
@@ -330,22 +360,22 @@
     var apartList = function () {
       return S.apart.filter(function (p) { return p[0] === id || p[1] === id; }).map(function (p) {
         var o = guest(p[0] === id ? p[1] : p[0]);
-        return o ? '<li>' + esc(o.name) + ' <button type="button" class="btn tiny ghost" data-unapart="' + o.id + '">הסרה</button></li>' : "";
+        return o ? "<li>" + esc(o.name) + ' <button type="button" class="btn tiny ghost" data-unapart="' + o.id + '">' + L("הסרה", "Remove") + "</button></li>" : "";
       }).join("");
     };
     var others = S.guests.filter(function (o) { return o.id !== id; }).sort(function (a, b) { return coll.compare(a.name, b.name); });
     dialog(
-      '<h2>עריכת מוזמן</h2><form class="dlg-form">' +
-      '<div class="fields cols-2"><div class="field"><label for="eg-name">שם</label><input id="eg-name" name="name" type="text" required maxlength="80" value="' + esc(g.name) + '"></div>' +
-      '<div class="field"><label for="eg-n">מספר אנשים</label><input id="eg-n" name="n" type="number" min="1" max="60" value="' + g.n + '"></div>' +
-      '<div class="field"><label for="eg-side">צד</label><input id="eg-side" name="side" type="text" list="dl-sides" maxlength="40" value="' + esc(g.side) + '"></div>' +
-      '<div class="field"><label for="eg-group">קבוצה</label><input id="eg-group" name="group" type="text" list="dl-groups" maxlength="40" value="' + esc(g.group) + '"></div></div>' +
-      '<div class="field"><label for="eg-table">שולחן</label><select id="eg-table" name="table">' + tableOptions(g.table) + "</select></div>" +
-      '<div class="field"><span class="label">לא להושיב באותו שולחן עם</span><ul class="apart-list">' + apartList() + "</ul>" +
-      '<div class="btn-row"><select id="eg-apart" aria-label="בחירת מוזמן להרחקה" style="flex:1"><option value="">בחרו מוזמן…</option>' +
+      "<h2>" + L("עריכת מוזמן", "Edit guest") + '</h2><form class="dlg-form">' +
+      '<div class="fields cols-2"><div class="field"><label for="eg-name">' + L("שם", "Name") + '</label><input id="eg-name" name="name" type="text" required maxlength="80" value="' + esc(g.name) + '"></div>' +
+      '<div class="field"><label for="eg-n">' + L("מספר אנשים", "Party size") + '</label><input id="eg-n" name="n" type="number" min="1" max="60" value="' + g.n + '"></div>' +
+      '<div class="field"><label for="eg-side">' + L("צד", "Side") + '</label><input id="eg-side" name="side" type="text" list="dl-sides" maxlength="40" value="' + esc(g.side) + '"></div>' +
+      '<div class="field"><label for="eg-group">' + L("קבוצה", "Group") + '</label><input id="eg-group" name="group" type="text" list="dl-groups" maxlength="40" value="' + esc(g.group) + '"></div></div>' +
+      '<div class="field"><label for="eg-table">' + L("שולחן", "Table") + '</label><select id="eg-table" name="table">' + tableOptions(g.table) + "</select></div>" +
+      '<div class="field"><span class="label">' + L("לא להושיב באותו שולחן עם", "Keep apart from (not at the same table)") + '</span><ul class="apart-list">' + apartList() + "</ul>" +
+      '<div class="btn-row"><select id="eg-apart" aria-label="' + L("בחירת מוזמן להרחקה", "Choose a guest to keep apart") + '" style="flex:1"><option value="">' + L("בחרו מוזמן…", "Choose a guest…") + "</option>" +
       others.map(function (o) { return '<option value="' + o.id + '">' + esc(o.name) + "</option>"; }).join("") +
-      '</select><button type="button" class="btn ghost small" id="eg-apart-add">הוספה</button></div></div>' +
-      '<div class="dlg-actions"><button class="btn" type="submit">שמירה</button><button class="btn ghost" type="button" data-close>ביטול</button><span class="spacer"></span><button class="btn danger" type="button" id="eg-del">מחיקה</button></div></form>',
+      '</select><button type="button" class="btn ghost small" id="eg-apart-add">' + L("הוספה", "Add") + "</button></div></div>" +
+      '<div class="dlg-actions"><button class="btn" type="submit">' + L("שמירה", "Save") + '</button><button class="btn ghost" type="button" data-close>' + L("ביטול", "Cancel") + '</button><span class="spacer"></span><button class="btn danger" type="button" id="eg-del">' + L("מחיקה", "Delete") + "</button></div></form>",
       function (f) {
         mutate(function () {
           g.name = f.name.value.trim().slice(0, 80) || g.name;
@@ -358,7 +388,7 @@
       function (d) {
         d.querySelector("[data-close]").addEventListener("click", function () { d.close(); });
         d.querySelector("#eg-del").addEventListener("click", function () {
-          if (!confirm("למחוק את " + g.name + "?")) return;
+          if (!confirm(L("למחוק את " + g.name + "?", "Delete " + g.name + "?"))) return;
           mutate(function () {
             S.guests = S.guests.filter(function (x) { return x.id !== id; });
             S.apart = S.apart.filter(function (p) { return p[0] !== id && p[1] !== id; });
@@ -381,23 +411,23 @@
   }
 
   function addTables() {
-    var total = S.guests.reduce(function (s, g) { return s + g.n; }, 0);
+    var T = totals();
     var seatsTotal = S.tables.reduce(function (s, t) { return s + t.seats; }, 0);
-    var suggest = Math.max(1, Math.ceil(Math.max(0, total - seatsTotal) / 10)) || 1;
+    var suggest = Math.max(1, Math.ceil(Math.max(0, T.total - seatsTotal) / 10)) || 1;
     var nextNum = S.tables.reduce(function (m, t) { var k = parseInt(shortName(t.name), 10); return isFinite(k) && k > m ? k : m; }, 0) + 1;
     dialog(
-      '<h2>הוספת שולחנות</h2><form class="dlg-form">' +
-      '<div class="fields cols-3"><div class="field"><label for="at-count">כמה שולחנות</label><input id="at-count" name="count" type="number" min="1" max="100" value="' + suggest + '"></div>' +
-      '<div class="field"><label for="at-seats">מקומות בשולחן</label><input id="at-seats" name="seats" type="number" min="1" max="40" value="10"></div>' +
-      '<div class="field"><label for="at-shape">צורה</label><select id="at-shape" name="shape"><option value="round">עגול</option><option value="rect">מלבני</option></select></div></div>' +
-      '<div class="fields cols-2"><div class="field"><label for="at-prefix">שם</label><input id="at-prefix" name="prefix" type="text" value="שולחן" maxlength="30"></div>' +
-      '<div class="field"><label for="at-start">מספור החל מ-</label><input id="at-start" name="start" type="number" min="0" max="999" value="' + nextNum + '"></div></div>' +
-      (total ? '<p class="small muted">יש ' + total + " מוזמנים ו-" + seatsTotal + " מקומות. ההצעה מחושבת לשולחנות של 10.</p>" : "") +
-      '<p class="small muted">שולחן אבירים או שולחן מיוחד? הוסיפו שולחן אחד ושנו לו את השם והמקומות בלחיצה על השם.</p>' +
-      '<div class="dlg-actions"><button class="btn" type="submit">הוספה</button></div></form>',
+      "<h2>" + L("הוספת שולחנות", "Add tables") + '</h2><form class="dlg-form">' +
+      '<div class="fields cols-3"><div class="field"><label for="at-count">' + L("כמה שולחנות", "How many") + '</label><input id="at-count" name="count" type="number" min="1" max="100" value="' + suggest + '"></div>' +
+      '<div class="field"><label for="at-seats">' + L("מקומות בשולחן", "Seats per table") + '</label><input id="at-seats" name="seats" type="number" min="1" max="40" value="10"></div>' +
+      '<div class="field"><label for="at-shape">' + L("צורה", "Shape") + '</label><select id="at-shape" name="shape"><option value="round">' + L("עגול", "Round") + '</option><option value="rect">' + L("מלבני", "Rectangular") + "</option></select></div></div>" +
+      '<div class="fields cols-2"><div class="field"><label for="at-prefix">' + L("שם", "Name") + '</label><input id="at-prefix" name="prefix" type="text" value="' + TABLE_WORD + '" maxlength="30"></div>' +
+      '<div class="field"><label for="at-start">' + L("מספור החל מ-", "Number from") + '</label><input id="at-start" name="start" type="number" min="0" max="999" value="' + nextNum + '"></div></div>' +
+      (T.total ? '<p class="small muted">' + L("יש " + T.total + " מוזמנים ו-" + seatsTotal + " מקומות. ההצעה מחושבת לשולחנות של 10.", "You have " + T.total + " guests and " + seatsTotal + " seats. The suggestion assumes tables of 10.") + "</p>" : "") +
+      '<p class="small muted">' + L("שולחן אבירים או שולחן מיוחד? הוסיפו שולחן אחד ושנו לו את השם והמקומות בלחיצה על השם.", "Head table or sweetheart table? Add one table, then click its name to rename it and change the seats.") + "</p>" +
+      '<div class="dlg-actions"><button class="btn" type="submit">' + L("הוספה", "Add") + "</button></div></form>",
       function (f) {
         var c = Math.min(num(f.count.value, 1), 100), seats = Math.min(num(f.seats.value, 10), 40), start = parseInt(f.start.value, 10) || 1;
-        var prefix = f.prefix.value.trim() || "שולחן";
+        var prefix = f.prefix.value.trim() || TABLE_WORD;
         mutate(function () {
           for (var i = 0; i < c; i++) S.tables.push({ id: uid(), name: (prefix + " " + (start + i)).slice(0, 40), seats: seats, shape: f.shape.value === "rect" ? "rect" : "round" });
         });
@@ -407,18 +437,18 @@
   function editTable(tid) {
     var t = table(tid); if (!t) return;
     dialog(
-      '<h2>עריכת שולחן</h2><form class="dlg-form">' +
-      '<div class="fields cols-3"><div class="field"><label for="et-name">שם</label><input id="et-name" name="name" type="text" required maxlength="40" value="' + esc(t.name) + '"></div>' +
-      '<div class="field"><label for="et-seats">מקומות</label><input id="et-seats" name="seats" type="number" min="1" max="40" value="' + t.seats + '"></div>' +
-      '<div class="field"><label for="et-shape">צורה</label><select id="et-shape" name="shape"><option value="round"' + (t.shape !== "rect" ? " selected" : "") + '>עגול</option><option value="rect"' + (t.shape === "rect" ? " selected" : "") + ">מלבני</option></select></div></div>" +
-      '<div class="dlg-actions"><button class="btn" type="submit">שמירה</button><button class="btn ghost" type="button" id="et-clear">פינוי השולחן</button><span class="spacer"></span><button class="btn danger" type="button" id="et-del">מחיקת שולחן</button></div></form>',
+      "<h2>" + L("עריכת שולחן", "Edit table") + '</h2><form class="dlg-form">' +
+      '<div class="fields cols-3"><div class="field"><label for="et-name">' + L("שם", "Name") + '</label><input id="et-name" name="name" type="text" required maxlength="40" value="' + esc(t.name) + '"></div>' +
+      '<div class="field"><label for="et-seats">' + L("מקומות", "Seats") + '</label><input id="et-seats" name="seats" type="number" min="1" max="40" value="' + t.seats + '"></div>' +
+      '<div class="field"><label for="et-shape">' + L("צורה", "Shape") + '</label><select id="et-shape" name="shape"><option value="round"' + (t.shape !== "rect" ? " selected" : "") + ">" + L("עגול", "Round") + '</option><option value="rect"' + (t.shape === "rect" ? " selected" : "") + ">" + L("מלבני", "Rectangular") + "</option></select></div></div>" +
+      '<div class="dlg-actions"><button class="btn" type="submit">' + L("שמירה", "Save") + '</button><button class="btn ghost" type="button" id="et-clear">' + L("פינוי השולחן", "Clear table") + '</button><span class="spacer"></span><button class="btn danger" type="button" id="et-del">' + L("מחיקת שולחן", "Delete table") + "</button></div></form>",
       function (f) {
         mutate(function () { t.name = f.name.value.trim().slice(0, 40) || t.name; t.seats = Math.min(num(f.seats.value, t.seats), 40); t.shape = f.shape.value === "rect" ? "rect" : "round"; });
       },
       function (d) {
         d.querySelector("#et-clear").addEventListener("click", function () { mutate(function () { tableGuests(tid).forEach(function (g) { g.table = null; }); }); d.close(); });
         d.querySelector("#et-del").addEventListener("click", function () {
-          if (!confirm("למחוק את " + t.name + "? היושבים בו יחזרו לרשימת 'בלי שולחן'.")) return;
+          if (!confirm(L("למחוק את " + t.name + "? היושבים בו יחזרו לרשימת 'בלי שולחן'.", "Delete " + t.name + "? Its guests go back to the unseated list."))) return;
           mutate(function () { tableGuests(tid).forEach(function (g) { g.table = null; }); S.tables = S.tables.filter(function (x) { return x.id !== tid; }); });
           d.close();
         });
@@ -427,15 +457,17 @@
 
   function pasteDialog() {
     dialog(
-      '<h2>הדבקת רשימת מוזמנים</h2><form class="dlg-form">' +
-      '<div class="field"><label for="pd-text">שורה לכל הזמנה</label><textarea id="pd-text" name="text" rows="9" placeholder="משפחת כהן, 4&#10;דנה ואורי לוי, 2, צד הכלה, חברים מהצבא&#10;סבתא רחל"></textarea>' +
-      '<span class="hint">אפשר להדביק עמודות ישירות מאקסל או מ-Google Sheets. סדר העמודות: שם, מספר אנשים, צד, קבוצה (רק השם חובה). אם יש שורת כותרות (שם, כמות, צד, קבוצה, שולחן) היא תזוהה.</span></div>' +
-      '<div class="fields cols-2"><div class="field"><label for="pd-side">צד (לכל מי שאין לו)</label><input id="pd-side" name="side" type="text" list="dl-sides"></div>' +
-      '<div class="field"><label for="pd-group">קבוצה (לכל מי שאין לו)</label><input id="pd-group" name="group" type="text" list="dl-groups"></div></div>' +
-      '<div class="dlg-actions"><button class="btn" type="submit">הוספה לרשימה</button></div></form>',
+      "<h2>" + L("הדבקת רשימת מוזמנים", "Paste a guest list") + '</h2><form class="dlg-form">' +
+      '<div class="field"><label for="pd-text">' + L("שורה לכל הזמנה", "One line per invitation") + '</label><textarea id="pd-text" name="text" rows="9" placeholder="' +
+      L("משפחת כהן, 4&#10;דנה ואורי לוי, 2, צד הכלה, חברים מהצבא&#10;סבתא רחל", "The Cohen family, 4&#10;Dana &amp; Ori Levy, 2, Bride's side, College friends&#10;Grandma Ruth") + '"></textarea>' +
+      '<span class="hint">' + L("אפשר להדביק עמודות ישירות מאקסל או מ-Google Sheets. סדר העמודות: שם, מספר אנשים, צד, קבוצה (רק השם חובה). אם יש שורת כותרות (שם, כמות, צד, קבוצה, שולחן) היא תזוהה.",
+        "Paste columns straight from Excel or Google Sheets. Column order: name, party size, side, group (only the name is required). A header row (Name, Count, Side, Group, Table) is detected.") + "</span></div>" +
+      '<div class="fields cols-2"><div class="field"><label for="pd-side">' + L("צד (לכל מי שאין לו)", "Side (for rows without one)") + '</label><input id="pd-side" name="side" type="text" list="dl-sides"></div>' +
+      '<div class="field"><label for="pd-group">' + L("קבוצה (לכל מי שאין לו)", "Group (for rows without one)") + '</label><input id="pd-group" name="group" type="text" list="dl-groups"></div></div>' +
+      '<div class="dlg-actions"><button class="btn" type="submit">' + L("הוספה לרשימה", "Add to list") + "</button></div></form>",
       function (f) {
         var n = addImported(rowsToGuests(parsePaste(f.text.value), { side: f.side.value.trim(), group: f.group.value.trim() }));
-        if (n) toast("נוספו " + n + " הזמנות");
+        if (n) toast(L("נוספו " + n + " הזמנות", n + " invitations added"));
       });
   }
 
@@ -447,29 +479,39 @@
       if (/\.json$/.test(name)) {
         var data = JSON.parse(new TextDecoder().decode(buf));
         if (!data || !Array.isArray(data.guests) || !Array.isArray(data.tables)) throw new Error("bad backup");
-        if (!confirm("לשחזר מהגיבוי? הנתונים הנוכחיים בכלי יוחלפו.")) return;
+        if (!confirm(L("לשחזר מהגיבוי? הנתונים הנוכחיים בכלי יוחלפו.", "Restore this backup? The current chart will be replaced."))) return;
         mutate(function () { S = data; S.apart = S.apart || []; });
-        toast("הגיבוי שוחזר");
+        toast(L("הגיבוי שוחזר", "Backup restored"));
         return;
       }
       if (/\.xlsx$/.test(name)) {
-        return AppZip.readSheet(buf).then(function (rows) { var n = addImported(rowsToGuests(rows)); if (n) toast("יובאו " + n + " הזמנות מהאקסל"); });
+        return AppZip.readSheet(buf).then(function (rows) { var n = addImported(rowsToGuests(rows)); if (n) toast(L("יובאו " + n + " הזמנות מהאקסל", n + " invitations imported from Excel")); });
       }
       if (/\.xls$/.test(name)) throw new Error("xls");
       var text;
-      try { text = new TextDecoder("utf-8", { fatal: true }).decode(buf); } catch (e) { text = new TextDecoder("windows-1255").decode(buf); }
+      try { text = new TextDecoder("utf-8", { fatal: true }).decode(buf); } catch (e) { text = new TextDecoder(EN ? "windows-1252" : "windows-1255").decode(buf); }
       text = text.replace(/^﻿/, "");
       var n = addImported(rowsToGuests(parseCSV(text)));
-      if (n) toast("יובאו " + n + " הזמנות");
+      if (n) toast(L("יובאו " + n + " הזמנות", n + " invitations imported"));
     }).catch(function (e) {
       if (window.console) console.error(e);
-      toast(e && e.message === "xls" ? "קובץ XLS ישן: שמרו אותו כ-XLSX או CSV ונסו שוב" : "לא הצלחנו לקרוא את הקובץ. נסו לשמור אותו כ-CSV או להדביק את הרשימה.");
+      toast(e && e.message === "xls" ? L("קובץ XLS ישן: שמרו אותו כ-XLSX או CSV ונסו שוב", "Old .xls file: save it as .xlsx or .csv and try again") : L("לא הצלחנו לקרוא את הקובץ. נסו לשמור אותו כ-CSV או להדביק את הרשימה.", "Couldn't read that file. Try saving it as CSV, or paste the list."));
     });
   }
 
   function demo() {
-    if (S.guests.length && !confirm("לטעון דוגמה? הנתונים הנוכחיים יוחלפו (אפשר לבטל עם 'בטל').")) return;
-    var rows = [
+    if (S.guests.length && !confirm(L("לטעון דוגמה? הנתונים הנוכחיים יוחלפו (אפשר לבטל עם 'בטל').", "Load the example? Your current chart will be replaced (Undo brings it back)."))) return;
+    var rows = EN ? [
+      ["Bride's parents", 2, "Bride's side", "Immediate family"], ["Grandma Esther", 1, "Bride's side", "Immediate family"], ["Noa & Ethan (sister)", 2, "Bride's side", "Immediate family"], ["The Abrams family", 4, "Bride's side", "Immediate family"],
+      ["David & Rina Levy", 2, "Bride's side", "Extended family"], ["The Perez family", 5, "Bride's side", "Extended family"], ["Yael & Moshe Gabay", 2, "Bride's side", "Extended family"], ["The Hadad family", 4, "Bride's side", "Extended family"],
+      ["Shira Katz", 1, "Bride's side", "High school friends"], ["Maya & Ido", 2, "Bride's side", "High school friends"], ["Lior Shemesh", 1, "Bride's side", "High school friends"], ["Tal & Guy", 2, "Bride's side", "High school friends"], ["Roni Adler", 1, "Bride's side", "High school friends"],
+      ["Hila from work", 2, "Bride's side", "Work"], ["Orna (manager)", 2, "Bride's side", "Work"], ["Karen & Nir", 2, "Bride's side", "Work"], ["Amit", 1, "Bride's side", "Work"],
+      ["Groom's parents", 2, "Groom's side", "Immediate family"], ["Grandpa Joe & Grandma Miriam", 2, "Groom's side", "Immediate family"], ["Groom's brother & family", 4, "Groom's side", "Immediate family"],
+      ["The Mizrahi family", 4, "Groom's side", "Extended family"], ["Aunt Susan", 1, "Groom's side", "Extended family"], ["The Bitton family", 5, "Groom's side", "Extended family"], ["Rafi & Dalia", 2, "Groom's side", "Extended family"],
+      ["Jonathan", 1, "Groom's side", "Camp friends"], ["Alon & Shani", 2, "Groom's side", "Camp friends"], ["Roy", 1, "Groom's side", "Camp friends"], ["Omer & Noga", 2, "Groom's side", "Camp friends"], ["Ben", 1, "Groom's side", "Camp friends"], ["Asaf", 1, "Groom's side", "Camp friends"],
+      ["Daniel & Rotem", 2, "Groom's side", "College"], ["Matan", 1, "Groom's side", "College"], ["Sapir & Aviv", 2, "Groom's side", "College"], ["Gilad", 1, "Groom's side", "College"],
+      ["The neighbors", 2, "Both", "Neighbors"], ["The Ohayon family", 3, "Both", "Neighbors"], ["Rabbi & Rebbetzin", 2, "Both", "Community"]
+    ] : [
       ["הורי הכלה", 2, "צד הכלה", "משפחה קרובה"], ["סבתא אסתר", 1, "צד הכלה", "משפחה קרובה"], ["נועה ואיתי (אחות הכלה)", 2, "צד הכלה", "משפחה קרובה"], ["משפחת אברהם", 4, "צד הכלה", "משפחה קרובה"],
       ["דוד ורינה לוי", 2, "צד הכלה", "משפחה מורחבת"], ["משפחת פרץ", 5, "צד הכלה", "משפחה מורחבת"], ["יעל ומשה גבאי", 2, "צד הכלה", "משפחה מורחבת"], ["משפחת חדד", 4, "צד הכלה", "משפחה מורחבת"],
       ["שירה כץ", 1, "צד הכלה", "חברות מהתיכון"], ["מאיה ועידו", 2, "צד הכלה", "חברות מהתיכון"], ["ליאור שמש", 1, "צד הכלה", "חברות מהתיכון"], ["טל וגיא", 2, "צד הכלה", "חברות מהתיכון"], ["רוני אדלר", 1, "צד הכלה", "חברות מהתיכון"],
@@ -482,33 +524,30 @@
     ];
     undoStack.push(JSON.stringify(S));
     S = blank();
-    S.title = "החתונה של נועם ושירה";
-    S.date = "";
+    S.title = L("החתונה של נועם ושירה", "Noam & Shira's wedding");
     rows.forEach(function (r) { S.guests.push({ id: uid(), name: r[0], n: r[1], side: r[2], group: r[3], table: null }); });
-    S.tables.push({ id: uid(), name: "שולחן 1", seats: 12, shape: "rect" });
-    for (var i = 2; i <= 8; i++) S.tables.push({ id: uid(), name: "שולחן " + i, seats: 10, shape: "round" });
-    var a = S.guests.filter(function (g) { return g.name === "משפחת פרץ"; })[0], b = S.guests.filter(function (g) { return g.name === "משפחת חדד"; })[0];
-    if (a && b) S.apart.push([a.id, b.id]);
+    S.tables.push({ id: uid(), name: TABLE_WORD + " 1", seats: 12, shape: "rect" });
+    for (var i = 2; i <= 8; i++) S.tables.push({ id: uid(), name: TABLE_WORD + " " + i, seats: 10, shape: "round" });
+    var a = S.guests[5], b = S.guests[7]; // Perez / Hadad: keep apart
+    S.apart.push([a.id, b.id]);
     save(); render();
-    toast("נטענה דוגמה: לחצו 'הושבה אוטומטית' כדי לראות הצעה");
+    toast(L("נטענה דוגמה: לחצו 'הושבה אוטומטית' כדי לראות הצעה", "Example loaded: click 'Auto-seat' to see a suggestion"));
   }
 
   /* ---------- exports ---------- */
   function guestsAlpha() { return S.guests.slice().sort(function (a, b) { return coll.compare(a.name, b.name); }); }
-  function headerBlock() {
-    return '<div class="p-head"><h1>' + esc(S.title || "סידור הושבה") + "</h1>" + (S.date ? '<p>' + esc(fmtDate(S.date)) + "</p>" : "") + "</div>";
-  }
-  function fmtDate(d) { try { return new Date(d + "T12:00:00").toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); } catch (e) { return d; } }
+  function fmtDate(d) { try { return new Date(d + "T12:00:00").toLocaleDateString(L("he-IL", "en-US"), { weekday: "long", day: "numeric", month: "long", year: "numeric" }); } catch (e) { return d; } }
   function printChart(clean) {
-    var total = S.guests.reduce(function (s, g) { return s + g.n; }, 0);
-    var html = (clean ? "" : watermark()) + headerBlock() +
-      '<p class="p-sum">' + total + " מוזמנים · " + S.tables.length + " שולחנות</p>" +
+    var T = totals();
+    var html = (clean ? "" : watermark()) +
+      '<div class="p-head"><h1>' + esc(S.title || L("סידור הושבה", "Seating chart")) + "</h1>" + (S.date ? "<p>" + esc(fmtDate(S.date)) + "</p>" : "") + "</div>" +
+      '<p class="p-sum">' + L(T.total + " מוזמנים · " + S.tables.length + " שולחנות", T.total + " guests · " + S.tables.length + " tables") + "</p>" +
       '<div class="p-tables">' + S.tables.map(function (t) {
         var gs = tableGuests(t.id).sort(function (a, b) { return coll.compare(a.name, b.name); });
-        return '<div class="p-table"><h2>' + esc(t.name) + ' <small>(' + load_(t.id) + "/" + t.seats + ")</small></h2><ul>" +
+        return '<div class="p-table"><h2>' + esc(t.name) + " <small>(" + load_(t.id) + "/" + t.seats + ")</small></h2><ul>" +
           gs.map(function (g) { return "<li>" + esc(g.name) + (g.n > 1 ? " <small>(" + g.n + ")</small>" : "") + "</li>"; }).join("") + "</ul></div>";
       }).join("") + "</div>" +
-      '<div class="p-index"><h2>רשימת כניסה לפי א-ב</h2><table><thead><tr><th>שם</th><th>אנשים</th><th>שולחן</th></tr></thead><tbody>' +
+      '<div class="p-index"><h2>' + L("רשימת כניסה לפי א-ב", "Escort list (A–Z)") + "</h2><table><thead><tr><th>" + L("שם", "Name") + "</th><th>" + L("אנשים", "Party") + "</th><th>" + L("שולחן", "Table") + "</th></tr></thead><tbody>" +
       guestsAlpha().map(function (g) { return "<tr><td>" + esc(g.name) + "</td><td>" + g.n + "</td><td>" + esc(tableLabel(table(g.table))) + "</td></tr>"; }).join("") +
       "</tbody></table></div>";
     doPrint(html, "chart");
@@ -519,11 +558,14 @@
       return '<section class="p-card"><div class="p-card-in"><div class="p-card-ev">' + esc(S.title || "") + '</div><div class="p-card-num">' + esc(t.name) + "</div>" +
         '<ul class="p-card-names">' + gs.map(function (g) { return "<li>" + esc(g.name) + "</li>"; }).join("") + "</ul></div></section>";
     }).join("");
-    doPrint(html || "<p>אין שולחנות.</p>", "cards");
+    doPrint(html || "<p>" + L("אין שולחנות.", "No tables.") + "</p>", "cards");
   }
   function watermark() {
-    var s = ""; for (var i = 0; i < 18; i++) s += "<span>תכנון פלוס · גרסה חינמית</span>";
-    return '<div class="wm" aria-hidden="true">' + s + '</div><div class="wm-foot">נוצר בגרסה החינמית של תכנון פלוס · tichnun.netlify.app/apps/seating · לגרסה נקייה: פתיחת הגרסה המלאה בכלי</div>';
+    var s = "", w = L("תכנון פלוס · גרסה חינמית", "Tichnun Plus · free version");
+    for (var i = 0; i < 18; i++) s += "<span>" + w + "</span>";
+    return '<div class="wm" aria-hidden="true">' + s + '</div><div class="wm-foot">' +
+      L("נוצר בגרסה החינמית של תכנון פלוס · tichnun.netlify.app/apps/seating · לגרסה נקייה: פתיחת הגרסה המלאה בכלי",
+        "Made with the free version of Tichnun Plus · tichnun.netlify.app/en/apps/seating · unlock the full version for a clean copy") + "</div>";
   }
   function doPrint(html, mode) {
     var area = $("#print-area");
@@ -536,36 +578,33 @@
     setTimeout(function () { window.print(); setTimeout(done, 500); }, 60);
   }
   function exportXlsx() {
-    var byTable = [["סידור הושבה: " + (S.title || "")], ["שולחן", "מקומות", "שם", "אנשים", "צד", "קבוצה"]];
+    var H = L(["שולחן", "מקומות", "שם", "אנשים", "צד", "קבוצה"], ["Table", "Seats", "Name", "Party", "Side", "Group"]);
+    var byTable = [[L("סידור הושבה: ", "Seating chart: ") + (S.title || "")], H];
     S.tables.forEach(function (t) {
       tableGuests(t.id).sort(function (a, b) { return coll.compare(a.name, b.name); }).forEach(function (g) {
         byTable.push([t.name, t.seats, g.name, g.n, g.side || "", g.group || ""]);
       });
     });
-    var un = S.guests.filter(function (g) { return !g.table; });
-    un.forEach(function (g) { byTable.push(["ללא שולחן", "", g.name, g.n, g.side || "", g.group || ""]); });
-    var guestsSheet = [["שם", "אנשים", "צד", "קבוצה", "שולחן"]].concat(guestsAlpha().map(function (g) { return [g.name, g.n, g.side || "", g.group || "", tableLabel(table(g.table))]; }));
-    var tablesSheet = [["שולחן", "צורה", "מקומות", "תפוסה", "פנוי"]].concat(S.tables.map(function (t) { var u = load_(t.id); return [t.name, t.shape === "rect" ? "מלבני" : "עגול", t.seats, u, t.seats - u]; }));
+    S.guests.filter(function (g) { return !g.table; }).forEach(function (g) { byTable.push([NO_TABLE, "", g.name, g.n, g.side || "", g.group || ""]); });
+    var guestsSheet = [L(["שם", "אנשים", "צד", "קבוצה", "שולחן"], ["Name", "Party", "Side", "Group", "Table"])].concat(guestsAlpha().map(function (g) { return [g.name, g.n, g.side || "", g.group || "", tableLabel(table(g.table))]; }));
+    var tablesSheet = [L(["שולחן", "צורה", "מקומות", "תפוסה", "פנוי"], ["Table", "Shape", "Seats", "Taken", "Free"])].concat(S.tables.map(function (t) { var u = load_(t.id); return [t.name, t.shape === "rect" ? L("מלבני", "Rectangular") : L("עגול", "Round"), t.seats, u, t.seats - u]; }));
     var blob = AppZip.xlsx({ sheets: [
-      { name: "הושבה לפי שולחן", rows: byTable, cols: [14, 9, 28, 8, 12, 18], title: [0], header: [1], freeze: 2, autoFilter: 2 },
-      { name: "רשימת כניסה א-ב", rows: guestsSheet, cols: [28, 8, 12, 18, 14], header: [0], freeze: 1, autoFilter: 1 },
-      { name: "שולחנות", rows: tablesSheet, cols: [16, 10, 10, 10, 10], header: [0], freeze: 1 }
+      { name: L("הושבה לפי שולחן", "By table"), rows: byTable, cols: [14, 9, 28, 8, 14, 18], title: [0], header: [1], freeze: 2, autoFilter: 2, rtl: !EN },
+      { name: L("רשימת כניסה א-ב", "Escort list A-Z"), rows: guestsSheet, cols: [28, 8, 14, 18, 14], header: [0], freeze: 1, autoFilter: 1, rtl: !EN },
+      { name: L("שולחנות", "Tables"), rows: tablesSheet, cols: [16, 12, 10, 10, 10], header: [0], freeze: 1, rtl: !EN }
     ] });
     AppZip.download(blob, fileBase() + ".xlsx");
-    toast("קובץ האקסל ירד");
+    toast(L("קובץ האקסל ירד", "Excel file downloaded"));
   }
   function fileBase() { return ("seating-" + (S.title || "event")).replace(/[\\\/:*?"<>|]+/g, "").replace(/\s+/g, "-").slice(0, 60); }
   function backup() {
     AppZip.download(new Blob([JSON.stringify(S, null, 1)], { type: "application/json" }), fileBase() + "-backup.json");
-    toast("קובץ הגיבוי ירד. שמרו אותו כדי לשחזר בכל דפדפן.");
+    toast(L("קובץ הגיבוי ירד. שמרו אותו כדי לשחזר בכל דפדפן.", "Backup downloaded. Keep it to restore in any browser."));
   }
   function paid(fn, reason) {
-    return function () {
-      if (AppUnlock.require(SLUG, { title: "הגרסה המלאה של סידור ההושבה · ₪29", reason: reason, features: UNLOCK_FEATS })) fn();
-    };
+    return function () { if (AppUnlock.require(SLUG, { title: UNLOCK_TITLE, reason: reason, features: UNLOCK_FEATS })) fn(); };
   }
 
-  /* ---------- toast ---------- */
   var toastTimer;
   function toast(msg) {
     var t = $("#toast");
@@ -574,7 +613,7 @@
   }
 
   /* ---------- drag & drop (pointer events: mouse + touch long-press) ---------- */
-  var drag = null;
+  var drag = null, suppressClick = false;
   function startDrag(ch, x, y) {
     var ghost = ch.cloneNode(true);
     ghost.className += " ghost";
@@ -594,7 +633,6 @@
       if (drag.over) drag.over.classList.remove("over");
       drag.over = zone; if (zone) zone.classList.add("over");
     }
-    // auto-scroll near viewport edges
     if (y < 60) window.scrollBy(0, -12); else if (y > window.innerHeight - 60) window.scrollBy(0, 12);
   }
   function endDrag() {
@@ -613,7 +651,7 @@
     root.addEventListener("pointerdown", function (e) {
       var ch = e.target.closest(".g-chip");
       if (!ch || e.button > 0) return;
-      pending = { ch: ch, x: e.clientX, y: e.clientY, touch: e.pointerType !== "mouse", started: false, id: e.pointerId };
+      pending = { ch: ch, x: e.clientX, y: e.clientY, touch: e.pointerType !== "mouse", started: false };
       if (pending.touch) {
         pending.timer = setTimeout(function () {
           if (pending && !pending.started) { pending.started = true; startDrag(pending.ch, pending.x, pending.y); if (navigator.vibrate) navigator.vibrate(15); }
@@ -628,46 +666,53 @@
       if (dist > 6) { pending.started = true; startDrag(pending.ch, e.clientX, e.clientY); }
     }, { passive: false });
     document.addEventListener("touchmove", function (e) { if (drag) e.preventDefault(); }, { passive: false });
-    var up = function (e) {
+    document.addEventListener("pointerup", function () {
       if (!pending) return;
       clearTimeout(pending.timer);
       var p = pending; pending = null;
       if (p.started) { endDrag(); suppressClick = true; setTimeout(function () { suppressClick = false; }, 50); }
-    };
-    document.addEventListener("pointerup", up);
+    });
     document.addEventListener("pointercancel", function () { if (pending) { clearTimeout(pending.timer); if (pending.started) endDrag(); pending = null; } });
     root.addEventListener("contextmenu", function (e) { if (e.target.closest(".g-chip")) e.preventDefault(); });
   }
-  var suppressClick = false;
 
   /* ---------- wiring ---------- */
   function init() {
     if (!document.getElementById("toast")) { var t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
     var app = $("#app");
     bindDrag(app);
-    app.addEventListener("click", function (e) {
+    var unlockDlg = function () { AppUnlock.open(SLUG, { title: UNLOCK_TITLE, features: UNLOCK_FEATS }); };
+    var acts = {
+      "add-tables": addTables, "paste": pasteDialog, "auto": function () { autoSeat(false); },
+      "auto-all": function () { if (confirm(L("לבטל את כל השיבוצים ולהושיב מחדש את כולם?", "Clear all seats and auto-seat everyone again?"))) autoSeat(true); },
+      "clear-seats": function () { if (confirm(L("להוציא את כולם מהשולחנות? (אפשר לבטל)", "Unseat everyone? (You can undo)"))) mutate(function () { S.guests.forEach(function (g) { g.table = null; }); }); },
+      "undo": undo, "demo": demo, "backup": backup,
+      "restore": function () { $("#file-json").click(); },
+      "import": function () { $("#file-in").click(); },
+      "reset": function () { if (confirm(L("למחוק את כל הנתונים בכלי? (מומלץ לשמור גיבוי קודם)", "Delete everything in the tool? (Save a backup first)"))) mutate(function () { S = blank(); }); },
+      "print": function () { printChart(AppUnlock.isUnlocked(SLUG)); },
+      "pdf-clean": paid(function () { printChart(true); }, L("PDF נקי בלי סימן מים, מוכן לשליחה לאולם ולהדפסה.", "A clean PDF without watermark, ready for the venue and for printing.")),
+      "xlsx": paid(exportXlsx, L("ייצוא לאקסל עם הושבה לפי שולחן ורשימת כניסה לפי א-ב.", "Excel export with seating by table and an A–Z escort list.")),
+      "cards": paid(printCards, L("כרטיסי שולחן גדולים להדפסה: מספר השולחן ושמות היושבים.", "Large printable table cards: table number and guest names.")),
+      "unlock": unlockDlg
+    };
+    document.addEventListener("click", function (e) {
       if (suppressClick) return;
-      var ch = e.target.closest(".g-chip"); if (ch) return editGuest(ch.getAttribute("data-gid"));
-      var et = e.target.closest("[data-edit-table]"); if (et) return editTable(et.getAttribute("data-edit-table"));
-      var a = e.target.closest("[data-act]"); if (!a) return;
-      var act = a.getAttribute("data-act");
-      var menu = a.closest("details"); if (menu) menu.open = false;
-      ({
-        "add-tables": addTables, "paste": pasteDialog, "auto": function () { autoSeat(false); },
-        "auto-all": function () { if (confirm("לבטל את כל השיבוצים ולהושיב מחדש את כולם?")) autoSeat(true); },
-        "clear-seats": function () { if (confirm("להוציא את כולם מהשולחנות? (אפשר לבטל)")) mutate(function () { S.guests.forEach(function (g) { g.table = null; }); }); },
-        "undo": undo, "demo": demo, "backup": backup,
-        "restore": function () { $("#file-json").click(); },
-        "import": function () { $("#file-in").click(); },
-        "reset": function () { if (confirm("למחוק את כל הנתונים בכלי? (מומלץ לשמור גיבוי קודם)")) mutate(function () { S = blank(); }); },
-        "print": function () { printChart(AppUnlock.isUnlocked(SLUG)); },
-        "pdf-clean": paid(function () { printChart(true); }, "PDF נקי בלי סימן מים, מוכן לשליחה לאולם ולהדפסה."),
-        "xlsx": paid(exportXlsx, "ייצוא לאקסל עם הושבה לפי שולחן ורשימת כניסה לפי א-ב."),
-        "cards": paid(printCards, "כרטיסי שולחן גדולים להדפסה: מספר השולחן ושמות היושבים."),
-        "unlock": function () { AppUnlock.open(SLUG, { title: "הגרסה המלאה של סידור ההושבה · ₪29", features: UNLOCK_FEATS }); }
-      }[act] || function () {})();
+      var inApp = app.contains(e.target);
+      if (inApp) {
+        var ch = e.target.closest(".g-chip"); if (ch) return editGuest(ch.getAttribute("data-gid"));
+        var et = e.target.closest("[data-edit-table]"); if (et) return editTable(et.getAttribute("data-edit-table"));
+      }
+      var a = e.target.closest("[data-act]");
+      if (a && (inApp || a.closest("#plan, .app-info"))) {
+        var act = a.getAttribute("data-act");
+        var menu = a.closest("details"); if (menu) menu.open = false;
+        if (act === "whatsapp") return; // plain link to wa.me
+        e.preventDefault();
+        (acts[act] || function () {})();
+      }
+      $$("details.menu[open]").forEach(function (m) { if (!m.contains(e.target)) m.open = false; });
     });
-    $("#plan").addEventListener("click", function (e) { if (e.target.closest("[data-act=unlock]")) AppUnlock.open(SLUG, { title: "הגרסה המלאה של סידור ההושבה · ₪29", features: UNLOCK_FEATS }); });
     $("#add-guest").addEventListener("submit", function (e) {
       e.preventDefault();
       var f = e.target, name = f.gname.value.trim();
@@ -686,7 +731,6 @@
     document.addEventListener("keydown", function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && !/INPUT|TEXTAREA/.test((document.activeElement || {}).tagName || "")) { e.preventDefault(); undo(); }
     });
-    // mobile tabs
     $$(".app-tabs [data-tab]").forEach(function (b) {
       b.addEventListener("click", function () {
         $$(".app-tabs [data-tab]").forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
@@ -694,11 +738,10 @@
       });
     });
     AppUnlock.onChange(function () { render(); });
-    document.addEventListener("click", function (e) { $$("details.menu[open]").forEach(function (m) { if (!m.contains(e.target)) m.open = false; }); });
     render();
     if (new URLSearchParams(location.search).get("demo") === "1" && !S.guests.length) demo();
   }
 
-  window.SeatingApp = { state: function () { return S; }, autoSeat: autoSeat, render: render, demo: demo, parseCSV: parseCSV, rowsToGuests: rowsToGuests };
+  window.SeatingApp = { state: function () { return S; }, autoSeat: autoSeat, render: render, demo: demo, parseCSV: parseCSV, rowsToGuests: rowsToGuests, waUrl: waUrl };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

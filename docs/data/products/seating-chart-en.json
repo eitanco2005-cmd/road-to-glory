@@ -1,0 +1,17 @@
+{
+  "slug": "seating-chart-en",
+  "lang": "en",
+  "currency": "USD",
+  "price": 9,
+  "title": "Seating Chart Maker – full version",
+  "subtitle": "Free drag-and-drop seating chart tool; the full version adds a clean PDF, Excel export and printable table cards",
+  "bundle_of": [],
+  "files": [],
+  "unlock": true,
+  "app": "en/apps/seating/",
+  "app_name": "the seating chart tool",
+  "page": "en/apps/seating/",
+  "image": "en/apps/seating/img/screen-1.webp",
+  "sheets_copy_url": null,
+  "tool": null
+}

@@ -107,6 +107,7 @@ async function seating(browser) {
   await page.click(".app-toolbar [data-act=auto]");
   await page.waitForTimeout(200);
   ok((await page.textContent("#un-count")) === "0", "auto-seat seats everyone (13 in 16 seats)");
+  ok(await page.isVisible("#ready") && decodeURIComponent(await page.getAttribute("#ready a[data-act=whatsapp]", "href")).includes("tichnun.netlify.app/apps/seating/"), "Hebrew ready banner with WhatsApp share link");
   // drag a chip back to the unassigned list (mouse)
   const chip = page.locator(".t-card .g-chip").first();
   const box = await chip.boundingBox(), tgt = await page.locator("#unassigned").boundingBox();
@@ -189,6 +190,49 @@ async function seating(browser) {
     if (vp.width < 900) { await p.click("[data-tab=tables]"); await noOverflow(p, "seating 375px (tables)"); }
     if (SHOTS) await p.screenshot({ path: path.join(SHOTS, `seating-${vp.width}.png`), fullPage: vp.width < 900 });
     ok(p.errors.length === 0, `seating ${vp.width}px: no JS errors`);
+    await p.context().close();
+  }
+}
+
+async function seatingEn(browser) {
+  console.log("\n== seating (English, USD) ==");
+  const page = await newPage(browser);
+  await page.goto(BASE + "en/apps/seating/?test=1&demo=1");
+  await page.waitForTimeout(300);
+  ok((await page.textContent("#stats")).includes("guests") && (await page.getAttribute("html", "dir")) === "ltr", "English UI, LTR");
+  ok(await page.isHidden("#ready"), "ready banner hidden before seating");
+  await page.click(".app-toolbar [data-act=auto]");
+  await page.waitForTimeout(200);
+  ok(await page.isVisible("#ready") && (await page.textContent("#ready")).includes("$9"), "ready banner appears with the $9 export offer");
+  const wa = await page.getAttribute("#ready a[data-act=whatsapp]", "href");
+  ok(/^https:\/\/wa\.me\/\?text=/.test(wa) && decodeURIComponent(wa).includes("https://tichnun.netlify.app/en/apps/seating/") && !decodeURIComponent(wa).includes("Perez"), "WhatsApp link: wa.me, prefilled text + tool link, no guest names");
+  await page.click("#ready [data-act=print]");
+  const txt = await printPdf(page, path.join(TMP, "seating-en-free.pdf"));
+  ok(/free version of Tichnun Plus/.test(txt) && /Escort list/.test(txt), "English free PDF: watermark + escort list");
+  await page.click("#ready [data-act=pdf-clean]");
+  const dlg = page.locator("dialog.unlock-dialog");
+  await dlg.locator("[data-test-pay=seating-chart-en]").waitFor({ timeout: 8000 });
+  ok((await dlg.textContent()).includes("$9") && (await dlg.textContent()).includes("Prices in US dollars"), "English dialog: USD price and English checkout copy");
+  await dlg.locator("[data-test-pay=seating-chart-en]").click();
+  await dlg.locator(".success-callout").waitFor({ timeout: 5000 });
+  const u = await page.evaluate(() => JSON.parse(localStorage.getItem("tp-unlocks") || "{}"));
+  ok(u["seating-chart-en"] && !u["seating-chart"], "unlock stored for seating-chart-en only (Hebrew product stays locked)");
+  const links = await dlg.locator('a[href*="thanks/"]').evaluateAll(as => as.map(a => a.getAttribute("href")));
+  ok(links.length > 0 && links.every(h => h.includes("en/thanks/?p=seating-chart-en")), "order links point to en/thanks/");
+  await dlg.locator("button.btn.block.mt-2").click();
+  const [dl] = await Promise.all([page.waitForEvent("download"), page.click("#ready [data-act=xlsx]")]);
+  const xf = path.join(TMP, "seating-en.xlsx"); await dl.saveAs(xf);
+  const out = py("import openpyxl,sys;wb=openpyxl.load_workbook(sys.argv[1]);print(wb.sheetnames);print(wb.worksheets[0].sheet_view.rightToLeft)", xf);
+  ok(out.includes("By table") && /False|None/.test(out), "English XLSX: English sheets, left-to-right");
+  ok(page.errors.length === 0, "no JS errors" + (page.errors.length ? ": " + page.errors.join(" | ") : ""));
+  await page.context().close();
+  for (const vp of [{ width: 375, height: 812 }, { width: 1280, height: 900 }]) {
+    const p = await newPage(browser, vp);
+    await p.goto(BASE + "en/apps/seating/?demo=1");
+    await p.click(".app-toolbar [data-act=auto]");
+    await noOverflow(p, `en seating ${vp.width}px`);
+    if (vp.width < 900) { await p.click("[data-tab=tables]"); await noOverflow(p, "en seating 375px (tables)"); }
+    ok(p.errors.length === 0, `en seating ${vp.width}px: no JS errors`);
     await p.context().close();
   }
 }
@@ -298,6 +342,7 @@ async function pages(browser) {
   const browser = await chromium.launch();
   try {
     await seating(browser);
+    await seatingEn(browser);
     await cv(browser);
     if (fs.existsSync(path.join(DOCS, "p/cv-builder/index.html"))) await pages(browser);
   } catch (e) { console.error(e); failures++; }

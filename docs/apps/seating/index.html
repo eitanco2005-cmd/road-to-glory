@@ -6,6 +6,8 @@
 <title>סידורי הושבה לחתונה אונליין – כלי חינמי עם גרירה | תכנון פלוס</title>
 <meta name="description" content="כלי חינמי לסידורי הושבה לחתונה ולאירועים: מדביקים רשימת מוזמנים או מייבאים מאקסל, מוסיפים שולחנות, גוררים או מושיבים אוטומטית לפי צד וקבוצה, ומקבלים התראה על חריגות. בלי הרשמה, הנתונים נשארים אצלכם.">
 <link rel="canonical" href="https://tichnun.netlify.app/apps/seating/">
+<link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/apps/seating/">
+<link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/apps/seating/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:site_name" content="תכנון פלוס">
@@ -113,6 +115,7 @@
    </aside>
 
    <section class="tables-panel" aria-label="שולחנות">
+    <div id="ready" class="ready-banner" role="status" hidden></div>
     <div id="stats" class="stats"></div>
     <p id="capacity-hint"></p>
     <div id="tables" class="tables-grid"></div>
@@ -126,7 +129,7 @@
     <h2>מה חינם ומה בתשלום?</h2>
     <p><strong>חינם, בלי הגבלה:</strong> כל הכלי על המסך, כמה מוזמנים ושולחנות שתרצו, הושבה אוטומטית, התנגשויות, ייבוא מאקסל, גיבוי, והדפסה / PDF עם סימן מים.</p>
     <p><strong>גרסה מלאה, ₪29 חד-פעמי:</strong> PDF נקי (מפת שולחנות + רשימת כניסה לפי א-ב), ייצוא לאקסל, וכרטיסי שולחן להדפסה. נפתח מיד אחרי התשלום, בלי הרשמה.</p>
-    <button type="button" class="btn accent" data-act="unlock" onclick="AppUnlock.open('seating-chart',{title:'הגרסה המלאה של סידור ההושבה · ₪29'})">לפתיחת הגרסה המלאה</button>
+    <button type="button" class="btn accent" data-act="unlock">לפתיחת הגרסה המלאה</button>
    </div>
    <div class="card pad-lg">
     <h2>פרטיות</h2>

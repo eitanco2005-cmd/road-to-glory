@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Wedding Seating Chart Maker – Drag &amp; Drop, No Sign-up | Tichnun Plus</title>
+<meta name="description" content="Free online seating chart maker for weddings, bar and bat mitzvahs and events. Paste or import your guest list, add round or long tables, drag guests or auto-seat by side and group, and get alerts for who must not sit together. No sign-up; your list stays in your browser.">
+<link rel="canonical" href="https://tichnun.netlify.app/en/apps/seating/">
+<link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/apps/seating/">
+<link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/apps/seating/">
+<link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/en/apps/seating/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tichnun Plus">
+<meta property="og:title" content="Free Wedding Seating Chart Maker – Drag & Drop, No Sign-up">
+<meta property="og:description" content="Add guests and tables, drag or auto-seat, print an escort list. Free, no sign-up, your guest list stays in your browser.">
+<meta property="og:url" content="https://tichnun.netlify.app/en/apps/seating/">
+<meta property="og:image" content="https://tichnun.netlify.app/en/apps/seating/img/screen-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="../../../apps/shared/apps.css">
+<link rel="stylesheet" href="../../../apps/seating/app.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"SoftwareApplication","name":"Seating Chart Maker – Tichnun Plus","applicationCategory":"LifestyleApplication","operatingSystem":"Web",
+  "url":"https://tichnun.netlify.app/en/apps/seating/","inLanguage":"en","image":"https://tichnun.netlify.app/en/apps/seating/img/screen-1.png",
+  "description":"Online seating chart maker for weddings and events: guests, round and long tables, drag and drop, auto-seat and keep-apart conflicts. Free to use; clean PDF, Excel export and table cards for a one-time $9.",
+  "offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Full on-screen use + watermarked PDF"},{"@type":"Offer","price":"9","priceCurrency":"USD","description":"Clean PDF, Excel export and printable table cards"}]},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Is the seating chart maker really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything works for free on screen with no limit on guests or tables, including auto-seat and a watermarked printable PDF. A one-time $9 unlocks a clean PDF, Excel export and table cards."}},
+  {"@type":"Question","name":"Where is my guest list stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your browser on this device. It is never uploaded to us. Use Save backup in the ⋯ menu to move it to another computer."}},
+  {"@type":"Question","name":"Can I import my guest list from Excel or Google Sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy the columns and paste them, or import a CSV or XLSX file. Headers like Name, Count, Side, Group and Table are detected."}},
+  {"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch between the Guests and Tables tabs, long-press a name to drag it, or tap a name and pick a table."}},
+  {"@type":"Question","name":"What happens after I pay?","acceptedAnswer":{"@type":"Answer","text":"Clean exports unlock immediately in the browser you paid in, with no sign-up and no redirect. Opening your order confirmation link in another browser unlocks it there too."}}
+ ]}
+]}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+ <section class="container app-hero">
+  <h1>Free wedding seating chart maker</h1>
+  <p class="lead">Add guests and tables, drag each party to a table or hit "Auto-seat". No sign-up: everything is saved only in your browser.</p>
+  <span id="plan" class="plan-pill">Free version</span>
+ </section>
+
+ <div class="container" id="app">
+  <div class="app-toolbar" role="toolbar" aria-label="Actions">
+   <input id="ev-title" class="grow" type="text" maxlength="80" placeholder="Event name (e.g. Noa & Ethan's wedding)" aria-label="Event name">
+   <input id="ev-date" type="date" aria-label="Event date" style="width:auto">
+   <button type="button" class="btn" data-act="add-tables">+ Tables</button>
+   <button type="button" class="btn accent" data-act="auto">Auto-seat</button>
+   <button type="button" class="btn ghost" data-act="undo" title="Undo (Ctrl+Z)">↶ Undo</button>
+   <details class="menu">
+    <summary class="btn secondary">Print &amp; export ▾</summary>
+    <div class="menu-list">
+     <button type="button" data-act="print">Print / PDF (free, watermarked)</button>
+     <button type="button" data-act="pdf-clean" data-paid>Clean PDF <span class="lock">🔒</span></button>
+     <button type="button" data-act="xlsx" data-paid>Export to Excel <span class="lock">🔒</span></button>
+     <button type="button" data-act="cards" data-paid>Printable table cards <span class="lock">🔒</span></button>
+    </div>
+   </details>
+   <details class="menu">
+    <summary class="btn ghost" aria-label="More actions">⋯</summary>
+    <div class="menu-list">
+     <button type="button" data-act="paste">Paste a guest list</button>
+     <button type="button" data-act="import">Import Excel / CSV</button>
+     <hr>
+     <button type="button" data-act="auto-all">Auto-seat everyone again</button>
+     <button type="button" data-act="clear-seats">Unseat everyone</button>
+     <hr>
+     <button type="button" data-act="backup">Save backup (file)</button>
+     <button type="button" data-act="restore">Restore backup</button>
+     <button type="button" data-act="demo">Load example</button>
+     <button type="button" data-act="reset">Delete all data</button>
+    </div>
+   </details>
+   <input id="file-in" type="file" accept=".csv,.xlsx,.xls,.txt,text/csv" hidden>
+   <input id="file-json" type="file" accept=".json,application/json" hidden>
+  </div>
+
+  <div class="app-tabs" role="tablist" aria-label="View">
+   <button type="button" role="tab" data-tab="guests" aria-selected="true">Guests</button>
+   <button type="button" role="tab" data-tab="tables" aria-selected="false">Tables</button>
+  </div>
+
+  <div class="seat-layout" data-show="guests">
+   <aside class="panel guest-panel" aria-label="Guests">
+    <h2>Add guests</h2>
+    <form id="add-guest" autocomplete="off">
+     <div class="add-row">
+      <input name="gname" type="text" maxlength="80" placeholder="Name (family / couple / single)" aria-label="Name" required>
+      <input name="gn" type="number" min="1" max="60" value="1" aria-label="Party size" title="Party size">
+     </div>
+     <div class="add-row2">
+      <input name="gside" type="text" list="dl-sides" maxlength="40" placeholder="Side" aria-label="Side">
+      <input name="ggroup" type="text" list="dl-groups" maxlength="40" placeholder="Group" aria-label="Group">
+      <button class="btn small" type="submit">Add</button>
+     </div>
+    </form>
+    <div class="btn-row mt-1">
+     <button type="button" class="btn ghost tiny" data-act="paste">Paste list</button>
+     <button type="button" class="btn ghost tiny" data-act="import">Import Excel / CSV</button>
+     <button type="button" class="btn ghost tiny" data-act="demo">Example</button>
+    </div>
+    <datalist id="dl-sides"></datalist><datalist id="dl-groups"></datalist>
+    <div class="filters">
+     <input id="q" type="text" placeholder="Search a name (also highlighted on tables)" aria-label="Search">
+     <select id="f-side" aria-label="Filter by side"></select>
+     <select id="f-group" aria-label="Filter by group"></select>
+    </div>
+    <h2>Unseated <span class="muted num">(<span id="un-count">0</span>)</span></h2>
+    <div id="unassigned" class="drop" data-drop=""></div>
+    <p class="small muted mt-1 mb-0">Drag a name onto a table (on a phone: long-press, then drag), or click a name to edit it, pick a table and mark "keep apart".</p>
+   </aside>
+
+   <section class="tables-panel" aria-label="Tables">
+    <div id="ready" class="ready-banner" role="status" hidden></div>
+    <div id="stats" class="stats"></div>
+    <p id="capacity-hint"></p>
+    <div id="tables" class="tables-grid"></div>
+   </section>
+  </div>
+ </div>
+
+ <section class="container app-info">
+  <div class="grid cols-2">
+   <div class="card pad-lg">
+    <h2>Free vs. full version</h2>
+    <p><strong>Free, no limits:</strong> the whole tool on screen, any number of guests and tables, auto-seat, conflicts, Excel import, backups and a watermarked printable PDF.</p>
+    <p><strong>Full version, $9 one-time:</strong> a clean PDF (table map + A–Z escort list), Excel export and printable table cards. Unlocks instantly after payment, no account.</p>
+    <button type="button" class="btn accent" data-act="unlock">Unlock the full version</button>
+   </div>
+   <div class="card pad-lg">
+    <h2>Privacy</h2>
+    <p>Your guest list is never uploaded to us or anyone else: it's stored only in this browser on this device. To move it to another computer, use "Save backup" in the ⋯ menu.</p>
+    <p class="mb-0">Planning the whole event? See our <a href="../../">Jewish-life planners</a> for weddings, bar and bat mitzvahs and holidays.</p>
+   </div>
+  </div>
+
+  <div class="card pad-lg mt-3">
+   <h2>How to make a seating chart in 10 minutes</h2>
+   <ol>
+    <li><strong>One line per invitation.</strong> Paste from your RSVP spreadsheet: name, party size, side and group (family, college, work…). Groups become tables.</li>
+    <li><strong>Add tables.</strong> Round tables usually seat 8–10 (60") or 10–12 (72"); check with your venue. Add one spare table for late RSVPs.</li>
+    <li><strong>Auto-seat, then adjust.</strong> Auto-seat keeps each group together and respects "keep apart" requests. Drag to fine-tune; Undo goes back.</li>
+    <li><strong>Print the escort list.</strong> The A–Z list (name → table) is what the welcome table needs. Send the table map to your venue.</li>
+   </ol>
+  </div>
+
+  <div class="mt-3">
+   <h2>FAQ</h2>
+   <div class="faq">
+    <details><summary>Is the seating chart maker really free?</summary><p>Yes. Everything works for free on screen with no limit on guests or tables, including auto-seat and a watermarked printable PDF. A one-time $9 unlocks a clean PDF, Excel export and table cards.</p></details>
+    <details><summary>Where is my guest list stored?</summary><p>Only in your browser on this device. It is never uploaded to us. Use "Save backup" in the ⋯ menu to move it to another computer.</p></details>
+    <details><summary>Can I import my guest list from Excel or Google Sheets?</summary><p>Yes. Copy the columns and paste them, or import a CSV or XLSX file. Headers like Name, Count, Side, Group and Table are detected.</p></details>
+    <details><summary>Does it work on a phone?</summary><p>Yes. Switch between the Guests and Tables tabs, long-press a name to drag it, or tap a name and pick a table.</p></details>
+    <details><summary>What happens after I pay?</summary><p>Clean exports unlock immediately in the browser you paid in, with no sign-up and no redirect. Opening your order confirmation link in another browser unlocks it there too. Honest note: the tool runs entirely in your browser, so the lock is simple; if the tool saved you an evening, the full version is how you support it.</p></details>
+    <details><summary>Can I get a refund?</summary><p>It's a digital unlock that works instantly, so please try the free version first. See the <a href="../../legal/refund/">refund policy</a>; if something doesn't work, write to us and we'll fix it.</p></details>
+   </div>
+  </div>
+ </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="../../../assets/site.js"></script>
+<script src="../../../assets/checkout.js"></script>
+<script src="../../../apps/shared/zip.js"></script>
+<script src="../../../apps/shared/unlock.js"></script>
+<script src="../../../apps/seating/app.js"></script>
+</body>
+</html>

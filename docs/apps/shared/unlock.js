@@ -13,6 +13,8 @@
   "use strict";
   var KEY = "tp-unlocks";
   var TEST = new URLSearchParams(location.search).get("test") === "1";
+  var EN = /^en/i.test(document.documentElement.lang || "");
+  function L(he, en) { return EN ? en : he; }
   var listeners = [];
 
   function all() { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } }
@@ -35,14 +37,17 @@
     dlg.setAttribute("aria-labelledby", "unlock-title");
     var feats = (opts.features || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
     dlg.innerHTML =
-      '<form method="dialog" class="dlg-close-row"><button class="dlg-x" aria-label="סגירה" value="close">×</button></form>' +
-      '<h2 id="unlock-title">' + esc(opts.title || "פתיחת הגרסה המלאה") + "</h2>" +
+      '<form method="dialog" class="dlg-close-row"><button class="dlg-x" aria-label="' + L("סגירה", "Close") + '" value="close">×</button></form>' +
+      '<h2 id="unlock-title">' + esc(opts.title || L("פתיחת הגרסה המלאה", "Unlock the full version")) + "</h2>" +
       (opts.reason ? '<p class="muted">' + esc(opts.reason) + "</p>" : "") +
       (feats ? '<ul class="unlock-feats">' + feats + "</ul>" : "") +
       '<div class="buy" data-product="' + esc(slug) + '" data-compact="1"></div>' +
-      '<p class="small muted mt-2">התשלום חד-פעמי. אחריו הייצוא הנקי נפתח מיד בדפדפן הזה, בלי הרשמה. ' +
-      'הנתונים שלכם לא נשלחים אלינו: הכל נשמר רק במכשיר שלכם. ' +
-      'כבר קניתם במכשיר אחר? פתחו כאן את קישור דף התודה שקיבלתם אחרי התשלום והגרסה המלאה תיפתח גם בדפדפן הזה.</p>';
+      '<p class="small muted mt-2">' + L("התשלום חד-פעמי. אחריו הייצוא הנקי נפתח מיד בדפדפן הזה, בלי הרשמה. " +
+      "הנתונים שלכם לא נשלחים אלינו: הכל נשמר רק במכשיר שלכם. " +
+      "כבר קניתם במכשיר אחר? פתחו כאן את קישור דף התודה שקיבלתם אחרי התשלום והגרסה המלאה תיפתח גם בדפדפן הזה.",
+      "One-time payment. Clean exports unlock right away in this browser, no sign-up. " +
+      "Your data is never sent to us: everything stays on your device. " +
+      "Bought on another device? Open the order confirmation link you got after paying, here, and the full version unlocks in this browser too.") + "</p>";
     document.body.appendChild(dlg);
     dlg.addEventListener("close", function () { if (dlg) { dlg.remove(); dlg = null; } });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
@@ -56,11 +61,11 @@
       var note = document.createElement("div");
       note.className = "callout success-callout mt-2";
       note.setAttribute("role", "status");
-      note.innerHTML = "<strong>תודה! הגרסה המלאה פתוחה.</strong> אפשר לסגור את החלון ולייצא." +
-        (slug && all()[slug] ? ' <a href="' + esc(thanksUrl(slug)) + '" target="_blank" rel="noopener">דף אישור ההזמנה</a> (שמרו אותו כדי לפתוח את הגרסה המלאה גם במכשיר אחר).' : "");
+      note.innerHTML = L("<strong>תודה! הגרסה המלאה פתוחה.</strong> אפשר לסגור את החלון ולייצא.", "<strong>Thank you! The full version is unlocked.</strong> Close this window and export.") +
+        (slug && all()[slug] ? ' <a href="' + esc(thanksUrl(slug)) + '" target="_blank" rel="noopener">' + L("דף אישור ההזמנה", "Order confirmation page") + "</a> " + L("(שמרו אותו כדי לפתוח את הגרסה המלאה גם במכשיר אחר).", "(keep it to unlock on another device).") : "");
       if (box) box.after(note);
       var b = document.createElement("button");
-      b.type = "button"; b.className = "btn block mt-2"; b.textContent = "סגירה והמשך";
+      b.type = "button"; b.className = "btn block mt-2"; b.textContent = L("סגירה והמשך", "Close and continue");
       b.addEventListener("click", function () { dlg.close(); });
       note.after(b);
     }
@@ -68,7 +73,7 @@
 
   function thanksUrl(slug) {
     var u = all()[slug] || {};
-    return new URL("thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(u.o || "") + (u.test ? "&test=1" : ""), ROOT).href;
+    return new URL((EN ? "en/" : "") + "thanks/?p=" + encodeURIComponent(slug) + "&o=" + encodeURIComponent(u.o || "") + (u.test ? "&test=1" : ""), ROOT).href;
   }
   var ROOT = new URL("../../", (document.currentScript && document.currentScript.src) || location.href).href;
 

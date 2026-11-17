@@ -80,6 +80,16 @@ async function hideChrome(p) {
   await p.screenshot({ path: path.join(S, "screen-5.png") }); shots.push(path.join(S, "screen-5.png"));
   await p.context().close();
 
+  // ---- seating, English (og:image + catalog thumb) ----
+  const SE = path.join(DOCS, "en/apps/seating/img"); fs.mkdirSync(SE, { recursive: true });
+  p = await page(browser, { width: 1280, height: 860 });
+  await p.goto(BASE + "en/apps/seating/?demo=1");
+  await p.evaluate(() => SeatingApp.autoSeat(false));
+  await p.waitForTimeout(400); await hideChrome(p);
+  await p.evaluate(() => window.scrollTo(0, document.getElementById("app").offsetTop - 8));
+  await p.screenshot({ path: path.join(SE, "screen-1.png") }); shots.push(path.join(SE, "screen-1.png"));
+  await p.context().close();
+
   // ---- cv ----
   p = await page(browser, { width: 1280, height: 860 });
   await p.goto(BASE + "apps/cv/?demo=1");
