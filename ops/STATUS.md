@@ -10,6 +10,13 @@
 | W3 Money products | session_01WwXrbPbD4hErXvpu5XCHNa | `ws/money` | done (merged) |
 | W4 Freelancer products | session_01WwXrbP9gQM5pgpiJPV3pjH | `ws/freelancer` | done (merged) |
 
+| A. English Jewish planners | session_01WwXrbPq1XLRrnmchxqUaHS | `ws/en` | building |
+| B. Pay-to-export apps | session_01WwXrbRBox2nqBk9W4FzQz7 | `ws/apps` | building |
+| C+D. Tips/upsells + RTL kit | session_01WwXrbR2nUUh11PJf4AM8EV | `ws/tipskit` | building |
+| E. Hanukkah pack | session_01WwXrbQhAm2zpZGSQCbvZty | `ws/hanukkah` | building |
+| F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | building |
+| G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | building |
+
 **Money:** Revenue ₪0 · Fees ₪0 · Profit ₪0 / ₪3,600
 
 ## Log
