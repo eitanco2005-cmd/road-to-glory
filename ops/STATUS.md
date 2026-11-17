@@ -29,3 +29,4 @@
 - 2026-11-17 21:00: P2 QA (facts fixed, honest copy, a11y, spreadsheet bug fixes) + P2 SEO (12 guides, 2 tools: net-salary budget, savings goal) merged and published. e2e ALL PASSED. Sitemap 47 URLs.
 - 2026-11-17: Exposure: README links to site from GitHub; IndexNow key + tools/site/indexnow.py (Bing/DDG/ChatGPT search). Owner told: domain + Search Console are optional speed-ups, offered once, not pushed.
 - 2026-11-17: Moved to Netlify https://tichnun.netlify.app/ (deploys from main/docs). Rebranded to תכנון פלוס (all pages + downloads). Old github.io URLs auto-forward via site.js.
+- 2026-11-17: Owner: diversify. Launched streams A (English Jewish planners), B (pay-to-export apps), C+D (tips/upsells + RTL dev kit). See PLAN §12.

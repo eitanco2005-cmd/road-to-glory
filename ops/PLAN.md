@@ -170,3 +170,18 @@ None of these are needed. Each one speeds things up.
 ## 11. What you need to do
 
 **Nothing is required.** Optional boosts are in section 9, and PayPal will email you when money arrives.
+
+---
+
+## 12. Multiple income streams (added 2026-11-17)
+
+Owner: "don't stick to one idea and pray, go in multiple directions." All streams share the same rules: PayPal Client ID
+checkout only, no social media, no outreach, no new owner accounts. Each stream is judged on traffic/sales after 3–4 weeks.
+
+| Stream | What | Traffic source | Price |
+|---|---|---|---|
+| Hebrew planners (original) | 6 products + bundles | Google (Hebrew) | ₪29–129 |
+| **A. English Jewish-life planners** | Bar/bat mitzvah, Jewish wedding, Passover seder, holiday hosting planners at `/en/` | Google (English, US) | $15–39 |
+| **B. Pay-to-export web tools** | Wedding seating-chart planner, Hebrew CV builder: free to use, pay to download clean PDF/XLSX | Google (Hebrew) | ₪19–29 |
+| **C. Tips + upsells** | "Buy us a coffee" on free calculators; bundle upsell on product pages and thanks page | Existing traffic | ₪10+ |
+| **D. RTL developer kit** | Free open-source RTL landing-page kit (in this repo) + paid Pro pack | GitHub search + Google (English) | $19–29 |
