@@ -24,3 +24,4 @@
 - 2026-11-17: W3 merged. **Phase 1 build complete**: 6 products + 4 bundles, 6 free tools, 12 guides, 32-URL sitemap, full e2e ALL PASSED. Waiting on owner: repo public + Pages + push-to-main OK, seller name/email.
 - 2026-11-17: Seller details filled (owner approved name + email for the site). Pushed to main for GitHub Pages.
 - 2026-11-17: 🚀 SITE LIVE https://eitanco2005-cmd.github.io/road-to-glory/ — PayPal buttons render on live pages, legal pages show seller. Phase 2 started (QA + SEO workers).
+- 2026-11-17: Owner decisions: no social media, no Grow for now, no HF token, no public sales tracking. Sales log endpoints stay empty (no-op). Profit tracking = PayPal emails; manager asks owner weekly (optional).
