@@ -1,6 +1,6 @@
 # Status board
 
-**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — live at https://tichnun.netlify.app/ (brand: תכנון פלוס) · 6 products, 4 bundles, 8 free tools, 24 guides, 47 pages
+**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — live at https://tichnun.netlify.app/ (brand: תכנון פלוס) · 103 pages: Hebrew + English shop, 3 pay-to-export apps, Hanukkah, RTL dev kit
 
 | Workstream | Worker session | Branch | State |
 |---|---|---|---|
@@ -11,8 +11,8 @@
 | W4 Freelancer products | session_01WwXrbP9gQM5pgpiJPV3pjH | `ws/freelancer` | done (merged) |
 
 | A. English Jewish planners | session_01WwXrbPq1XLRrnmchxqUaHS | `ws/en` | done (merged) |
-| B. Pay-to-export apps | session_01WwXrbRBox2nqBk9W4FzQz7 | `ws/apps` | building |
-| C+D. Tips/upsells + RTL kit | session_01WwXrbR2nUUh11PJf4AM8EV | `ws/tipskit` | building |
+| B. Pay-to-export apps | session_01WwXrbRBox2nqBk9W4FzQz7 | `ws/apps` | done (merged) |
+| C+D. Tips/upsells + RTL kit | session_01WwXrbR2nUUh11PJf4AM8EV | `ws/tipskit` | done (merged) |
 | E. Hanukkah pack | session_01WwXrbQhAm2zpZGSQCbvZty | `ws/hanukkah` | done (merged) |
 | F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | DROPPED (research: free Ministry competition) |
 | G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | done (merged) |
@@ -44,3 +44,4 @@
 - 2026-11-17: Deep research done (reports/Realistic paths to 1000 dollars.md). Verdict: distribution is the binding constraint; $1k odds ≈1–2% (30d), 2–4% (60d), 5–8% (90d) under current rules. Portfolio: double down on seating-chart pay-to-export (he+en, WhatsApp share) + English USD planners; keep CV builder (differentiate), spreadsheets/calculators, RTL kit, tips cheap; invitation maker folded into wedding tools; Hanukkah = 2027 asset; DROP worksheets, mass AI pages, bounties, awesome-list PR campaigns. Next: WhatsApp share on all calculators, per-query English pages, IndexNow each deploy, GitHub repo polish, day-45 review (~Jan 1).
 - 2026-11-17: Merged A (English /en/: 4 USD planners + bundle, 3 calculators, 7 guides) and G (invitation maker ₪19, 12 templates, WhatsApp share). 73 URLs. Risk noted: PayPal may hold USD payments for manual acceptance if the account is set to "ask" for unheld currencies.
 - 2026-11-17: Merged E (Hanukkah: 6 products he/en, 2 calculators, hubs, guides) + home banners until Dec 12. checkout.js gained thanks_path. 87 URLs.
+- 2026-11-17: Merged B (seating chart ₪29/$9 + CV builder ₪19, WhatsApp share) and C+D (tip jar on free tools, bundle upsells, RTL Landing Kit free MIT + Pro $24). All 5 e2e suites pass. 103 URLs. Wave 1–2 build complete.
