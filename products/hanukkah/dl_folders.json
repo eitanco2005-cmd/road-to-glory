@@ -1,0 +1,50 @@
+{
+ "hanukkah-activity-pack": {
+  "folder": "064ngcvfkg27mt04",
+  "files": [
+   {
+    "label": "חבילת פעילויות לחנוכה 2026 – 20 עמודים להדפסה (PDF, A4)",
+    "path": "dl/064ngcvfkg27mt04/hanukkah-activity-pack-he-A4.pdf"
+   }
+  ]
+ },
+ "hanukkah-party-planner": {
+  "folder": "0jml5l25w7uztny4",
+  "files": [
+   {
+    "label": "מתכנן מסיבת חנוכה (אקסל ריק לעבודה)",
+    "path": "dl/0jml5l25w7uztny4/hanukkah-party-planner-he.xlsx"
+   },
+   {
+    "label": "קובץ דוגמה מלא – מסיבה לדוגמה",
+    "path": "dl/0jml5l25w7uztny4/hanukkah-party-planner-he-example.xlsx"
+   }
+  ]
+ },
+ "hanukkah-activity-pack-en": {
+  "folder": "ztr55y1nafqbzkx5",
+  "files": [
+   {
+    "label": "Hanukkah Activity Pack 2026 – 20 printable pages (PDF, US Letter)",
+    "path": "dl/ztr55y1nafqbzkx5/hanukkah-activity-pack-en-Letter.pdf"
+   },
+   {
+    "label": "Same pack in A4 size (PDF)",
+    "path": "dl/ztr55y1nafqbzkx5/hanukkah-activity-pack-en-A4.pdf"
+   }
+  ]
+ },
+ "hanukkah-party-planner-en": {
+  "folder": "j5skvo4dtz07sz8y",
+  "files": [
+   {
+    "label": "Hanukkah Party Planner (blank workbook, Excel / Google Sheets)",
+    "path": "dl/j5skvo4dtz07sz8y/hanukkah-party-planner-en.xlsx"
+   },
+   {
+    "label": "Example workbook – filled-in sample party",
+    "path": "dl/j5skvo4dtz07sz8y/hanukkah-party-planner-en-example.xlsx"
+   }
+  ]
+ }
+}

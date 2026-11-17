@@ -1,0 +1,21 @@
+{
+  "slug": "hanukkah-party-planner",
+  "title": "מתכנן מסיבת חנוכה – אקסל",
+  "subtitle": "אורחים, כמויות סופגניות ולביבות, רשימת קניות אוטומטית ומעקב מתנות ל-8 לילות",
+  "price_ils": 19,
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "מתכנן מסיבת חנוכה (אקסל ריק לעבודה)",
+      "path": "dl/0jml5l25w7uztny4/hanukkah-party-planner-he.xlsx"
+    },
+    {
+      "label": "קובץ דוגמה מלא – מסיבה לדוגמה",
+      "path": "dl/0jml5l25w7uztny4/hanukkah-party-planner-he-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "sufganiyot-calculator",
+  "url": "p/hanukkah-party-planner/",
+  "image": "p/hanukkah-party-planner/img/dashboard.webp"
+}

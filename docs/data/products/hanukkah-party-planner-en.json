@@ -1,0 +1,25 @@
+{
+  "slug": "hanukkah-party-planner-en",
+  "title": "Hanukkah Party Planner (Excel / Google Sheets)",
+  "subtitle": "Guests, latke & doughnut quantities, auto shopping list and an 8-night gift tracker",
+  "price": 12,
+  "price_ils": 12,
+  "currency": "USD",
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "Hanukkah Party Planner (blank workbook, Excel / Google Sheets)",
+      "path": "dl/j5skvo4dtz07sz8y/hanukkah-party-planner-en.xlsx"
+    },
+    {
+      "label": "Example workbook – filled-in sample party",
+      "path": "dl/j5skvo4dtz07sz8y/hanukkah-party-planner-en-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "latke-calculator",
+  "thanks_path": "en/hanukkah/thanks/",
+  "url": "en/hanukkah/party-planner/",
+  "image": "en/hanukkah/img/planner-dashboard.webp",
+  "_note": "USD product: price is in USD (price_ils mirrors it for older readers); see checkout.js 'currency'."
+}

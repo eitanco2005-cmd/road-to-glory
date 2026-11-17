@@ -1,0 +1,18 @@
+{
+  "slug": "hanukkah-bundle-en",
+  "title": "Hanukkah Bundle: Activity Pack + Party Planner",
+  "subtitle": "Both Hanukkah products together – $19 instead of $24",
+  "price": 19,
+  "price_ils": 19,
+  "currency": "USD",
+  "bundle_of": [
+    "hanukkah-activity-pack-en",
+    "hanukkah-party-planner-en"
+  ],
+  "files": [],
+  "sheets_copy_url": null,
+  "tool": null,
+  "thanks_path": "en/hanukkah/thanks/",
+  "url": "en/hanukkah/",
+  "_note": "USD product: price is in USD (price_ils mirrors it for older readers); see checkout.js 'currency'."
+}
