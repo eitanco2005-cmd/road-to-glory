@@ -1,0 +1,6 @@
+{
+  "_note": "Public PayPal Live Client ID (safe to publish; it cannot move money). Never commit the Secret.",
+  "client_id": "BAA7ZWdWb42j_Gm270pywGmY5BNeKEGZAqRpJ25YepvKg5437Dwn8ye_yDsAlrJkqu9JbAHIQeWIbwrT8I",
+  "env": "live",
+  "currency": "ILS"
+}
