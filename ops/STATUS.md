@@ -1,6 +1,6 @@
 # Status board
 
-**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 1 (Build), Nov 17–24
+**Restarted 2026-11-17** (owner paused Nov 6–17) · Phase 2 (Get found) — site live since 2026-11-17
 
 | Workstream | Worker session | Branch | State |
 |---|---|---|---|
@@ -23,3 +23,4 @@
 - 2026-11-17: W2 merged: wedding + bar mitzvah planners, event bundle, 2 calculators, 4 guides.
 - 2026-11-17: W3 merged. **Phase 1 build complete**: 6 products + 4 bundles, 6 free tools, 12 guides, 32-URL sitemap, full e2e ALL PASSED. Waiting on owner: repo public + Pages + push-to-main OK, seller name/email.
 - 2026-11-17: Seller details filled (owner approved name + email for the site). Pushed to main for GitHub Pages.
+- 2026-11-17: 🚀 SITE LIVE https://eitanco2005-cmd.github.io/road-to-glory/ — PayPal buttons render on live pages, legal pages show seller. Phase 2 started (QA + SEO workers).
