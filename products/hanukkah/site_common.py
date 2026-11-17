@@ -29,6 +29,7 @@ EXTRA_CSS = """
 .hk-bracha{font-family:'Noto Sans Hebrew','Assistant',sans-serif;font-size:1.3rem;line-height:1.9;background:var(--surface-2);border-radius:var(--radius-sm);padding:.6rem 1rem;margin:.5rem 0}
 .prose img{max-width:100%;height:auto;border-radius:var(--radius-sm);border:1px solid var(--border)}
 .en-header .brand small{display:none}
+@media(max-width:480px){.en-header .brand span{display:none}.en-header .nav a{padding:.4rem .4rem}}
 .lang-switch{font-weight:700;font-size:.92rem}
 """
 
@@ -48,7 +49,7 @@ def en_header(up, he_alt=None):
     sw = f'<a class="lang-switch" href="{up}{he_alt}" hreflang="he" lang="he">עברית</a>' if he_alt else ""
     return (f'<header class="site-header en-header"><a class="skip-link" href="#main">Skip to content</a><div class="container bar">'
             f'<a class="brand" href="{up}en/hanukkah/" aria-label="{BRAND_LATIN} — Hanukkah">{EN_LOGO}<span>{BRAND_LATIN}</span></a>'
-            f'<nav class="nav" aria-label="Main"><a href="{up}en/hanukkah/">Hanukkah 2026</a><a href="{up}en/hanukkah/latke-calculator/">Latke calculator</a>{sw}</nav>'
+            f'<nav class="nav" aria-label="Main"><a href="{up}en/hanukkah/">Hanukkah</a><a href="{up}en/hanukkah/latke-calculator/">Calculator</a>{sw}</nav>'
             f'</div></header>')
 
 

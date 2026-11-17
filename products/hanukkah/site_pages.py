@@ -285,7 +285,7 @@ body = f"""
 </div></section>
 <section class="section" style="padding-top:0"><div class="container">
 <div class="grid cols-2">
-<article class="card pad-lg"><h2 class="h3"><a href="{{up}}{HE_PACK}">חבילת פעילויות לחנוכה</a></h2><img src="{{up}}{PIMG}cover.webp" alt="שער חבילת הפעילויות" width="579" height="842" loading="lazy" style="max-width:200px;height:auto;float:inline-end;margin-inline-start:1rem;border:1px solid var(--border);border-radius:8px">
+<article class="card pad-lg"><h2 class="h3"><a href="{{up}}{HE_PACK}">חבילת פעילויות לחנוכה</a></h2><img src="{{up}}{PIMG}cover.webp" alt="שער חבילת הפעילויות" width="579" height="842" loading="lazy" style="max-width:min(200px,38%);height:auto;float:inline-end;margin-inline-start:1rem;border:1px solid var(--border);border-radius:8px">
 <p>20 דפים להדפסה: צביעה, מבוכים, תפזורת, משחק סביבון, לוח הדלקה וברכות בניקוד.</p><p><strong>₪19</strong></p><a class="btn" href="{{up}}{HE_PACK}">לפרטים</a></article>
 <article class="card pad-lg"><h2 class="h3"><a href="{{up}}{HE_PLAN}">מתכנן מסיבת חנוכה באקסל</a></h2>
 <img src="{{up}}{LIMG}dashboard.webp" alt="דשבורד מתכנן המסיבה" width="857" height="577" loading="lazy" style="width:100%;height:auto;border:1px solid var(--border);border-radius:8px">
@@ -534,7 +534,7 @@ body = f"""
 <section class="section" style="padding-top:0"><div class="container">
 <div class="grid cols-2">
 <article class="card pad-lg"><h2 class="h3"><a href="{{up}}{EN_PACK}">Hanukkah Activity Pack</a></h2>
-<img src="{{up}}{EIMG}pack-cover.webp" alt="Hanukkah Activity Pack cover" width="595" height="770" loading="lazy" style="max-width:200px;height:auto;float:inline-end;margin-inline-start:1rem;border:1px solid var(--border);border-radius:8px">
+<img src="{{up}}{EIMG}pack-cover.webp" alt="Hanukkah Activity Pack cover" width="595" height="770" loading="lazy" style="max-width:min(200px,38%);height:auto;float:inline-end;margin-inline-start:1rem;border:1px solid var(--border);border-radius:8px">
 <p>20 printable pages: coloring, mazes, word search, dreidel game, 2026 candle chart and blessings. US Letter + A4.</p><p><strong>$12</strong></p><a class="btn" href="{{up}}{EN_PACK}">Details</a></article>
 <article class="card pad-lg"><h2 class="h3"><a href="{{up}}{EN_PLAN}">Hanukkah Party Planner</a></h2>
 <img src="{{up}}{EIMG}planner-dashboard.webp" alt="Party planner dashboard" width="857" height="577" loading="lazy" style="width:100%;height:auto;border:1px solid var(--border);border-radius:8px">
