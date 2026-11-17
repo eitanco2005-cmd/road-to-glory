@@ -108,3 +108,16 @@ regression; products page shows both apps live.
   home are linked from the English tool page and don't exist yet in ws/en.
 - Tests: `node tools/apps/e2e_apps.js` → 108 PASS (adds English USD flow, unlock isolation between products, LTR XLSX,
   English watermark/escort list, WhatsApp link content, Hebrew banner).
+
+## Update 3 (final: merged with the integration branch)
+- Merged `origin/claude/epic-heisenberg-h552gc` (ws/en + ws/invites) into `ws/apps`.
+- **Single unlock mechanism**: `docs/assets/checkout.js` is the integration version unchanged (`tp-unlock:<slug>`,
+  `tp:unlocked`, `finish(..., en, product)`); my duplicate unlock code is gone. `apps/shared/unlock.js` reads
+  `tp-unlock:<slug>` and listens to `tp:unlocked`; the old `tp-unlocks` object / `site:unlocked` event are read only as a
+  compatibility alias (tested). `docs/thanks/` and `docs/en/thanks/` write `tp-unlock:<slug>` for unlock products and
+  link back to `p.app` (en/thanks had no unlock handling before).
+- Conflicts resolved: `catalog.js` (integration version), `index.json` (invitation-maker + seating-chart + cv-builder),
+  wedding/bar-mitzvah pages (both sets of links kept), `docs/index.html` + `sitemap.xml` regenerated with
+  `python3 tools/site/build_site.py` (82 URLs).
+- Links to `p/invitation-maker/` from `docs/apps/seating/` and `docs/p/seating-chart/` (via `tools/apps/build_pages.py`).
+- Tests: `node tools/apps/e2e_apps.js` → 111 PASS; `node tools/site/e2e_test.js` (with fastapi + uvicorn) → 32 PASS, ALL PASSED.
