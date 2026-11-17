@@ -1,0 +1,54 @@
+/* Invitation maker app (docs/apps/invite/) — layered on assets/site.css tokens. Mobile-first. */
+.inv-app { padding-block: 18px 90px; }
+.inv-app h1 { font-size: clamp(1.4rem, 4.5vw, 2rem); margin-bottom: 4px; }
+.inv-step { font-size: 1.1rem; margin: 22px 0 10px; display: flex; gap: 8px; align-items: center; }
+.inv-step .n { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--primary); color: var(--primary-ink); font-size: .9rem; flex: none; }
+
+.inv-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.inv-chips button { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: .95rem; cursor: pointer; }
+.inv-chips button[aria-pressed="true"] { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); }
+
+.inv-gallery { display: grid; grid-auto-flow: column; grid-auto-columns: 118px; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; scroll-snap-type: x mandatory; }
+.inv-gallery button { scroll-snap-align: start; border: 2px solid transparent; border-radius: 12px; padding: 4px; background: var(--surface); cursor: pointer; text-align: center; font: inherit; color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.inv-gallery button[aria-pressed="true"] { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.inv-gallery canvas { width: 100%; height: auto; aspect-ratio: 1000 / 1414; display: block; border-radius: 8px; background: var(--surface-2); }
+.inv-gallery span { display: block; font-size: .82rem; margin-top: 4px; line-height: 1.2; }
+@media (min-width: 900px) { .inv-gallery { grid-auto-flow: row; grid-template-columns: repeat(6, 1fr); grid-auto-columns: auto; overflow: visible; } }
+
+.inv-work { display: grid; gap: 20px; }
+@media (min-width: 900px) {
+  .inv-work { grid-template-columns: minmax(0, 1fr) minmax(320px, 440px); align-items: start; }
+  .inv-preview-wrap { position: sticky; top: 76px; order: 2; }
+}
+.inv-preview-wrap { text-align: center; }
+.inv-preview { width: 100%; max-width: 440px; margin-inline: auto; aspect-ratio: 1000 / 1414; display: block; border-radius: 6px; box-shadow: 0 6px 24px rgba(0,0,0,.16); background: #fff; }
+@media (max-width: 899px) { .inv-preview { max-width: min(100%, 360px); } }
+.inv-preview-note { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+
+.inv-form .fields { display: grid; gap: 12px; }
+@media (min-width: 560px) { .inv-form .fields.two { grid-template-columns: 1fr 1fr; } }
+.inv-form textarea { min-height: 64px; resize: vertical; }
+.inv-form fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px 14px; margin: 0 0 14px; background: var(--surface); }
+.inv-form legend { font-weight: 700; padding: 0 6px; }
+.inv-checks { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 6px; font-size: .95rem; }
+.inv-checks label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+.inv-hebdate { font-size: .92rem; color: var(--muted); margin-top: 4px; min-height: 1.3em; }
+.inv-swatches { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.inv-swatches button { width: 40px; height: 40px; border-radius: 50%; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--border); cursor: pointer; padding: 0; }
+.inv-swatches button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--primary); }
+.inv-swatches input[type="color"] { width: 44px; height: 40px; border: 1px solid var(--border); border-radius: 8px; padding: 2px; background: var(--surface); cursor: pointer; }
+.inv-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.inv-link { background: none; border: 0; color: var(--primary); text-decoration: underline; cursor: pointer; font: inherit; padding: 0; }
+
+.inv-export { border: 1px solid var(--border); border-radius: 14px; padding: 16px; background: var(--surface); }
+.inv-export h3 { margin-top: 0; }
+.inv-export .btn { margin-bottom: 8px; }
+.inv-export ul { margin: 6px 0 12px; padding-inline-start: 20px; }
+.inv-paid[hidden], .inv-locked[hidden] { display: none; }
+.inv-pdf { display: grid; gap: 8px; margin-top: 8px; }
+.inv-status { font-size: .9rem; color: var(--muted); min-height: 1.3em; }
+.inv-badge-ok { display: inline-block; background: var(--primary-soft); color: var(--primary); border-radius: 999px; padding: 3px 12px; font-weight: 700; font-size: .9rem; margin-bottom: 8px; }
+
+.inv-bar { position: fixed; inset-inline: 0; bottom: 0; z-index: 30; display: flex; gap: 8px; justify-content: center; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--border); box-shadow: 0 -4px 14px rgba(0,0,0,.08); }
+.inv-bar .btn { flex: 1; max-width: 220px; }
+@media (min-width: 900px) { .inv-bar { display: none; } .inv-app { padding-bottom: 30px; } }
