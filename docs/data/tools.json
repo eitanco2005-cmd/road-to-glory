@@ -42,6 +42,20 @@
       "description": "הערכת תקציב לשיפוץ לפי חדרים, שטח ורמת גימור",
       "product": "renovation-budget",
       "icon": "🛠️"
+    },
+    {
+      "slug": "net-salary-budget",
+      "title": "מחשבון תקציב לפי משכורת נטו",
+      "description": "מכניסים נטו, דיור ומספר נפשות ומקבלים תקציב חודשי מפורט לפי קטגוריות",
+      "product": "household-budget",
+      "icon": "💰"
+    },
+    {
+      "slug": "savings-goal",
+      "title": "מחשבון יעד חיסכון",
+      "description": "כמה לחסוך כל חודש כדי להגיע לסכום יעד, או מתי תגיעו אליו",
+      "product": "household-budget",
+      "icon": "🎯"
     }
   ]
 }

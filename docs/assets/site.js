@@ -114,7 +114,7 @@
       '<div class="container bar">' +
       '<a class="brand" href="' + G.url("") + '" aria-label="Glory — דף הבית">' + LOGO + '<span>Glory</span><small>כלים חכמים לתכנון</small></a>' +
       '<nav class="nav" aria-label="ניווט ראשי">' +
-      navLink("products/", "מוצרים") + navLink("tools/", "כלים חינם") +
+      navLink("products/", "מוצרים") + navLink("tools/", "כלים חינם") + navLink("guides/", "מדריכים") +
       "</nav>" +
       '<button type="button" class="theme-toggle" aria-label="החלפת מצב תצוגה בהיר/כהה"></button>' +
       "</div>";
@@ -154,6 +154,7 @@
       '<li><a href="' + G.toolUrl("budget-503020") + '">מחשבון 50/30/20</a></li>' +
       '<li><a href="' + G.toolUrl("vat-calculator") + '">מחשבון מע״מ</a></li>' +
       '<li><a href="' + G.url("tools/") + '">כל הכלים</a></li>' +
+      '<li><a href="' + G.url("guides/") + '">מדריכים</a></li>' +
       "</ul></div>" +
       "<div><h3>מידע</h3><ul>" +
       '<li><a href="' + G.url("legal/terms/") + '">תקנון ותנאי מכירה</a></li>' +
