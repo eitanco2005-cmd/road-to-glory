@@ -10,12 +10,12 @@
 | W3 Money products | session_01WwXrbPbD4hErXvpu5XCHNa | `ws/money` | done (merged) |
 | W4 Freelancer products | session_01WwXrbP9gQM5pgpiJPV3pjH | `ws/freelancer` | done (merged) |
 
-| A. English Jewish planners | session_01WwXrbPq1XLRrnmchxqUaHS | `ws/en` | building |
+| A. English Jewish planners | session_01WwXrbPq1XLRrnmchxqUaHS | `ws/en` | done (merged) |
 | B. Pay-to-export apps | session_01WwXrbRBox2nqBk9W4FzQz7 | `ws/apps` | building |
 | C+D. Tips/upsells + RTL kit | session_01WwXrbR2nUUh11PJf4AM8EV | `ws/tipskit` | building |
 | E. Hanukkah pack | session_01WwXrbQhAm2zpZGSQCbvZty | `ws/hanukkah` | building |
 | F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | DROPPED (research: free Ministry competition) |
-| G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | building |
+| G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | done (merged) |
 | H. Speech writer | session_01WwXrbNU6eoXkk2izTax4LB | `ws/speeches` | CANCELLED by owner |
 
 **Money:** Revenue ₪0 · Fees ₪0 · Profit ₪0 / ₪3,600
@@ -42,3 +42,4 @@
 - 2026-11-17: Wave 3 launched: H (speech & greeting writer, non-spreadsheet).
 - 2026-11-17: Stream H cancelled by owner ("bad idea"); worker stopped and archived.
 - 2026-11-17: Deep research done (reports/Realistic paths to 1000 dollars.md). Verdict: distribution is the binding constraint; $1k odds ≈1–2% (30d), 2–4% (60d), 5–8% (90d) under current rules. Portfolio: double down on seating-chart pay-to-export (he+en, WhatsApp share) + English USD planners; keep CV builder (differentiate), spreadsheets/calculators, RTL kit, tips cheap; invitation maker folded into wedding tools; Hanukkah = 2027 asset; DROP worksheets, mass AI pages, bounties, awesome-list PR campaigns. Next: WhatsApp share on all calculators, per-query English pages, IndexNow each deploy, GitHub repo polish, day-45 review (~Jan 1).
+- 2026-11-17: Merged A (English /en/: 4 USD planners + bundle, 3 calculators, 7 guides) and G (invitation maker ₪19, 12 templates, WhatsApp share). 73 URLs. Risk noted: PayPal may hold USD payments for manual acceptance if the account is set to "ask" for unheld currencies.
