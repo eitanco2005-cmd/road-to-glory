@@ -1,0 +1,13 @@
+{
+  "slug": "event-bundle",
+  "title": "חבילת אירועים: חתונה + בר/בת מצווה",
+  "subtitle": "שני המתכננים המלאים במחיר אחד – ₪69 במקום ₪88",
+  "price_ils": 69,
+  "bundle_of": [
+    "wedding-planner",
+    "bar-mitzvah-planner"
+  ],
+  "files": [],
+  "sheets_copy_url": null,
+  "tool": null
+}

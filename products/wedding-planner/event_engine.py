@@ -488,7 +488,7 @@ def build_dashboard(wb, cfg, bud_total):
         ("התחייבויות לספקים", f"={q(S_BUD)}!E{bud_total}", NIS),
         ("מאזן צפוי (צפויות − התחייבויות)", '=IF(H5="","",H5-H7)', NIS),
         ("מאזן בפועל (התקבלו − התחייבויות)", "=H6-H7", NIS),
-        ("ממוצע מתנה לאורח מגיע", f'=IF(SUM({gH})=0,"",SUM({gK})/SUM({gH}))', NIS),
+        ("ממוצע מתנה לאורח (מי שנרשמה מתנה)", f'=IF(SUMIFS({gH},{gK},">0")=0,"",SUM({gK})/SUMIFS({gH},{gK},">0"))', NIS),
     ]
     for i, (lab, f, fmt) in enumerate(box):
         r = 5 + i
@@ -566,7 +566,7 @@ def build_dashboard(wb, cfg, bud_total):
     pie.title = "אישורי הגעה (אנשים)"
     pie.add_data(Reference(ws, min_col=2, min_row=h, max_row=h + 4), titles_from_data=True)
     pie.set_categories(Reference(ws, min_col=1, min_row=h + 1, max_row=h + 4))
-    pie.height, pie.width = 8, 10
+    pie.height, pie.width = 7.2, 10
     pie.dataLabels = DataLabelList()
     pie.dataLabels.showVal = False
     pie.dataLabels.showPercent = True
@@ -591,7 +591,7 @@ def build_dashboard(wb, cfg, bud_total):
     sides.x_axis.delete = False
     sides.y_axis.delete = False
     sides.legend.position = "b"
-    ws.add_chart(sides, "G27")
+    ws.add_chart(sides, "G29")
     return ws
 
 

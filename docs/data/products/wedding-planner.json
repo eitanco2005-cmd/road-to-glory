@@ -1,0 +1,23 @@
+{
+  "slug": "wedding-planner",
+  "title": "מתכנן חתונה באקסל ו-Google Sheets",
+  "subtitle": "תקציב, מוזמנים ואישורי הגעה, מתנות, ספקים, לוח תשלומים, צ'קליסט והושבה – בקובץ אחד",
+  "price_ils": 49,
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "מתכנן החתונה (Excel, ריק – להתחיל לעבוד)",
+      "path": "dl/lje2wikbyyh1goea/wedding-planner-glory.xlsx"
+    },
+    {
+      "label": "קובץ דוגמה ממולא (להתרשמות)",
+      "path": "dl/lje2wikbyyh1goea/wedding-planner-glory-example.xlsx"
+    },
+    {
+      "label": "נוסחים מוכנים, לוח זמנים וצ'קליסט להדפסה (Word)",
+      "path": "dl/lje2wikbyyh1goea/wedding-planner-glory-messages.docx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "wedding-gift"
+}
