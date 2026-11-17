@@ -8,7 +8,7 @@
 | W1 Platform | session_01WwXrbP2QqkhxopJnxwcVdC | `ws/platform` | done (merged) |
 | W2 Event products | session_01WwXrbNB3jJnkLxJLxXpun9 | `ws/events` | building |
 | W3 Money products | session_01WwXrbPbD4hErXvpu5XCHNa | `ws/money` | building |
-| W4 Freelancer products | session_01WwXrbP9gQM5pgpiJPV3pjH | `ws/freelancer` | building |
+| W4 Freelancer products | session_01WwXrbP9gQM5pgpiJPV3pjH | `ws/freelancer` | done (merged) |
 
 **Money:** Revenue ₪0 · Fees ₪0 · Profit ₪0 / ₪3,600
 
@@ -19,3 +19,4 @@
 - 2026-11-17: Master plan written (ops/PLAN.md). Research merged.
 - 2026-11-17: Phase 1 started: W1–W4 launched (contract in ops/briefs/CONTRACT.md).
 - 2026-11-17: W1 platform merged: Hebrew site, PayPal + guest card checkout verified with live client id (no payment made), 33/33 e2e checks. Open: seller name/email for legal pages, sales-log hosting, GitHub Pages.
+- 2026-11-17: W4 merged: עוסק פטור tracker + quote pack, ceiling + VAT calculators, 4 guides. Sitemap 16 URLs. Open: Google Sheets copy links.
