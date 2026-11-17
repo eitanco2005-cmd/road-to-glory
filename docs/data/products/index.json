@@ -29,6 +29,10 @@
     {
       "slug": "renovation-budget",
       "category": "money"
+    },
+    {
+      "slug": "invitation-maker",
+      "category": "events"
     }
   ],
   "bundles": [

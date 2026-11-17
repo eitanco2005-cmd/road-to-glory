@@ -95,6 +95,7 @@
     if (p.sheets_copy_url) {
       items.push('<li><a class="dl sheets" href="' + esc(p.sheets_copy_url) + '" target="_blank" rel="noopener"><span class="ic">' + SHEET + '</span><span>יצירת עותק ב-Google Sheets</span><span class="ext">SHEETS</span></a></li>');
     }
+    if (!items.length && p.unlock && p.app) return '<p class="callout success">ההורדות הנקיות נפתחו בדפדפן שבו שילמתם. <a class="btn small" href="' + esc(G.url(p.app)) + '">חזרה למעצב ולהורדות</a></p>';
     if (!items.length) return '<p class="callout warn">הקבצים של המוצר הזה עדיין בהכנה. כתבו לנו עם מספר ההזמנה ונשלח אותם מיד כשיהיו מוכנים, או נחזיר את הכסף.</p>';
     return '<ul class="downloads">' + items.join("") + "</ul>";
   }

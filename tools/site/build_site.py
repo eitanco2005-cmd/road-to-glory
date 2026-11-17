@@ -61,7 +61,7 @@ def product_card(page, p, cat, cat_label):
             + (f'<span class="badge">{e(cat_label)}</span>' if cat_label else "")
             + f'<h3>{title}</h3><p class="sub">{e(p.get("subtitle"))}</p>'
             f'<div class="meta"><span class="price">{ils(p["price_ils"])}</span>'
-            + ('<span class="badge accent">אקסל + Google Sheets</span>' if live else '<span class="badge soon">בקרוב</span>')
+            + (f'<span class="badge accent">{e(p.get("badge") or "אקסל + Google Sheets")}</span>' if live else '<span class="badge soon">בקרוב</span>')
             + "</div></div></article>")
 
 

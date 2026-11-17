@@ -712,7 +712,7 @@
     ctx.fillStyle = "rgba(20,20,20,0.72)"; ctx.fillRect(-B, H - 78, W + 2 * B, 78 + B);
     ctx.fillStyle = "#fff"; ctx.direction = "rtl"; ctx.textAlign = "center";
     ctx.font = '600 30px "Assistant", "Heebo", sans-serif';
-    ctx.fillText("תצוגה מקדימה – גרסה נקייה ב-tichnun.netlify.app", W / 2, H - 30);
+    ctx.fillText("תצוגה מקדימה · הורדה נקייה באתר תכנון פלוס", W / 2, H - 30);
   }
 
   /* render(canvas, state, {width: px, bleedMm: mm, trimMm: mm (width of trim, for bleed calc), watermark: bool}) */
