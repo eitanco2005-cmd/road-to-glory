@@ -1,11 +1,16 @@
 {
   "slug": "household-budget",
-  "title": "תקציב משק בית Pro",
-  "subtitle": "תכנון חודשי ושנתי בקטגוריות ישראליות, תכנון מול ביצוע ודשבורד",
+  "title": "תקציב משק בית Pro 2027",
+  "subtitle": "אקסל בעברית: תכנון חודשי ושנתי, קטגוריות ישראליות, יעדי חיסכון, חובות ודשבורד",
   "price_ils": 39,
   "bundle_of": [],
-  "files": [],
+  "files": [
+    {"label": "תקציב משק בית Pro 2027 (קובץ ריק לעבודה)", "path": "dl/356eeeed31d1ee5e/household-budget-2027.xlsx"},
+    {"label": "קובץ דוגמה מלא – שנה של משפחה לדוגמה", "path": "dl/356eeeed31d1ee5e/household-budget-2027-example.xlsx"},
+    {"label": "גרסת 2026 (למי שרוצה לסגור את השנה הנוכחית)", "path": "dl/356eeeed31d1ee5e/household-budget-2026.xlsx"}
+  ],
   "sheets_copy_url": null,
   "tool": "budget-503020",
-  "placeholder": true
+  "url": "p/household-budget/",
+  "image": "p/household-budget/img/dashboard.webp"
 }
