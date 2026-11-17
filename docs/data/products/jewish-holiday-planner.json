@@ -1,0 +1,23 @@
+{
+  "slug": "jewish-holiday-planner",
+  "lang": "en",
+  "currency": "USD",
+  "price": 15,
+  "title": "Jewish Holiday Hosting Planner (Excel & Google Sheets)",
+  "subtitle": "Rosh Hashanah to Shavuot plus Shabbat: guests, menus, shopping & budget, traditions, mishloach manot",
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "The planner (Excel, blank: start here)",
+      "path": "dl/i1rkd4uhly4erf8l/jewish-holiday-planner.xlsx"
+    },
+    {
+      "label": "Filled-in example (to see how it works)",
+      "path": "dl/i1rkd4uhly4erf8l/jewish-holiday-planner-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": null,
+  "page": "en/p/jewish-holiday-planner/",
+  "image": "en/p/jewish-holiday-planner/img/screen-1.webp"
+}

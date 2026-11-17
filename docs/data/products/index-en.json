@@ -1,0 +1,24 @@
+{
+  "_note": "English catalogue (Stream A). Prices in USD. Not part of the Hebrew index.json.",
+  "products": [
+    {
+      "slug": "bar-mitzvah-planner-en",
+      "page": "en/p/bar-mitzvah-planner/"
+    },
+    {
+      "slug": "jewish-wedding-planner",
+      "page": "en/p/jewish-wedding-planner/"
+    },
+    {
+      "slug": "passover-seder-planner",
+      "page": "en/p/passover-seder-planner/"
+    },
+    {
+      "slug": "jewish-holiday-planner",
+      "page": "en/p/jewish-holiday-planner/"
+    }
+  ],
+  "bundles": [
+    "jewish-life-bundle"
+  ]
+}

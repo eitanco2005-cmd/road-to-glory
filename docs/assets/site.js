@@ -4,6 +4,8 @@
  * - Light/dark theme toggle (remembered per browser)
  * - Records a privacy-friendly page visit (no cookies) via sales.js -> VISITS_ENDPOINT
  * - Exposes window.SITE helpers: root, url(), loadScript(), getJSON(), config(), formatILS(), productUrl(), toolUrl()
+ * - English pages (<html lang="en">, under en/) get an English LTR header/footer. Every header has a language
+ *   switch: it follows <link rel="alternate" hreflang="he|en"> when the page declares one, else the other home page.
  * All URLs are derived from this script's own location, so the site works on any host / sub-path.
  */
 (function () {
@@ -18,8 +20,10 @@
   var ASSETS = new URL(".", me ? me.src : location.href).href;
   var ROOT = new URL("../", ASSETS).href;
 
-  var BRAND = "תכנון פלוס";
+  var EN = /^en/i.test(document.documentElement.getAttribute("lang") || "");
+  var BRAND = EN ? "Tichnun Plus" : "תכנון פלוס";
   var G = (window.SITE = window.SITE || {});
+  G.lang = EN ? "en" : "he";
   G.root = ROOT;
   G.assets = ASSETS;
   G.url = function (p) { return new URL(p || "", ROOT).href; };
@@ -111,18 +115,43 @@
     return '<a href="' + abs + '"' + (current ? ' aria-current="page"' : "") + ">" + label + "</a>";
   }
 
+  function altLang() {
+    var want = EN ? "he" : "en";
+    var l = document.querySelector('link[rel="alternate"][hreflang="' + want + '"]');
+    var href = l ? l.getAttribute("href") : G.url(EN ? "" : "en/");
+    try { // keep the switch on this host (canonical alternates point at the production domain)
+      var u = new URL(href, location.href);
+      if (u.host !== location.host) href = G.url(u.pathname.replace(/^\/+/, ""));
+    } catch (e) {}
+    return EN
+      ? '<a class="lang-switch" href="' + href + '" hreflang="he" lang="he" title="לאתר בעברית" aria-label="עברית"><span class="full">עברית</span><span class="short" aria-hidden="true">עב</span></a>'
+      : '<a class="lang-switch" href="' + href + '" hreflang="en" lang="en" title="English site" aria-label="English"><span class="full">English</span><span class="short" aria-hidden="true">EN</span></a>';
+  }
+
+  function renderHeaderEn(el) {
+    el.innerHTML =
+      '<a class="skip-link" href="#main">Skip to content</a>' +
+      '<div class="container bar">' +
+      '<a class="brand" href="' + G.url("en/") + '" aria-label="' + BRAND + ' home">' + LOGO + '<span>' + BRAND + '</span><small>Jewish-life planners</small></a>' +
+      '<nav class="nav" aria-label="Main">' +
+      navLink("en/planners/", "Planners") + navLink("en/tools/", "Free tools") + navLink("en/guides/", "Guides") +
+      "</nav>" + altLang() +
+      '<button type="button" class="theme-toggle" aria-label="Toggle light/dark mode"></button>' +
+      "</div>";
+  }
+
   function renderHeader() {
     var el = document.getElementById("site-header");
     if (!el || el.getAttribute("data-rendered")) return;
     el.classList.add("site-header");
     el.setAttribute("data-rendered", "1");
-    el.innerHTML =
+    if (EN) renderHeaderEn(el); else el.innerHTML =
       '<a class="skip-link" href="#main">דילוג לתוכן</a>' +
       '<div class="container bar">' +
       '<a class="brand" href="' + G.url("") + '" aria-label="' + BRAND + ' — דף הבית">' + LOGO + '<span>' + BRAND + '</span><small>קבצים ומחשבונים חכמים</small></a>' +
       '<nav class="nav" aria-label="ניווט ראשי">' +
       navLink("products/", "מוצרים") + navLink("tools/", "כלים חינם") + navLink("guides/", "מדריכים") +
-      "</nav>" +
+      "</nav>" + altLang() +
       '<button type="button" class="theme-toggle" aria-label="החלפת מצב תצוגה בהיר/כהה"></button>' +
       "</div>";
     var btn = el.querySelector(".theme-toggle");
@@ -138,6 +167,37 @@
     if (main && !main.id) main.id = "main";
   }
 
+  function footerEn(email, year) {
+    var u = function (p) { return G.url("en/" + p); };
+    return '<div class="container">' +
+      '<div class="cols">' +
+      "<div><a class=\"brand\" href=\"" + u("") + "\">" + LOGO + "<span>" + BRAND + "</span></a>" +
+      '<p class="muted small mt-1">Ready-made Excel and Google Sheets planners for bar and bat mitzvahs, Jewish weddings, Passover and the holidays. Secure PayPal checkout, instant download.</p></div>' +
+      "<div><h2 class=\"footer-h\">Planners</h2><ul>" +
+      '<li><a href="' + u("p/bar-mitzvah-planner/") + '">Bar/Bat Mitzvah Planner</a></li>' +
+      '<li><a href="' + u("p/jewish-wedding-planner/") + '">Jewish Wedding Planner</a></li>' +
+      '<li><a href="' + u("p/passover-seder-planner/") + '">Passover Seder Planner</a></li>' +
+      '<li><a href="' + u("p/jewish-holiday-planner/") + '">Holiday Hosting Planner</a></li>' +
+      '<li><a href="' + u("planners/") + '">All planners &amp; bundle</a></li>' +
+      "</ul></div>" +
+      "<div><h2 class=\"footer-h\">Free tools</h2><ul>" +
+      '<li><a href="' + u("tools/bar-mitzvah-gift/") + '">Bar mitzvah gift calculator</a></li>' +
+      '<li><a href="' + u("tools/bar-mitzvah-budget/") + '">Bar mitzvah budget calculator</a></li>' +
+      '<li><a href="' + u("tools/seder-shopping-calculator/") + '">Seder shopping calculator</a></li>' +
+      '<li><a href="' + u("guides/") + '">Guides</a></li>' +
+      "</ul></div>" +
+      "<div><h2 class=\"footer-h\">Info</h2><ul>" +
+      '<li><a href="' + u("legal/terms/") + '">Terms of sale</a></li>' +
+      '<li><a href="' + u("legal/refund/") + '">Refund policy</a></li>' +
+      '<li><a href="' + u("legal/privacy/") + '">Privacy policy</a></li>' +
+      (email ? '<li><a href="mailto:' + G.escape(email) + '">Contact us</a></li>' : "") +
+      '<li><a href="' + G.url("") + '" lang="he" hreflang="he">אתר בעברית</a></li>' +
+      "</ul></div>" +
+      "</div>" +
+      '<p class="fine">© ' + year + " " + BRAND + ". General information only, not financial, legal or religious advice; ask your rabbi about customs. Payments are processed by PayPal; we never see or store card details.</p>" +
+      "</div>";
+  }
+
   function renderFooter(cfg) {
     var el = document.getElementById("site-footer");
     if (!el || el.getAttribute("data-rendered")) return;
@@ -145,6 +205,7 @@
     el.setAttribute("data-rendered", "1");
     var email = cfg && cfg.SELLER_EMAIL && cfg.SELLER_EMAIL !== "SELLER_EMAIL" ? cfg.SELLER_EMAIL : "";
     var year = new Date().getFullYear();
+    if (EN) { el.innerHTML = footerEn(email, year); return; }
     el.innerHTML =
       '<div class="container">' +
       '<div class="cols">' +
@@ -197,7 +258,7 @@
         while (el && !h) { el = el.previousElementSibling || el.parentElement; if (el && /^H[2-4]$/.test(el.tagName)) h = el; }
         var label = (cap && cap.textContent) || (h && h.textContent) || "";
         w[i].setAttribute("role", "region");
-        label = "טבלה" + (label ? ": " + label.trim() : "");
+        label = (EN ? "Table" : "טבלה") + (label ? ": " + label.trim() : "");
         if (seen[label]) label += " " + (i + 1);
         seen[label] = 1;
         w[i].setAttribute("aria-label", label);

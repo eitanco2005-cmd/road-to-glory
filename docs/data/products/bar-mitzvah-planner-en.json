@@ -1,0 +1,23 @@
+{
+  "slug": "bar-mitzvah-planner-en",
+  "lang": "en",
+  "currency": "USD",
+  "price": 19,
+  "title": "Bar / Bat Mitzvah Planner (Excel & Google Sheets)",
+  "subtitle": "Budget, vendors & payments, guest list & RSVPs, gifts & thank-yous, aliyot & candle-lighting, seating, checklist",
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "The planner (Excel, blank: start here)",
+      "path": "dl/l9e1t1e7ryqmfim5/bar-bat-mitzvah-planner.xlsx"
+    },
+    {
+      "label": "Filled-in example (to see how it works)",
+      "path": "dl/l9e1t1e7ryqmfim5/bar-bat-mitzvah-planner-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "bar-mitzvah-budget",
+  "page": "en/p/bar-mitzvah-planner/",
+  "image": "en/p/bar-mitzvah-planner/img/screen-1.webp"
+}

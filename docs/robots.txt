@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /thanks/
+Disallow: /en/thanks/
 Disallow: /dl/
 
 Sitemap: https://tichnun.netlify.app/sitemap.xml
