@@ -16,7 +16,7 @@
 | E. Hanukkah pack | session_01WwXrbQhAm2zpZGSQCbvZty | `ws/hanukkah` | building |
 | F. Kids worksheets | session_01WwXrbQ7yV2Qg4zc5wLVvth | `ws/worksheets` | building |
 | G. Invitation maker | session_01WwXrbPGbcrZijkXQqMQfy3 | `ws/invites` | building |
-| H. Speech writer | session_01WwXrbNU6eoXkk2izTax4LB | `ws/speeches` | building |
+| H. Speech writer | session_01WwXrbNU6eoXkk2izTax4LB | `ws/speeches` | CANCELLED by owner |
 
 **Money:** Revenue ₪0 · Fees ₪0 · Profit ₪0 / ₪3,600
 
@@ -40,3 +40,4 @@
 - 2026-11-17: Owner: diversify. Launched streams A (English Jewish planners), B (pay-to-export apps), C+D (tips/upsells + RTL dev kit). See PLAN §12.
 - 2026-11-17: Wave 2 launched: E (Hanukkah pack, urgent), F (kids/teacher worksheets), G (invitation maker).
 - 2026-11-17: Wave 3 launched: H (speech & greeting writer, non-spreadsheet).
+- 2026-11-17: Stream H cancelled by owner ("bad idea"); worker stopped and archived.

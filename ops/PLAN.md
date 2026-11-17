@@ -190,4 +190,4 @@ checkout only, no social media, no outreach, no new owner accounts. Each stream 
 | **G. Invitation maker** | Online Hebrew invitation designer (wedding, bar mitzvah, birthday), pay to export print-ready PDF/PNG | Google (Hebrew) | ₪19 |
 
 Wave rule: add directions in waves, max ~3 new workers at a time; after 3–4 weeks keep what gets traffic/sales, drop the rest.
-| **H. Speech & greeting writer (wave 3, non-spreadsheet)** | Interactive personalized speech builder (bar/bat mitzvah parent speech & drasha, wedding toasts, parents of bride/groom, birthdays, brit) from a large library of hand-written modular passages — no LLM/API | Google (urgent high-intent) + word of mouth at events | ₪29 / $19 |
+| ~~H. Speech & greeting writer~~ | Cancelled by owner 2026-11-17 | | |
