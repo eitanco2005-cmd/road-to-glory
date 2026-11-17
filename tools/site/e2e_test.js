@@ -75,7 +75,7 @@ function waitFor(url, ms = 15000) {
     ok(await page.locator("#site-footer a[href$='legal/refund/']").count() === 1, "footer with legal links");
     ok(await page.locator('[data-catalog="products"][data-rendered="1"] .product-card').count() === 6, "home grid has 6 products");
     ok(await page.locator('.product-card[data-slug="wedding-planner"] h3 a').count() === 1, "live product links to its page");
-    ok(await page.locator('.product-card[data-slug="household-budget"].is-soon').count() === 1, "placeholder product shows 'soon'");
+    ok(await page.locator('.product-card.is-soon').count() === 0, "no product left as 'soon'");
     ok(await page.locator('[data-catalog="tools"] .tool-card').count() === 6, "home lists 6 tools");
     if (SHOTS) {
       fs.mkdirSync(SHOTS, { recursive: true });
@@ -118,10 +118,10 @@ function waitFor(url, ms = 15000) {
     await page.waitForSelector("#ok:not([hidden])");
     ok(await page.locator("#downloads h3").count() === 2, "bundle thanks lists both member products");
 
-    // 4. non-test: placeholder bundle shows 'soon'; deliverable bundle loads real PayPal buttons
+    // 4. non-test: every bundle purchasable; live PayPal buttons load
     await page.goto(BASE + "products/", { waitUntil: "domcontentloaded" });
     await page.waitForSelector('.buy[data-product="money-bundle"] .buy-box');
-    ok(await page.locator('.buy[data-product="money-bundle"] button[disabled]').count() === 1, "non-deliverable bundle disabled ('soon')");
+    ok(await page.locator('.buy[data-product="money-bundle"] button[disabled]').count() === 0, "all bundles purchasable");
     try {
       await page.waitForSelector('.buy[data-product="event-bundle"] iframe, .buy[data-product="event-bundle"] .buy-msg.error', { timeout: 20000 });
       const iframes = await page.locator('.buy[data-product="event-bundle"] iframe').count();
