@@ -111,6 +111,10 @@ def settings_sheet(wb, example):
     ws.add_data_validation(dvp)
     dvp.add("B11")
 
+    ws.page_setup.paperSize = ws.PAPERSIZE_A4
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 0
+    ws.sheet_properties.pageSetUpPr.fitToPage = True
     # price list
     c(ws, "A18", "מחירון (לעיצוב 5 – 'לפי מחירון')", Font(name="Arial", size=14, bold=True, color="6D28D9"))
     for j, h in enumerate(["פריט", "יחידה", "מחיר ליחידה לפני מע\"מ"]):

@@ -1,0 +1,15 @@
+{
+  "slug": "osek-patur-tracker",
+  "title": "מעקב עוסק פטור 2026 – אקסל",
+  "subtitle": "יומן הכנסות והוצאות, מד תקרה חי מול 122,833 ₪, סיכום רבעוני ועזר לדוח השנתי",
+  "price_ils": 39,
+  "bundle_of": [],
+  "files": [
+    {"label": "מעקב עוסק פטור 2026 (Excel, ריק לשימוש)", "path": "dl/rtxv604h87l232v3/osek-patur-tracker-2026.xlsx"},
+    {"label": "אותו קובץ עם נתוני דוגמה (Excel)", "path": "dl/rtxv604h87l232v3/osek-patur-tracker-2026-example.xlsx"}
+  ],
+  "sheets_copy_url": null,
+  "tool": "osek-patur-ceiling",
+  "page": "p/osek-patur-tracker/",
+  "image": "p/osek-patur-tracker/img/dashboard.webp"
+}

@@ -1,0 +1,16 @@
+{
+  "slug": "price-quote-pack",
+  "title": "ערכת תבניות הצעת מחיר – Excel + Word",
+  "subtitle": "5 עיצובים בעברית, חישוב מע\"מ 18% אוטומטי, הנחה, תוקף וחתימה. אינה חשבונית מס",
+  "price_ils": 29,
+  "bundle_of": [],
+  "files": [
+    {"label": "תבניות הצעת מחיר – 5 עיצובים (Excel, חישוב אוטומטי)", "path": "dl/95861t10412vl3f9/hatzaat-mechir-templates.xlsx"},
+    {"label": "אותו קובץ עם דוגמה ממולאת (Excel)", "path": "dl/95861t10412vl3f9/hatzaat-mechir-templates-example.xlsx"},
+    {"label": "5 עיצובים ב-Word (ZIP)", "path": "dl/95861t10412vl3f9/hatzaat-mechir-word-5-designs.zip"}
+  ],
+  "sheets_copy_url": null,
+  "tool": "vat-calculator",
+  "page": "p/price-quote-pack/",
+  "image": "p/price-quote-pack/img/all-designs.webp"
+}

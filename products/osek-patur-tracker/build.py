@@ -449,6 +449,10 @@ def sheet_dashboard(wb):
     pie.set_categories(Reference(rep, min_col=1, min_row=11, max_row=21))
     pie.dataLabels = DataLabelList()
     pie.dataLabels.showPercent = True
+    pie.dataLabels.showCatName = False
+    pie.dataLabels.showVal = False
+    pie.dataLabels.showSerName = False
+    pie.dataLabels.showLeaderLines = False
     pie.height, pie.width = 9, 14
     ws.add_chart(pie, "A28")
     ws.merge_cells("A9:E9")
@@ -522,8 +526,7 @@ def demo(wb):
     r = FIRST
     n = 1001
     for m in range(1, 11):
-        for _ in range(rnd.randint(3, 5)):
-            d = dt.date(YEAR, m, rnd.randint(1, 28))
+        for d in sorted(dt.date(YEAR, m, rnd.randint(1, 28)) for _ in range(rnd.randint(3, 5))):
             inc[f"A{r}"] = d
             inc[f"B{r}"] = n
             inc[f"C{r}"] = rnd.choice(clients)
@@ -539,8 +542,9 @@ def demo(wb):
              ("רואה חשבון", "הנהלת חשבונות וייעוץ", 400, None)]
     r = FIRST
     for m in range(1, 11):
-        for name, cat, amt, pct in rnd.sample(items, 3):
-            ex[f"A{r}"] = dt.date(YEAR, m, rnd.randint(1, 28))
+        days = sorted(rnd.sample(range(1, 29), 3))
+        for (name, cat, amt, pct), day in zip(rnd.sample(items, 3), days):
+            ex[f"A{r}"] = dt.date(YEAR, m, day)
             ex[f"B{r}"] = name
             ex[f"C{r}"] = cat
             ex[f"F{r}"] = amt
@@ -563,6 +567,8 @@ def build(example=False):
     sheet_dashboard(wb)
     if example:
         demo(wb)
+        wb["הכנסות"].print_area = "A1:G34"
+        wb["הוצאות"].print_area = "A1:I34"
     wb.active = 1
     for ws in wb.worksheets:
         ws.page_setup.orientation = "landscape"
