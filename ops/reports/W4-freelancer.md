@@ -41,6 +41,16 @@ Sheets: הוראות, לוח בקרה, הגדרות, הכנסות, הוצאות,
 - **Word versions:** same layouts, RTL, totals typed by hand. The pages say this honestly.
 - **Disclaimer on every design:** "not a tax invoice/receipt".
 
+## Update after merging W1 (claude/epic-heisenberg-h552gc)
+- **Merge:** merged into `ws/freelancer`. On the two product JSONs I kept **mine** (no `placeholder`).
+- **Product pages:** rebuilt to W1's template order. H1 → one sentence → compact buy box → points → everything else.
+  - At 375×667 the first pay button ends at about 564px (osek) and 497px (quotes), so it is above the fold.
+  - The lower sections now link to `#buy` instead of rendering a second buy box.
+- **URLs:** canonical, `og:url`, absolute `og:image` and Product `offers.url` now use `https://eitanco2005-cmd.github.io/road-to-glory/`.
+- **Test purchases (`?test=1`):** both products reach the thanks page, and every download link returns 200.
+- **Freelancer bundle:** both of its members are now deliverable, so it should be buyable.
+- **W1 e2e:** `node tools/site/e2e_test.js` reports **ALL PASSED**. I installed fastapi and uvicorn locally to run it.
+
 ## Testing
 - **Formulas:** recalculated with LibreOffice headless. No error cells in either workbook.
   - Tracker example: turnover ₪80,600, 65.6% of the ceiling.
@@ -68,6 +78,6 @@ Sheets: הוראות, לוח בקרה, הגדרות, הכנסות, הוצאות,
    2. Share it as "anyone with link: viewer".
    3. Put `https://docs.google.com/spreadsheets/d/<ID>/copy` into the JSON.
    - Instructions inside the files already explain how a buyer can open the file in Sheets on their own.
-2. **Absolute `og:image` URLs:** `og:image` is relative (`img/...webp`). Make it absolute once the domain is known.
+2. ~~Absolute `og:image` URLs~~: done.
 3. **Sitemap (W1):** add the 8 W4 URLs.
 4. **January refresh:** update the ceiling for 2027 (in both `build.py` files and `build_pages.py`), rebuild, and recopy to `docs/dl/`. This is a natural "2027 edition" for repeat sales.

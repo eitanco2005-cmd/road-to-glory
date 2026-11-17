@@ -14,6 +14,7 @@ DOCS = ROOT / "docs"
 CHECKED = "17.11.2026"
 CEILING = 122833
 BRAND = "Glory"
+BASE = "https://eitanco2005-cmd.github.io/road-to-glory/"
 
 SRC_CEIL = ('<a href="https://www.kolzchut.org.il/he/%D7%A2%D7%95%D7%A1%D7%A7_%D7%A4%D7%98%D7%95%D7%A8" '
             'rel="noopener" target="_blank">כל זכות – עוסק פטור</a> ופרסומי '
@@ -27,14 +28,15 @@ def esc(s):
 
 
 def page(path, *, title, desc, h1, body, crumbs, jsonld, og_image=None, depth, checkout=False, extra_head="",
-         scripts=""):
+         scripts="", crumbs_in_body=False):
     """depth = number of dirs below docs/ (p/slug = 2)."""
     up = "../" * depth
     ld = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in jsonld)
     crumb_html = ' <span aria-hidden="true">›</span> '.join(
         f'<a href="{up}{href}">{esc(name)}</a>' if href is not None else f"<span>{esc(name)}</span>"
         for name, href in crumbs)
-    og = f'<meta property="og:image" content="{og_image}">' if og_image else ""
+    og = f'<meta property="og:image" content="{BASE}{og_image}">' if og_image else f'<meta property="og:image" content="{BASE}assets/og-default.png">'
+    canon = f"{BASE}{path}/"
     html = f"""<!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -42,7 +44,10 @@ def page(path, *, title, desc, h1, body, crumbs, jsonld, og_image=None, depth, c
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{canon}">
+<meta property="og:url" content="{canon}">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0e6b63">
 <meta property="og:locale" content="he_IL">
 <meta property="og:site_name" content="{BRAND}">
 <meta property="og:title" content="{esc(title)}">
@@ -61,10 +66,8 @@ def page(path, *, title, desc, h1, body, crumbs, jsonld, og_image=None, depth, c
 <a class="skip-link" href="#main">דלג לתוכן</a>
 <header id="site-header"></header>
 <main id="main">
-<div class="container">
-<nav class="breadcrumbs mt-2" aria-label="פירורי לחם">{crumb_html}</nav>
-</div>
-{body}
+{"" if crumbs_in_body else f'<div class="container"><nav class="breadcrumbs mt-2" aria-label="פירורי לחם">{crumb_html}</nav></div>'}
+{body.replace("%%CRUMBS%%", f'<nav class="breadcrumbs" aria-label="פירורי לחם">{crumb_html}</nav>')}
 </main>
 <footer id="site-footer"></footer>
 <script src="{up}assets/site.js" defer></script>
@@ -101,7 +104,7 @@ def product_ld(name, desc, price, image, sku):
     return {"@context": "https://schema.org", "@type": "Product", "name": name, "description": desc,
             "image": image, "sku": sku, "brand": {"@type": "Brand", "name": BRAND},
             "offers": {"@type": "Offer", "price": f"{price:.2f}", "priceCurrency": "ILS",
-                       "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition"}}
+                       "availability": "https://schema.org/InStock", "url": BASE + "p/" + sku + "/", "itemCondition": "https://schema.org/NewCondition"}}
 
 
 def tool_ld(name, desc):
@@ -145,15 +148,18 @@ def osek_product():
     desc = "קובץ אקסל לעוסק פטור 2026: יומן הכנסות והוצאות, מד תקרה חי מול 122,833 ₪, תחזית מתי תעברו את התקרה, סיכום רבעוני ועזר לדוח השנתי. ₪39, הורדה מיידית."
     body = f"""
 <section class="hero">
- <div class="container split">
-  <div>
-   <span class="badge accent">מעודכן לתקרת {CEILING:,} ₪</span>
-   <h1>אקסל לעוסק פטור <span class="hl">2026</span>: הכנסות, הוצאות ומד תקרה חי</h1>
-   <p class="lead">רושמים כל תשלום בשורה אחת, והקובץ מראה כמה ניצלתם מהתקרה, כמה נשאר, ומתי בקצב הנוכחי תעברו אותה. בסוף השנה כל המספרים לדוח כבר מסודרים.</p>
+ <div class="container">
+  %%CRUMBS%%
+  <div class="split">
+   <div>
+    <h1>אקסל לעוסק פטור <span class="hl">2026</span>: הכנסות, הוצאות ומד תקרה חי</h1>
+    <p class="lead">רושמים כל תשלום בשורה אחת, והקובץ מראה כמה ניצלתם מתקרת {CEILING:,} ₪, כמה נשאר ומתי תעברו אותה.</p>
+   </div>
+   <div class="buy" id="buy" data-product="osek-patur-tracker" data-compact="1"></div>
    <ul class="hero-points"><li>Excel + Google Sheets</li><li>בלי מאקרו</li><li>הורדה מיידית</li></ul>
-   <div class="btn-row mt-2"><a class="btn" href="#buy">לרכישה – ₪39</a><a class="btn secondary" href="../../tools/osek-patur-ceiling/">מחשבון תקרה חינם</a></div>
   </div>
-  <figure class="card" style="margin:0;padding:.5rem"><img src="img/dashboard.webp" alt="לוח הבקרה של קובץ מעקב עוסק פטור: הכנסות מתחילת השנה, נותר עד התקרה ומד תקרה" width="1200" height="700"></figure>
+  <p class="mt-2"><a href="../../tools/osek-patur-ceiling/">או נסו קודם את מחשבון התקרה החינמי ←</a></p>
+  <figure class="card mt-2" style="margin-inline:0;padding:.5rem"><img src="img/dashboard.webp" alt="לוח הבקרה של קובץ מעקב עוסק פטור: הכנסות מתחילת השנה, נותר עד התקרה ומד תקרה" width="1200" height="700"></figure>
  </div>
 </section>
 
@@ -192,10 +198,10 @@ def osek_product():
  </div>
 </section>
 
-<section class="section" id="buy">
+<section class="section">
  <div class="container narrow">
   <div class="section-head center"><h2>מעקב עוסק פטור 2026 – ₪39</h2><p class="muted">תשלום מאובטח ב-PayPal (גם בכרטיס אשראי בלי חשבון PayPal). ההורדה נפתחת מיד אחרי התשלום.</p></div>
-  <div class="buy" data-product="osek-patur-tracker"></div>
+  <p class="center"><a class="btn" href="#buy">לרכישה – ₪39</a></p>
   <p class="small muted center mt-2">משתלם יותר יחד: <a href="../../products/">חבילת עצמאים</a> – מעקב עוסק פטור + תבניות הצעת מחיר.</p>
   <div class="callout mt-2"><strong>שקיפות:</strong> הקובץ הוא כלי מעקב ואינו ייעוץ מס. נתון התקרה ({CEILING:,} ₪ לשנת 2026) נלקח מ{SRC_CEIL}, נבדק ב-{CHECKED}.</div>
  </div>
@@ -215,10 +221,10 @@ def osek_product():
 </section>
 {buybar(39, "מעקב עוסק פטור")}
 """
-    page("p/osek-patur-tracker", title=title, desc=desc, h1="", body=body, depth=2, checkout=True, extra_head=BAR_PAD,
+    page("p/osek-patur-tracker", title=title, desc=desc, h1="", body=body, depth=2, checkout=True, extra_head=BAR_PAD, crumbs_in_body=True,
          crumbs=[("ראשי", ""), ("מוצרים", "products/"), ("מעקב עוסק פטור 2026", None)],
-         og_image="img/dashboard.webp",
-         jsonld=[product_ld("מעקב עוסק פטור 2026 – קובץ אקסל", desc, 39, "img/dashboard.webp", "osek-patur-tracker"),
+         og_image="p/osek-patur-tracker/img/dashboard.webp",
+         jsonld=[product_ld("מעקב עוסק פטור 2026 – קובץ אקסל", desc, 39, BASE + "p/osek-patur-tracker/img/dashboard.webp", "osek-patur-tracker"),
                  breadcrumb_ld(["ראשי", "מוצרים", "מעקב עוסק פטור 2026"]), faq_ld(faqs)])
 
 
@@ -237,15 +243,18 @@ def quote_product():
     desc = "ערכת תבניות הצעת מחיר בעברית: 5 עיצובים ב-Excel עם חישוב מע\"מ 18% אוטומטי, הנחה ותוקף, וגרסאות Word. מתאים לעוסק מורשה ולעוסק פטור. ₪29, הורדה מיידית."
     body = f"""
 <section class="hero">
- <div class="container split">
-  <div>
-   <span class="badge accent">מע"מ 18% מחושב אוטומטית</span>
-   <h1>תבנית <span class="hl">הצעת מחיר</span> בעברית – 5 עיצובים, Excel + Word</h1>
-   <p class="lead">ממלאים את פרטי העסק פעם אחת, בוחרים עיצוב, מוסיפים שורות – והסכום, ההנחה, המע"מ והתוקף מחושבים לבד. שומרים כ-PDF ושולחים ללקוח.</p>
-   <ul class="hero-points"><li>עוסק מורשה, חברה או עוסק פטור</li><li>עמוד A4 אחד</li><li>הורדה מיידית</li></ul>
-   <div class="btn-row mt-2"><a class="btn" href="#buy">לרכישה – ₪29</a><a class="btn secondary" href="../../tools/vat-calculator/">מחשבון מע"מ חינם</a></div>
+ <div class="container">
+  %%CRUMBS%%
+  <div class="split">
+   <div>
+    <h1>תבנית <span class="hl">הצעת מחיר</span> בעברית – 5 עיצובים, Excel + Word</h1>
+    <p class="lead">ממלאים פרטי עסק פעם אחת ומוסיפים שורות – הסכום, ההנחה, מע"מ 18% והתוקף מחושבים לבד.</p>
+   </div>
+   <div class="buy" id="buy" data-product="price-quote-pack" data-compact="1"></div>
+   <ul class="hero-points"><li>עוסק מורשה, חברה או עוסק פטור</li><li>עמוד A4 אחד, שמירה כ-PDF</li><li>הורדה מיידית</li></ul>
   </div>
-  <figure class="card" style="margin:0;padding:.5rem"><img src="img/design-modern.webp" alt="דוגמה להצעת מחיר בעיצוב מודרני עם חישוב מע&quot;מ" width="821" height="1086"></figure>
+  <p class="mt-2"><a href="../../tools/vat-calculator/">או נסו קודם את מחשבון המע"מ החינמי ←</a></p>
+  <figure class="card mt-2" style="margin-inline:0;padding:.5rem;overflow-x:auto"><img src="img/all-designs.webp" alt="חמשת עיצובי הצעת המחיר זה לצד זה" width="2073" height="524"></figure>
  </div>
 </section>
 
@@ -266,18 +275,18 @@ def quote_product():
 <section class="section">
  <div class="container">
   <div class="section-head"><h2>5 העיצובים</h2><p class="muted">צילומי מסך מקובץ הדוגמה המצורף (פרטי עסק ולקוח לדוגמה).</p></div>
-  <figure class="card" style="margin:0 0 1rem;padding:.5rem;overflow-x:auto"><img src="img/all-designs.webp" alt="חמשת עיצובי הצעת המחיר זה לצד זה" width="2073" height="524"></figure>
-  {screens([("img/design-classic.webp", "הצעת מחיר בעיצוב קלאסי", "עיצוב 1 – קלאסי"),
+  {screens([("img/design-modern.webp", "הצעת מחיר בעיצוב מודרני עם חישוב מע\"מ", "עיצוב 2 – מודרני"),
+            ("img/design-classic.webp", "הצעת מחיר בעיצוב קלאסי", "עיצוב 1 – קלאסי"),
             ("img/design-minimal.webp", "הצעת מחיר בעיצוב מינימליסטי", "עיצוב 3 – מינימליסטי"),
             ("img/design-pricelist.webp", "הצעת מחיר לפי מחירון", "עיצוב 5 – לפי מחירון"),
             ("img/word-modern.webp", "תבנית הצעת מחיר ב-Word", "גרסת Word – עיצוב מודרני")])}
  </div>
 </section>
 
-<section class="section alt" id="buy">
+<section class="section alt">
  <div class="container narrow">
   <div class="section-head center"><h2>ערכת הצעות מחיר – ₪29</h2><p class="muted">תשלום מאובטח ב-PayPal (גם בכרטיס אשראי). ההורדה נפתחת מיד: Excel, Excel עם דוגמה, ו-ZIP עם 5 קבצי Word.</p></div>
-  <div class="buy" data-product="price-quote-pack"></div>
+  <p class="center"><a class="btn" href="#buy">לרכישה – ₪29</a></p>
   <p class="small muted center mt-2">משתלם יותר יחד: <a href="../../products/">חבילת עצמאים</a> – תבניות הצעת מחיר + מעקב עוסק פטור 2026.</p>
   <div class="callout warn mt-2"><strong>חשוב:</strong> הצעת מחיר <strong>אינה</strong> חשבונית מס או קבלה, וכך כתוב בתחתית כל עיצוב. מסמכי מס מפיקים בתוכנה או בפנקס מאושרים. שיעור המע"מ (18%) לפי {SRC_VAT}; נבדק ב-{CHECKED}.</div>
  </div>
@@ -297,10 +306,10 @@ def quote_product():
 </section>
 {buybar(29, "ערכת הצעות מחיר")}
 """
-    page("p/price-quote-pack", title=title, desc=desc, h1="", body=body, depth=2, checkout=True, extra_head=BAR_PAD,
+    page("p/price-quote-pack", title=title, desc=desc, h1="", body=body, depth=2, checkout=True, extra_head=BAR_PAD, crumbs_in_body=True,
          crumbs=[("ראשי", ""), ("מוצרים", "products/"), ("תבניות הצעת מחיר", None)],
-         og_image="img/all-designs.webp",
-         jsonld=[product_ld("ערכת תבניות הצעת מחיר בעברית – Excel + Word", desc, 29, "img/all-designs.webp", "price-quote-pack"),
+         og_image="p/price-quote-pack/img/all-designs.webp",
+         jsonld=[product_ld("ערכת תבניות הצעת מחיר בעברית – Excel + Word", desc, 29, BASE + "p/price-quote-pack/img/all-designs.webp", "price-quote-pack"),
                  breadcrumb_ld(["ראשי", "מוצרים", "תבניות הצעת מחיר"]), faq_ld(faqs)])
 
 
@@ -425,7 +434,7 @@ def ceiling_tool():
 """
     page("tools/osek-patur-ceiling", title=title, desc=desc, h1="", body=body, depth=2,
          crumbs=[("ראשי", ""), ("כלים חינם", "tools/"), ("מחשבון תקרת עוסק פטור", None)],
-         og_image="../../p/osek-patur-tracker/img/dashboard.webp", scripts=CEIL_JS,
+         og_image="p/osek-patur-tracker/img/dashboard.webp", scripts=CEIL_JS,
          jsonld=[tool_ld("מחשבון תקרת עוסק פטור 2026", desc),
                  breadcrumb_ld(["ראשי", "כלים חינם", "מחשבון תקרת עוסק פטור 2026"]), faq_ld(faqs)])
 
@@ -601,7 +610,7 @@ def vat_tool():
 """
     page("tools/vat-calculator", title=title, desc=desc, h1="", body=body, depth=2, extra_head=VSTYLE,
          crumbs=[("ראשי", ""), ("כלים חינם", "tools/"), ("מחשבון מע\"מ", None)],
-         og_image="../../p/price-quote-pack/img/all-designs.webp", scripts=VAT_JS,
+         og_image="p/price-quote-pack/img/all-designs.webp", scripts=VAT_JS,
          jsonld=[tool_ld("מחשבון מע\"מ 18%", desc), breadcrumb_ld(["ראשי", "כלים חינם", "מחשבון מע\"מ"]), faq_ld(faqs)])
 
 
