@@ -296,7 +296,11 @@ def build(demo: bool, path: Path):
         cell(ws, r, 9, d[6] if d[6] else None, "input", "0")
         cell(ws, r, 10, d[7], "input")
         cell(ws, r, 11, d[8], "input")
-        cell(ws, r, 12, f"=IF(G{r}=\"\",\"\",G{r}-_xlfn.MINIFS($G${Q_FIRST}:$G${Q_LAST},$A${Q_FIRST}:$A${Q_LAST},A{r}))", "formula", ILS)
+        # lowest quote for the same job. Not MINIFS (Excel 2019+ only – #NAME? in Excel 2010/2016):
+        # SUMPRODUCT(MIN(...)) evaluates the array in every Excel, Google Sheets and LibreOffice.
+        # 0&G turns the "" of empty rows into 0; other jobs / empty rows get a 1E+15 penalty.
+        g_rng, a_rng = f"$G${Q_FIRST}:$G${Q_LAST}", f"$A${Q_FIRST}:$A${Q_LAST}"
+        cell(ws, r, 12, f"=IF(G{r}=\"\",\"\",G{r}-SUMPRODUCT(MIN(--(0&{g_rng})+(({a_rng}<>A{r})+({g_rng}=\"\"))*1E+15)))", "formula", ILS)
         cell(ws, r, 13, None, "input")
     dv_yn = DataValidation(type="list", formula1=f"={S}!$E${LR[0]}:$E${LR[1]}", allow_blank=True)
     ws.add_data_validation(dv_yn)

@@ -180,9 +180,20 @@
   /* ---------- a11y: wide tables scroll horizontally, so make the scroll box keyboard-reachable ---------- */
   function a11yTables() {
     var w = document.querySelectorAll(".table-wrap");
+    var seen = {};
     for (var i = 0; i < w.length; i++) {
       if (!w[i].hasAttribute("tabindex")) w[i].setAttribute("tabindex", "0");
-      if (!w[i].hasAttribute("role")) { w[i].setAttribute("role", "region"); w[i].setAttribute("aria-label", "טבלה"); }
+      if (!w[i].hasAttribute("role")) {
+        // label each table by its caption or nearest preceding heading so landmarks stay unique
+        var cap = w[i].querySelector("caption"), h = null, el = w[i];
+        while (el && !h) { el = el.previousElementSibling || el.parentElement; if (el && /^H[2-4]$/.test(el.tagName)) h = el; }
+        var label = (cap && cap.textContent) || (h && h.textContent) || "";
+        w[i].setAttribute("role", "region");
+        label = "טבלה" + (label ? ": " + label.trim() : "");
+        if (seen[label]) label += " " + (i + 1);
+        seen[label] = 1;
+        w[i].setAttribute("aria-label", label);
+      }
     }
   }
 
