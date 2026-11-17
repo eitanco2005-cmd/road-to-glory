@@ -22,8 +22,8 @@
 
   var EN = /^en/i.test(document.documentElement.getAttribute("lang") || "");
   var BRAND = EN ? "Tichnun Plus" : "תכנון פלוס";
-  G.lang = EN ? "en" : "he";
   var G = (window.SITE = window.SITE || {});
+  G.lang = EN ? "en" : "he";
   G.root = ROOT;
   G.assets = ASSETS;
   G.url = function (p) { return new URL(p || "", ROOT).href; };
@@ -124,8 +124,8 @@
       if (u.host !== location.host) href = G.url(u.pathname.replace(/^\/+/, ""));
     } catch (e) {}
     return EN
-      ? '<a class="lang-switch" href="' + href + '" hreflang="he" lang="he" title="לאתר בעברית">עברית</a>'
-      : '<a class="lang-switch" href="' + href + '" hreflang="en" lang="en" title="English site">English</a>';
+      ? '<a class="lang-switch" href="' + href + '" hreflang="he" lang="he" title="לאתר בעברית" aria-label="עברית"><span class="full">עברית</span><span class="short" aria-hidden="true">עב</span></a>'
+      : '<a class="lang-switch" href="' + href + '" hreflang="en" lang="en" title="English site" aria-label="English"><span class="full">English</span><span class="short" aria-hidden="true">EN</span></a>';
   }
 
   function renderHeaderEn(el) {
