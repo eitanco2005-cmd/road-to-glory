@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /road-to-glory/thanks/
-Disallow: /road-to-glory/dl/
+Disallow: /thanks/
+Disallow: /dl/
 
-Sitemap: https://eitanco2005-cmd.github.io/road-to-glory/sitemap.xml
+Sitemap: https://tichnun.netlify.app/sitemap.xml

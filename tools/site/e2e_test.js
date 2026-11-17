@@ -1,7 +1,8 @@
 // End-to-end check of the platform in TEST mode (no real payment).
 //   node tools/site/e2e_test.js [--shots ops/reports/w1]
 // Copies docs/ to a temp dir, adds a fixture product (files + page), points config.js at a local
-// sales endpoint (tools/site/sales_endpoint, needs fastapi+uvicorn), serves under /road-to-glory/,
+// sales endpoint (tools/site/sales_endpoint, needs fastapi+uvicorn), serves it at the domain root
+// (as on Netlify),
 // then: home renders -> product ?test=1 -> pay -> thanks page -> download -> summary shows sale + visits.
 // Also checks the live PayPal SDK renders buttons when not in test mode (skipped if paypal.com unreachable).
 const { chromium } = require("playwright");
@@ -28,8 +29,8 @@ function waitFor(url, ms = 15000) {
 }
 
 (async () => {
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "glory-e2e-"));
-  const site = path.join(tmp, "road-to-glory");
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "tichnun-e2e-"));
+  const site = path.join(tmp, "site");
   execSync(`cp -r "${REPO}/docs" "${site}"`);
   // fixture: make wedding-planner + bar-mitzvah deliverable, give wedding-planner a page and a file
   const dl = path.join(site, "dl", "e2eFixture000001");
@@ -55,12 +56,12 @@ function waitFor(url, ms = 15000) {
     .replace('VISITS_ENDPOINT: ""', `VISITS_ENDPOINT: "http://127.0.0.1:${API}/visit"`)
     .replace(/SELLER_EMAIL: "[^"]*"/, 'SELLER_EMAIL: "help@example.com"'));
 
-  const web = spawn("python3", ["-m", "http.server", String(WEB), "--bind", "127.0.0.1"], { cwd: tmp, stdio: "ignore" });
+  const web = spawn("python3", ["-m", "http.server", String(WEB), "--bind", "127.0.0.1"], { cwd: site, stdio: "ignore" });
   const api = spawn("python3", ["-m", "uvicorn", "app:app", "--port", String(API), "--host", "127.0.0.1"], {
     cwd: path.join(REPO, "tools/site/sales_endpoint"), stdio: "ignore",
     env: { ...process.env, DATA_DIR: path.join(tmp, "data"), SUMMARY_TOKEN: TOKEN, HF_TOKEN: "", PAYPAL_SECRET: "" },
   });
-  const BASE = `http://127.0.0.1:${WEB}/road-to-glory/`;
+  const BASE = `http://127.0.0.1:${WEB}/`;
   const browser = await chromium.launch();
   try {
     await waitFor(BASE); await waitFor(`http://127.0.0.1:${API}/health`);

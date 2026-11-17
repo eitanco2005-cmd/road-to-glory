@@ -1,4 +1,4 @@
-from common import BASE, UPDATED, breadcrumb_ld, breadcrumbs, esc, faq_html, faq_ld, page
+from common import BASE, BRAND, UPDATED, breadcrumb_ld, breadcrumbs, esc, faq_html, faq_ld, page
 
 SHOT_CAPTIONS = ["דשבורד: ימים לאירוע, תקציב, תשלומים, אישורי הגעה ומאזן מתנות",
                  "תקציב: חלוקה מקובלת, תכנון מול התחייבות בפועל ומה שולם",
@@ -34,6 +34,7 @@ def build_product(c):
     feats = "\n".join(feature(*f) for f in c["features"])
     points = "".join(f"<li>{p}</li>" for p in c["points"])
     guides = "".join(f'<li><a href="guides/{g}/">{esc(t)}</a></li>' for g, t in c["guides"])
+    guides += "".join(f'<li><a href="../../guides/{g}/">{esc(t)}</a></li>' for g, t in c.get("site_guides", []))
     body = f"""
 <section class="hero">
  <div class="container">
@@ -114,7 +115,7 @@ def build_product(c):
 """
     ld = [
         {"@type": "Product", "name": c["ld_name"], "description": c["desc"], "sku": c["slug"],
-         "brand": {"@type": "Brand", "name": "Glory"}, "category": "תבניות אקסל / Google Sheets",
+         "brand": {"@type": "Brand", "name": BRAND}, "category": "תבניות אקסל / Google Sheets",
          "image": [BASE + f"{path}/img/screen-{i}.png" for i in range(1, 5)],
          "offers": {"@type": "Offer", "price": str(c["price"]), "priceCurrency": "ILS",
                     "availability": "https://schema.org/InStock", "url": BASE + path + "/",
@@ -141,7 +142,7 @@ COMMON_FAQ_TAIL = [
 WEDDING = dict(
     slug="wedding-planner", price=49, crumb="מתכנן חתונה", other_slug="bar-mitzvah-planner",
     other_label="מתכנן בר / בת מצווה (₪39)", tool="wedding-gift", tool_label="מחשבון: כמה לשים בחתונה 2026",
-    title="מתכנן חתונה באקסל ו-Google Sheets – תקציב, מוזמנים וצ'קים | Glory",
+    title="מתכנן חתונה באקסל ו-Google Sheets – תקציב, מוזמנים וצ'קים | תכנון פלוס",
     desc="קובץ אקסל לתכנון חתונה בעברית: תקציב מול ספקים, רשימת מוזמנים ואישורי הגעה, רישום צ'קים ותודות, לוח תשלומים, צ'קליסט והושבה. עובד גם ב-Google Sheets. ₪49, הורדה מיידית.",
     ld_name="מתכנן חתונה באקסל ו-Google Sheets", shot_alt="מתכנן חתונה באקסל",
     eyebrow="אקסל + Google Sheets · ₪49 · הורדה מיידית",
@@ -166,6 +167,10 @@ WEDDING = dict(
         "מתאים לחתונה של 80 אורחים וגם של 400, באולם, בגן או באירוע צנוע.</p>",
     guides=[("wedding-budget-2026", "תקציב חתונה 2026: איך מחלקים ומה באמת עולה"),
             ("rsvp-seating-gifts", "אישורי הגעה, הושבה ורישום צ'קים – שיטה מסודרת")],
+    site_guides=[("wedding-checklist", "צ'קליסט חתונה: מה סוגרים ומתי"),
+                 ("wedding-guest-list", "רשימת מוזמנים לחתונה: איך בונים ומצמצמים"),
+                 ("wedding-save-money", "איך לחסוך בחתונה"),
+                 ("wedding-vendor-contracts", "חוזה עם אולם וספקים: מה לבדוק")],
     faqs=[
         ("מה ההבדל בין זה לבין טבלה שאני בונה לבד?",
          "הכל כבר מחובר: ספק שסוגרים נכנס לתקציב, תשלום שמסמנים מעדכן את היתרה, אישור הגעה משנה את מספר המנות וההושבה, ומתנה שנרשמת מעדכנת את המאזן. "
@@ -180,7 +185,7 @@ WEDDING = dict(
 BAR = dict(
     slug="bar-mitzvah-planner", price=39, crumb="מתכנן בר / בת מצווה", other_slug="wedding-planner",
     other_label="מתכנן חתונה (₪49)", tool="bar-mitzvah-cost", tool_label="מחשבון: כמה עולה בר מצווה",
-    title="מתכנן בר מצווה / בת מצווה באקסל – תקציב, מוזמנים וצ'קליסט | Glory",
+    title="מתכנן בר מצווה / בת מצווה באקסל – תקציב, מוזמנים וצ'קליסט | תכנון פלוס",
     desc="קובץ אקסל לתכנון בר או בת מצווה בעברית: תקציב מול ספקים, מוזמנים ואישורי הגעה, רישום מתנות, תשלומים, צ'קליסט כולל עלייה לתורה והושבה. גם ב-Google Sheets. ₪39.",
     ld_name="מתכנן בר / בת מצווה באקסל ו-Google Sheets", shot_alt="מתכנן בר מצווה באקסל",
     eyebrow="אקסל + Google Sheets · ₪39 · הורדה מיידית",

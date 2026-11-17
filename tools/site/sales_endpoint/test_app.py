@@ -39,5 +39,5 @@ def test_flow():
         assert s["traffic"]["visits"] == 3 and s["traffic"]["top_pages"]["/"] == 2
         assert "TEST-ABC" in c.get("/export/sales?token=s3cret").text
         # CORS preflight-free simple request from the site
-        r = c.post("/visit", content='{"path":"/x"}', headers={**h, "Origin": "https://eitanco2005-cmd.github.io"})
-        assert r.headers.get("access-control-allow-origin") in ("*", "https://eitanco2005-cmd.github.io")
+        r = c.post("/visit", content='{"path":"/x"}', headers={**h, "Origin": "https://tichnun.netlify.app"})
+        assert r.headers.get("access-control-allow-origin") in ("*", "https://tichnun.netlify.app")

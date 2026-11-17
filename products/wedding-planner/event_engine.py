@@ -614,7 +614,7 @@ def build_help(wb, cfg):
         "הסכומים המקובלים והאחוזים בקובץ הם כללי אצבע להתמצאות בלבד. מחירים בפועל משתנים לפי ספק, אזור ועונה – "
         "תמיד בקשו הצעות מחיר כתובות.",
         "הקובץ לשימוש אישי של הרוכשים. אין בו פקודות מאקרו.",
-        "גרסה " + cfg["version"] + " · Glory – כלים חכמים לתכנון",
+        "גרסה " + cfg["version"] + " · תכנון פלוס – קבצים ומחשבונים חכמים בעברית",
     ]
     r = 4
     for line in lines:
@@ -661,6 +661,6 @@ def build_workbook(cfg, demo=False):
         ws.page_setup.fitToHeight = 0
         ws.sheet_properties.pageSetUpPr.fitToPage = True
     wb.properties.title = cfg["product_title"]
-    wb.properties.creator = "Glory"
+    wb.properties.creator = "תכנון פלוס"
     wb.calculation.fullCalcOnLoad = True
     return wb

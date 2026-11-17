@@ -1,5 +1,5 @@
 ---
-title: Glory Sales Log
+title: Tichnun Plus Sales Log
 emoji: 📒
 colorFrom: green
 colorTo: yellow
@@ -8,7 +8,7 @@ app_port: 7860
 pinned: false
 ---
 
-# Glory sales log + visit counter
+# Tichnun Plus (תכנון פלוס) sales log + visit counter
 
 A tiny FastAPI app that the static site posts to. It appends every sale and page visit to JSON-lines files
 and serves a **token-protected** summary (sales, revenue, estimated PayPal fees, profit, visits, conversion).
@@ -36,10 +36,10 @@ are stored but excluded from money totals.
 | Name | Required | Default | Notes |
 |---|---|---|---|
 | `SUMMARY_TOKEN` | yes | – | long random string, e.g. `python -c "import secrets;print(secrets.token_urlsafe(32))"` |
-| `ALLOWED_ORIGINS` | no | `*` | e.g. `https://eitanco2005-cmd.github.io` |
+| `ALLOWED_ORIGINS` | no | `*` | e.g. `https://tichnun.netlify.app` |
 | `FEE_PCT` / `FEE_FIXED` | no | `0.054` / `1.20` | fee estimate in ILS; replace with the real numbers after the first sale |
 | `PAYPAL_CLIENT_ID` / `PAYPAL_SECRET` / `PAYPAL_ENV` | no | – / – / `live` | enables order verification |
-| `HF_TOKEN` / `HF_DATASET_REPO` | no, but **recommended on free Spaces** | – | backs the files up to a private dataset repo (e.g. `you/glory-sales-log`); restored on startup |
+| `HF_TOKEN` / `HF_DATASET_REPO` | no, but **recommended on free Spaces** | – | backs the files up to a private dataset repo (e.g. `you/tichnun-sales-log`); restored on startup |
 | `BACKUP_EVERY_SEC` | no | `600` | visit backup interval (sales are backed up immediately) |
 | `DATA_DIR` | no | `/app/data` in Docker | `/data` if you bought HF persistent storage |
 
@@ -50,29 +50,29 @@ are stored but excluded from money totals.
 
 ## Deploy to a Hugging Face Docker Space
 
-1. Create the Space: huggingface.co → **New Space** → name `glory-sales-log`, SDK **Docker**, template *Blank*,
+1. Create the Space: huggingface.co → **New Space** → name `tichnun-sales-log`, SDK **Docker**, template *Blank*,
    visibility **Public** (the site must reach it; the data is still protected by the token). Or via CLI:
-   `huggingface-cli repo create glory-sales-log --type space --space_sdk docker`
-2. (Recommended) create a **private dataset** `glory-sales-log-data` for backups, plus a *write* access token.
+   `huggingface-cli repo create tichnun-sales-log --type space --space_sdk docker`
+2. (Recommended) create a **private dataset** `tichnun-sales-log-data` for backups, plus a *write* access token.
 3. Space → Settings → **Variables and secrets**: add secrets `SUMMARY_TOKEN`, `HF_TOKEN`,
-   and optionally `PAYPAL_CLIENT_ID`, `PAYPAL_SECRET`. Add variables `HF_DATASET_REPO=<user>/glory-sales-log-data`
-   and `ALLOWED_ORIGINS=https://eitanco2005-cmd.github.io`.
+   and optionally `PAYPAL_CLIENT_ID`, `PAYPAL_SECRET`. Add variables `HF_DATASET_REPO=<user>/tichnun-sales-log-data`
+   and `ALLOWED_ORIGINS=https://tichnun.netlify.app`.
 4. Push this folder as the Space repo:
    ```bash
-   git clone https://huggingface.co/spaces/<user>/glory-sales-log /tmp/space
+   git clone https://huggingface.co/spaces/<user>/tichnun-sales-log /tmp/space
    cp tools/site/sales_endpoint/{app.py,requirements.txt,Dockerfile,README.md} /tmp/space/
-   cd /tmp/space && git add -A && git commit -m "Glory sales log" && git push
+   cd /tmp/space && git add -A && git commit -m "Tichnun Plus sales log" && git push
    ```
    (or upload the four files with `huggingface_hub.HfApi().upload_folder(...)`).
-5. When the build is green, the base URL is `https://<user>-glory-sales-log.hf.space`. Check it with
-   `curl https://<user>-glory-sales-log.hf.space/health`.
+5. When the build is green, the base URL is `https://<user>-tichnun-sales-log.hf.space`. Check it with
+   `curl https://<user>-tichnun-sales-log.hf.space/health`.
 6. Put the endpoints in `docs/assets/config.js`:
    ```js
-   SALES_ENDPOINT: "https://<user>-glory-sales-log.hf.space/sale",
-   VISITS_ENDPOINT: "https://<user>-glory-sales-log.hf.space/visit",
+   SALES_ENDPOINT: "https://<user>-tichnun-sales-log.hf.space/sale",
+   VISITS_ENDPOINT: "https://<user>-tichnun-sales-log.hf.space/visit",
    ```
 7. Smoke test: open any product page with `?test=1`, click the test pay button, then
-   `curl -H "Authorization: Bearer $SUMMARY_TOKEN" https://<user>-glory-sales-log.hf.space/summary` should show
+   `curl -H "Authorization: Bearer $SUMMARY_TOKEN" https://<user>-tichnun-sales-log.hf.space/summary` should show
    `test_sales: 1`.
 
 ## Run locally

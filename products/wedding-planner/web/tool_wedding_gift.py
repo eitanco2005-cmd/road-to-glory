@@ -1,7 +1,7 @@
 from common import BASE, UPDATED, UPDATED_HE, breadcrumb_ld, breadcrumbs, faq_html, faq_ld, page
 
 PATH = "tools/wedding-gift"
-TITLE = "כמה לשים בחתונה 2026? מחשבון מעודכן לפי מחיר מנה | Glory"
+TITLE = "כמה לשים בחתונה 2026? מחשבון מעודכן לפי מחיר מנה | תכנון פלוס"
 DESC = ("מחשבון חינם: כמה לשים בחתונה ב-2026 לפי קרבה, עונה, אזור, יום בשבוע וסוג האולם. "
         "לבד, בזוג או עם ילדים – כולל טווח מקובל וטבלה לכל רמת קרבה.")
 
@@ -11,7 +11,7 @@ SOURCES = """
  למשל <a href="https://www.bizportal.co.il/financialconsumerism/news/article/20043776" rel="noopener" target="_blank">Bizportal</a> ו<a href="https://finance.walla.co.il/item/3807201" rel="noopener" target="_blank">וואלה כסף</a>. נבדק {u}.</li>
 <li>עלות חתונה טיפוסית – נתוני zap מתחתנים 2025 כפי שפורסמו ב-<a href="https://www.mako.co.il/news-specials/data_n12/Article-d63f6b035bc1791026.htm" rel="noopener" target="_blank">N12</a>.</li>
 <li>טווחים מסורתיים לפי קרבה (מכרים, חברים, חברים קרובים) – <a href="https://www.israelhayom.co.il/article/389413?amp=1" rel="noopener" target="_blank">ישראל היום: כמה כסף שמים לחתונה</a>; וגם <a href="https://www.kipa.co.il/יחסים/חתונה/1153162-0" rel="noopener" target="_blank">כיפה</a>. חלק מהנתונים שם ישנים, ולכן המחשבון מתבסס על מחיר המנה העדכני.</li>
-<li>מקדמי הקרבה, ההנחה לזוג, יום שישי בצהריים ואולם צנוע/יוקרתי – הכיול שלנו (Glory), לא נתון רשמי. אין "סכום נכון" אחד: זו נקודת התחלה.</li>
+<li>מקדמי הקרבה, ההנחה לזוג, יום שישי בצהריים ואולם צנוע/יוקרתי – הכיול שלנו, לא נתון רשמי. אין "סכום נכון" אחד: זו נקודת התחלה.</li>
 </ul>""".format(u=UPDATED_HE)
 
 FAQS = [
@@ -144,7 +144,7 @@ def build():
   <div class="cta-box mt-3">
    <div>
     <h2 class="h3" style="font-size:1.2rem">מתחתנים בעצמכם?</h2>
-    <p>מתכנן החתונה של Glory מסדר תקציב, מוזמנים ואישורי הגעה, ספקים ותשלומים, ורושם כל צ'ק עם מעקב תודות. אקסל ו-Google Sheets, ₪49.</p>
+    <p>מתכנן החתונה של תכנון פלוס מסדר תקציב, מוזמנים ואישורי הגעה, ספקים ותשלומים, ורושם כל צ'ק עם מעקב תודות. אקסל ו-Google Sheets, ₪49.</p>
    </div>
    <a class="btn accent" href="../../p/wedding-planner/">למתכנן החתונה</a>
   </div>

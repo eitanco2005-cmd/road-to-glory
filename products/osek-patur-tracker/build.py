@@ -577,7 +577,7 @@ def build(example=False):
         ws.page_setup.fitToHeight = 0
         ws.sheet_properties.pageSetUpPr.fitToPage = True
     wb.properties.title = f"מעקב עוסק פטור {YEAR}"
-    wb.properties.creator = "Glory"
+    wb.properties.creator = "תכנון פלוס"
     name = f"osek-patur-tracker-{YEAR}{'-example' if example else ''}.xlsx"
     out = HERE / name
     wb.save(out)

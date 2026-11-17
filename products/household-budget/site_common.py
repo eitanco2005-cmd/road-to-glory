@@ -3,7 +3,9 @@ import json
 from pathlib import Path
 
 DOCS = Path(__file__).resolve().parents[2] / "docs"
-BASE = "https://eitanco2005-cmd.github.io/road-to-glory/"
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools" / "site"))
+from site_config import BASE_URL as BASE, BRAND  # noqa: E402
 UPDATED = "2026-11-17"
 UPDATED_HE = "17 בנובמבר 2026"
 
@@ -41,7 +43,7 @@ def page(path, title, desc, body, jsonld, og_image=None, crumbs=(), extra_script
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="{'product' if buy else 'website'}">
 <meta property="og:locale" content="he_IL">
-<meta property="og:site_name" content="Glory">
+<meta property="og:site_name" content="{BRAND}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
@@ -98,13 +100,13 @@ def faq_ld(items):
 def article_ld(title, desc, path, image=None):
     return {"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc,
             "inLanguage": "he-IL", "datePublished": UPDATED, "dateModified": UPDATED, "mainEntityOfPage": BASE + path,
-            **({"image": BASE + image} if image else {}), "author": {"@type": "Organization", "name": "Glory"},
-            "publisher": {"@type": "Organization", "name": "Glory"}}
+            **({"image": BASE + image} if image else {}), "author": {"@type": "Organization", "name": BRAND},
+            "publisher": {"@type": "Organization", "name": BRAND}}
 
 
 def product_ld(name, desc, path, price, images):
     return {"@context": "https://schema.org", "@type": "Product", "name": name, "description": desc,
-            "image": [BASE + i for i in images], "brand": {"@type": "Brand", "name": "Glory"},
+            "image": [BASE + i for i in images], "brand": {"@type": "Brand", "name": BRAND},
             "offers": {"@type": "Offer", "price": str(price), "priceCurrency": "ILS", "availability": "https://schema.org/InStock",
                        "url": BASE + path}}
 

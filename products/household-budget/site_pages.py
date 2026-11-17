@@ -103,13 +103,17 @@ body = """
     <ul class="w3-list w3-guides">
       <li><a href="guides/family-budget-2027/">תקציב משפחתי 2027: איך בונים תקציב לבית ב-6 צעדים</a></li>
       <li><a href="guides/fixed-expenses-list/">רשימת ההוצאות הקבועות של משק בית בישראל</a></li>
+      <li><a href="{up}guides/budget-by-net-salary/">איך בונים תקציב לפי משכורת נטו</a></li>
+      <li><a href="{up}guides/how-to-save-money/">איך לחסוך כסף ב-2027</a></li>
+      <li><a href="{up}guides/get-out-of-overdraft/">איך לצאת מהמינוס</a></li>
+      <li><a href="{up}guides/emergency-fund/">קרן חירום: כמה צריך ואיפה לשמור</a></li>
       <li><a href="{up}tools/budget-503020/">מחשבון תקציב 50/30/20 בשקלים (חינם)</a></li>
     </ul>
   </div>
 </section>
 <div class="buy-bar"><span><strong>תקציב משק בית Pro</strong> · <span class="price">₪39</span></span><a class="btn small" href="#buy">לרכישה</a></div>
 """.replace("FAQ", faq_html(faq))
-title = "אקסל תקציב משק בית 2027 – תקציב משפחתי Pro בעברית | Glory"
+title = "אקסל תקציב משק בית 2027 – תקציב משפחתי Pro בעברית | תכנון פלוס"
 desc = "קובץ אקסל לתקציב משפחתי 2027: 56 קטגוריות ישראליות, תכנון מול ביצוע לכל חודש, יעדי חיסכון, הלוואות ודשבורד. Excel ו-Google Sheets, ₪39, הורדה מיידית."
 page(P, title, desc, body,
      [product_ld("תקציב משק בית Pro 2027", desc, P, 39, [IMG + "dashboard.webp", IMG + "monthly.webp", IMG + "budget.webp"]), faq_ld(faq)],
@@ -205,7 +209,7 @@ tbody = """
   </div>
 </section>
 """.replace("TFAQ", faq_html(tfaq)).replace("UPD", UPDATED_HE)
-ttitle = "מחשבון תקציב 50/30/20 בשקלים – כמה לחסוך מהמשכורת | Glory"
+ttitle = "מחשבון תקציב 50/30/20 בשקלים – כמה לחסוך מהמשכורת | תכנון פלוס"
 tdesc = "מחשבון 50/30/20 בעברית: רושמים הכנסה נטו ומקבלים כמה לצרכים, לרצונות ולחיסכון בכל חודש, יעד לקרן חירום ובדיקה מול ההוצאות היום. חינם, בלי הרשמה."
 page(TOOL, ttitle, tdesc, tbody, [app_ld("מחשבון תקציב 50/30/20", tdesc, TOOL), faq_ld(tfaq)],
      og_image=IMG + "dashboard.webp", crumbs=[("כלים חינם", "tools/"), ("מחשבון 50/30/20", TOOL)],
@@ -262,7 +266,7 @@ g1 = """
   </div>
 </article>
 """.replace("UPD", UPDATED_HE)
-t1 = "תקציב משפחתי 2027: איך בונים תקציב לבית ב-6 צעדים | Glory"
+t1 = "תקציב משפחתי 2027: איך בונים תקציב לבית ב-6 צעדים | תכנון פלוס"
 d1 = "מדריך מעשי לבניית תקציב משפחתי ל-2027: איסוף הנתונים, קטגוריות ישראליות, הוצאות שנתיות, כלל 50/30/20 ופגישת תקציב חודשית. כולל מחשבון חינם."
 page(G1, t1, d1, g1, [article_ld(t1.split(" | ")[0], d1, G1, IMG + "dashboard.webp")], og_image=IMG + "dashboard.webp",
      crumbs=[("תקציב משק בית Pro", P), ("תקציב משפחתי 2027", G1)])
@@ -323,7 +327,7 @@ g2 = """
   </div>
 </article>
 """.replace("TABLE", table).replace("UPD", UPDATED_HE)
-t2 = "רשימת הוצאות קבועות של משק בית בישראל – ארנונה, ועד בית ועוד | Glory"
+t2 = "רשימת הוצאות קבועות של משק בית בישראל – ארנונה, ועד בית ועוד | תכנון פלוס"
 d2 = "כל ההוצאות הקבועות של בית ישראלי ברשימה אחת: ארנונה, ועד בית, חשמל, מים, ביטוחים, ביטוח לאומי, גן וצהרון, רכב. כמה פעמים משלמים ומה כדאי לבדוק."
 page(G2, t2, d2, g2, [article_ld(t2.split(" | ")[0], d2, G2, IMG + "budget.webp")], og_image=IMG + "budget.webp",
      crumbs=[("תקציב משק בית Pro", P), ("רשימת הוצאות קבועות", G2)])

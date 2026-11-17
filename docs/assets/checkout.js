@@ -1,4 +1,4 @@
-/* Glory checkout — renders PayPal buttons into every <div class="buy" data-product="<slug>"></div>.
+/* תכנון פלוס checkout — renders PayPal buttons into every <div class="buy" data-product="<slug>"></div>.
  *
  * Flow: read data/products/<slug>.json (+ members for bundles) -> PayPal JS SDK (client id from config.js,
  * currency ILS, intent capture) -> createOrder with title/price from the JSON -> onApprove: capture ->
@@ -32,7 +32,7 @@
       loaded[src] = new Promise(function (resolve, reject) {
         var s = document.createElement("script");
         s.src = src; s.async = true;
-        s.setAttribute("data-glory", "1");
+        s.setAttribute("data-site-sdk", "1");
         s.onload = function () { resolve(); };
         s.onerror = function () { delete loaded[src]; s.remove(); reject(new Error("load failed")); };
         document.head.appendChild(s);
@@ -41,8 +41,8 @@
     return loaded[src];
   }
   function config() {
-    if (window.GLORY_CONFIG) return Promise.resolve(window.GLORY_CONFIG);
-    return loadScript(ASSETS + "config.js").then(function () { return window.GLORY_CONFIG || {}; });
+    if (window.SITE_CONFIG) return Promise.resolve(window.SITE_CONFIG);
+    return loadScript(ASSETS + "config.js").then(function () { return window.SITE_CONFIG || {}; });
   }
   function sales() {
     if (window.recordSale) return Promise.resolve();
@@ -183,7 +183,7 @@
               amount: { currency_code: CURRENCY, value: value, breakdown: { item_total: { currency_code: CURRENCY, value: value } } },
               items: [{ name: name, sku: p.slug, quantity: "1", category: "DIGITAL_GOODS", unit_amount: { currency_code: CURRENCY, value: value } }]
             }],
-            application_context: { shipping_preference: "NO_SHIPPING", brand_name: cfg.BRAND || "Glory", user_action: "PAY_NOW" }
+            application_context: { shipping_preference: "NO_SHIPPING", brand_name: cfg.BRAND || "תכנון פלוס", user_action: "PAY_NOW" }
           });
         },
         onApprove: function (data, actions) {
@@ -238,7 +238,7 @@
       for (var i = 0; i < els.length; i++) renderOne(els[i], cfg);
     });
   }
-  window.GloryCheckout = { render: init, resolve: resolve, isTest: TEST };
+  window.SiteCheckout = { render: init, resolve: resolve, isTest: TEST };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

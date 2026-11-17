@@ -150,7 +150,7 @@ def build(demo: bool, path: Path):
 
     # ================= הוראות =================
     ws = wb.create_sheet("הוראות")
-    title(ws, "מתכנן תקציב שיפוץ", "Glory · אקסל בעברית לניהול שיפוץ: עבודות, השוואת הצעות מחיר, תשלומים ובלת\"מ")
+    title(ws, "מתכנן תקציב שיפוץ", "תכנון פלוס · אקסל בעברית לניהול שיפוץ: עבודות, השוואת הצעות מחיר, תשלומים ובלת\"מ")
     ws.column_dimensions["A"].width = 4
     ws.column_dimensions["B"].width = 112
     lines = [
@@ -494,7 +494,7 @@ def build(demo: bool, path: Path):
         wb[n].sheet_properties.tabColor = c
     wb.active = 1 if demo else 0
     wb.properties.title = "מתכנן תקציב שיפוץ"
-    wb.properties.creator = "Glory"
+    wb.properties.creator = "תכנון פלוס"
     wb.calculation.fullCalcOnLoad = True
     wb.save(path)
 

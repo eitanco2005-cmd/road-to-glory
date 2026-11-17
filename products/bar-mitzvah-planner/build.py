@@ -81,7 +81,7 @@ def demo_guests():
 
 
 CFG = dict(
-    product_title="מתכנן בר / בת מצווה · Glory",
+    product_title="מתכנן בר / בת מצווה · תכנון פלוס",
     product_subtitle="תקציב, מוזמנים ואישורי הגעה, מתנות, ספקים, תשלומים, צ'קליסט (כולל עלייה לתורה) והושבה.",
     event_label="בר / בת המצווה",
     version="1.0 (נובמבר 2026)",
@@ -159,8 +159,8 @@ CFG.update(
 if __name__ == "__main__":
     out = os.path.join(HERE, "out")
     os.makedirs(out, exist_ok=True)
-    build_workbook(CFG, demo=False).save(os.path.join(out, "מתכנן-בר-בת-מצווה-Glory.xlsx"))
-    build_workbook(CFG, demo=True).save(os.path.join(out, "מתכנן-בר-בת-מצווה-Glory-דוגמה-ממולאת.xlsx"))
+    build_workbook(CFG, demo=False).save(os.path.join(out, "מתכנן-בר-בת-מצווה.xlsx"))
+    build_workbook(CFG, demo=True).save(os.path.join(out, "מתכנן-בר-בת-מצווה-דוגמה-ממולאת.xlsx"))
     from docx_engine import build_docx
-    build_docx(CFG, os.path.join(out, "נוסחים-ולוח-זמנים-לבר-בת-מצווה-Glory.docx"))
+    build_docx(CFG, os.path.join(out, "נוסחים-ולוח-זמנים-לבר-בת-מצווה.docx"))
     print("ok", os.listdir(out))

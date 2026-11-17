@@ -1,4 +1,4 @@
-/* Glory design system — Hebrew RTL, mobile-first, light + dark.
+/* תכנון פלוס design system — Hebrew RTL, mobile-first, light + dark.
  * Usage reference: tools/site/templates/page-template.html
  * Pages: <html lang="he" dir="rtl">, <header id="site-header"></header>, <main>, <footer id="site-footer"></footer>
  */
@@ -158,6 +158,7 @@ main { display: block; min-height: 60vh; }
 .brand { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.3rem; }
 .brand:hover { color: var(--text); }
 .brand-mark { width: 32px; height: 32px; flex: none; }
+.brand span { white-space: nowrap; }
 .brand small { font-weight: 600; color: var(--muted); font-size: .8rem; display: none; }
 @media (min-width: 720px) { .brand small { display: inline; } }
 .nav { display: flex; gap: .15rem; margin-inline-start: auto; align-items: center; }
@@ -173,8 +174,18 @@ main { display: block; min-height: 60vh; }
 }
 .theme-toggle svg { width: 18px; height: 18px; }
 @media (max-width: 420px) {
-  .nav a { padding: .4rem .45rem; font-size: .93rem; }
-  .brand { font-size: 1.15rem; }
+  .site-header .bar { gap: .4rem; }
+  .nav a { padding: .4rem .35rem; font-size: .93rem; }
+  .brand { font-size: 1.1rem; gap: .4rem; }
+  .brand-mark { width: 28px; height: 28px; }
+}
+@media (max-width: 350px) {
+  .site-header .bar { gap: .3rem; }
+  .nav { gap: 0; }
+  .nav a { padding: .35rem .2rem; font-size: .84rem; }
+  .brand { font-size: 1rem; gap: .3rem; }
+  .brand-mark { width: 24px; height: 24px; }
+  .theme-toggle { width: 32px; height: 32px; }
 }
 
 /* ---------- Footer ---------- */

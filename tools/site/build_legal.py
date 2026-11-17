@@ -7,9 +7,13 @@ Placeholders SELLER_NAME / SELLER_EMAIL stay literal until the manager fills the
 """
 import argparse
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from site_config import BASE_URL, BRAND  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2] / "docs" / "legal"
-BASE = "https://eitanco2005-cmd.github.io/road-to-glory/"
+BASE = BASE_URL
 UPDATED = "17 בנובמבר 2026"
 
 HEAD = """<!doctype html>
@@ -17,13 +21,13 @@ HEAD = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} | Glory</title>
+<title>{title} | {brand}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{base}legal/{slug}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
-<meta property="og:site_name" content="Glory">
-<meta property="og:title" content="{title} — Glory">
+<meta property="og:site_name" content="{brand}">
+<meta property="og:title" content="{title} — {brand}">
 <meta property="og:description" content="{desc}">
 <meta name="theme-color" content="#0e6b63">
 <link rel="icon" type="image/svg+xml" href="{up}assets/favicon.svg">
@@ -52,11 +56,11 @@ HEAD = """<!doctype html>
 </html>
 """
 
-SELLER = """<p><strong>פרטי המוכר:</strong> SELLER_NAME (להלן "Glory", "אנחנו"). דוא"ל ליצירת קשר: <a href="mailto:SELLER_EMAIL">SELLER_EMAIL</a>.</p>"""
+SELLER = """<p><strong>פרטי המוכר:</strong> SELLER_NAME (להלן "תכנון פלוס", "אנחנו"). דוא"ל ליצירת קשר: <a href="mailto:SELLER_EMAIL">SELLER_EMAIL</a>.</p>"""
 
 PAGES = {}
 
-PAGES["terms"] = ("תקנון ותנאי מכירה", "תקנון האתר ותנאי המכירה של קבצים דיגיטליים ב-Glory: רכישה, תשלום ב-PayPal, מסירה מיידית, רישיון שימוש ואחריות.", f"""
+PAGES["terms"] = ("תקנון ותנאי מכירה", "תקנון האתר ותנאי המכירה של קבצים דיגיטליים באתר תכנון פלוס: רכישה, תשלום ב-PayPal, מסירה מיידית, רישיון שימוש ואחריות.", f"""
 {SELLER}
 <p>התקנון חל על כל שימוש באתר ועל כל רכישה בו. השימוש באתר או ביצוע רכישה מהווים הסכמה לתנאים אלה. התקנון כתוב בלשון זכר מטעמי נוחות ופונה לכל המגדרים.</p>
 
@@ -111,7 +115,7 @@ PAGES["terms"] = ("תקנון ותנאי מכירה", "תקנון האתר ות�
 </ul>
 """)
 
-PAGES["refund"] = ("מדיניות ביטולים והחזרים", "מדיניות ביטול עסקה והחזר כספי לקבצים דיגיטליים ב-Glory, בהתאם לחוק הגנת הצרכן, התשמ\"א-1981.", f"""
+PAGES["refund"] = ("מדיניות ביטולים והחזרים", "מדיניות ביטול עסקה והחזר כספי לקבצים דיגיטליים באתר תכנון פלוס, בהתאם לחוק הגנת הצרכן, התשמ\"א-1981.", f"""
 {SELLER}
 <div class="callout"><strong>בקצרה:</strong> מדובר בקבצים דיגיטליים שנמסרים מיד, ולכן זכות הביטול הרגילה של עסקה מרחוק אינה חלה עליהם. ובכל זאת, אם הקובץ פגום, לא נפתח או שונה מהותית מהתיאור ולא הצלחנו לתקן — נחזיר לכם את מלוא הסכום.</div>
 
@@ -142,7 +146,7 @@ PAGES["refund"] = ("מדיניות ביטולים והחזרים", "מדיניו
 <p class="source">המדיניות אינה גורעת מזכות שמוקנית לצרכן לפי כל דין. מקור: חוק הגנת הצרכן, התשמ"א-1981, סעיף 14ג (נוסח באתר "נבו" / ספר החוקים, נבדק בנובמבר 2026).</p>
 """)
 
-PAGES["privacy"] = ("מדיניות פרטיות", "איזה מידע Glory אוסף, למה, ואיך הוא נשמר. בלי עוגיות מעקב ובלי פרסום.", f"""
+PAGES["privacy"] = ("מדיניות פרטיות", "איזה מידע אתר תכנון פלוס אוסף, למה, ואיך הוא נשמר. בלי עוגיות מעקב ובלי פרסום.", f"""
 {SELLER}
 <p>אנחנו אוספים כמה שפחות מידע. אין באתר עוגיות פרסום, אין כלי מעקב של צד שלישי ואין רשימות תפוצה.</p>
 
@@ -178,7 +182,7 @@ PAGES["privacy"] = ("מדיניות פרטיות", "איזה מידע Glory או
 <p>אם המדיניות תשתנה, נעדכן את התאריך בראש העמוד.</p>
 """)
 
-PAGES["accessibility"] = ("הצהרת נגישות", "הצהרת הנגישות של אתר Glory: רמת ההתאמה לתקן הישראלי 5568 (WCAG 2.0 AA), התאמות שבוצעו ופרטי רכז הנגישות.", f"""
+PAGES["accessibility"] = ("הצהרת נגישות", "הצהרת הנגישות של אתר תכנון פלוס: רמת ההתאמה לתקן הישראלי 5568 (WCAG 2.0 AA), התאמות שבוצעו ופרטי רכז הנגישות.", f"""
 <p>אנחנו רוצים שכל אחד יוכל להשתמש באתר, כולל אנשים עם מוגבלות. האתר נבנה במטרה לעמוד בתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, ובתקן הישראלי ת"י 5568, המבוסס על הנחיות WCAG 2.0 ברמה AA.</p>
 
 <h2>התאמות שבוצעו באתר</h2>
@@ -230,12 +234,12 @@ def main():
     for slug, (title, desc, body) in PAGES.items():
         out = ROOT / slug / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        html = HEAD.format(title=title, desc=desc, base=BASE, slug=slug + "/", up="../../",
+        html = HEAD.format(brand=BRAND, title=title, desc=desc, base=BASE, slug=slug + "/", up="../../",
                            crumb='<a href="../">מידע משפטי</a><span aria-hidden="true">›</span>',
                            updated=UPDATED, body=body.strip())
         out.write_text(fill(html), encoding="utf-8")
     (ROOT / "index.html").write_text(fill(HEAD.format(
-        title="מידע משפטי", desc="תקנון, מדיניות ביטולים, פרטיות ונגישות באתר Glory.", base=BASE, slug="",
+        brand=BRAND, title="מידע משפטי", desc="תקנון, מדיניות ביטולים, פרטיות ונגישות באתר תכנון פלוס.", base=BASE, slug="",
         up="../", crumb="", updated=UPDATED, body=INDEX_BODY.strip())), encoding="utf-8")
     print("legal pages written to", ROOT)
 

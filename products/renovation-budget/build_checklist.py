@@ -110,7 +110,7 @@ def build():
     style.font.name = "Arial"
     style.element.rPr.rFonts.set(qn("w:cs"), "Arial")
     para(doc, "רשימת בדיקה: לפני שחותמים עם קבלן שיפוצים", True, 18, "1F4E79")
-    para(doc, "נלווה ל«מתכנן תקציב שיפוץ» של Glory · הדפיסו וסמנו ✓", False, 10, "5A6B7D")
+    para(doc, "נלווה ל«מתכנן תקציב שיפוץ» של תכנון פלוס · הדפיסו וסמנו ✓", False, 10, "5A6B7D")
     for head, items in SECTIONS:
         para(doc, head, True, 14, "1F4E79")
         for it in items:
@@ -137,7 +137,7 @@ def build():
     para(doc, "")
     para(doc, "המסמך הוא רשימת תזכורות כללית לתכנון ואינו ייעוץ משפטי או הנדסי. בהסכמים גדולים מומלץ להתייעץ עם עורך דין או מהנדס.", False, 9, "5A6B7D")
     doc.core_properties.title = "רשימת בדיקה לפני חתימה עם קבלן שיפוצים"
-    doc.core_properties.author = "Glory"
+    doc.core_properties.author = "תכנון פלוס"
     doc.save(OUT)
     print("built", OUT.name)
 

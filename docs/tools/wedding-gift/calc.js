@@ -1,4 +1,4 @@
-/* כמה לשים בחתונה – client-side calculator (Glory). No data leaves the browser. */
+/* כמה לשים בחתונה – client-side calculator (תכנון פלוס). No data leaves the browser. */
 (function () {
   "use strict";
   var f = document.getElementById("gift-form");

@@ -3,8 +3,10 @@ import html
 import json
 import os
 
-BASE = "https://eitanco2005-cmd.github.io/road-to-glory/"
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+import sys as _sys
+_sys.path.insert(0, os.path.join(REPO, "tools", "site"))
+from site_config import BASE_URL as BASE, BRAND  # noqa: E402
 DOCS = os.path.join(REPO, "docs")
 UPDATED = "2026-11-17"
 UPDATED_HE = "נובמבר 2026"
@@ -35,7 +37,7 @@ def page(path, title, desc, body, jsonld, og_image=None, extra_head="", scripts=
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
-<meta property="og:site_name" content="Glory">
+<meta property="og:site_name" content="{BRAND}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">

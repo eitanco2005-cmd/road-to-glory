@@ -1,4 +1,4 @@
-"""Glory sales log + visit counter.
+"""Tichnun Plus (תכנון פלוס) sales log + visit counter.
 
 Tiny FastAPI app (Hugging Face Docker Space friendly) that appends sales and visits to JSON-lines files
 and serves a token-protected summary. See README.md for deploy steps.
@@ -62,7 +62,7 @@ ORDER_RE = re.compile(r"^[A-Za-z0-9_-]{4,64}$")
 lock = threading.Lock()
 dirty = {"visits": False}
 
-app = FastAPI(title="Glory sales log", docs_url=None, redoc_url=None, openapi_url=None)
+app = FastAPI(title="Tichnun Plus sales log", docs_url=None, redoc_url=None, openapi_url=None)
 app.add_middleware(CORSMiddleware, allow_origins=ORIGINS, allow_methods=["GET", "POST", "OPTIONS"],
                    allow_headers=["Content-Type", "Authorization"], allow_credentials=False, max_age=86400)
 

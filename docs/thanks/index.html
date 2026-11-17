@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>תודה על הרכישה — ההורדה שלך | Glory</title>
-<meta name="description" content="דף ההורדה של ההזמנה שלך ב-Glory.">
+<title>תודה על הרכישה — ההורדה שלך | תכנון פלוס</title>
+<meta name="description" content="דף ההורדה של ההזמנה שלך באתר תכנון פלוס.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0e6b63">
@@ -75,7 +75,7 @@
 <script>
 (function () {
   "use strict";
-  var G = window.GLORY, esc = G.escape;
+  var G = window.SITE, esc = G.escape;
   var q = new URLSearchParams(location.search);
   var slug = q.get("p") || "", order = q.get("o") || "", test = q.get("test") === "1";
   var $ = function (id) { return document.getElementById(id); };
@@ -108,7 +108,7 @@
       .then(function (ms) { return { p: p, ms: ms.filter(Boolean), cfg: cfg }; });
   }).then(function (d) {
     var p = d.p, cfg = d.cfg;
-    document.title = "תודה! ההורדה של " + p.title + " | Glory";
+    document.title = "תודה! ההורדה של " + p.title + " | תכנון פלוס";
     var html;
     if (d.ms.length) {
       html = d.ms.map(function (m) { return '<h3 class="mt-2">' + esc(m.title) + "</h3>" + list(m); }).join("");
@@ -130,7 +130,7 @@
     }
     $("loading").hidden = true; $("ok").hidden = false;
     try { // remember purchases in this browser so the buyer can find the page again
-      var k = "glory-orders", arr = JSON.parse(localStorage.getItem(k) || "[]");
+      var k = "tp-orders", arr = JSON.parse(localStorage.getItem(k) || "[]");
       if (!arr.some(function (x) { return x.o === order; })) { arr.push({ p: slug, o: order, t: Date.now(), test: test }); localStorage.setItem(k, JSON.stringify(arr.slice(-30))); }
     } catch (e) {}
   }).catch(fail);

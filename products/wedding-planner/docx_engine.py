@@ -130,7 +130,7 @@ def build_docx(cfg, path):
     para(doc, "אותן משימות כמו בקובץ האקסל. תאריכי היעד המדויקים מחושבים בגיליון \"צ'קליסט\".", size=10)
     checklist_table(doc, cfg["tasks"])
     para(doc, "")
-    para(doc, "Glory – כלים חכמים לתכנון · לשימוש אישי של הרוכשים", size=9, color=RGBColor(0x88, 0x88, 0x88))
+    para(doc, "תכנון פלוס – קבצים ומחשבונים חכמים בעברית · לשימוש אישי של הרוכשים", size=9, color=RGBColor(0x88, 0x88, 0x88))
     doc.core_properties.title = cfg["docx_title"]
-    doc.core_properties.author = "Glory"
+    doc.core_properties.author = "תכנון פלוס"
     doc.save(path)

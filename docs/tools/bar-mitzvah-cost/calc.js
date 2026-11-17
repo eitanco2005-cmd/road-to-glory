@@ -1,4 +1,4 @@
-/* מחשבון עלות בר/בת מצווה – client-side (Glory). All numbers are editable estimates. */
+/* מחשבון עלות בר/בת מצווה – client-side (תכנון פלוס). All numbers are editable estimates. */
 (function () {
   "use strict";
   var f = document.getElementById("bm-form");

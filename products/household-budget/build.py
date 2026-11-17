@@ -167,7 +167,7 @@ def build(year: int, demo: bool, path: Path):
 
     # ================= הוראות =================
     ws = wb.create_sheet("הוראות")
-    title(ws, f"תקציב משק בית Pro {year}", "Glory · קובץ אקסל בעברית לתכנון ומעקב אחרי ההוצאות וההכנסות של הבית")
+    title(ws, f"תקציב משק בית Pro {year}", "תכנון פלוס · קובץ אקסל בעברית לתכנון ומעקב אחרי ההוצאות וההכנסות של הבית")
     ws.column_dimensions["A"].width = 4
     ws.column_dimensions["B"].width = 110
     lines = [
@@ -627,7 +627,7 @@ def build(year: int, demo: bool, path: Path):
         wb[n].sheet_properties.tabColor = c
     wb.active = 0 if not demo else 1
     wb.properties.title = f"תקציב משק בית Pro {year}"
-    wb.properties.creator = "Glory"
+    wb.properties.creator = "תכנון פלוס"
     wb.calculation.fullCalcOnLoad = True
     wb.save(path)
 

@@ -28,13 +28,13 @@ def load_cfg(path):
 
 PRODUCTS = [
     dict(slug="wedding-planner", cfg=os.path.join(HERE, "build.py"), secret="lje2wikbyyh1goea",
-         base="wedding-planner-glory", tool="wedding-gift", price=49,
+         base="wedding-planner", tool="wedding-gift", price=49,
          title="מתכנן חתונה באקסל ו-Google Sheets",
          subtitle="תקציב, מוזמנים ואישורי הגעה, מתנות, ספקים, לוח תשלומים, צ'קליסט והושבה – בקובץ אחד",
          labels=("מתכנן החתונה (Excel, ריק – להתחיל לעבוד)", "קובץ דוגמה ממולא (להתרשמות)",
                  "נוסחים מוכנים, לוח זמנים וצ'קליסט להדפסה (Word)")),
     dict(slug="bar-mitzvah-planner", cfg=os.path.join(HERE, "..", "bar-mitzvah-planner", "build.py"),
-         secret="3lvcpz0f1kr21brs", base="bar-bat-mitzvah-planner-glory", tool="bar-mitzvah-cost", price=39,
+         secret="3lvcpz0f1kr21brs", base="bar-bat-mitzvah-planner", tool="bar-mitzvah-cost", price=39,
          title="מתכנן בר / בת מצווה באקסל ו-Google Sheets",
          subtitle="תקציב, מוזמנים ואישורי הגעה, מתנות, ספקים, תשלומים, צ'קליסט כולל עלייה לתורה, והושבה",
          labels=("מתכנן בר/בת המצווה (Excel, ריק – להתחיל לעבוד)", "קובץ דוגמה ממולא (להתרשמות)",

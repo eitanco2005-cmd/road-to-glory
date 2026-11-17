@@ -1,9 +1,9 @@
-/* Glory shared site script.
+/* תכנון פלוס (Tichnun Plus) shared site script.
  * - Injects header/nav into <header id="site-header"> and footer into <footer id="site-footer">
  * - Ensures the Hebrew font + favicon are linked
  * - Light/dark theme toggle (remembered per browser)
  * - Records a privacy-friendly page visit (no cookies) via sales.js -> VISITS_ENDPOINT
- * - Exposes window.GLORY helpers: root, url(), loadScript(), getJSON(), config(), formatILS(), productUrl(), toolUrl()
+ * - Exposes window.SITE helpers: root, url(), loadScript(), getJSON(), config(), formatILS(), productUrl(), toolUrl()
  * All URLs are derived from this script's own location, so the site works on any host / sub-path.
  */
 (function () {
@@ -12,7 +12,8 @@
   var ASSETS = new URL(".", me ? me.src : location.href).href;
   var ROOT = new URL("../", ASSETS).href;
 
-  var G = (window.GLORY = window.GLORY || {});
+  var BRAND = "תכנון פלוס";
+  var G = (window.SITE = window.SITE || {});
   G.root = ROOT;
   G.assets = ASSETS;
   G.url = function (p) { return new URL(p || "", ROOT).href; };
@@ -43,8 +44,8 @@
     return json[abs];
   };
   G.config = function () {
-    if (window.GLORY_CONFIG) return Promise.resolve(window.GLORY_CONFIG);
-    return G.loadScript("config.js").then(function () { return window.GLORY_CONFIG || {}; });
+    if (window.SITE_CONFIG) return Promise.resolve(window.SITE_CONFIG);
+    return G.loadScript("config.js").then(function () { return window.SITE_CONFIG || {}; });
   };
   G.formatILS = function (n) {
     var v = Number(n) || 0;
@@ -79,7 +80,7 @@
   }
 
   /* ---------- theme ---------- */
-  var THEME_KEY = "glory-theme";
+  var THEME_KEY = "tp-theme";
   function storedTheme() { try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; } }
   function applyTheme(t) {
     if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -112,7 +113,7 @@
     el.innerHTML =
       '<a class="skip-link" href="#main">דילוג לתוכן</a>' +
       '<div class="container bar">' +
-      '<a class="brand" href="' + G.url("") + '" aria-label="Glory — דף הבית">' + LOGO + '<span>Glory</span><small>כלים חכמים לתכנון</small></a>' +
+      '<a class="brand" href="' + G.url("") + '" aria-label="' + BRAND + ' — דף הבית">' + LOGO + '<span>' + BRAND + '</span><small>קבצים ומחשבונים חכמים</small></a>' +
       '<nav class="nav" aria-label="ניווט ראשי">' +
       navLink("products/", "מוצרים") + navLink("tools/", "כלים חינם") + navLink("guides/", "מדריכים") +
       "</nav>" +
@@ -141,7 +142,7 @@
     el.innerHTML =
       '<div class="container">' +
       '<div class="cols">' +
-      "<div><a class=\"brand\" href=\"" + G.url("") + "\">" + LOGO + "<span>Glory</span></a>" +
+      "<div><a class=\"brand\" href=\"" + G.url("") + "\">" + LOGO + "<span>" + BRAND + "</span></a>" +
       '<p class="muted small mt-1">קבצי אקסל ו-Google Sheets מוכנים בעברית לתכנון חתונה, תקציב משפחתי ועסק קטן. תשלום מאובטח ב-PayPal והורדה מיידית.</p></div>' +
       "<div><h2 class=\"footer-h\">מוצרים</h2><ul>" +
       '<li><a href="' + G.productUrl("wedding-planner") + '">מתכנן חתונה</a></li>' +
@@ -164,7 +165,7 @@
       (email ? '<li><a href="mailto:' + G.escape(email) + '">צור קשר</a></li>' : "") +
       "</ul></div>" +
       "</div>" +
-      '<p class="fine">© ' + year + " Glory. המידע באתר הוא כללי ואינו מהווה ייעוץ מס, משפטי או פיננסי. התשלום מתבצע דרך PayPal; איננו שומרים פרטי כרטיס אשראי.</p>" +
+      '<p class="fine">© ' + year + " " + BRAND + ". המידע באתר הוא כללי ואינו מהווה ייעוץ מס, משפטי או פיננסי. התשלום מתבצע דרך PayPal; איננו שומרים פרטי כרטיס אשראי.</p>" +
       "</div>";
   }
 

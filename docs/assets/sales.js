@@ -1,15 +1,15 @@
-/* Glory sales log + visit counter client.
- * recordSale({orderId, slug, amount, currency, test}) -> POST JSON to GLORY_CONFIG.SALES_ENDPOINT
- * recordVisit(path)                                   -> POST JSON to GLORY_CONFIG.VISITS_ENDPOINT
+/* תכנון פלוס sales log + visit counter client.
+ * recordSale({orderId, slug, amount, currency, test}) -> POST JSON to SITE_CONFIG.SALES_ENDPOINT
+ * recordVisit(path)                                   -> POST JSON to SITE_CONFIG.VISITS_ENDPOINT
  * Empty endpoint = no-op. Requests use Content-Type text/plain so no CORS preflight is needed.
  * A sale that fails to send is queued in localStorage and retried on the next page load (flushPendingSales).
  * No cookies, no personal data: only order id, product, amount, path, referrer host, coarse device class.
  */
 (function () {
   "use strict";
-  var PENDING_KEY = "glory-pending-sales";
+  var PENDING_KEY = "tp-pending-sales";
 
-  function cfg() { return window.GLORY_CONFIG || {}; }
+  function cfg() { return window.SITE_CONFIG || {}; }
   function endpoint(name) {
     var u = (cfg()[name] || "").trim();
     return u || "";
@@ -92,7 +92,7 @@
     if (!url) return Promise.resolve(false);
     var p = String(path || location.pathname);
     try { // one count per page per browser session
-      var key = "glory-v:" + p;
+      var key = "tp-v:" + p;
       if (sessionStorage.getItem(key)) return Promise.resolve(false);
       sessionStorage.setItem(key, "1");
     } catch (e) {}

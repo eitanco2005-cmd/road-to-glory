@@ -1,14 +1,14 @@
-from common import BASE, UPDATED, UPDATED_HE, breadcrumb_ld, breadcrumbs, page
+from common import BASE, BRAND, UPDATED, UPDATED_HE, breadcrumb_ld, breadcrumbs, page
 
 CTA = {
-    "wedding-planner": ("מתכנן החתונה של Glory", "תקציב, ספקים, תשלומים, מוזמנים, צ'קים, צ'קליסט והושבה – בקובץ אקסל / Google Sheets אחד. ₪49.", 49),
-    "bar-mitzvah-planner": ("מתכנן בר/בת המצווה של Glory", "תקציב, ספקים, תשלומים, מוזמנים, מתנות, צ'קליסט עם עלייה לתורה והושבה. ₪39.", 39),
+    "wedding-planner": ("מתכנן החתונה של תכנון פלוס", "תקציב, ספקים, תשלומים, מוזמנים, צ'קים, צ'קליסט והושבה – בקובץ אקסל / Google Sheets אחד. ₪49.", 49),
+    "bar-mitzvah-planner": ("מתכנן בר/בת המצווה של תכנון פלוס", "תקציב, ספקים, תשלומים, מוזמנים, מתנות, צ'קליסט עם עלייה לתורה והושבה. ₪39.", 39),
 }
 
 GUIDES = [
     dict(
         product="wedding-planner", slug="wedding-budget-2026", crumb="תקציב חתונה 2026",
-        title="תקציב חתונה 2026: איך מחלקים, כמה זה עולה ואיך לא לחרוג | Glory",
+        title="תקציב חתונה 2026: איך מחלקים, כמה זה עולה ואיך לא לחרוג | תכנון פלוס",
         desc="מדריך מעשי לבניית תקציב חתונה ב-2026: כמה עולה חתונה בישראל, חלוקה מקובלת לפי קטגוריות, מחיר מנה, מינימום מנות, מקדמות ו-7 טעויות שמנפחות את החשבון.",
         h1="תקציב חתונה 2026: איך מחלקים ומה באמת עולה",
         body="""
@@ -74,7 +74,7 @@ GUIDES = [
 """),
     dict(
         product="wedding-planner", slug="rsvp-seating-gifts", crumb="אישורי הגעה, הושבה וצ'קים",
-        title="אישורי הגעה, הושבה ורישום צ'קים לחתונה – שיטה מסודרת | Glory",
+        title="אישורי הגעה, הושבה ורישום צ'קים לחתונה – שיטה מסודרת | תכנון פלוס",
         desc="איך לנהל אישורי הגעה לחתונה בלי חברה חיצונית, לחשב מספר מנות סופי, לסדר הושבה בלי כאב ראש ולרשום צ'קים ומתנות כדי לשלוח תודות לכולם. כולל נוסחי הודעות.",
         h1="אישורי הגעה, הושבה ורישום צ'קים: שיטה מסודרת",
         body="""
@@ -128,7 +128,7 @@ GUIDES = [
 """),
     dict(
         product="bar-mitzvah-planner", slug="bar-mitzvah-cost-2026", crumb="כמה עולה בר מצווה",
-        title="כמה עולה בר מצווה ב-2026? השוואה בין סוגי אירועים וטיפים לחיסכון | Glory",
+        title="כמה עולה בר מצווה ב-2026? השוואה בין סוגי אירועים וטיפים לחיסכון | תכנון פלוס",
         desc="כמה עולה בר מצווה או בת מצווה ב-2026: השוואה בין אירוע ערב, צהריים וקידוש, ממה מורכבת העלות, כמה נוהגים לתת, ואיך לחסוך בלי להרגיש. כולל מחשבון חינם.",
         h1="כמה עולה בר מצווה ב-2026? השוואה בין סוגי אירועים",
         body="""
@@ -175,11 +175,11 @@ GUIDES = [
  <li><strong>לסגור מחיר סופי בכתב</strong> לכל ספק, ולרשום מקדמות ויתרות עם תאריכים.</li>
 </ol>
 <p class="source">מקורות: <a href="https://www.ice.co.il/consumerism/news/article/837555" target="_blank" rel="noopener">ice – כסף וצרכנות</a>,
-<a href="https://www.karamel.co.il/כך_תתכננו_נכון_את_בר_בת_המצווה.asp" target="_blank" rel="noopener">קרמל</a>. שאר הסכומים: הערכות Glory. המידע כללי ואינו ייעוץ פיננסי.</p>
+<a href="https://www.karamel.co.il/כך_תתכננו_נכון_את_בר_בת_המצווה.asp" target="_blank" rel="noopener">קרמל</a>. שאר הסכומים: הערכות של תכנון פלוס. המידע כללי ואינו ייעוץ פיננסי.</p>
 """),
     dict(
         product="bar-mitzvah-planner", slug="bar-mitzvah-timeline", crumb="לוח זמנים לבר מצווה",
-        title="לוח זמנים להכנת בר / בת מצווה: מה עושים ומתי (צ'קליסט) | Glory",
+        title="לוח זמנים להכנת בר / בת מצווה: מה עושים ומתי (צ'קליסט) | תכנון פלוס",
         desc="צ'קליסט ולוח זמנים להכנת בר מצווה או בת מצווה: 12 חודשים לפני ועד אחרי האירוע – מקום, צלם, תפילין, מורה, בית כנסת, הזמנות, אישורי הגעה ותודות.",
         h1="לוח זמנים להכנת בר / בת מצווה: מה עושים ומתי",
         body="""
@@ -269,8 +269,8 @@ def build():
         ld = [
             {"@type": "Article", "headline": g["h1"], "description": g["desc"], "inLanguage": "he-IL",
              "datePublished": UPDATED, "dateModified": UPDATED, "mainEntityOfPage": BASE + path + "/",
-             "author": {"@type": "Organization", "name": "Glory"},
-             "publisher": {"@type": "Organization", "name": "Glory", "url": BASE},
+             "author": {"@type": "Organization", "name": BRAND},
+             "publisher": {"@type": "Organization", "name": BRAND, "url": BASE},
              "image": BASE + f"p/{prod}/img/screen-1.png"},
             breadcrumb_ld([("דף הבית", ""), (pname, f"p/{prod}/"), (g["crumb"], path + "/")]),
         ]

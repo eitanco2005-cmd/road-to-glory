@@ -124,7 +124,7 @@ body = """
 </section>
 <div class="buy-bar"><span><strong>מתכנן תקציב שיפוץ</strong> · <span class="price">₪39</span></span><a class="btn small" href="#buy">לרכישה</a></div>
 """.replace("FAQ", faq_html(faq))
-title = "אקסל תקציב שיפוץ – מתכנן שיפוץ דירה והשוואת הצעות מחיר | Glory"
+title = "אקסל תקציב שיפוץ – מתכנן שיפוץ דירה והשוואת הצעות מחיר | תכנון פלוס"
 desc = "קובץ אקסל בעברית לניהול שיפוץ: עבודות לפי חדר, השוואת הצעות מחיר כולל מע\"מ, לוח תשלומים, בלת\"מ ודשבורד + רשימת בדיקה לקבלן. ₪39, הורדה מיידית."
 page(P, title, desc, body,
      [product_ld("מתכנן תקציב שיפוץ", desc, P, 39, [IMG + "dashboard.webp", IMG + "quotes.webp", IMG + "works.webp"]), faq_ld(faq)],
@@ -230,7 +230,7 @@ tbody = """
   </div>
 </section>
 """.replace("TFAQ", faq_html(tfaq)).replace("SRC", SRC_HTML).replace("UPD", UPDATED_HE)
-ttitle = "מחשבון עלות שיפוץ דירה 2026 – כמה עולה לשפץ? | Glory"
+ttitle = "מחשבון עלות שיפוץ דירה 2026 – כמה עולה לשפץ? | תכנון פלוס"
 tdesc = "מחשבון עלות שיפוץ בעברית: גודל דירה, רמת גימור ועבודות (ריצוף, צבע, חשמל, אינסטלציה, מטבח, אמבטיה, מזגן) וקבלו טווח מחירים עם בלת\"מ. לפי מחירונים מ-2026."
 page(TOOL, ttitle, tdesc, tbody, [app_ld("מחשבון עלות שיפוץ דירה", tdesc, TOOL), faq_ld(tfaq)],
      og_image=IMG + "dashboard.webp", crumbs=[("כלים חינם", "tools/"), ("מחשבון עלות שיפוץ", TOOL)],
@@ -295,7 +295,7 @@ g1 = """
   </div>
 </article>
 """.replace("TABLE", table).replace("UPD", UPDATED_HE)
-t1 = "כמה עולה שיפוץ דירה ב-2027? מחירון לפי עבודה | Glory"
+t1 = "כמה עולה שיפוץ דירה ב-2027? מחירון לפי עבודה | תכנון פלוס"
 d1 = "טווחי מחירים לשיפוץ דירה: ריצוף, צבע, חשמל, אינסטלציה, חדר רחצה, מטבח ומזגן, עם מקורות. מה מייקר שיפוץ, מה שוכחים לתקצב וכמה בלת\"מ להשאיר."
 page(G1, t1, d1, g1, [article_ld(t1.split(" | ")[0], d1, G1, IMG + "dashboard.webp")], og_image=IMG + "dashboard.webp",
      crumbs=[("מתכנן תקציב שיפוץ", P), ("כמה עולה שיפוץ", G1)])
@@ -345,7 +345,7 @@ g2 = """
   </div>
 </article>
 """.replace("EX", ex).replace("UPD", UPDATED_HE)
-t2 = "איך משווים הצעות מחיר לשיפוץ – מדריך עם דוגמה | Glory"
+t2 = "איך משווים הצעות מחיר לשיפוץ – מדריך עם דוגמה | תכנון פלוס"
 d2 = "איך להשוות הצעות מחיר של קבלני שיפוצים: מע\"מ 18%, מה כלול, חומרים, אחריות ולוח תשלומים. דוגמה מספרית שמראה למה ההצעה הזולה לא תמיד זולה."
 page(G2, t2, d2, g2, [article_ld(t2.split(" | ")[0], d2, G2, IMG + "quotes.webp")], og_image=IMG + "quotes.webp",
      crumbs=[("מתכנן תקציב שיפוץ", P), ("השוואת הצעות מחיר", G2)])

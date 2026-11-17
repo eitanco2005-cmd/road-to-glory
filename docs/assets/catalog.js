@@ -1,4 +1,4 @@
-/* Glory catalogue renderer (needs site.js loaded first).
+/* תכנון פלוס catalogue renderer (needs site.js loaded first).
  * Fills containers from data/products/index.json, data/products/<slug>.json and data/tools.json:
  *   <div class="grid cols-3" data-catalog="products" [data-category="events"] [data-limit="3"] [data-exclude="slug"]></div>
  *   <div class="grid cols-2" data-catalog="bundles"></div>   (buy boxes; load checkout.js on the page)
@@ -8,7 +8,7 @@
  */
 (function () {
   "use strict";
-  var G = window.GLORY;
+  var G = window.SITE;
   if (!G) return;
   var esc = G.escape;
 
@@ -103,7 +103,7 @@
       });
     })).then(function (html) {
       el.innerHTML = html.join("");
-      if (window.GloryCheckout) window.GloryCheckout.render();
+      if (window.SiteCheckout) window.SiteCheckout.render();
     });
   }
 

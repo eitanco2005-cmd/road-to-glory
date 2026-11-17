@@ -353,7 +353,7 @@ def build_xlsx(example=False):
         design_sheet(wb, i, t, example)
     wb.active = 2
     wb.properties.title = "ערכת הצעות מחיר"
-    wb.properties.creator = "Glory"
+    wb.properties.creator = "תכנון פלוס"
     out = HERE / f"hatzaat-mechir-templates{'-example' if example else ''}.xlsx"
     wb.save(out)
     print("wrote", out)
@@ -553,7 +553,7 @@ def build_docx(t):
     run(p, NOT_INVOICE + " המחירים בשקלים חדשים.", 8, False, "64748B", fn)
 
     doc.core_properties.title = f"הצעת מחיר – {t['name']}"
-    doc.core_properties.author = "Glory"
+    doc.core_properties.author = "תכנון פלוס"
     out = HERE / f"hatzaat-mechir-{THEMES.index(t)+1}-{t['key']}.docx"
     doc.save(out)
     print("wrote", out)

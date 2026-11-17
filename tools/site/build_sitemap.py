@@ -3,20 +3,22 @@
 
 Includes every docs/**/index.html (plus other .html pages) except thanks/, dl/, 404 and pages
 with <meta name="robots" content="noindex">. lastmod = last git commit date of the file (or today).
-    python3 tools/site/build_sitemap.py [--base https://eitanco2005-cmd.github.io/road-to-glory/]
-Note: crawlers only read robots.txt at the host root. On a GitHub *project* site
-(…github.io/road-to-glory/) docs/robots.txt is therefore ignored; submit the sitemap URL in
-Google Search Console instead. With a custom domain it works as-is.
+    python3 tools/site/build_sitemap.py [--base URL]   (default: site_config.BASE_URL)
+The site is served from the domain root, so docs/robots.txt is the host's robots.txt.
 """
 import argparse
 import datetime
 import pathlib
 import re
 import subprocess
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from site_config import BASE_URL  # noqa: E402
 
 REPO = pathlib.Path(__file__).resolve().parents[2]
 DOCS = REPO / "docs"
-DEFAULT_BASE = "https://eitanco2005-cmd.github.io/road-to-glory/"
+DEFAULT_BASE = BASE_URL
 EXCLUDE_DIRS = {"thanks", "dl", "assets", "data"}
 PRIORITY = {"": "1.0", "products": "0.9", "tools": "0.9", "p": "0.9", "legal": "0.3"}
 
@@ -58,7 +60,7 @@ def build(base=DEFAULT_BASE):
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(rows) + "\n</urlset>\n")
     (DOCS / "sitemap.xml").write_text(xml, encoding="utf-8")
     from urllib.parse import urlparse
-    prefix = urlparse(base).path  # e.g. /road-to-glory/
+    prefix = urlparse(base).path  # "/" at the domain root
     robots = (f"User-agent: *\nAllow: /\nDisallow: {prefix}thanks/\nDisallow: {prefix}dl/\n\n"
               f"Sitemap: {base}sitemap.xml\n")
     (DOCS / "robots.txt").write_text(robots, encoding="utf-8")
