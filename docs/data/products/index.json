@@ -1,0 +1,40 @@
+{
+  "_note": "Static catalogue index (W1). Order = display order. Product JSONs live in products/<slug>.json.",
+  "categories": {
+    "events": "אירועים ושמחות",
+    "money": "כסף ובית",
+    "business": "עסקים ועצמאים"
+  },
+  "products": [
+    {
+      "slug": "wedding-planner",
+      "category": "events"
+    },
+    {
+      "slug": "household-budget",
+      "category": "money"
+    },
+    {
+      "slug": "osek-patur-tracker",
+      "category": "business"
+    },
+    {
+      "slug": "bar-mitzvah-planner",
+      "category": "events"
+    },
+    {
+      "slug": "price-quote-pack",
+      "category": "business"
+    },
+    {
+      "slug": "renovation-budget",
+      "category": "money"
+    }
+  ],
+  "bundles": [
+    "event-bundle",
+    "money-bundle",
+    "freelancer-bundle",
+    "everything-bundle"
+  ]
+}
