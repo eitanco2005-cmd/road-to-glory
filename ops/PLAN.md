@@ -185,3 +185,8 @@ checkout only, no social media, no outreach, no new owner accounts. Each stream 
 | **B. Pay-to-export web tools** | Wedding seating-chart planner, Hebrew CV builder: free to use, pay to download clean PDF/XLSX | Google (Hebrew) | ₪19–29 |
 | **C. Tips + upsells** | "Buy us a coffee" on free calculators; bundle upsell on product pages and thanks page | Existing traffic | ₪10+ |
 | **D. RTL developer kit** | Free open-source RTL landing-page kit (in this repo) + paid Pro pack | GitHub search + Google (English) | $19–29 |
+| **E. Hanukkah pack (seasonal, Dec 4–12 2026)** | Printable kids activities, party/hosting planner, gift list — Hebrew + English | Google (seasonal) | ₪19–29 / $12–19 |
+| **F. Hebrew kids/teacher printables** | Worksheet packs: letters, math, holidays (PDF) | Google (Hebrew) | ₪19–29 |
+| **G. Invitation maker** | Online Hebrew invitation designer (wedding, bar mitzvah, birthday), pay to export print-ready PDF/PNG | Google (Hebrew) | ₪19 |
+
+Wave rule: add directions in waves, max ~3 new workers at a time; after 3–4 weeks keep what gets traffic/sales, drop the rest.
