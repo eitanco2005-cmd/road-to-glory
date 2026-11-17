@@ -38,3 +38,4 @@
 - 2026-11-17: Moved to Netlify https://tichnun.netlify.app/ (deploys from main/docs). Rebranded to תכנון פלוס (all pages + downloads). Old github.io URLs auto-forward via site.js.
 - 2026-11-17: Owner: diversify. Launched streams A (English Jewish planners), B (pay-to-export apps), C+D (tips/upsells + RTL dev kit). See PLAN §12.
 - 2026-11-17: Wave 2 launched: E (Hanukkah pack, urgent), F (kids/teacher worksheets), G (invitation maker).
+- 2026-11-17: Wave 3 launched: H (speech & greeting writer, non-spreadsheet).
