@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "israel-data"
+version = "2026.11.18"
+description = "Israeli holidays 2025-2030 (Hebrew + English), VAT, osek patur ceiling and minimum wage, with sources. Zero dependencies."
+readme = "README.md"
+license = { text = "MIT (code), CC0-1.0 (data)" }
+requires-python = ">=3.8"
+keywords = ["israel", "hebrew calendar", "jewish holidays", "vat", "maam", "osek patur", "minimum wage"]
+classifiers = ["Programming Language :: Python :: 3", "Natural Language :: Hebrew", "Topic :: Office/Business :: Financial"]
+
+[project.urls]
+Homepage = "https://tichnun.netlify.app/data-il/"
+Source = "https://github.com/eitanco2005-cmd/road-to-glory/tree/main/data-il"
+
+[tool.setuptools]
+packages = ["israel_data"]

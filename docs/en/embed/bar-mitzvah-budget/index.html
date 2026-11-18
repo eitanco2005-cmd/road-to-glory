@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bar mitzvah budget calculator | תכנון פלוס</title>
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="Itemized cost estimate in US dollars by guests, style and area. For event planners, venues and parenting blogs.">
+<script>(function(){var t=(location.search.match(/[?&]theme=(dark|light|auto)/)||[])[1]||'light';if(t!=='auto')document.documentElement.setAttribute('data-theme',t)})();</script>
+<style>:root{--bg: #fbf8f3;--surface: #ffffff;--surface-2: #f4efe6;--text: #1d2a2e;--muted: #586770;--border: #e5ddcf;--primary: #0e6b63;--primary-hover: #0a5751;--primary-ink: #ffffff;--primary-soft: #e2f1ee;--accent: #8f5a00;--accent-strong: #f0b44c;--accent-soft: #fcf0d9;--success: #1d7a46;--success-soft: #e3f4ea;--danger: #b3261e;--danger-soft: #fbe7e5;--input-bg: #fffaf0;--input-border: #d9c9a8;--focus: #2f8fff;--shadow: 0 1px 2px rgba(29,42,46,.06),0 6px 20px rgba(29,42,46,.07);--shadow-lg: 0 10px 40px rgba(29,42,46,.12);--radius: 14px;--radius-sm: 9px;--max: 1120px;--font: system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color-scheme: light}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg: #11181b;--surface: #182226;--surface-2: #1f2b30;--text: #e7ecee;--muted: #a3b0b6;--border: #2c3a40;--primary: #4cbcae;--primary-hover: #66cdc0;--primary-ink: #08201d;--primary-soft: #183632;--accent: #f0b44c;--accent-strong: #f0b44c;--accent-soft: #3a2f1a;--success: #5fcf8e;--success-soft: #17321f;--danger: #ff8a80;--danger-soft: #3a1c1a;--input-bg: #1d2a2e;--input-border: #4a5a52;--shadow: 0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);--shadow-lg: 0 10px 40px rgba(0,0,0,.4);color-scheme: dark}}:root[data-theme="dark"]{--bg: #11181b;--surface: #182226;--surface-2: #1f2b30;--text: #e7ecee;--muted: #a3b0b6;--border: #2c3a40;--primary: #4cbcae;--primary-hover: #66cdc0;--primary-ink: #08201d;--primary-soft: #183632;--accent: #f0b44c;--accent-strong: #f0b44c;--accent-soft: #3a2f1a;--success: #5fcf8e;--success-soft: #17321f;--danger: #ff8a80;--danger-soft: #3a1c1a;--input-bg: #1d2a2e;--input-border: #4a5a52;--shadow: 0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);--shadow-lg: 0 10px 40px rgba(0,0,0,.4);color-scheme: dark}*,*::before,*::after{box-sizing: border-box}html{-webkit-text-size-adjust: 100%;scroll-behavior: smooth}body{margin: 0;font-family: var(--font);font-size: 1.0625rem;line-height: 1.65;color: var(--text);background: var(--bg);text-rendering: optimizeLegibility;overflow-x: hidden}img,svg,video{max-width: 100%;height: auto;display: block}a{color: var(--primary);text-underline-offset: 3px}a:hover{color: var(--primary-hover)}h1,h2,h3,h4{line-height: 1.25;margin: 0 0 .5em;font-weight: 800;letter-spacing: -.01em}h1{font-size: clamp(1.9rem,5vw,3rem)}h2{font-size: clamp(1.45rem,3.4vw,2rem)}h3{font-size: 1.2rem}p{margin: 0 0 1em}ul,ol{padding-inline-start: 1.3em}hr{border: 0;border-top: 1px solid var(--border);margin: 2rem 0}:focus-visible{outline: 3px solid var(--focus);outline-offset: 2px;border-radius: 4px}::selection{background: var(--accent-soft)}.sr-only{position: absolute !important;width: 1px;height: 1px;overflow: hidden;clip: rect(0 0 0 0);white-space: nowrap}.ltr{direction: ltr;unicode-bidi: isolate;display: inline-block}.num{font-variant-numeric: tabular-nums}.muted{color: var(--muted)}.small{font-size: .9rem}.center{text-align: center}.container{width: 100%;max-width: var(--max);margin-inline: auto;padding-inline: 16px}@media (min-width: 720px){.container{padding-inline: 24px}}main{display: block;min-height: 60vh}.split{display: grid;gap: 1.5rem}@media (min-width: 900px){.split{grid-template-columns: 1.1fr .9fr;gap: 2.5rem;align-items: start}}.price{font-weight: 800;font-size: 1.35rem;color: var(--text);font-variant-numeric: tabular-nums}.tool-panel{background: var(--surface);border: 1px solid var(--border);border-radius: var(--radius);box-shadow: var(--shadow);padding: 1.25rem}@media (min-width: 720px){.tool-panel{padding: 1.75rem}}.field{display: flex;flex-direction: column;gap: .3rem;margin-bottom: 1rem}.field label,.field .label{font-weight: 700;font-size: .98rem}.field .hint{font-size: .88rem;color: var(--muted)}.fields{display: grid;gap: 0 1rem;grid-template-columns: 1fr}@media (min-width: 600px){.fields.cols-2{grid-template-columns: 1fr 1fr}}input[type="text"],input[type="number"],input[type="email"],input[type="date"],input[type="tel"],select,textarea{font: inherit;font-size: 1.05rem;color: var(--text);background: var(--input-bg);border: 1.5px solid var(--input-border);border-radius: var(--radius-sm);padding: .65rem .8rem;min-height: 48px;width: 100%}input[type="number"]{font-variant-numeric: tabular-nums}input:focus,select:focus,textarea:focus{outline: none;border-color: var(--primary);box-shadow: 0 0 0 3px color-mix(in srgb,var(--primary) 25%,transparent)}.choices{display: flex;flex-wrap: wrap;gap: .5rem}.choices label{display: inline-flex;align-items: center;gap: .4rem;border: 1.5px solid var(--border);border-radius: 999px;padding: .45rem .9rem;cursor: pointer;font-weight: 600;background: var(--surface);min-height: 44px}.choices input{accent-color: var(--primary)}.choices label:has(input:checked){border-color: var(--primary);background: var(--primary-soft);color: var(--primary)}input[type="range"]{width: 100%;accent-color: var(--primary)}.result{background: var(--primary-soft);border-radius: var(--radius);padding: 1.15rem 1.25rem;margin-top: .5rem;border: 1px solid color-mix(in srgb,var(--primary) 30%,transparent)}.result .big{font-size: clamp(2rem,7vw,2.8rem);font-weight: 800;color: var(--primary);line-height: 1.1;font-variant-numeric: tabular-nums}.result .label{font-weight: 700;color: var(--muted);font-size: .95rem}.meter{height: 14px;border-radius: 999px;background: var(--surface-2);overflow: hidden;border: 1px solid var(--border)}.meter>span{display: block;height: 100%;background: var(--primary);border-radius: inherit;transition: width .3s ease}.source{font-size: .85rem;color: var(--muted)}.table-wrap{overflow-x: auto;border: 1px solid var(--border);border-radius: var(--radius-sm);background: var(--surface)}table{width: 100%;border-collapse: collapse;font-size: .98rem}th,td{text-align: start;padding: .65rem .8rem;border-bottom: 1px solid var(--border);vertical-align: top}th{background: var(--surface-2);font-weight: 700}tr:last-child td{border-bottom: 0}td.num,th.num{text-align: end;font-variant-numeric: tabular-nums}.mt-1{margin-top: .5rem}.mt-2{margin-top: 1rem}.mb-0{margin-bottom: 0 !important}.hidden,[hidden]{display: none !important}@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation: none !important;transition: none !important;scroll-behavior: auto !important}}@media print{body{background: #fff;color: #000}}html,body{background:var(--surface)}body{margin:0;overflow-x:hidden;font-size:1rem}.embed-wrap{padding:12px 12px 8px}.embed-title{font-size:1.25rem;line-height:1.3;margin:0 0 .6rem;color:var(--text)}.embed-wrap .container{padding:0;max-width:none}.embed-wrap .tool-panel{box-shadow:none}.embed-credit{margin:.8rem 0 0;font-size:.85rem;color:var(--muted);text-align:center}.embed-credit a{font-weight:700}</style>
+</head>
+<body>
+<!-- Embeddable version of https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/ — generated by tools/site/build_embeds.py, do not edit by hand. -->
+<main class="embed-wrap"><h1 class="embed-title">Bar mitzvah budget calculator</h1>
+<div class="split">
+   <form class="tool-panel" id="bud" novalidate>
+    <div class="fields cols-2">
+     <div class="field"><label for="adults">Adult guests</label><input type="number" id="adults" min="0" step="1" value="100" inputmode="numeric"></div>
+     <div class="field"><label for="kids">Kids &amp; teens</label><input type="number" id="kids" min="0" step="1" value="40" inputmode="numeric"></div>
+    </div>
+    <div class="field"><span class="label" id="style-l">Type of celebration</span>
+     <div class="choices" role="radiogroup" aria-labelledby="style-l">
+      <label><input type="radio" name="style" value="kiddush"> Kiddush luncheon only</label>
+      <label><input type="radio" name="style" value="party" checked> Evening party</label>
+      <label><input type="radio" name="style" value="both"> Kiddush + evening party</label>
+     </div></div>
+    <div class="field"><span class="label" id="area-l">Where</span>
+     <div class="choices" role="radiogroup" aria-labelledby="area-l">
+      <label><input type="radio" name="area" value="low"> Lower-cost area</label>
+      <label><input type="radio" name="area" value="avg" checked> Average</label>
+      <label><input type="radio" name="area" value="high"> High-cost metro (NYC, LA, Bay Area…)</label>
+     </div></div>
+    <div class="fields cols-2">
+     <div class="field"><label for="ent">Music &amp; entertainment</label>
+      <select id="ent"><option value="0">None / playlist</option><option value="1500">DJ</option><option value="3500" selected>DJ + MC + dancers</option><option value="7000">Live band</option></select></div>
+     <div class="field"><label for="photo">Photo &amp; video</label>
+      <select id="photo"><option value="0">Friends / phones</option><option value="2000">Photographer</option><option value="3800" selected>Photo + video</option></select></div>
+     <div class="field"><label for="decor">Décor &amp; flowers</label>
+      <select id="decor"><option value="6">Simple</option><option value="18" selected>Moderate</option><option value="40">Elaborate</option></select></div>
+     <div class="field"><label for="extras">Extras (photo booth, games)</label>
+      <select id="extras"><option value="0" selected>None</option><option value="900">One attraction</option><option value="2200">Several</option></select></div>
+    </div>
+    <details class="mt-1"><summary><strong>Fine-tune the assumptions</strong></summary>
+     <div class="fields cols-2 mt-2">
+      <div class="field"><label for="pp">Party catering per adult ($)</label><input type="number" id="pp" min="0" step="1"><span class="hint">incl. tax &amp; service charge</span></div>
+      <div class="field"><label for="kpp">Kiddush per person ($)</label><input type="number" id="kpp" min="0" step="1"></div>
+      <div class="field"><label for="venue">Venue rental ($)</label><input type="number" id="venue" min="0" step="50"></div>
+      <div class="field"><label for="tutor">Tutor &amp; synagogue fees ($)</label><input type="number" id="tutor" min="0" step="50" value="1500"></div>
+      <div class="field"><label for="attire">Clothing for the family ($)</label><input type="number" id="attire" min="0" step="50" value="700"></div>
+      <div class="field"><label for="cont">Contingency (%)</label><input type="number" id="cont" min="0" max="50" step="1" value="10"></div>
+     </div>
+     <p class="small muted">Leave a field empty to use the default for your area and style. Kids' meals are estimated at 45% of the adult price; invitations at $4 per household (about 2.5 guests); favors at $8 per kid.</p>
+    </details>
+   </form>
+   <div>
+    <div class="result" aria-live="polite">
+     <div class="label">Estimated total</div>
+     <div class="big" id="total">$0</div>
+     <p class="mb-0" id="perguest"></p>
+    </div>
+
+<div class="table-wrap mt-2"><table id="breakdown"><caption class="sr-only">Estimated cost by category</caption>
+     <thead><tr><th>Category</th><th class="num">Estimate</th><th>Share</th></tr></thead><tbody></tbody></table></div>
+    <p class="source mt-1">These are starting assumptions, not price quotes. Replace them with real quotes from your vendors.</p>
+   </div>
+  </div>
+<p class="embed-credit">Calculator by <a href="https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/" target="_blank" rel="noopener">תכנון פלוס</a> <span lang="en" dir="ltr">(Tichnun Plus)</span></p></main>
+<script>(function(){
+var slug="bar-mitzvah-budget",last=0;
+function h(){return Math.ceil(Math.max(document.documentElement.scrollHeight,document.body?document.body.scrollHeight:0,document.querySelector('.embed-wrap').getBoundingClientRect().height))}
+function send(){if(window.parent===window)return;var v=Math.ceil(document.querySelector('.embed-wrap').getBoundingClientRect().height)+4;if(v===last)return;last=v;window.parent.postMessage({type:'tichnun:embed-height',slug:slug,height:v},'*')}
+window.tichnunEmbedHeight=send;
+if(window.ResizeObserver)new ResizeObserver(send).observe(document.querySelector('.embed-wrap'));
+['load','resize','input','change','click','toggle'].forEach(function(e){window.addEventListener(e,function(){setTimeout(send,30)},true)});
+document.addEventListener('submit',function(e){e.preventDefault()},true);
+send();void h;
+})();</script>
+<script>
+(function () {
+  "use strict";
+  // Starting assumptions (USD). Clearly labelled on the page as estimates to replace with quotes.
+  var AREA = { low: 0.8, avg: 1, high: 1.35 };
+  var PARTY_PP = { low: 70, avg: 95, high: 135 };
+  var KIDDUSH_PP = { low: 18, avg: 25, high: 35 };
+  var VENUE = { low: 1200, avg: 2500, high: 5000 };
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $("bud");
+  function radio(n) { return form.querySelector('input[name="' + n + '"]:checked').value; }
+  function num(id, dflt) { var v = $(id).value.trim(); var n = Number(v); return v === "" || !isFinite(n) || n < 0 ? dflt : n; }
+  function usd(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function calc() {
+    var a = num("adults", 0), k = num("kids", 0), g = a + k, style = radio("style"), area = radio("area"), f = AREA[area];
+    var party = style !== "kiddush", kid = style !== "party";
+    $("pp").placeholder = PARTY_PP[area]; $("kpp").placeholder = KIDDUSH_PP[area]; $("venue").placeholder = party ? VENUE[area] : 0;
+    var pp = num("pp", PARTY_PP[area]), kpp = num("kpp", KIDDUSH_PP[area]);
+    var rows = [];
+    if (party) {
+      rows.push(["Party catering & bar", a * pp + k * pp * 0.45]);
+      rows.push(["Venue rental", num("venue", VENUE[area])]);
+      rows.push(["Music & entertainment", Number($("ent").value) * f]);
+      rows.push(["Décor, flowers & centerpieces", Number($("decor").value) * g * f]);
+      rows.push(["Extras (photo booth, games)", Number($("extras").value) * f]);
+      rows.push(["Favors / swag", 8 * k]);
+    }
+    if (kid) rows.push(["Kiddush luncheon", g * kpp]);
+    if (!party) rows.push(["Kiddush décor & flowers", Math.min(Number($("decor").value), 10) * g * f]);
+    rows.push(["Photo & video", Number($("photo").value) * f * (party ? 1 : 0.5)]);
+    rows.push(["Invitations & postage", Math.ceil(g / 2.5) * 4]);
+    rows.push(["Clothing (family)", num("attire", 700)]);
+    rows.push(["Tutor & synagogue fees", num("tutor", 1500)]);
+    var sub = rows.reduce(function (s, r) { return s + r[1]; }, 0);
+    rows.push(["Contingency (" + num("cont", 10) + "%)", sub * num("cont", 10) / 100]);
+    var total = rows.reduce(function (s, r) { return s + r[1]; }, 0);
+    $("total").textContent = usd(total);
+    $("perguest").textContent = g ? "About " + usd(total / g) + " per guest (" + g + " guests). Range to plan for: " + usd(total * 0.85) + "–" + usd(total * 1.2) + "." : "Enter your guest count.";
+    var tb = document.querySelector("#breakdown tbody"); tb.innerHTML = "";
+    rows.sort(function (x, y) { return y[1] - x[1]; }).forEach(function (r) {
+      if (r[1] <= 0) return;
+      var pct = total ? r[1] / total * 100 : 0;
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + r[0] + '</td><td class="num">' + usd(r[1]) + '</td><td style="min-width:90px"><div class="meter" aria-hidden="true"><span style="width:' +
+        pct.toFixed(1) + '%"></span></div><span class="sr-only">' + pct.toFixed(0) + "%</span></td>";
+      tb.appendChild(tr);
+    });
+  }
+  form.addEventListener("input", calc);
+  form.addEventListener("change", calc);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  calc();
+})();
+
+</script>
+</body>
+</html>

@@ -126,6 +126,12 @@ def main():
             changed += 1
             print("rendered", page.relative_to(REPO))
     print(f"{changed} page(s) updated")
+    try:  # embeddable calculators + data-il (R3B); optional so older checkouts still build
+        import build_embeds
+        build_embeds.main()
+        subprocess.run([sys.executable, str(REPO / "data-il/tools/build.py")], check=True)
+    except ImportError:
+        pass
     build_sitemap.build(a.base)
 
 
