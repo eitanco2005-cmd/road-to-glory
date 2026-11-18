@@ -20,7 +20,7 @@ export default async (req) => {
   if (!authed(req.headers.get("x-stats-token") || "")) return new Response("forbidden", { status: 403 });
   const days = Math.min(90, Math.max(1, Number(new URL(req.url).searchParams.get("days")) || 7));
   const store = getStore("counter");
-  const out = { days, byDay: {}, pages: {}, sources: {}, devices: {}, sales: [], totals: { visits: 0, sales: 0, revenue: {}, estProfitILS: 0 } };
+  const out = { days, byDay: {}, pages: {}, sources: {}, devices: {}, recent: [], browsers: {}, sales: [], totals: { visits: 0, sales: 0, revenue: {}, estProfitILS: 0 } };
   for (let i = 0; i < days; i++) {
     const day = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
     const { blobs } = await store.list({ prefix: `ev/${day}/` });
@@ -33,6 +33,8 @@ export default async (req) => {
         out.pages[ev.path] = (out.pages[ev.path] || 0) + 1;
         const s = SRC(ev.ref); out.sources[s] = (out.sources[s] || 0) + 1;
         out.devices[ev.device] = (out.devices[ev.device] || 0) + 1;
+        if (ev.ua) out.browsers[ev.ua] = (out.browsers[ev.ua] || 0) + 1;
+        if (out.recent.length < 30) out.recent.push({ at: day + " " + b.key.split("/")[2].slice(0, 8) + " UTC", path: ev.path, src: SRC(ev.ref), device: ev.device, ua: ev.ua || "?", lang: ev.lang, country: ev.country || "?" });
       } else if (ev.t === "sale") {
         row.sales++; out.totals.sales++;
         out.totals.revenue[ev.cur] = (out.totals.revenue[ev.cur] || 0) + ev.amount;
