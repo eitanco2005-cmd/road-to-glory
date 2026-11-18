@@ -481,3 +481,13 @@ td.num, th.num { text-align: end; font-variant-numeric: tabular-nums; }
   .prose h2 { break-after: avoid; }
   .prose a { color: #000; text-decoration: none; }
 }
+
+/* wedding focus (R4): two big entry paths (guest / couple) on home + wedding hub */
+.path-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.path-card{display:block;text-decoration:none;color:var(--text);background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.3rem;box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+.path-card:hover{border-color:var(--primary);transform:translateY(-2px);color:var(--text)}
+.path-card .ic{font-size:2rem;line-height:1}
+.path-card h2,.path-card h3{font-size:1.4rem;margin:.4rem 0 .3rem}
+.path-card p{margin:0;color:var(--muted)}
+.path-card .go{display:inline-block;margin-top:.6rem;font-weight:800;color:var(--primary)}
+@media (max-width:700px){.path-cards{grid-template-columns:1fr}}

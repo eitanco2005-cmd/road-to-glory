@@ -1,5 +1,6 @@
 // Renders 1200x630 Hebrew og:image PNGs for the top calculators (WhatsApp / social link previews).
-//   node tools/site/make_og.js        -> docs/assets/og/<slug>.png  (needs Google Fonts reachable for Assistant)
+//   node tools/site/make_og.js [slug ...]   -> docs/assets/og/<slug>.png  (needs Google Fonts reachable for Assistant)
+//   With slugs, only those cards are rendered (e.g. node tools/site/make_og.js chatuna rsvp).
 const { chromium } = require("playwright");
 const path = require("path");
 const OUT = path.resolve(__dirname, "../../docs/assets/og");
@@ -13,7 +14,16 @@ const CARDS = [
     rows: [["₪1,000 לפני מע\"מ", "₪1,180"], ["₪1,180 כולל מע\"מ", "₪1,000"], ["מע\"מ", "₪180"]], foot: "כולל בונה הצעת מחיר לעוסק פטור ומורשה" },
   { slug: "osek-patur-ceiling", eyebrow: "מחשבון חינם · תקרה 2026", title: "כמה נשאר לי עד התקרה?", hl: "עוסק פטור 2026",
     rows: [["תקרה שנתית", "₪122,833"], ["קצב חודשי", "מחושב"], ["מתי חוצים", "חודש משוער"]], foot: "לפי ההכנסות שלכם מתחילת השנה · בלי הרשמה" },
+  { slug: "chatuna", eyebrow: "מתחתנים או מוזמנים?", title: "הכל לחתונה", hl: "כלים חינם בעברית",
+    rows: [["כמה לשים בחתונה", "מחשבון"], ["כמה תעלה החתונה", "מחשבון"], ["אישורי הגעה והושבה", "אונליין"]], foot: "לאורחים ולזוגות · בלי הרשמה, הנתונים נשארים אצלכם" },
+  { slug: "wedding-cost", eyebrow: "מחשבון חינם · מחירי 2026", title: "כמה עולה חתונה?", hl: "לפי מוזמנים, אזור ועונה",
+    rows: [["קיץ, 250 איש", "≈ ₪185,000"], ["אותה חתונה בחורף", "≈ ₪158,000"], ["מהכיס אחרי מתנות", "≈ ₪82,000"]], foot: "מנה, ספקים, טווח מחירים ומתנות צפויות" },
+  { slug: "wedding-timeline", eyebrow: "כלי חינם · להדפסה וליומן", title: "מה לסגור ומתי?", hl: "לוח זמנים לחתונה",
+    rows: [["12 חודשים לפני", "תקציב ואולם"], ["6 שבועות לפני", "אישורי הגעה"], ["10 ימים לפני", "הושבה"]], foot: "מזינים תאריך ומקבלים צ'קליסט חודש אחר חודש" },
+  { slug: "rsvp", eyebrow: "חינם עד 80 הזמנות", title: "אישורי הגעה לחתונה", hl: "בלי חברה ובלי מנוי",
+    rows: [["ייבוא אנשי קשר", "VCF / אקסל"], ["תזכורת לכל אורח", "וואטסאפ"], ["העברה להושבה", "בלחיצה"]], foot: "מי מגיע, כמה ומה אוכלים · הנתונים נשארים אצלכם" },
 ];
+const ONLY = process.argv.slice(2);
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap');
@@ -39,7 +49,7 @@ h1{font-size:68px;line-height:1.05;font-weight:800;letter-spacing:-.5px}
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
-  for (const c of CARDS) {
+  for (const c of CARDS.filter(c => !ONLY.length || ONLY.includes(c.slug))) {
     const rows = c.rows.map(r => `<div class="row"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("");
     await page.setContent(`<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><style>${css}</style></head><body>
 <div class="bg"><div class="b1"></div><div class="b2"></div></div><div class="wrap"><div class="txt">

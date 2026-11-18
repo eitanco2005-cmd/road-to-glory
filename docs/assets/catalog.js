@@ -33,7 +33,7 @@
   function deliverable(p) { return !!p && !p.placeholder && ((p.files && p.files.length) || !!p.sheets_copy_url || p.unlock === true); }
 
   function productCard(p, cat, catLabel, live) {
-    var url = G.productUrl(p.slug);
+    var url = p.page ? G.url(p.page) : G.productUrl(p.slug); // "page": landing page when there is no p/<slug>/ (e.g. apps/rsvp/)
     var soon = !live;
     var thumb = p.image
       ? '<img src="' + esc(G.url(p.image)) + '" alt="" loading="lazy" width="640" height="360">'
@@ -88,7 +88,7 @@
     return Promise.all(items.map(function (x) {
       return product(x.slug).then(function (p) {
         if (!p) return "";
-        return pageExists(G.productUrl(p.slug)).then(function (ok) {
+        return pageExists(p.page ? G.url(p.page) : G.productUrl(p.slug)).then(function (ok) {
           return productCard(p, x.category, cat ? "" : (idx.categories || {})[x.category], ok && !p.placeholder);
         });
       });

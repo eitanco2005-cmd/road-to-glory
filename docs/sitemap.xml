@@ -2,10 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://tichnun.netlify.app/apps/cv/</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/apps/invite/</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tichnun.netlify.app/apps/rsvp/</loc><lastmod>2026-11-18</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/apps/seating/</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/budget-2027/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/budget-2027/savings-challenge/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/budget-2027/what-changes-2027/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/haavarat-kesef/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/ben-dod/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/chatuna-ktana/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/gan-eruim/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/lo-magiim/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/makom-yukrati/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/tzafon-darom/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/yom-shishi/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/kama-lasim/zug/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/ma-lilbosh/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/chatuna/rayonot-matana/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/data-il/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/launch/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/launch/tailwind.html</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
@@ -71,7 +84,7 @@
   <url><loc>https://tichnun.netlify.app/hanukkah/hanukkah-party/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/hanukkah/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/hanukkah/kids-activities/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://tichnun.netlify.app/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/"/><lastmod>2026-11-17</lastmod><priority>1.0</priority></url>
+  <url><loc>https://tichnun.netlify.app/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/"/><lastmod>2026-11-18</lastmod><priority>1.0</priority></url>
   <url><loc>https://tichnun.netlify.app/legal/accessibility/</loc><lastmod>2026-11-17</lastmod><priority>0.3</priority></url>
   <url><loc>https://tichnun.netlify.app/legal/</loc><lastmod>2026-11-17</lastmod><priority>0.3</priority></url>
   <url><loc>https://tichnun.netlify.app/legal/privacy/</loc><lastmod>2026-11-17</lastmod><priority>0.3</priority></url>
@@ -114,7 +127,7 @@
   <url><loc>https://tichnun.netlify.app/pesach/pesach-2027-dates/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/pesach/pesach-budget/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/pesach/seder-night-guide/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/pesach/seder-night-guide/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/guides/how-to-host-a-passover-seder/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/pesach/seder-night-guide/"/><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
-  <url><loc>https://tichnun.netlify.app/products/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/products/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/planners/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/products/"/><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tichnun.netlify.app/products/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/products/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/planners/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/products/"/><lastmod>2026-11-18</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/purim/class-mishloach-manot/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/purim/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/purim/mishloach-manot-ideas/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
@@ -130,5 +143,7 @@
   <url><loc>https://tichnun.netlify.app/tools/savings-goal/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/sufganiyot-calculator/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/vat-calculator/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://tichnun.netlify.app/tools/wedding-cost/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/wedding-gift/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://tichnun.netlify.app/tools/wedding-timeline/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
 </urlset>

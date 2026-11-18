@@ -9,6 +9,20 @@
       "icon": "💍"
     },
     {
+      "slug": "wedding-cost",
+      "title": "כמה עולה חתונה? מחשבון עלות 2026",
+      "description": "לפי מוזמנים, אזור, עונה, יום וסוג מקום, כולל מתנות צפויות",
+      "product": "wedding-planner",
+      "icon": "💸"
+    },
+    {
+      "slug": "wedding-timeline",
+      "title": "לוח זמנים לחתונה לפי תאריך",
+      "description": "צ'קליסט אישי חודש אחר חודש, להדפסה וליומן",
+      "product": "wedding-planner",
+      "icon": "📅"
+    },
+    {
       "slug": "budget-503020",
       "title": "מחשבון תקציב 50/30/20",
       "description": "מכניסים הכנסה נטו ומקבלים חלוקה מומלצת בשקלים",

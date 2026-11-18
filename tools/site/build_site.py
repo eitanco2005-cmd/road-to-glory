@@ -51,8 +51,9 @@ def rel(page: pathlib.Path, target: str) -> str:
 
 
 def product_card(page, p, cat, cat_label):
-    live = (DOCS / "p" / p["slug"] / "index.html").exists() and not p.get("placeholder")
-    url = rel(page, f"p/{p['slug']}/")
+    landing = p.get("page") or f"p/{p['slug']}/"  # "page": landing when there is no p/<slug>/ (e.g. apps/rsvp/)
+    live = (DOCS / landing / "index.html").exists() and not p.get("placeholder")
+    url = rel(page, landing)
     thumb = (f'<img src="{e(rel(page, p["image"]))}" alt="" loading="lazy" width="640" height="360">'
              if p.get("image") else ICONS.get(cat, ICONS["money"]))
     title = f'<a href="{url}">{e(p["title"])}</a>' if live else e(p["title"])
@@ -126,6 +127,9 @@ def main():
             changed += 1
             print("rendered", page.relative_to(REPO))
     print(f"{changed} page(s) updated")
+    sys.path.insert(0, str(REPO / "tools" / "wedding"))
+    import link_wedding  # R4: "next step" strip + hub link on older wedding pages
+    link_wedding.main()
     try:  # embeddable calculators + data-il (R3B); optional so older checkouts still build
         import build_embeds
         build_embeds.main()

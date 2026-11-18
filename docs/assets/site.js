@@ -150,7 +150,7 @@
       '<div class="container bar">' +
       '<a class="brand" href="' + G.url("") + '" aria-label="' + BRAND + ' — דף הבית">' + LOGO + '<span>' + BRAND + '</span><small>קבצים ומחשבונים חכמים</small></a>' +
       '<nav class="nav" aria-label="ניווט ראשי">' +
-      navLink("products/", "מוצרים") + navLink("tools/", "כלים חינם") + navLink("guides/", "מדריכים") +
+      navLink("chatuna/", "חתונה") + navLink("products/", "מוצרים") + navLink("tools/", "כלים חינם") + navLink("guides/", "מדריכים") +
       "</nav>" + altLang() +
       '<button type="button" class="theme-toggle" aria-label="החלפת מצב תצוגה בהיר/כהה"></button>' +
       "</div>";
@@ -210,19 +210,22 @@
       '<div class="container">' +
       '<div class="cols">' +
       "<div><a class=\"brand\" href=\"" + G.url("") + "\">" + LOGO + "<span>" + BRAND + "</span></a>" +
-      '<p class="muted small mt-1">קבצי אקסל ו-Google Sheets מוכנים בעברית לתכנון חתונה, תקציב משפחתי ועסק קטן. תשלום מאובטח ב-PayPal והורדה מיידית.</p></div>' +
-      "<div><h2 class=\"footer-h\">מוצרים</h2><ul>" +
-      '<li><a href="' + G.productUrl("wedding-planner") + '">מתכנן חתונה</a></li>' +
+      '<p class="muted small mt-1">כלים בעברית לחתונה: לאורחים (כמה לשים, איך לתת) ולזוגות (תקציב, אישורי הגעה, הושבה והזמנות). תשלום מאובטח ב-PayPal.</p></div>' +
+      "<div><h2 class=\"footer-h\">חתונה</h2><ul>" +
+      '<li><a href="' + G.url("chatuna/") + '">הכל לחתונה</a></li>' +
+      '<li><a href="' + G.toolUrl("wedding-gift") + '">כמה לשים בחתונה</a></li>' +
+      '<li><a href="' + G.toolUrl("wedding-cost") + '">כמה עולה חתונה</a></li>' +
+      '<li><a href="' + G.toolUrl("wedding-timeline") + '">לוח זמנים לחתונה</a></li>' +
+      '<li><a href="' + G.url("apps/rsvp/") + '">רשימת מוזמנים ואישורי הגעה</a></li>' +
+      '<li><a href="' + G.url("apps/seating/") + '">סידורי הושבה</a></li>' +
+      '<li><a href="' + G.productUrl("wedding-planner") + '">מתכנן חתונה באקסל</a></li>' +
+      "</ul></div>" +
+      "<div><h2 class=\"footer-h\">עוד באתר</h2><ul>" +
+      '<li><a href="' + G.url("products/") + '">כל המוצרים והחבילות</a></li>' +
+      '<li><a href="' + G.url("tools/") + '">כל המחשבונים</a></li>' +
+      '<li><a href="' + G.url("guides/") + '">מדריכים</a></li>' +
       '<li><a href="' + G.productUrl("household-budget") + '">תקציב משק בית</a></li>' +
       '<li><a href="' + G.productUrl("osek-patur-tracker") + '">מעקב עוסק פטור</a></li>' +
-      '<li><a href="' + G.url("products/") + '">כל המוצרים והחבילות</a></li>' +
-      "</ul></div>" +
-      "<div><h2 class=\"footer-h\">כלים חינם</h2><ul>" +
-      '<li><a href="' + G.toolUrl("wedding-gift") + '">כמה לשים בחתונה</a></li>' +
-      '<li><a href="' + G.toolUrl("budget-503020") + '">מחשבון 50/30/20</a></li>' +
-      '<li><a href="' + G.toolUrl("vat-calculator") + '">מחשבון מע״מ</a></li>' +
-      '<li><a href="' + G.url("tools/") + '">כל הכלים</a></li>' +
-      '<li><a href="' + G.url("guides/") + '">מדריכים</a></li>' +
       "</ul></div>" +
       "<div><h2 class=\"footer-h\">מידע</h2><ul>" +
       '<li><a href="' + G.url("legal/terms/") + '">תקנון ותנאי מכירה</a></li>' +

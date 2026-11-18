@@ -739,7 +739,30 @@
     });
     AppUnlock.onChange(function () { render(); });
     render();
+    if (!EN) fromRsvp();
     if (new URLSearchParams(location.search).get("demo") === "1" && !S.guests.length) demo();
+  }
+
+  /* Hand-off from the RSVP app (apps/rsvp/): localStorage "tp-handoff:seating" = {from, t, title, date, guests:[{name,n,side,group}]}.
+   * Merged by name: existing guests keep their table and get the new count/side/group; new names are added unseated. */
+  function fromRsvp() {
+    var raw = null;
+    try { raw = JSON.parse(localStorage.getItem("tp-handoff:seating") || "null"); localStorage.removeItem("tp-handoff:seating"); } catch (e) {}
+    if (!raw || !Array.isArray(raw.guests)) return;
+    var added = 0, updated = 0;
+    mutate(function () {
+      if (!S.title && raw.title) S.title = String(raw.title).slice(0, 80);
+      if (!S.date && raw.date) S.date = String(raw.date).slice(0, 10);
+      raw.guests.forEach(function (x) {
+        var name = String(x.name || "").trim().slice(0, 80); if (!name) return;
+        var n = Math.min(num(x.n, 1), 60);
+        var g = S.guests.filter(function (y) { return y.name === name; })[0];
+        if (g) { g.n = n; if (x.side) g.side = String(x.side).slice(0, 40); if (x.group) g.group = String(x.group).slice(0, 40); updated++; }
+        else { S.guests.push({ id: uid(), name: name, n: n, side: String(x.side || "").slice(0, 40), group: String(x.group || "").slice(0, 40), table: null }); added++; }
+      });
+    });
+    $("#ev-title").value = S.title || ""; $("#ev-date").value = S.date || "";
+    toast("הגיעו " + (added + updated) + " הזמנות מרשימת המוזמנים" + (updated ? " (" + updated + " עודכנו)" : "") + (S.tables.length ? "" : ". עכשיו מוסיפים שולחנות ולוחצים \"הושבה אוטומטית\"."));
   }
 
   window.SeatingApp = { state: function () { return S; }, autoSeat: autoSeat, render: render, demo: demo, parseCSV: parseCSV, rowsToGuests: rowsToGuests, waUrl: waUrl };

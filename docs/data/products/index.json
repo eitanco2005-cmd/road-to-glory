@@ -12,6 +12,18 @@
       "category": "events"
     },
     {
+      "slug": "rsvp-tracker",
+      "category": "apps"
+    },
+    {
+      "slug": "seating-chart",
+      "category": "apps"
+    },
+    {
+      "slug": "invitation-maker",
+      "category": "events"
+    },
+    {
       "slug": "household-budget",
       "category": "money"
     },
@@ -32,14 +44,6 @@
       "category": "money"
     },
     {
-      "slug": "invitation-maker",
-      "category": "events"
-    },
-    {
-      "slug": "seating-chart",
-      "category": "apps"
-    },
-    {
       "slug": "cv-builder",
       "category": "apps"
     },
@@ -53,6 +57,7 @@
     }
   ],
   "bundles": [
+    "wedding-bundle",
     "event-bundle",
     "money-bundle",
     "freelancer-bundle",
