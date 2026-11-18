@@ -1,0 +1,21 @@
+{
+  "slug": "purim-planner",
+  "title": "מתכנן משלוחי מנות 2027 – אקסל",
+  "subtitle": "נמענים, סוגי חבילות עם עלות, רשימת קניות אוטומטית, מסלול חלוקה ותקציב כולל מתנות לאביונים",
+  "price_ils": 19,
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "מתכנן משלוחי מנות 2027 (אקסל ריק לעבודה)",
+      "path": "dl/l9xg51dmh2y8mjd2/purim-planner-2027.xlsx"
+    },
+    {
+      "label": "קובץ דוגמה מלא – 14 נמענים ו-4 סוגי חבילות",
+      "path": "dl/l9xg51dmh2y8mjd2/purim-planner-2027-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "mishloach-manot-budget",
+  "url": "p/purim-planner/",
+  "image": "p/purim-planner/img/dashboard.webp"
+}

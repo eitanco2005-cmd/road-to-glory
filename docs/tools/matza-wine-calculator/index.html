@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כמה מצות ויין צריך לליל הסדר? מחשבון לפסח 2027 | תכנון פלוס</title>
+<meta name="description" content="מחשבון חינמי לפסח 2027: כמה מצות שמורות, חבילות מצה, בקבוקי יין ומיץ ענבים צריך לפי מספר האורחים, שיעור הרביעית ומספר הכזיתים. עם מקורות.">
+<link rel="canonical" href="https://tichnun.netlify.app/tools/matza-wine-calculator/">
+<link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/matza-wine-calculator/">
+<link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/seder-shopping-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/matza-wine-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="תכנון פלוס">
+<meta property="og:title" content="כמה מצות ויין צריך לליל הסדר? מחשבון לפסח 2027 | תכנון פלוס">
+<meta property="og:description" content="מחשבון חינמי לפסח 2027: כמה מצות שמורות, חבילות מצה, בקבוקי יין ומיץ ענבים צריך לפי מספר האורחים, שיעור הרביעית ומספר הכזיתים. עם מקורות.">
+<meta property="og:url" content="https://tichnun.netlify.app/tools/matza-wine-calculator/">
+<meta property="og:image" content="https://tichnun.netlify.app/p/seder-planner/img/shopping.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Noto+Sans+Hebrew:wght@400;700&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+.hk-hero-img{border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-lg);background:#fff;width:100%;height:auto}
+.hk-list{padding-inline-start:1.2rem}.hk-list li{margin:.3rem 0}
+.hk-pages{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}@media(min-width:760px){.hk-pages{grid-template-columns:repeat(4,1fr)}}
+.hk-pages figure{margin:0}.hk-pages img{width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow);background:#fff}
+.hk-pages figcaption{font-size:.9rem;color:var(--muted);text-align:center;margin-top:.35rem}
+.hk-dates{width:100%;border-collapse:collapse;font-size:.98rem}.hk-dates th,.hk-dates td{border:1px solid var(--border);padding:.45rem .6rem;text-align:center}
+.hk-dates th{background:var(--surface-2)}
+.hk-tiles{display:grid;gap:.75rem;grid-template-columns:repeat(2,1fr)}@media(min-width:640px){.hk-tiles{grid-template-columns:repeat(4,1fr)}}
+.hk-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem}
+.hk-tile .k{font-weight:700;color:var(--muted);font-size:.92rem}.hk-tile .v{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--primary)}
+.hk-tile .s{font-size:.85rem;color:var(--muted)}
+.hk-ing{width:100%;border-collapse:collapse}.hk-ing td{border-bottom:1px solid var(--border);padding:.35rem .25rem}.hk-ing td.num{text-align:end;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hk-note{font-size:.9rem;color:var(--muted)}
+.hk-bracha{font-family:'Noto Sans Hebrew','Assistant',sans-serif;font-size:1.3rem;line-height:1.9;background:var(--surface-2);border-radius:var(--radius-sm);padding:.6rem 1rem;margin:.5rem 0}
+.prose img{max-width:100%;height:auto;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.en-header .brand small{display:none}
+@media(max-width:480px){.en-header .brand span{display:none}.en-header .nav a{padding:.4rem .4rem}}
+.lang-switch{font-weight:700;font-size:.92rem}
+
+.s27-table{width:100%;border-collapse:collapse;font-size:.97rem}.s27-table th,.s27-table td{border:1px solid var(--border);padding:.5rem .6rem;text-align:start;vertical-align:top}
+.s27-table th{background:var(--surface-2)}
+.s27-tag{display:inline-block;font-size:.8rem;font-weight:700;border-radius:999px;padding:.05rem .55rem;white-space:nowrap}
+.s27-tag.ok{background:#dff3e4;color:#14532d}.s27-tag.exp{background:#fff4c2;color:#6b4e00}.s27-tag.unk{background:#fbe3e1;color:#7f1d1d}
+.s27-dl{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.s27-dl img{width:150px;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff}
+.s27-groups{display:grid;gap:.5rem}.s27-grow{display:grid;grid-template-columns:1fr 6.5rem 6.5rem;gap:.5rem;align-items:end}
+.s27-grow .field{margin:0}.s27-grow .gl{font-weight:700;padding-bottom:.55rem}
+.s27-check{list-style:none;padding-inline-start:0}.s27-check li::before{content:"☐ ";color:var(--primary)}
+@media(max-width:420px){.s27-grow{grid-template-columns:1fr 5.2rem 5.2rem}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "מחשבון מצות ויין לליל הסדר", "description": "מחשבון חינמי לפסח 2027: כמה מצות שמורות, חבילות מצה, בקבוקי יין ומיץ ענבים צריך לפי מספר האורחים, שיעור הרביעית ומספר הכזיתים. עם מקורות.", "url": "https://tichnun.netlify.app/tools/matza-wine-calculator/", "applicationCategory": "LifestyleApplication", "operatingSystem": "Any", "inLanguage": "he-IL", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ILS"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "כמה מצות שמורות צריך לאדם בליל הסדר?", "acceptedAnswer": {"@type": "Answer", "text": "בסדר אוכלים לפחות שלושה כזיתים: מוציא מצה, כורך ואפיקומן (שולחן ערוך, אורח חיים תע״ה, תע״ז), ויש נוהגים להוסיף. כמה כזיתים יש במצה תלוי בגודל המצה ובשיטה, ולכן המחשבון מאפשר לבחור. ברירת המחדל, חצי מצת יד לכזית, היא הערכה זהירה. לשאלה מעשית פנו לרב."}}, {"@type": "Question", "name": "מה זה רביעית ולמה יש שתי אפשרויות?", "acceptedAnswer": {"@type": "Answer", "text": "כל אחת מארבע הכוסות צריכה להכיל לפחות רביעית (שולחן ערוך, אורח חיים תע״ב, ט). לשיטת הגר״ח נאה רביעית היא כ-86 מ״ל, ולשיטת החזון איש כ-150 מ״ל. בוחרים לפי המנהג שלכם."}}, {"@type": "Question", "name": "כמה בקבוקי יין צריך לליל הסדר?", "acceptedAnswer": {"@type": "Answer", "text": "לפי 86 מ״ל לכוס, מבוגר ששותה יין צריך כ-344 מ״ל לארבע כוסות, כלומר כחצי בקבוק. לפי 150 מ״ל זה 600 מ״ל. המחשבון מוסיף כוס של אליהו לכל סדר ו-10% רזרבה."}}, {"@type": "Question", "name": "כמה חבילות מצה לקנות לכל החג?", "acceptedAnswer": {"@type": "Answer", "text": "תלוי כמה מצה אוכלים ביום. ברירת המחדל: 2 מצות לאדם ליום, 7 ימים, וכ-30 מצות בחבילת קילו. משנים לפי המשפחה ולפי מה שכתוב על האריזה."}}, {"@type": "Question", "name": "הנתונים נשמרים?", "acceptedAnswer": {"@type": "Answer", "text": "לא. החישוב רץ בדפדפן. קישור לשיתוף כולל רק את המספרים שהזנתם."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ראשי", "item": "https://tichnun.netlify.app/"}, {"@type": "ListItem", "position": 2, "name": "פסח 2027", "item": "https://tichnun.netlify.app/pesach/"}, {"@type": "ListItem", "position": 3, "name": "מחשבון מצות ויין", "item": "https://tichnun.netlify.app/tools/matza-wine-calculator/"}]}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+
+<section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="פירורי לחם"><a href="../../">ראשי</a><span aria-hidden="true">›</span><a href="../../pesach/">פסח 2027</a><span aria-hidden="true">›</span>מחשבון מצות ויין</nav>
+<h1>כמה מצות ויין צריך לליל הסדר? מחשבון לפסח 2027</h1>
+<p class="lead">מכניסים כמה מבוגרים וילדים, בוחרים שיעור רביעית ומספר כזיתים, ומקבלים כמה מצות שמורות, חבילות מצה, בקבוקי יין ומיץ ענבים לקנות. ליל הסדר בשנת 2027 (תשפ״ז) הוא ב<strong>יום רביעי בערב, 21 באפריל 2027</strong>.</p>
+</div></section>
+<section class="section" style="padding-top:0"><div class="container">
+<div class="split">
+<form class="tool-panel" id="seder-form" onsubmit="return false" novalidate>
+<div class="fields cols-2">
+<div class="field"><label for="adults">מבוגרים</label><input id="adults" name="adults" type="number" inputmode="numeric" min="0" step="1" value="10"></div>
+<div class="field"><label for="kids">ילדים</label><input id="kids" name="kids" type="number" inputmode="numeric" min="0" step="1" value="4"></div>
+</div>
+<div class="field"><span class="label" id="sd-l">כמה סדרים</span><div class="choices" role="radiogroup" aria-labelledby="sd-l">
+<label><input type="radio" name="seders" value="1" checked> סדר אחד (בארץ)</label><label><input type="radio" name="seders" value="2"> שני סדרים (בחו״ל)</label></div></div>
+<div class="field"><span class="label" id="rv-l">שיעור רביעית לכוס</span><div class="choices" role="radiogroup" aria-labelledby="rv-l">
+<label><input type="radio" name="reviit" value="86" checked> 86 מ״ל (הגר״ח נאה)</label><label><input type="radio" name="reviit" value="150"> 150 מ״ל (החזון איש)</label></div></div>
+<div class="field"><span class="label" id="kz-l">כזיתים מצה לכל מבוגר</span><div class="choices" role="radiogroup" aria-labelledby="kz-l">
+<label><input type="radio" name="kz" value="3" checked> 3 (מוציא, כורך, אפיקומן)</label><label><input type="radio" name="kz" value="5"> 5 (יש המהדרים)</label></div></div>
+<details class="mt-1"><summary>הגדרות נוספות</summary>
+<div class="fields cols-2 mt-1">
+<div class="field"><label for="wine">אחוז המבוגרים ששותים יין</label><input id="wine" name="wine" type="number" inputmode="numeric" min="0" max="100" step="5" value="70"></div>
+<div class="field"><label for="kzm">כזיתים במצת יד אחת</label><input id="kzm" name="kzm" type="number" inputmode="decimal" min="1" max="6" step="0.5" value="2"></div>
+<div class="field"><label for="days">ימים עם מצת מכונה</label><input id="days" name="days" type="number" inputmode="numeric" min="0" max="8" step="1" value="7"></div>
+<div class="field"><label for="mpd">מצות מכונה לאדם ליום</label><input id="mpd" name="mpd" type="number" inputmode="decimal" min="0" max="10" step="0.5" value="2"></div>
+<div class="field"><label for="box">מצות בחבילת 1 ק״ג</label><input id="box" name="box" type="number" inputmode="numeric" min="1" max="80" step="1" value="30"></div>
+</div></details>
+</form>
+<div aria-live="polite">
+<div id="empty" class="result" hidden><div class="label">התוצאה תופיע כאן</div><p class="mb-0">הכניסו מספר סועדים.</p></div>
+<div id="out" class="result">
+<div class="hk-tiles">
+<div class="hk-tile"><div class="k">מצות יד שמורות</div><div class="v" id="k-hand"></div></div>
+<div class="hk-tile"><div class="k">בקבוקי יין</div><div class="v" id="k-wine"></div><div class="s">750 מ״ל</div></div>
+<div class="hk-tile"><div class="k">מיץ ענבים</div><div class="v" id="k-juice"></div><div class="s">ליטר</div></div>
+<div class="hk-tile"><div class="k">חבילות מצה</div><div class="v" id="k-box"></div><div class="s">לכל החג</div></div>
+</div>
+<div class="card mt-2"><h2 class="h3">רשימת קניות לסדר</h2><table class="hk-ing"><tbody id="list"></tbody></table>
+<p class="hk-note mt-1 mb-0">כולל 10% רזרבה למצות השמורות, ליין ולמיץ, וכוס של אליהו בכל סדר.</p></div>
+</div>
+<div data-share data-share-scope="#seder-form" data-share-result="#k-hand,#k-wine" data-share-msg="לליל הסדר שלנו צריך {result} מצות שמורות ו-{result2} בקבוקי יין. חשבו לסדר שלכם במחשבון החינמי של תכנון פלוס:"></div>
+</div></div>
+<!-- embed-link --><p class="small muted mt-1 embed-link"><a href="https://tichnun.netlify.app/embed/#matza-wine-calculator">&lt;/&gt; הטמיעו את המחשבון הזה באתר שלכם (חינם)</a></p><!-- /embed-link -->
+<script src="../../assets/share.js"></script>
+<div class="cta-box mt-4"><div><h2 class="h3">כל הסדר בקובץ אחד</h2><p>«מתכנן ליל הסדר 2027»: אורחים, תפריט, 27 מצרכים לפי מספר הסועדים, רשימת קניות עם עלות, תפקידים בהגדה ולוח הכנות. ₪19.</p></div><a class="btn accent" href="../../p/seder-planner/">למתכנן ליל הסדר</a></div>
+</div></section>
+<section class="section alt"><div class="container narrow prose">
+<h2>לפי מה המחשבון מחשב?</h2>
+<ul><li><strong>מצה שמורה:</strong> (מבוגרים × כזיתים + ילדים × חצי מזה) ÷ כזיתים במצה × מספר סדרים, ועוד 10%.</li>
+<li><strong>יין:</strong> 4 כוסות × רביעית לכל מבוגר ששותה יין, ועוד כוס של אליהו לכל סדר ו-10%, מחולק לבקבוקי 750 מ״ל.</li>
+<li><strong>מיץ ענבים:</strong> 4 כוסות × רביעית לכל ילד ולכל מבוגר שלא שותה יין.</li>
+<li><strong>מצת מכונה:</strong> סועדים × מצות ליום × ימים, מחולק למספר המצות בחבילה.</li></ul>
+<p>מקורות לשיעורים: שולחן ערוך, אורח חיים, סימנים תע״ב (ארבע כוסות), תע״ה ותע״ז (מצה). לשיעורי רביעית לפי השיטות: <a href="https://www.etzion.org.il/he/halakha/orach-chaim/prayer-and-blessings/%D7%A9%D7%99%D7%A2%D7%95%D7%A8-%D7%9B%D7%91%D7%99%D7%A6%D7%94-%D7%95%D7%9B%D7%96%D7%99%D7%AA-%D7%91%D7%99%D7%9E%D7%99%D7%A0%D7%95-%D7%9C%D7%A2%D7%A0%D7%99%D7%99%D7%9F-%D7%91%D7%A8%D7%9B%D7%95%D7%AA" rel="noopener" target="_blank">ישיבת הר עציון, «שיעור כביצה וכזית בימינו»</a>. המחשבון הוא כלי תכנון ולא פסק הלכה.</p>
+<h2>שאלות נפוצות</h2><div class="faq"><details><summary>כמה מצות שמורות צריך לאדם בליל הסדר?</summary><p>בסדר אוכלים לפחות שלושה כזיתים: מוציא מצה, כורך ואפיקומן (שולחן ערוך, אורח חיים תע״ה, תע״ז), ויש נוהגים להוסיף. כמה כזיתים יש במצה תלוי בגודל המצה ובשיטה, ולכן המחשבון מאפשר לבחור. ברירת המחדל, חצי מצת יד לכזית, היא הערכה זהירה. לשאלה מעשית פנו לרב.</p></details><details><summary>מה זה רביעית ולמה יש שתי אפשרויות?</summary><p>כל אחת מארבע הכוסות צריכה להכיל לפחות רביעית (שולחן ערוך, אורח חיים תע״ב, ט). לשיטת הגר״ח נאה רביעית היא כ-86 מ״ל, ולשיטת החזון איש כ-150 מ״ל. בוחרים לפי המנהג שלכם.</p></details><details><summary>כמה בקבוקי יין צריך לליל הסדר?</summary><p>לפי 86 מ״ל לכוס, מבוגר ששותה יין צריך כ-344 מ״ל לארבע כוסות, כלומר כחצי בקבוק. לפי 150 מ״ל זה 600 מ״ל. המחשבון מוסיף כוס של אליהו לכל סדר ו-10% רזרבה.</p></details><details><summary>כמה חבילות מצה לקנות לכל החג?</summary><p>תלוי כמה מצה אוכלים ביום. ברירת המחדל: 2 מצות לאדם ליום, 7 ימים, וכ-30 מצות בחבילת קילו. משנים לפי המשפחה ולפי מה שכתוב על האריזה.</p></details><details><summary>הנתונים נשמרים?</summary><p>לא. החישוב רץ בדפדפן. קישור לשיתוף כולל רק את המספרים שהזנתם.</p></details></div>
+<p class="mt-3"><a href="../../pesach/seder-night-guide/">איך מארגנים ליל סדר</a> · <a href="../../pesach/">פסח 2027</a> · <a href="../../en/tools/seder-shopping-calculator/" hreflang="en" lang="en">Seder shopping calculator (English)</a></p>
+</div></section>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  function n(id) { var v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; }
+  function r(name) { var x = document.querySelector('input[name="' + name + '"]:checked'); return x ? parseFloat(x.value) : 0; }
+  function up(x, s) { s = s || 1; return Math.ceil(x / s - 1e-9) * s; }
+  function f(x, d) { return Number(x).toLocaleString("he-IL", { maximumFractionDigits: d || 0 }); }
+  function calc() {
+    var A = n("adults"), K = n("kids"), S = r("seders") || 1, ml = r("reviit") || 86, share = Math.min(100, n("wine")) / 100;
+    var kz = r("kz") || 3, kzm = n("kzm") || 2, days = n("days"), mpd = n("mpd"), box = n("box") || 30, M = 1.1;
+    if (!A && !K) { $("out").hidden = true; $("empty").hidden = false; return; }
+    var hand = up((A * kz + K * kz / 2) / kzm * S * M);
+    var mach = up((A + K) * mpd * days), boxes = up(mach / box);
+    var wine = up((A * share * 4 * ml + ml) * S * M / 750);
+    var juice = up((A * (1 - share) + K) * 4 * ml * S * M / 1000, 0.5);
+    $("k-hand").textContent = f(hand); $("k-wine").textContent = f(wine); $("k-juice").textContent = f(juice, 1); $("k-box").textContent = f(boxes);
+    var rows = [["מצה שמורה עבודת יד (למצווה)", f(hand) + " מצות"], ["מצת מכונה לכל החג", f(mach) + " מצות ≈ " + f(boxes) + " חבילות"],
+      ["יין לארבע כוסות + כוס של אליהו", f(wine) + " בקבוקי 750 מ״ל"], ["מיץ ענבים", f(juice, 1) + " ליטר"],
+      ["חסה למרור", f(up((A * .15 + K * .1 + .5) * S)) + " ראשים"], ["ביצים (קערה + ביצה במי מלח)", f((A + K + 1) * S)],
+      ["תפוחים לחרוסת", f(up((A + K) * .05 * S, .1), 1) + " ק״ג"], ["הגדות", f(A + K)]];
+    $("list").innerHTML = rows.map(function (x) { return "<tr><td>" + x[0] + '</td><td class="num">' + x[1] + "</td></tr>"; }).join("");
+    $("out").hidden = false; $("empty").hidden = true;
+  }
+  var fm = $("seder-form");
+  fm.addEventListener("input", calc); fm.addEventListener("change", calc);
+  calc();
+})();
+</script>
+
+</main>
+<footer id="site-footer"></footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

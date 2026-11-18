@@ -56,6 +56,20 @@
       "description": "כמה לחסוך כל חודש כדי להגיע לסכום יעד, או מתי תגיעו אליו",
       "product": "household-budget",
       "icon": "🎯"
+    },
+    {
+      "slug": "mishloach-manot-budget",
+      "title": "מחשבון תקציב משלוחי מנות 2027",
+      "description": "כמה חבילות לכל קבוצה ובכמה, כולל מתנות לאביונים ובדיקה מול התקציב",
+      "product": "purim-planner",
+      "icon": "🎭"
+    },
+    {
+      "slug": "matza-wine-calculator",
+      "title": "כמה מצות ויין לליל הסדר?",
+      "description": "מצות שמורות, חבילות מצה, יין ומיץ ענבים לפי מספר האורחים ושיעור הרביעית",
+      "product": "seder-planner",
+      "icon": "🍷"
     }
   ]
 }

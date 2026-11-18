@@ -138,7 +138,7 @@ async function newPage(browser, opts) {
     await M.ctx.close();
   }
 
-  for (const [hub, n] of [["embed/", 6], ["en/embed/", 4]]) {
+  for (const [hub, n] of [["embed/", (d => fs.readdirSync(path.join(DOCS, d), { withFileTypes: true }).filter(e => e.isDirectory()).length)("embed")], ["en/embed/", (d => fs.readdirSync(path.join(DOCS, d), { withFileTypes: true }).filter(e => e.isDirectory()).length)("en/embed")]]) {
     const P = await newPage(browser);
     await P.page.goto(BASE + hub, { waitUntil: "load" });
     const cards = await P.page.$$eval(".embed-item", els => els.map(e => ({ id: e.id, code: !!e.querySelector("textarea.embed-code"), btn: !!e.querySelector("[data-copy]") })));

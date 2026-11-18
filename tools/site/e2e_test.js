@@ -77,7 +77,8 @@ function waitFor(url, ms = 15000) {
     ok(await page.locator('[data-catalog="products"][data-rendered="1"] .product-card').count() >= 6, "home grid has 6+ products");
     ok(await page.locator('.product-card[data-slug="wedding-planner"] h3 a').count() === 1, "live product links to its page");
     ok(await page.locator('.product-card.is-soon').count() === 0, "no product left as 'soon'");
-    ok(await page.locator('[data-catalog="tools"] .tool-card').count() === 8, "home lists 8 tools");
+    const nTools = JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "../../docs/data/tools.json"), "utf8")).tools.length;
+    ok(await page.locator('[data-catalog="tools"] .tool-card').count() === nTools, `home lists all ${nTools} tools from tools.json`);
     if (SHOTS) {
       fs.mkdirSync(SHOTS, { recursive: true });
       await page.screenshot({ path: path.join(SHOTS, "home-1280.png"), fullPage: true });

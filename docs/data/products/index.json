@@ -42,12 +42,21 @@
     {
       "slug": "cv-builder",
       "category": "apps"
+    },
+    {
+      "slug": "purim-planner",
+      "category": "events"
+    },
+    {
+      "slug": "seder-planner",
+      "category": "events"
     }
   ],
   "bundles": [
     "event-bundle",
     "money-bundle",
     "freelancer-bundle",
-    "everything-bundle"
+    "everything-bundle",
+    "spring-holidays-bundle"
   ]
 }
