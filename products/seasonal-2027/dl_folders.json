@@ -1,0 +1,32 @@
+{
+ "purim-planner": {
+  "folder": "l9xg51dmh2y8mjd2",
+  "files": [
+   {
+    "label": "מתכנן משלוחי מנות 2027 (אקסל ריק לעבודה)",
+    "src": "purim-planner-2027.xlsx",
+    "path": "dl/l9xg51dmh2y8mjd2/purim-planner-2027.xlsx"
+   },
+   {
+    "label": "קובץ דוגמה מלא – 14 נמענים ו-4 סוגי חבילות",
+    "src": "purim-planner-2027-example.xlsx",
+    "path": "dl/l9xg51dmh2y8mjd2/purim-planner-2027-example.xlsx"
+   }
+  ]
+ },
+ "seder-planner": {
+  "folder": "h47k3jyddtezfhsk",
+  "files": [
+   {
+    "label": "מתכנן ליל הסדר 2027 (אקסל ריק לעבודה)",
+    "src": "seder-planner-2027.xlsx",
+    "path": "dl/h47k3jyddtezfhsk/seder-planner-2027.xlsx"
+   },
+   {
+    "label": "קובץ דוגמה מלא – סדר ל-17 סועדים",
+    "src": "seder-planner-2027-example.xlsx",
+    "path": "dl/h47k3jyddtezfhsk/seder-planner-2027-example.xlsx"
+   }
+  ]
+ }
+}

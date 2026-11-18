@@ -36,6 +36,8 @@ const CASES = [
   { url: "tools/renovation-cost/", set: [["#area", "110"], ['input[name=level][value="2"]'], ['input[name=w][value=elec]'], ["#baths", "2"]], result: ["#total", "#sub"] },
   { url: "tools/savings-goal/", set: [["#target", "40000"], ["#current", "5000"], ["#months", "18"], ["#rate", "3"]], result: ["#big", "#k-end"] },
   { url: "tools/sufganiyot-calculator/", set: [["#adults", "14"], ["#kids", "9"], ['input[name=mode][value=make]']], result: ["#v-suf", "#v-lat", "#v-oil"] },
+  { url: "tools/mishloach-manot-budget/", set: [["#n-fam", "6"], ["#c-nei", "20"], ["#n-cls", "30"], ["#budget", "500"]], result: ["#r-total", "#r-pk", "#r-bud"] },
+  { url: "tools/matza-wine-calculator/", set: [["#adults", "12"], ["#kids", "6"], ['input[name=reviit][value="150"]']], result: ["#k-hand", "#k-wine", "#k-juice"] },
   { url: "en/tools/bar-mitzvah-budget/", set: [["#adults", "150"], ['input[name=area][value=high]'], ["#ent", "7000"]], result: ["#total", "#perguest"] },
   { url: "en/tools/bar-mitzvah-gift/", set: [['input[name=rel][value=close]'], ['input[name=who][value="2"]'], ['input[name=area][value="1.2"]']], result: ["#amount", "#range"] },
   { url: "en/tools/seder-shopping-calculator/", set: [["#adults", "12"], ["#kids", "6"], ["#seders", "1"]], result: ["#k-seats", "#k-wine", "#k-matzah"] },

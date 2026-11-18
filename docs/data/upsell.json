@@ -10,6 +10,8 @@
     "price-quote-pack": "osek-patur-tracker",
     "event-bundle": "household-budget",
     "money-bundle": "osek-patur-tracker",
-    "freelancer-bundle": "household-budget"
+    "freelancer-bundle": "household-budget",
+    "purim-planner": "seder-planner",
+    "seder-planner": "purim-planner"
   }
 }

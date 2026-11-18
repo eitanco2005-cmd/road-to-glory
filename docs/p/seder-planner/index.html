@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מתכנן ליל הסדר 2027 באקסל – כמויות מצות ויין, קניות והגדה | תכנון פלוס</title>
+<meta name="description" content="קובץ אקסל לפסח 2027: אורחים, תפריט, כמה מצות ויין צריך לפי השיעור שתבחרו, רשימת קניות עם עלות, תפקידים בהגדה ולוח הכנות. Excel ו-Google Sheets, ₪19.">
+<link rel="canonical" href="https://tichnun.netlify.app/p/seder-planner/">
+<link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/p/seder-planner/">
+<link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/p/passover-seder-planner/">
+<link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/p/seder-planner/">
+<meta property="og:type" content="product">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="תכנון פלוס">
+<meta property="og:title" content="מתכנן ליל הסדר 2027 באקסל – כמויות מצות ויין, קניות והגדה | תכנון פלוס">
+<meta property="og:description" content="קובץ אקסל לפסח 2027: אורחים, תפריט, כמה מצות ויין צריך לפי השיעור שתבחרו, רשימת קניות עם עלות, תפקידים בהגדה ולוח הכנות. Excel ו-Google Sheets, ₪19.">
+<meta property="og:url" content="https://tichnun.netlify.app/p/seder-planner/">
+<meta property="og:image" content="https://tichnun.netlify.app/p/seder-planner/img/dashboard.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Noto+Sans+Hebrew:wght@400;700&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+.hk-hero-img{border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-lg);background:#fff;width:100%;height:auto}
+.hk-list{padding-inline-start:1.2rem}.hk-list li{margin:.3rem 0}
+.hk-pages{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}@media(min-width:760px){.hk-pages{grid-template-columns:repeat(4,1fr)}}
+.hk-pages figure{margin:0}.hk-pages img{width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow);background:#fff}
+.hk-pages figcaption{font-size:.9rem;color:var(--muted);text-align:center;margin-top:.35rem}
+.hk-dates{width:100%;border-collapse:collapse;font-size:.98rem}.hk-dates th,.hk-dates td{border:1px solid var(--border);padding:.45rem .6rem;text-align:center}
+.hk-dates th{background:var(--surface-2)}
+.hk-tiles{display:grid;gap:.75rem;grid-template-columns:repeat(2,1fr)}@media(min-width:640px){.hk-tiles{grid-template-columns:repeat(4,1fr)}}
+.hk-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem}
+.hk-tile .k{font-weight:700;color:var(--muted);font-size:.92rem}.hk-tile .v{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--primary)}
+.hk-tile .s{font-size:.85rem;color:var(--muted)}
+.hk-ing{width:100%;border-collapse:collapse}.hk-ing td{border-bottom:1px solid var(--border);padding:.35rem .25rem}.hk-ing td.num{text-align:end;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hk-note{font-size:.9rem;color:var(--muted)}
+.hk-bracha{font-family:'Noto Sans Hebrew','Assistant',sans-serif;font-size:1.3rem;line-height:1.9;background:var(--surface-2);border-radius:var(--radius-sm);padding:.6rem 1rem;margin:.5rem 0}
+.prose img{max-width:100%;height:auto;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.en-header .brand small{display:none}
+@media(max-width:480px){.en-header .brand span{display:none}.en-header .nav a{padding:.4rem .4rem}}
+.lang-switch{font-weight:700;font-size:.92rem}
+
+.s27-table{width:100%;border-collapse:collapse;font-size:.97rem}.s27-table th,.s27-table td{border:1px solid var(--border);padding:.5rem .6rem;text-align:start;vertical-align:top}
+.s27-table th{background:var(--surface-2)}
+.s27-tag{display:inline-block;font-size:.8rem;font-weight:700;border-radius:999px;padding:.05rem .55rem;white-space:nowrap}
+.s27-tag.ok{background:#dff3e4;color:#14532d}.s27-tag.exp{background:#fff4c2;color:#6b4e00}.s27-tag.unk{background:#fbe3e1;color:#7f1d1d}
+.s27-dl{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.s27-dl img{width:150px;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff}
+.s27-groups{display:grid;gap:.5rem}.s27-grow{display:grid;grid-template-columns:1fr 6.5rem 6.5rem;gap:.5rem;align-items:end}
+.s27-grow .field{margin:0}.s27-grow .gl{font-weight:700;padding-bottom:.55rem}
+.s27-check{list-style:none;padding-inline-start:0}.s27-check li::before{content:"☐ ";color:var(--primary)}
+@media(max-width:420px){.s27-grow{grid-template-columns:1fr 5.2rem 5.2rem}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Product", "name": "מתכנן ליל הסדר – פסח 2027", "description": "קובץ אקסל לפסח 2027: אורחים, תפריט, כמה מצות ויין צריך לפי השיעור שתבחרו, רשימת קניות עם עלות, תפקידים בהגדה ולוח הכנות. Excel ו-Google Sheets, ₪19.", "image": ["https://tichnun.netlify.app/p/seder-planner/img/dashboard.webp", "https://tichnun.netlify.app/p/seder-planner/img/shopping.webp", "https://tichnun.netlify.app/p/seder-planner/img/haggadah.webp"], "brand": {"@type": "Brand", "name": "תכנון פלוס"}, "offers": {"@type": "Offer", "price": "19", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://tichnun.netlify.app/p/seder-planner/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "באיזו תוכנה זה עובד?", "acceptedAnswer": {"@type": "Answer", "text": "Excel (2010 ומעלה, גם בנייד), Google Sheets ו-LibreOffice. אין מאקרו."}}, {"@type": "Question", "name": "איך הקובץ מחשב כמה מצות ויין?", "acceptedAnswer": {"@type": "Answer", "text": "לפי מספר המבוגרים והילדים שאישרו הגעה, מספר הסדרים (1 בארץ, 2 בחו״ל), שיעור הרביעית שבחרתם (86 או 150 מ״ל), כמה מהמבוגרים שותים יין, וכמה כזיתים מצה לכל מבוגר. את כל אלה קובעים בגיליון ההגדרות."}}, {"@type": "Question", "name": "הכמויות לארוחה מדויקות?", "acceptedAnswer": {"@type": "Answer", "text": "הן כללי אצבע מקובלים לאירוח (למשל 300 גרם בשר לפני בישול למבוגר) ונועדו כנקודת פתיחה. כל מספר בתא צהוב ניתן לשינוי."}}, {"@type": "Question", "name": "יש בקובץ פסיקה הלכתית?", "acceptedAnswer": {"@type": "Answer", "text": "לא. הקובץ מציג את השיעורים המקובלים עם מקורות, ומשאיר לכם לבחור לפי המנהג. לשאלות הלכה פנו לרב."}}, {"@type": "Question", "name": "המחירים אמיתיים?", "acceptedAnswer": {"@type": "Answer", "text": "לא. אלה מחירים לדוגמה כדי שהחישוב יעבוד מיד. מעדכנים לפי המחירים אצלכם."}}, {"@type": "Question", "name": "איך מקבלים את הקובץ?", "acceptedAnswer": {"@type": "Answer", "text": "מיד אחרי התשלום ב-PayPal (אפשר בכרטיס אשראי, בלי חשבון) נפתח דף הורדה עם קובץ ריק וקובץ דוגמה מלא."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ראשי", "item": "https://tichnun.netlify.app/"}, {"@type": "ListItem", "position": 2, "name": "פסח 2027", "item": "https://tichnun.netlify.app/pesach/"}, {"@type": "ListItem", "position": 3, "name": "מתכנן ליל הסדר", "item": "https://tichnun.netlify.app/p/seder-planner/"}]}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+
+<section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="פירורי לחם"><a href="../../">ראשי</a><span aria-hidden="true">›</span><a href="../../pesach/">פסח 2027</a><span aria-hidden="true">›</span>מתכנן ליל הסדר</nav>
+<div class="split"><div>
+<h1>מתכנן ליל הסדר 2027 באקסל: אורחים, תפריט, כמויות, קניות ותפקידים בהגדה</h1>
+<p class="lead">רושמים מי מגיע, והקובץ מחשב כמה מצות, יין, מרור וכל מצרכי הארוחה צריך, בונה רשימת קניות עם עלות, מחלק את קטעי ההגדה ומסדר לוח הכנות לפי התאריך.</p>
+</div>
+<div id="buy" class="buy" data-product="seder-planner" data-compact="1"></div>
+<ul class="hero-points"><li>Excel ו-Google Sheets</li><li>מצות ויין לפי השיעור שתבחרו</li><li>27 מצרכים מוכנים + שורות שלכם</li><li>תפקידים בהגדה</li><li>הורדה מיידית</li></ul>
+</div>
+<p class="hk-note mt-2">רוצים קודם חישוב מהיר? <a href="../../tools/matza-wine-calculator/">מחשבון מצות ויין</a> החינמי. מארחים גם בפורים? <a href="../../pesach/#spring-holidays-bundle">פורים + פסח ב-₪29</a>.</p>
+<img class="hk-hero-img mt-3" src="img/dashboard.webp" width="1228" height="560" alt="דשבורד מתכנן ליל הסדר: אורחים, מצות, יין ועלות קניות" fetchpriority="high">
+</div></section>
+<section class="section"><div class="container">
+<div class="section-head"><h2>מה יש בקובץ</h2><p class="muted">8 גיליונות מחוברים. מקלידים רק בתאים הצהובים.</p></div>
+<div class="grid cols-3">
+<div class="card feature"><span class="ic" aria-hidden="true">👨‍👩‍👧‍👦</span><div><h3>אורחים</h3><p>מבוגרים וילדים לכל משפחה, אישור הגעה, רגישויות ומה כל אחד מביא.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">🍷</span><div><h3>מצות ויין לפי השיעור</h3><p>רביעית 86 או 150 מ״ל, כזיתים לכל מבוגר, מי שותה יין ומי מיץ ענבים.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">🛒</span><div><h3>כמויות וקניות</h3><p>כמה לקנות מכל מצרך, באריזות שלמות, עם עלות משוערת וסימון מה נקנה.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">📖</span><div><h3>תפקידים בהגדה</h3><p>סימני הסדר וקטעי המגיד, ומי מוביל כל קטע: מה נשתנה, ארבעה בנים, עשר המכות.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">🗓️</span><div><h3>לוח הכנות</h3><p>16 משימות מ-6 שבועות לפני, עם תאריך יעד שמחושב לבד ומה שעבר מסומן באדום.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">📊</span><div><h3>דשבורד</h3><p>ימים לסדר, מצות, בקבוקי יין, עלות לסועד ועלות לפי קטגוריה מול התקציב.</p></div></div>
+</div></div></section>
+<section class="section alt"><div class="container">
+<div class="section-head"><h2>ככה זה נראה</h2><p class="muted">מקובץ הדוגמה המצורף (17 סועדים). המספרים להמחשה.</p></div>
+<div class="screens">
+<figure><img src="img/shopping.webp" loading="lazy" width="1257" height="532" alt="גיליון כמויות וקניות לליל הסדר"><figcaption>כמויות וקניות</figcaption></figure>
+<figure><img src="img/haggadah.webp" loading="lazy" width="1264" height="635" alt="חלוקת תפקידים בהגדה"><figcaption>תפקידים בהגדה</figcaption></figure>
+<figure><img src="img/guests.webp" loading="lazy" width="1264" height="248" alt="רשימת אורחים לליל הסדר"><figcaption>אורחים</figcaption></figure>
+</div></div></section>
+<section class="section"><div class="container narrow">
+<h2>שאלות נפוצות</h2><div class="faq"><details><summary>באיזו תוכנה זה עובד?</summary><p>Excel (2010 ומעלה, גם בנייד), Google Sheets ו-LibreOffice. אין מאקרו.</p></details><details><summary>איך הקובץ מחשב כמה מצות ויין?</summary><p>לפי מספר המבוגרים והילדים שאישרו הגעה, מספר הסדרים (1 בארץ, 2 בחו״ל), שיעור הרביעית שבחרתם (86 או 150 מ״ל), כמה מהמבוגרים שותים יין, וכמה כזיתים מצה לכל מבוגר. את כל אלה קובעים בגיליון ההגדרות.</p></details><details><summary>הכמויות לארוחה מדויקות?</summary><p>הן כללי אצבע מקובלים לאירוח (למשל 300 גרם בשר לפני בישול למבוגר) ונועדו כנקודת פתיחה. כל מספר בתא צהוב ניתן לשינוי.</p></details><details><summary>יש בקובץ פסיקה הלכתית?</summary><p>לא. הקובץ מציג את השיעורים המקובלים עם מקורות, ומשאיר לכם לבחור לפי המנהג. לשאלות הלכה פנו לרב.</p></details><details><summary>המחירים אמיתיים?</summary><p>לא. אלה מחירים לדוגמה כדי שהחישוב יעבוד מיד. מעדכנים לפי המחירים אצלכם.</p></details><details><summary>איך מקבלים את הקובץ?</summary><p>מיד אחרי התשלום ב-PayPal (אפשר בכרטיס אשראי, בלי חשבון) נפתח דף הורדה עם קובץ ריק וקובץ דוגמה מלא.</p></details></div>
+<h2 class="mt-4">עוד לפסח 2027</h2>
+<ul class="hk-list"><li><a href="../../pesach/cleaning-checklist/">צ׳קליסט ניקיון לפסח (PDF חינם)</a></li><li><a href="../../pesach/seder-night-guide/">איך מארגנים ליל סדר</a></li><li><a href="../../pesach/pesach-2027-dates/">פסח 2027: תאריכים</a></li><li><a href="../../pesach/">כל מה שצריך לפסח</a></li><li><a href="../../en/p/passover-seder-planner/" hreflang="en" lang="en">Passover Seder Planner (English, USD)</a></li></ul>
+<div class="mt-3"><div class="buy" data-product="seder-planner" data-compact="1"></div></div>
+</div></section>
+<div class="buy-bar"><span><strong>מתכנן ליל הסדר</strong> · <span class="price">₪19</span></span><a class="btn small" href="#buy">לרכישה</a></div>
+
+</main>
+<footer id="site-footer"></footer>
+<script src="../../assets/site.js"></script>
+<script src="../../assets/checkout.js"></script>
+</body>
+</html>

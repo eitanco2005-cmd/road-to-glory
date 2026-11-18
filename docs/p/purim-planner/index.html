@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מתכנן משלוחי מנות 2027 באקסל – נמענים, תקציב, קניות ומסלול | תכנון פלוס</title>
+<meta name="description" content="קובץ אקסל לפורים 2027: רשימת נמענים, סוגי חבילות עם עלות, רשימת קניות אוטומטית, מסלול חלוקה ותקציב כולל מתנות לאביונים. Excel ו-Google Sheets, ₪19.">
+<link rel="canonical" href="https://tichnun.netlify.app/p/purim-planner/">
+<meta property="og:type" content="product">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="תכנון פלוס">
+<meta property="og:title" content="מתכנן משלוחי מנות 2027 באקסל – נמענים, תקציב, קניות ומסלול | תכנון פלוס">
+<meta property="og:description" content="קובץ אקסל לפורים 2027: רשימת נמענים, סוגי חבילות עם עלות, רשימת קניות אוטומטית, מסלול חלוקה ותקציב כולל מתנות לאביונים. Excel ו-Google Sheets, ₪19.">
+<meta property="og:url" content="https://tichnun.netlify.app/p/purim-planner/">
+<meta property="og:image" content="https://tichnun.netlify.app/p/purim-planner/img/dashboard.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e6b63">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Noto+Sans+Hebrew:wght@400;700&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+.hk-hero-img{border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-lg);background:#fff;width:100%;height:auto}
+.hk-list{padding-inline-start:1.2rem}.hk-list li{margin:.3rem 0}
+.hk-pages{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}@media(min-width:760px){.hk-pages{grid-template-columns:repeat(4,1fr)}}
+.hk-pages figure{margin:0}.hk-pages img{width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow);background:#fff}
+.hk-pages figcaption{font-size:.9rem;color:var(--muted);text-align:center;margin-top:.35rem}
+.hk-dates{width:100%;border-collapse:collapse;font-size:.98rem}.hk-dates th,.hk-dates td{border:1px solid var(--border);padding:.45rem .6rem;text-align:center}
+.hk-dates th{background:var(--surface-2)}
+.hk-tiles{display:grid;gap:.75rem;grid-template-columns:repeat(2,1fr)}@media(min-width:640px){.hk-tiles{grid-template-columns:repeat(4,1fr)}}
+.hk-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem}
+.hk-tile .k{font-weight:700;color:var(--muted);font-size:.92rem}.hk-tile .v{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--primary)}
+.hk-tile .s{font-size:.85rem;color:var(--muted)}
+.hk-ing{width:100%;border-collapse:collapse}.hk-ing td{border-bottom:1px solid var(--border);padding:.35rem .25rem}.hk-ing td.num{text-align:end;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hk-note{font-size:.9rem;color:var(--muted)}
+.hk-bracha{font-family:'Noto Sans Hebrew','Assistant',sans-serif;font-size:1.3rem;line-height:1.9;background:var(--surface-2);border-radius:var(--radius-sm);padding:.6rem 1rem;margin:.5rem 0}
+.prose img{max-width:100%;height:auto;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.en-header .brand small{display:none}
+@media(max-width:480px){.en-header .brand span{display:none}.en-header .nav a{padding:.4rem .4rem}}
+.lang-switch{font-weight:700;font-size:.92rem}
+
+.s27-table{width:100%;border-collapse:collapse;font-size:.97rem}.s27-table th,.s27-table td{border:1px solid var(--border);padding:.5rem .6rem;text-align:start;vertical-align:top}
+.s27-table th{background:var(--surface-2)}
+.s27-tag{display:inline-block;font-size:.8rem;font-weight:700;border-radius:999px;padding:.05rem .55rem;white-space:nowrap}
+.s27-tag.ok{background:#dff3e4;color:#14532d}.s27-tag.exp{background:#fff4c2;color:#6b4e00}.s27-tag.unk{background:#fbe3e1;color:#7f1d1d}
+.s27-dl{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.s27-dl img{width:150px;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff}
+.s27-groups{display:grid;gap:.5rem}.s27-grow{display:grid;grid-template-columns:1fr 6.5rem 6.5rem;gap:.5rem;align-items:end}
+.s27-grow .field{margin:0}.s27-grow .gl{font-weight:700;padding-bottom:.55rem}
+.s27-check{list-style:none;padding-inline-start:0}.s27-check li::before{content:"☐ ";color:var(--primary)}
+@media(max-width:420px){.s27-grow{grid-template-columns:1fr 5.2rem 5.2rem}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Product", "name": "מתכנן משלוחי מנות – פורים 2027", "description": "קובץ אקסל לפורים 2027: רשימת נמענים, סוגי חבילות עם עלות, רשימת קניות אוטומטית, מסלול חלוקה ותקציב כולל מתנות לאביונים. Excel ו-Google Sheets, ₪19.", "image": ["https://tichnun.netlify.app/p/purim-planner/img/dashboard.webp", "https://tichnun.netlify.app/p/purim-planner/img/packages.webp", "https://tichnun.netlify.app/p/purim-planner/img/route.webp"], "brand": {"@type": "Brand", "name": "תכנון פלוס"}, "offers": {"@type": "Offer", "price": "19", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://tichnun.netlify.app/p/purim-planner/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "באיזו תוכנה זה עובד?", "acceptedAnswer": {"@type": "Answer", "text": "Excel (2010 ומעלה, גם בנייד), Google Sheets ו-LibreOffice. ב-Google Sheets: מעלים ל-Drive ובוחרים «פתיחה באמצעות Google Sheets». אין מאקרו."}}, {"@type": "Question", "name": "איך הקובץ יודע כמה לקנות?", "acceptedAnswer": {"@type": "Answer", "text": "לכל סוג חבילה רושמים פעם אחת מה יש בה. בגיליון הנמענים בוחרים לכל אחד איזו חבילה. הקובץ סופר כמה חבילות מכל סוג צריך ומכפיל את הפריטים, כך שרשימת הקניות נבנית לבד."}}, {"@type": "Question", "name": "ומה עם הגן או הכיתה?", "acceptedAnswer": {"@type": "Answer", "text": "שורה אחת לכל הכיתה, עם מספר הילדים בעמודת «כמות». זה נספר נכון בעלות וברשימת הקניות."}}, {"@type": "Question", "name": "מה זה מסלול החלוקה?", "acceptedAnswer": {"@type": "Answer", "text": "נותנים לכל נמען מספר עצירה לפי הסדר שבו תעברו. גיליון «מסלול חלוקה» מסדר את כולם לפי המספר, עם כתובת, איזו חבילה ומי מוסר, ומסמנים «נמסר» תוך כדי."}}, {"@type": "Question", "name": "הקובץ בודק «שני מינים»?", "acceptedAnswer": {"@type": "Answer", "text": "כן. לכל סוג חבילה הוא בודק שיש בה לפחות שני פריטים מסוג מאכל או משקה, ומסמן אם חסר. זו תזכורת בלבד, לא פסק הלכה."}}, {"@type": "Question", "name": "המחירים בקובץ אמיתיים?", "acceptedAnswer": {"@type": "Answer", "text": "לא. אלה מחירים לדוגמה כדי שהחישוב יעבוד מהרגע הראשון. מעדכנים לפי החנות שלכם."}}, {"@type": "Question", "name": "איך מקבלים את הקובץ?", "acceptedAnswer": {"@type": "Answer", "text": "מיד אחרי התשלום ב-PayPal (אפשר בכרטיס אשראי, בלי חשבון) נפתח דף הורדה עם קובץ ריק וקובץ דוגמה מלא."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ראשי", "item": "https://tichnun.netlify.app/"}, {"@type": "ListItem", "position": 2, "name": "פורים 2027", "item": "https://tichnun.netlify.app/purim/"}, {"@type": "ListItem", "position": 3, "name": "מתכנן משלוחי מנות", "item": "https://tichnun.netlify.app/p/purim-planner/"}]}
+</script>
+</head>
+<body>
+<header id="site-header"></header>
+<main id="main">
+
+<section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="פירורי לחם"><a href="../../">ראשי</a><span aria-hidden="true">›</span><a href="../../purim/">פורים 2027</a><span aria-hidden="true">›</span>מתכנן משלוחי מנות</nav>
+<div class="split"><div>
+<h1>מתכנן משלוחי מנות 2027 באקסל: נמענים, חבילות, קניות ומסלול חלוקה</h1>
+<p class="lead">רושמים למי שולחים ומה שמים בכל חבילה, והקובץ מחשב כמה חבילות מכל סוג צריך, כמה זה עולה מול התקציב, בונה רשימת קניות ומסדר מסלול חלוקה לבוקר פורים.</p>
+</div>
+<div id="buy" class="buy" data-product="purim-planner" data-compact="1"></div>
+<ul class="hero-points"><li>Excel ו-Google Sheets</li><li>עד 150 נמענים ו-8 סוגי חבילות</li><li>רשימת קניות אוטומטית</li><li>מסלול חלוקה לפי סדר</li><li>הורדה מיידית</li></ul>
+</div>
+<p class="hk-note mt-2">רוצים קודם הערכה מהירה? <a href="../../tools/mishloach-manot-budget/">מחשבון תקציב משלוחי מנות</a> החינמי. ומי שמתכנן גם את פסח: <a href="../../purim/#spring-holidays-bundle">פורים + פסח יחד ב-₪29</a>.</p>
+<img class="hk-hero-img mt-3" src="img/dashboard.webp" width="1238" height="557" alt="דשבורד מתכנן משלוחי מנות: נמענים, חבילות, עלות מול תקציב וגרפים" fetchpriority="high">
+</div></section>
+<section class="section"><div class="container">
+<div class="section-head"><h2>מה יש בקובץ</h2><p class="muted">7 גיליונות מחוברים. מקלידים רק בתאים הצהובים.</p></div>
+<div class="grid cols-3">
+<div class="card feature"><span class="ic" aria-hidden="true">📋</span><div><h3>נמענים</h3><p>שם, קבוצה (משפחה, שכנים, גן…), איזו חבילה, כמות, כתובת, מי מוסר, סטטוס ו«קיבלנו מהם?».</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">🎁</span><div><h3>סוגי חבילות</h3><p>עד 8 סוגים. עלות לחבילה מחושבת מהפריטים, ובדיקה אוטומטית של «שני מינים».</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">🛒</span><div><h3>רשימת קניות</h3><p>כל פריט כפול מספר החבילות, עם עלות, סיכום לפריט שחוזר בכמה חבילות ועמודת «נקנה».</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">🗺️</span><div><h3>מסלול חלוקה</h3><p>מסדר את הנמענים לפי מספר העצירה, כדי לחלק בסבב אחד בבוקר פורים.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">💰</span><div><h3>תקציב ומתנות לאביונים</h3><p>תקציב כולל מול עלות בפועל, מתנות לאביונים ומחצית השקל בסיכום אחד.</p></div></div>
+<div class="card feature"><span class="ic" aria-hidden="true">📊</span><div><h3>דשבורד</h3><p>ימים עד פורים, כמה נמסרו, עלות לפי קבוצה וחלוקה לפי סוג חבילה.</p></div></div>
+</div></div></section>
+<section class="section alt"><div class="container">
+<div class="section-head"><h2>ככה זה נראה</h2><p class="muted">מקובץ הדוגמה המצורף. המספרים להמחשה.</p></div>
+<div class="screens">
+<figure><img src="img/packages.webp" loading="lazy" width="1260" height="534" alt="גיליון סוגי חבילות ורכיבים עם עלות לחבילה ובדיקת שני מינים"><figcaption>חבילות: עלות ובדיקת «שני מינים»</figcaption></figure>
+<figure><img src="img/recipients.webp" loading="lazy" width="1252" height="422" alt="רשימת נמענים למשלוחי מנות"><figcaption>נמענים, סטטוס ועלות</figcaption></figure>
+<figure><img src="img/route.webp" loading="lazy" width="1265" height="312" alt="מסלול חלוקת משלוחי מנות לפי סדר עצירות"><figcaption>מסלול חלוקה</figcaption></figure>
+</div></div></section>
+<section class="section"><div class="container narrow">
+<h2>שאלות נפוצות</h2><div class="faq"><details><summary>באיזו תוכנה זה עובד?</summary><p>Excel (2010 ומעלה, גם בנייד), Google Sheets ו-LibreOffice. ב-Google Sheets: מעלים ל-Drive ובוחרים «פתיחה באמצעות Google Sheets». אין מאקרו.</p></details><details><summary>איך הקובץ יודע כמה לקנות?</summary><p>לכל סוג חבילה רושמים פעם אחת מה יש בה. בגיליון הנמענים בוחרים לכל אחד איזו חבילה. הקובץ סופר כמה חבילות מכל סוג צריך ומכפיל את הפריטים, כך שרשימת הקניות נבנית לבד.</p></details><details><summary>ומה עם הגן או הכיתה?</summary><p>שורה אחת לכל הכיתה, עם מספר הילדים בעמודת «כמות». זה נספר נכון בעלות וברשימת הקניות.</p></details><details><summary>מה זה מסלול החלוקה?</summary><p>נותנים לכל נמען מספר עצירה לפי הסדר שבו תעברו. גיליון «מסלול חלוקה» מסדר את כולם לפי המספר, עם כתובת, איזו חבילה ומי מוסר, ומסמנים «נמסר» תוך כדי.</p></details><details><summary>הקובץ בודק «שני מינים»?</summary><p>כן. לכל סוג חבילה הוא בודק שיש בה לפחות שני פריטים מסוג מאכל או משקה, ומסמן אם חסר. זו תזכורת בלבד, לא פסק הלכה.</p></details><details><summary>המחירים בקובץ אמיתיים?</summary><p>לא. אלה מחירים לדוגמה כדי שהחישוב יעבוד מהרגע הראשון. מעדכנים לפי החנות שלכם.</p></details><details><summary>איך מקבלים את הקובץ?</summary><p>מיד אחרי התשלום ב-PayPal (אפשר בכרטיס אשראי, בלי חשבון) נפתח דף הורדה עם קובץ ריק וקובץ דוגמה מלא.</p></details></div>
+<h2 class="mt-4">מדריכים לפורים 2027</h2>
+<ul class="hk-list"><li><a href="../../purim/mishloach-manot-ideas/">רעיונות למשלוחי מנות לפי תקציב</a></li><li><a href="../../purim/purim-halacha/">הלכות פורים בקצרה: ארבע המצוות ומקורות</a></li><li><a href="../../purim/class-mishloach-manot/">משלוחי מנות לגן ולכיתה</a></li><li><a href="../../purim/">כל מה שצריך לפורים 2027</a></li></ul>
+<div class="mt-3"><div class="buy" data-product="purim-planner" data-compact="1"></div></div>
+</div></section>
+<div class="buy-bar"><span><strong>מתכנן משלוחי מנות</strong> · <span class="price">₪19</span></span><a class="btn small" href="#buy">לרכישה</a></div>
+
+</main>
+<footer id="site-footer"></footer>
+<script src="../../assets/site.js"></script>
+<script src="../../assets/checkout.js"></script>
+</body>
+</html>

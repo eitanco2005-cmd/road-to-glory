@@ -1,0 +1,21 @@
+{
+  "slug": "seder-planner",
+  "title": "מתכנן ליל הסדר 2027 – אקסל",
+  "subtitle": "אורחים, תפריט, כמויות מצות ויין לפי השיעור, רשימת קניות, תפקידים בהגדה ולוח הכנות",
+  "price_ils": 19,
+  "bundle_of": [],
+  "files": [
+    {
+      "label": "מתכנן ליל הסדר 2027 (אקסל ריק לעבודה)",
+      "path": "dl/h47k3jyddtezfhsk/seder-planner-2027.xlsx"
+    },
+    {
+      "label": "קובץ דוגמה מלא – סדר ל-17 סועדים",
+      "path": "dl/h47k3jyddtezfhsk/seder-planner-2027-example.xlsx"
+    }
+  ],
+  "sheets_copy_url": null,
+  "tool": "matza-wine-calculator",
+  "url": "p/seder-planner/",
+  "image": "p/seder-planner/img/dashboard.webp"
+}

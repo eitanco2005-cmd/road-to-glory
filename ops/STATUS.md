@@ -48,3 +48,4 @@
 - 2026-11-18: Round 2 launched (session_01WwXrbNG1skZriyvNmiH98U, ws/round2): WhatsApp share on all calculators + 8 English per-query pages (seating + planners).
 - 2026-11-18: Merged round 2: WhatsApp share on 13 calculators (links reopen same result), 8 English per-query pages, og images. 6 e2e suites pass. 112 URLs. Guarded stale products/en-jewish-life/site_en.py main().
 - 2026-11-18: Round 3 launched: 3A seasonal pre-positioning (budget 2027, Purim, Pesach 2027) + 3B link-earning (embeddable calculators, Israeli open data on GitHub).
+- TODO (from R3A, ws/seasonal): from 2026-12-20 add a home-page banner for docs/budget-2027/ (תקציב 2027, peak late Dec–Jan), replacing the Hanukkah banner that ends Dec 12. Later: Purim banner (docs/purim/) from ~2027-02-01, Pesach banner (docs/pesach/) from ~2027-03-01. Not added yet on purpose.
