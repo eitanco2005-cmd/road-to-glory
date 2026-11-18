@@ -13,8 +13,11 @@
 <meta property="og:site_name" content="תכנון פלוס">
 <meta property="og:title" content="מחשבון תקרת עוסק פטור 2026 – כמה נשאר לי עד התקרה? | תכנון פלוס">
 <meta property="og:description" content="מחשבון חינם: מכניסים הכנסות מתחילת השנה ומקבלים כמה נשאר עד תקרת עוסק פטור 2026 (122,833 ₪), תחזית לסוף השנה ומתי צפוי לעבור אותה.">
-<meta property="og:image" content="https://tichnun.netlify.app/p/osek-patur-tracker/img/dashboard.webp">
+<meta property="og:image" content="https://tichnun.netlify.app/assets/og/osek-patur-ceiling.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tichnun.netlify.app/assets/og/osek-patur-ceiling.png">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +38,7 @@
  <div class="container narrow">
   <h1>מחשבון תקרת עוסק פטור 2026</h1>
   <p class="lead muted">התקרה לשנת 2026 היא <strong>122,833 ₪</strong> מחזור שנתי (הכנסות ברוטו, לא רווח). הכניסו כמה הכנסתם מתחילת השנה, ותראו כמה נשאר ומתי בקצב הנוכחי תגיעו לתקרה.</p>
-  <div class="tool-panel">
+  <div class="tool-panel" id="osek-panel">
    <div class="fields cols-2">
     <div class="field"><label for="income">הכנסות מתחילת 2026 (₪)</label>
      <div class="input-affix"><input id="income" type="number" inputmode="decimal" min="0" step="100" placeholder="למשל 64000"><span class="affix">₪</span></div>
@@ -56,6 +59,8 @@
      <div class="kpi"><div class="v" id="r-per">–</div><div class="k">אפשר להכניס בחודש (כולל החודש)</div></div>
     </div>
     <div class="callout success" id="status"><span id="r-cross"></span></div>
+<div data-share data-share-scope="#osek-panel" data-share-msg="בדקתי כמה נשאר לי עד תקרת עוסק פטור 2026 במחשבון החינמי של תכנון פלוס. בדקו גם אתם:" data-share-note="הקישור כולל את המספרים שהזנתם – שלחו אותו רק למי שתרצו."></div>
+<script src="../../assets/share.js"></script>
    </div>
    <p class="source mt-2">מקור התקרה: <a href="https://www.kolzchut.org.il/he/%D7%A2%D7%95%D7%A1%D7%A7_%D7%A4%D7%98%D7%95%D7%A8" rel="noopener" target="_blank">כל זכות – עוסק פטור</a> ופרסומי <a href="https://www.gov.il/he/departments/israel_tax_authority/govil-landing-page" rel="noopener" target="_blank">רשות המסים</a>. נבדק ב-17.11.2026. המחשבון לצורכי מידע בלבד ואינו ייעוץ מס. החישוב מתבצע בדפדפן בלבד.</p>
   </div>
