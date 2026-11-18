@@ -155,6 +155,28 @@ async function newPage(browser, opts) {
     await P.ctx.close();
   }
 
+  // data-il page: every download link resolves and parses, Dataset JSON-LD per dataset, JS helper works in the page
+  {
+    const P = await newPage(browser);
+    await P.page.goto(BASE + "data-il/", { waitUntil: "load" });
+    const links = await P.page.$$eval("a[download]", as => as.map(a => a.getAttribute("href")));
+    let good = 0;
+    for (const l of links) {
+      const r = await P.page.request.get(BASE + "data-il/" + l);
+      const t = await r.text();
+      if (r.ok() && (l.endsWith(".json") ? JSON.parse(t).rows.length > 0 : t.split("\n").length > 2)) good++;
+    }
+    ok(links.length === 10 && good === links.length, `data-il: ${good}/${links.length} downloads OK`);
+    const ld = await P.page.$$eval('script[type="application/ld+json"]', s => s.map(x => JSON.parse(x.textContent)));
+    const ds = ld.filter(x => x["@type"] === "Dataset");
+    ok(ds.length === 5 && ds.every(d => d.license && d.distribution.length === 2 && d.creator), `data-il: ${ds.length} Dataset JSON-LD blocks with license + distribution`);
+    await P.page.addScriptTag({ url: BASE + "data-il/israel-data.js" });
+    const js = await P.page.evaluate(() => [IsraelData.isIsraeliHoliday("2026-04-22")[0].id, IsraelData.addVat(1000).gross, IsraelData.removeVat(1180).net, IsraelData.osekPaturCeiling(2026), IsraelData.vatRate("2015-06-01")]);
+    ok(JSON.stringify(js) === JSON.stringify(["yom-haatzmaut", 1180, 1000, 122833, 0.18]), `data-il: israel-data.js helpers ${JSON.stringify(js)}`);
+    ok(P.errs.length === 0, `data-il: no JS errors ${JSON.stringify(P.errs)}`);
+    await P.ctx.close();
+  }
+
   await browser.close(); server.close(); host.close();
   console.log(failures ? `\n${failures} FAILURE(S)` : "\nALL PASSED");
   process.exit(failures ? 1 : 0);

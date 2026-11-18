@@ -1,0 +1,199 @@
+{
+ "title": "Israel VAT rate history (1976–today)",
+ "title_he": "היסטוריית שיעור המע״מ בישראל",
+ "description": "Standard VAT (מע״מ) rate in Israel by effective date since VAT was introduced on 1 July 1976, with a source URL for every row. to=null means the current rate.",
+ "temporal": "1976-07-01/..",
+ "keywords": [
+  "Israel",
+  "VAT",
+  "מע\"מ",
+  "tax rates"
+ ],
+ "license": "CC0-1.0",
+ "publisher": "תכנון פלוס (Tichnun Plus)",
+ "homepage": "https://tichnun.netlify.app/data-il/",
+ "source_repo": "https://github.com/eitanco2005-cmd/road-to-glory/tree/main/data-il",
+ "generated": "2026-11-18",
+ "rows": [
+  {
+   "from": "1976-07-01",
+   "to": "1977-10-31",
+   "rate_percent": 8,
+   "source_url": "https://info.cap.co.il/vat-rates/",
+   "source_title": "CAP – היסטוריית שיעורי מע״מ בישראל",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "VAT introduced in Israel on 1 July 1976 (also he.wikipedia: מס ערך מוסף)"
+  },
+  {
+   "from": "1977-11-01",
+   "to": "1982-07-31",
+   "rate_percent": 12,
+   "source_url": "https://info.cap.co.il/vat-rates/",
+   "source_title": "CAP – היסטוריית שיעורי מע״מ בישראל",
+   "verification": "1 source",
+   "checked": "2026-11-18",
+   "note": "he.wikipedia says 12% came with the October 1977 economic reform; exact start date varies by source"
+  },
+  {
+   "from": "1982-08-01",
+   "to": "1985-05-31",
+   "rate_percent": 15,
+   "source_url": "https://info.cap.co.il/vat-rates/",
+   "source_title": "CAP – היסטוריית שיעורי מע״מ בישראל",
+   "verification": "1 source",
+   "checked": "2026-11-18",
+   "note": "one calculator site gives 1982-07-27"
+  },
+  {
+   "from": "1985-06-01",
+   "to": "1985-09-30",
+   "rate_percent": 17,
+   "source_url": "https://he.wikipedia.org/wiki/תבנית:מס_ערך_מוסף_בישראל",
+   "source_title": "ויקיפדיה – תבנית:מס ערך מוסף בישראל",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "1985-10-01",
+   "to": "1990-02-28",
+   "rate_percent": 15,
+   "source_url": "https://he.wikipedia.org/wiki/תבנית:מס_ערך_מוסף_בישראל",
+   "source_title": "ויקיפדיה – תבנית:מס ערך מוסף בישראל",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "1990-03-01",
+   "to": "1990-12-31",
+   "rate_percent": 16,
+   "source_url": "https://he.wikipedia.org/wiki/תבנית:מס_ערך_מוסף_בישראל",
+   "source_title": "ויקיפדיה – תבנית:מס ערך מוסף בישראל",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "1991-01-01",
+   "to": "1992-12-31",
+   "rate_percent": 18,
+   "source_url": "https://he.wikipedia.org/wiki/תבנית:מס_ערך_מוסף_בישראל",
+   "source_title": "ויקיפדיה – תבנית:מס ערך מוסף בישראל",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "1993-01-01",
+   "to": "2002-06-14",
+   "rate_percent": 17,
+   "source_url": "https://he.wikipedia.org/wiki/תבנית:מס_ערך_מוסף_בישראל",
+   "source_title": "ויקיפדיה – תבנית:מס ערך מוסף בישראל",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2002-06-15",
+   "to": "2004-02-29",
+   "rate_percent": 18,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2004-03-01",
+   "to": "2005-08-31",
+   "rate_percent": 17,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2005-09-01",
+   "to": "2006-06-30",
+   "rate_percent": 16.5,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "one source gives 2005-09-15"
+  },
+  {
+   "from": "2006-07-01",
+   "to": "2009-06-30",
+   "rate_percent": 15.5,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2009-07-01",
+   "to": "2009-12-31",
+   "rate_percent": 16.5,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2010-01-01",
+   "to": "2012-08-31",
+   "rate_percent": 16,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2012-09-01",
+   "to": "2013-06-01",
+   "rate_percent": 17,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2013-06-02",
+   "to": "2015-09-30",
+   "rate_percent": 18,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2015-10-01",
+   "to": "2024-12-31",
+   "rate_percent": 17,
+   "source_url": "https://he.wikipedia.org/wiki/מס_ערך_מוסף",
+   "source_title": "ויקיפדיה – מס ערך מוסף",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2025-01-01",
+   "to": null,
+   "rate_percent": 18,
+   "source_url": "https://www.vatupdate.com/2024/12/30/israels-vat-rate-to-increase-to-18-starting-january-2025/",
+   "source_title": "VATupdate – Israel's VAT rate to increase to 18% starting January 2025",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "Israel Tax Authority, צו מס ערך מוסף (שיעור המס); current rate"
+  }
+ ]
+}

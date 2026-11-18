@@ -3,6 +3,7 @@
   <url><loc>https://tichnun.netlify.app/apps/cv/</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/apps/invite/</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/apps/seating/</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tichnun.netlify.app/data-il/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/launch/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/launch/tailwind.html</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/pocket/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
@@ -10,7 +11,9 @@
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/studio/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/demos/templates/studio/tailwind.html</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/devkit/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tichnun.netlify.app/embed/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/embed/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/embed/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/embed/"/><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/en/apps/seating/</loc><lastmod>2026-11-18</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tichnun.netlify.app/en/embed/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/embed/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/embed/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/embed/"/><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/en/guides/bar-mitzvah-cost/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/en/guides/bar-mitzvah-planning-checklist/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/p/bar-mitzvah-planner/guides/bar-mitzvah-timeline/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/guides/bar-mitzvah-planning-checklist/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/p/bar-mitzvah-planner/guides/bar-mitzvah-timeline/"/><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/en/guides/bar-mitzvah-planning-timeline/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
@@ -46,7 +49,7 @@
   <url><loc>https://tichnun.netlify.app/en/seating/wedding-seating-chart-template/</loc><lastmod>2026-11-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/bar-mitzvah-cost/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/bar-mitzvah-cost/"/><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/en/tools/bar-mitzvah-gift/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://tichnun.netlify.app/en/tools/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/"/><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tichnun.netlify.app/en/tools/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/"/><lastmod>2026-11-18</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/en/tools/seder-shopping-calculator/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/guides/budget-by-net-salary/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://tichnun.netlify.app/guides/couple-money/</loc><lastmod>2026-11-17</lastmod><priority>0.6</priority></url>
@@ -104,7 +107,7 @@
   <url><loc>https://tichnun.netlify.app/products/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/products/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/planners/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/products/"/><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/bar-mitzvah-cost/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/bar-mitzvah-cost/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/bar-mitzvah-budget/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/bar-mitzvah-cost/"/><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/budget-503020/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://tichnun.netlify.app/tools/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/"/><lastmod>2026-11-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tichnun.netlify.app/tools/</loc><xhtml:link rel="alternate" hreflang="he" href="https://tichnun.netlify.app/tools/"/><xhtml:link rel="alternate" hreflang="en" href="https://tichnun.netlify.app/en/tools/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://tichnun.netlify.app/tools/"/><lastmod>2026-11-18</lastmod><priority>0.9</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/net-salary-budget/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/osek-patur-ceiling/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://tichnun.netlify.app/tools/renovation-cost/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>

@@ -23,7 +23,7 @@ const ok = (c, msg) => { console.log((c ? "PASS " : "FAIL ") + msg); if (!c) fai
 function enPages(dir = path.join(DOCS, "en"), out = []) {
   for (const f of fs.readdirSync(dir)) {
     const p = path.join(dir, f);
-    if (fs.statSync(p).isDirectory()) enPages(p, out);
+    if (fs.statSync(p).isDirectory()) { if (!/en[\\/]embed[\\/][^\\/]+$/.test(path.relative(DOCS, p))) enPages(p, out); } // iframe widgets (no site chrome) are tested by tools/site/e2e_embed.js
     else if (f === "index.html") out.push(path.relative(DOCS, path.dirname(p)).replace(/\\/g, "/") + "/");
   }
   return out.sort();

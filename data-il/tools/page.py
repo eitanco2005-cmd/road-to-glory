@@ -106,6 +106,7 @@ def render(datasets, hol, version, site, gh, raw):
 <style>
 .code{{direction:ltr;text-align:left;unicode-bidi:isolate;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.8rem 1rem;overflow:auto;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}}
 .en-block{{direction:ltr;text-align:left}}
+code{{overflow-wrap:anywhere;word-break:break-all}}
 </style>
 {ld}</head>
 <body>

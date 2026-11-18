@@ -1,0 +1,106 @@
+{
+ "title": "Israel minimum wage history (adult, monthly and hourly)",
+ "title_he": "היסטוריית שכר המינימום בישראל",
+ "description": "Monthly minimum wage for an adult full-time employee in Israel since April 2015, and the hourly rate (monthly ÷ 182 since April 2018), with sources.",
+ "temporal": "2015-04-01/..",
+ "keywords": [
+  "Israel",
+  "minimum wage",
+  "שכר מינימום"
+ ],
+ "license": "CC0-1.0",
+ "publisher": "תכנון פלוס (Tichnun Plus)",
+ "homepage": "https://tichnun.netlify.app/data-il/",
+ "source_repo": "https://github.com/eitanco2005-cmd/road-to-glory/tree/main/data-il",
+ "generated": "2026-11-18",
+ "rows": [
+  {
+   "from": "2015-04-01",
+   "to": "2016-06-30",
+   "monthly_ils": 4650,
+   "hourly_ils": null,
+   "source_url": "https://www.chamber.org.il/serviceslobby/legal/1856/1861/",
+   "source_title": "לשכת המסחר – חוק שכר מינימום (הוראת שעה)",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2016-07-01",
+   "to": "2016-12-31",
+   "monthly_ils": 4825,
+   "hourly_ils": 25.94,
+   "source_url": "https://www.chamber.org.il/serviceslobby/legal/1856/1861/",
+   "source_title": "לשכת המסחר – חוק שכר מינימום (הוראת שעה)",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2017-01-01",
+   "to": "2017-11-30",
+   "monthly_ils": 5000,
+   "hourly_ils": 26.88,
+   "source_url": "https://www.chamber.org.il/serviceslobby/legal/1856/1861/",
+   "source_title": "לשכת המסחר – חוק שכר מינימום (הוראת שעה)",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2017-12-01",
+   "to": "2023-03-31",
+   "monthly_ils": 5300,
+   "hourly_ils": 29.12,
+   "source_url": "https://www.chamber.org.il/serviceslobby/legal/1856/81476/",
+   "source_title": "לשכת המסחר – שכר מינימום 5,300",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "hourly 28.49 until 2018-03-31 (÷186), 29.12 from 2018-04-01 (÷182)"
+  },
+  {
+   "from": "2023-04-01",
+   "to": "2024-03-31",
+   "monthly_ils": 5571.75,
+   "hourly_ils": 30.61,
+   "source_url": "https://www.timewatch.co.il/",
+   "source_title": "TimeWatch – עדכון שכר מינימום 1.4.2023",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2024-04-01",
+   "to": "2025-03-31",
+   "monthly_ils": 5880.02,
+   "hourly_ils": 32.3,
+   "source_url": "https://www.malam-payroll.com/עדכון-שכר-מינימום-מיום-1-4-2024/",
+   "source_title": "מלם שכר – עדכון שכר מינימום 1.4.2024",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2025-04-01",
+   "to": "2026-03-31",
+   "monthly_ils": 6247.67,
+   "hourly_ils": 34.32,
+   "source_url": "https://www.ynet.co.il/economy/article/rjcptaa2jl",
+   "source_title": "ynet – שכר המינימום עולה ל-6,247.67 ש״ח",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "from": "2026-04-01",
+   "to": null,
+   "monthly_ils": 6443.85,
+   "hourly_ils": 35.4,
+   "source_url": "https://www.btl.gov.il/Mediniyut/GeneralData/Pages/שכר%20מינימום.aspx",
+   "source_title": "ביטוח לאומי – שכר מינימום",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "also kolzchut; current rate"
+  }
+ ]
+}

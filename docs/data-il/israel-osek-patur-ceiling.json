@@ -1,0 +1,118 @@
+{
+ "title": "Israel osek patur (exempt dealer) turnover ceiling by year",
+ "title_he": "תקרת עוסק פטור לפי שנה",
+ "description": "Annual turnover ceiling (ILS, calendar year) under which an Israeli business may register as osek patur (VAT-exempt dealer), 2016–2026, with sources.",
+ "temporal": "2016/2026",
+ "keywords": [
+  "Israel",
+  "osek patur",
+  "עוסק פטור",
+  "VAT exemption"
+ ],
+ "license": "CC0-1.0",
+ "publisher": "תכנון פלוס (Tichnun Plus)",
+ "homepage": "https://tichnun.netlify.app/data-il/",
+ "source_repo": "https://github.com/eitanco2005-cmd/road-to-glory/tree/main/data-il",
+ "generated": "2026-11-18",
+ "rows": [
+  {
+   "year": 2016,
+   "ceiling_ils": 99006,
+   "source_url": "https://www.efraty.com/",
+   "source_title": "אפרתי – תקרת עוסק פטור לפי שנים",
+   "verification": "1 source",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "year": 2017,
+   "ceiling_ils": 98707,
+   "source_url": "https://www.efraty.com/",
+   "source_title": "אפרתי – תקרת עוסק פטור לפי שנים",
+   "verification": "1 source",
+   "checked": "2026-11-18",
+   "note": "CPI-linked; fell with the index"
+  },
+  {
+   "year": 2018,
+   "ceiling_ils": 99003,
+   "source_url": "https://www.protocol.co.il/exempt-dealer/",
+   "source_title": "פרוטוקול – עוסק פטור",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "year": 2019,
+   "ceiling_ils": 100187,
+   "source_url": "https://www.efraty.com/",
+   "source_title": "אפרתי – תקרת עוסק פטור לפי שנים",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "year": 2020,
+   "ceiling_ils": 100491,
+   "source_url": "https://www.taxman.co.il/",
+   "source_title": "Taxman – תקרת עוסק פטור 2020",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "year": 2021,
+   "ceiling_ils": 99893,
+   "source_url": "https://www.taxman.co.il/2020/12/עסק-פטור-2021/",
+   "source_title": "Taxman – עוסק פטור 2021",
+   "verification": "1 source",
+   "checked": "2026-11-18",
+   "note": "CPI-linked; fell with the index"
+  },
+  {
+   "year": 2022,
+   "ceiling_ils": 102292,
+   "source_url": "https://www.greeninvoice.co.il/magazine/תקרת-עוסק-פטור/",
+   "source_title": "חשבונית ירוקה – תקרת עוסק פטור",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "year": 2023,
+   "ceiling_ils": 107692,
+   "source_url": "https://alonsave.co.il/תקרת-עוסק-פטור",
+   "source_title": "אלון סייב – תקרת עוסק פטור לפי שנים",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": null
+  },
+  {
+   "year": 2024,
+   "ceiling_ils": 120000,
+   "source_url": "https://www.bizportal.co.il/guides/news/article/20045314",
+   "source_title": "ביזפורטל – תקרת עוסק פטור",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "raised to a round 120,000"
+  },
+  {
+   "year": 2025,
+   "ceiling_ils": 120000,
+   "source_url": "https://alonsave.co.il/תקרת-עוסק-פטור",
+   "source_title": "אלון סייב – תקרת עוסק פטור לפי שנים",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "frozen (not indexed)"
+  },
+  {
+   "year": 2026,
+   "ceiling_ils": 122833,
+   "source_url": "https://www.kolzchut.org.il/he/עוסק_פטור",
+   "source_title": "כל זכות – עוסק פטור",
+   "verification": "2+ sources",
+   "checked": "2026-11-18",
+   "note": "also greeninvoice, gmcpa; one site shows 122,400"
+  }
+ ]
+}

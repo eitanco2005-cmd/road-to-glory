@@ -43,7 +43,7 @@ def write_dataset(name, meta, rows, fields):
     w = csv.DictWriter(buf, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
     w.writeheader()
     for r in rows:
-        w.writerow({k: ("" if r.get(k) is None else r.get(k)) for k in fields})
+        w.writerow({k: ("" if r.get(k) is None else str(r[k]).lower() if isinstance(r.get(k), bool) else r.get(k)) for k in fields})
     # UTF-8 with BOM so Excel opens the Hebrew correctly
     (data_dir / f"{name}.csv").write_text("﻿" + buf.getvalue(), encoding="utf-8")
     return doc

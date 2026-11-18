@@ -1,0 +1,9 @@
+﻿from,to,monthly_ils,hourly_ils,source_url,source_title,verification,checked,note
+2015-04-01,2016-06-30,4650,,https://www.chamber.org.il/serviceslobby/legal/1856/1861/,לשכת המסחר – חוק שכר מינימום (הוראת שעה),2+ sources,2026-11-18,
+2016-07-01,2016-12-31,4825,25.94,https://www.chamber.org.il/serviceslobby/legal/1856/1861/,לשכת המסחר – חוק שכר מינימום (הוראת שעה),2+ sources,2026-11-18,
+2017-01-01,2017-11-30,5000,26.88,https://www.chamber.org.il/serviceslobby/legal/1856/1861/,לשכת המסחר – חוק שכר מינימום (הוראת שעה),2+ sources,2026-11-18,
+2017-12-01,2023-03-31,5300,29.12,https://www.chamber.org.il/serviceslobby/legal/1856/81476/,"לשכת המסחר – שכר מינימום 5,300",2+ sources,2026-11-18,"hourly 28.49 until 2018-03-31 (÷186), 29.12 from 2018-04-01 (÷182)"
+2023-04-01,2024-03-31,5571.75,30.61,https://www.timewatch.co.il/,TimeWatch – עדכון שכר מינימום 1.4.2023,2+ sources,2026-11-18,
+2024-04-01,2025-03-31,5880.02,32.3,https://www.malam-payroll.com/עדכון-שכר-מינימום-מיום-1-4-2024/,מלם שכר – עדכון שכר מינימום 1.4.2024,2+ sources,2026-11-18,
+2025-04-01,2026-03-31,6247.67,34.32,https://www.ynet.co.il/economy/article/rjcptaa2jl,"ynet – שכר המינימום עולה ל-6,247.67 ש״ח",2+ sources,2026-11-18,
+2026-04-01,,6443.85,35.4,https://www.btl.gov.il/Mediniyut/GeneralData/Pages/שכר%20מינימום.aspx,ביטוח לאומי – שכר מינימום,2+ sources,2026-11-18,also kolzchut; current rate
