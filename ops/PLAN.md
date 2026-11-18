@@ -191,3 +191,8 @@ checkout only, no social media, no outreach, no new owner accounts. Each stream 
 
 Wave rule: add directions in waves, max ~3 new workers at a time; after 3–4 weeks keep what gets traffic/sales, drop the rest.
 | ~~H. Speech & greeting writer~~ | Cancelled by owner 2026-11-17 | | |
+
+## 13. FOCUS decision (2026-11-18)
+Owner asked "who is the audience?". Answer: we were scattered. From now on ONE audience: **Israeli weddings** (guests + couples).
+Guests create weekly search demand and WhatsApp sharing ("כמה לשים בחתונה"); couples pay for time-saving tools (seating, RSVP,
+invitations, planner). All other sections stay live but frozen (no new work) unless they show traction at the Jan review.
