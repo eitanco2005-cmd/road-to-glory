@@ -41,10 +41,12 @@
     return blank();
   }
   var saveTimer = null;
-  function save() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast(L("לא הצלחנו לשמור בדפדפן (אחסון מלא או חסום)", "Couldn't save in this browser (storage full or blocked)")); } }, 150);
+  function flush() {
+    clearTimeout(saveTimer); saveTimer = null;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast(L("לא הצלחנו לשמור בדפדפן (אחסון מלא או חסום)", "Couldn't save in this browser (storage full or blocked)")); }
   }
+  function save() { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 150); }
+  window.addEventListener("pagehide", function () { if (saveTimer) flush(); }); // don't lose the last edit when leaving quickly
   var undoStack = [];
   function mutate(fn) {
     undoStack.push(JSON.stringify(S));

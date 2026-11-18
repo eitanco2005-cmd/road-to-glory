@@ -343,7 +343,7 @@ async function pages(browser) {
   // catalog shows the apps with their own badge
   await p.goto(BASE + "products/");
   await p.waitForTimeout(400);
-  ok((await p.textContent("[data-category=apps]")).includes("כלי אונליין · חינם לשימוש") && await p.locator("[data-category=apps] .product-card:not(.is-soon)").count() === 2, "products page lists both apps as live with the app badge");
+  ok((await p.textContent("[data-category=apps]")).includes("כלי אונליין · חינם לשימוש") && await p.locator("[data-category=apps] .product-card:not(.is-soon)").count() === 3, "products page lists the 3 apps (seating, CV, RSVP) as live with the app badge");
   await p.context().close();
 }
 

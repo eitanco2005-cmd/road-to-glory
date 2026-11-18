@@ -28,6 +28,8 @@ const server = http.createServer((req, res) => {
 // set: [selector, value] for fill, or [selector] for check/click. result: selectors whose text must match after reopening.
 const CASES = [
   { url: "tools/wedding-gift/", set: [['input[name=closeness][value=close]'], ['input[name=adults][value="1"]'], ["#kids", "2"], ["#region", "other"], ['input[name=chai]']], result: ["#r-amount", "#r-range", "#r-who"], og: true },
+  { url: "tools/wedding-cost/", set: [["#guests", "180"], ["#region", "jerusalem"], ['input[name=season][value=winter]'], ['input[name=tier][value=premium]'], ['input[name=use_bar]']], result: ["#r-total", "#r-range", "#r-net"], og: true },
+  { url: "tools/wedding-timeline/", set: [["#day", "21"], ["#month", "6"], ["#year", "2028"], ['input[name=ceremony][value=other]']], result: ["#tl-summary"], og: true },
   { url: "tools/bar-mitzvah-cost/", set: [['input[name=who][value=bat]'], ["#adults", "200"], ["#plate", "320"], ['input[name=use_magnets]']], result: ["#r-total", "#r-per", "#r-net"], og: true },
   { url: "tools/vat-calculator/", set: [['input[name=mode][value=remove]'], ["#amount", "2360"]], result: ["#v-big", "#v-before", "#v-vat"], og: true },
   { url: "tools/osek-patur-ceiling/", set: [["#income", "64000"], ["#month", "6"]], result: ["#r-used", "#r-left", "#r-proj"], og: true, sel: true },

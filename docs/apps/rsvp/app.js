@@ -29,10 +29,12 @@
     return blank();
   }
   var saveTimer = null;
-  function save() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast("לא הצלחנו לשמור בדפדפן (אחסון מלא או חסום)"); } }, 120);
+  function flush() {
+    clearTimeout(saveTimer); saveTimer = null;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast("לא הצלחנו לשמור בדפדפן (אחסון מלא או חסום)"); }
   }
+  function save() { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 120); }
+  window.addEventListener("pagehide", function () { if (saveTimer) flush(); });
   var undoStack = [];
   function mutate(fn) { undoStack.push(JSON.stringify(S)); if (undoStack.length > 40) undoStack.shift(); fn(); save(); render(); }
   function undo() { if (!undoStack.length) return toast("אין מה לבטל"); S = JSON.parse(undoStack.pop()); save(); render(); toast("הפעולה האחרונה בוטלה"); }
@@ -118,7 +120,8 @@
       var st = parseStatus(cell("status"));
       var co = cell("coming");
       if (co && int(co, -1) >= 0) { if (st === "pending") st = int(co, 0) > 0 ? "yes" : "no"; }
-      var grp = cell("group").replace(/\s*:::\s*\*?\s*myContacts/ig, "").replace(/^\* ?myContacts$/i, "");
+      // Google Contacts "Group Membership": "* myContacts ::: חברים" -> "חברים"
+      var grp = cell("group").split(":::").map(function (x) { return x.trim(); }).filter(function (x) { return x && !/^\*?\s*(myContacts|starred)$/i.test(x); }).join(", ");
       out.push(newGuest({ name: name, n: n, side: cell("side"), group: grp, phone: phone, status: st, coming: co === "" ? null : co }));
     });
     return out;
@@ -150,7 +153,7 @@
         if (/QUOTED-PRINTABLE/.test(key)) { try { val = decodeURIComponent(val.replace(/=([0-9A-F]{2})/gi, "%$1")); } catch (e) {} }
         if (/^FN\b/.test(key) && !cur.name) cur.name = val.replace(/\\,/g, ",").trim();
         else if (/^N\b/.test(key) && !cur.name) { var p = val.split(";"); cur.name = ((p[1] || "") + " " + (p[0] || "")).trim(); }
-        else if (/^(item\d+\.)?TEL\b/.test(key) && !cur.phone) cur.phone = val.trim();
+        else if (/^(ITEM\d+\.)?TEL\b/.test(key) && !cur.phone) cur.phone = val.trim();
       }
     });
     return out.filter(function (c) { return c.name; }).map(function (c) { return newGuest(c); });
@@ -281,6 +284,7 @@
         return { name: g.name, n: g.status === "yes" ? coming(g) : g.n, side: g.side, group: g.group };
       }) };
       try { localStorage.setItem(HANDOFF, JSON.stringify(payload)); } catch (err) { return toast("לא הצלחנו להעביר (האחסון בדפדפן חסום)"); }
+      flush();
       location.href = "../seating/?from=rsvp" + (AppUnlock.isTest ? "&test=1" : "");
     });
   }
@@ -514,7 +518,8 @@
     });
     app.addEventListener("change", function (e) {
       var c = e.target.closest("[data-coming]");
-      if (c) { var g = guest(c.getAttribute("data-coming")); mutate(function () { g.coming = Math.min(int(c.value, g.n), 60); }); }
+      // deferred: "change" can fire from the blur caused by a re-render removing this input (nested innerHTML)
+      if (c) { var g = guest(c.getAttribute("data-coming")), v = c.value; setTimeout(function () { if (g) mutate(function () { g.coming = Math.min(int(v, g.n), 60); }); }, 0); }
     });
     $("#add-guest").addEventListener("submit", function (e) {
       e.preventDefault();

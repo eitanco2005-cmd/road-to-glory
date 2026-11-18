@@ -186,6 +186,7 @@ main { display: block; min-height: 60vh; }
   .lang-switch .short { display: inline; }
 }
 @media (max-width: 440px) { .site-header .brand span { display: none; } } /* logo only, so nav + switch fit */
+@media (max-width: 480px) { .site-header .nav a:nth-child(4) { display: none; } } /* R4: 4 links (חתונה first); guides stay in the footer */
 @media (max-width: 420px) {
   .site-header .bar { gap: .4rem; }
   .nav a { padding: .4rem .35rem; font-size: .93rem; }
