@@ -1,13 +1,23 @@
-// Private stats for the manager. Requires header X-Stats-Token == env STATS_TOKEN (set in Netlify, never in the repo).
+// Private stats for the manager. Requires header X-Stats-Token whose SHA-256 matches TOKEN_SHA256 (token itself is never in the repo).
 import { getStore } from "@netlify/blobs";
+import { createHash, timingSafeEqual } from "node:crypto";
+
+// Only the SHA-256 of the token is stored here (safe to publish). Env STATS_TOKEN still works as an override.
+const TOKEN_SHA256 = "ef3a8d353b78cca64b3d72589ea7452ff4a8d7e8ada8978e0e31eaf401ae679c";
+const sha = (s) => createHash("sha256").update(String(s)).digest();
+const authed = (given) => {
+  const env = process.env.STATS_TOKEN;
+  if (env) return given === env;
+  if (!given) return false;
+  return timingSafeEqual(sha(given), Buffer.from(TOKEN_SHA256, "hex"));
+};
 
 const FEE_PCT = 0.054, FEE_FIXED_ILS = 1.2; // rough PayPal estimate; PayPal emails are the real record
 const SRC = (ref) => !ref ? "direct" : /google\./.test(ref) ? "google" : /bing\.|duckduckgo|yahoo/.test(ref) ? "bing/ddg"
   : /whatsapp|wa\.me/.test(ref) ? "whatsapp" : /chatgpt|openai|perplexity|copilot|claude/.test(ref) ? "ai" : /github/.test(ref) ? "github" : "other:" + ref;
 
 export default async (req) => {
-  const token = process.env.STATS_TOKEN || "";
-  if (!token || req.headers.get("x-stats-token") !== token) return new Response("forbidden", { status: 403 });
+  if (!authed(req.headers.get("x-stats-token") || "")) return new Response("forbidden", { status: 403 });
   const days = Math.min(90, Math.max(1, Number(new URL(req.url).searchParams.get("days")) || 7));
   const store = getStore("counter");
   const out = { days, byDay: {}, pages: {}, sources: {}, devices: {}, sales: [], totals: { visits: 0, sales: 0, revenue: {}, estProfitILS: 0 } };
