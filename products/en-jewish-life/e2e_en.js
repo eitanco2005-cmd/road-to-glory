@@ -42,6 +42,7 @@ async function waitUp() { for (let i = 0; i < 50; i++) { if (await head(BASE)) r
     ok(pages.length >= 20, `found ${pages.length} English pages`);
     for (const width of [375, 1280]) {
       const ctx = await browser.newContext({ viewport: { width, height: 900 } });
+      await ctx.route('**/api/hit', r => r.fulfill({ status: 200, body: 'ok' }));
       for (const p of pages) {
         const page = await ctx.newPage();
         const errors = [];
@@ -84,6 +85,7 @@ async function waitUp() { for (let i = 0; i < 50; i++) { if (await head(BASE)) r
 
     // ---- test purchase: single planner and bundle
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    await ctx.route('**/api/hit', r => r.fulfill({ status: 200, body: 'ok' }));
     const page = await ctx.newPage();
     for (const [pg, slug, n, price] of [["en/p/bar-mitzvah-planner/", "bar-mitzvah-planner-en", 2, "$19"],
                                         ["en/planners/", "jewish-life-bundle", 8, "$49"]]) {

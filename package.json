@@ -1,0 +1,8 @@
+{
+  "name": "tichnun-plus",
+  "private": true,
+  "description": "Static site in docs/ + two tiny Netlify Functions for a private visit/sale counter.",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

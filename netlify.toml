@@ -1,0 +1,8 @@
+# Site is static (docs/). The only server code is the private counter in netlify/functions/.
+[build]
+  publish = "docs"
+  command = ""
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
