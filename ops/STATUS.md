@@ -46,3 +46,4 @@
 - 2026-11-17: Merged E (Hanukkah: 6 products he/en, 2 calculators, hubs, guides) + home banners until Dec 12. checkout.js gained thanks_path. 87 URLs.
 - 2026-11-17: Merged B (seating chart ₪29/$9 + CV builder ₪19, WhatsApp share) and C+D (tip jar on free tools, bundle upsells, RTL Landing Kit free MIT + Pro $24). All 5 e2e suites pass. 103 URLs. Wave 1–2 build complete.
 - 2026-11-18: Round 2 launched (session_01WwXrbNG1skZriyvNmiH98U, ws/round2): WhatsApp share on all calculators + 8 English per-query pages (seating + planners).
+- 2026-11-18: Merged round 2: WhatsApp share on 13 calculators (links reopen same result), 8 English per-query pages, og images. 6 e2e suites pass. 112 URLs. Guarded stale products/en-jewish-life/site_en.py main().

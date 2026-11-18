@@ -723,6 +723,10 @@ def legal():
 
 
 def main():
+    import sys
+    if "--force" not in sys.argv:
+        sys.exit("site_en.py main() is STALE vs the live site (would drop the Hanukkah banner on en/ and unlock handling on en/thanks/). "
+                 "Render single pages via guide_page(), or update the generator first and run with --force.")
     guides = load_guides()
     home(guides)
     planners()
