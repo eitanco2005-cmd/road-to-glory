@@ -66,6 +66,7 @@
     CATS.forEach(function (c, i) {
       var inp = $("c-" + c.k), v = vals[c.k];
       if (!edited[c.k] && document.activeElement !== inp) inp.value = v || "";
+      if (edited[c.k]) inp.removeAttribute("data-share-skip"); else inp.setAttribute("data-share-skip", ""); // share links keep only rows the user typed
       total += v;
       $("y-" + c.k).textContent = ils(v * 12);
     });
@@ -111,10 +112,5 @@
     $(id).addEventListener("change", function () { calc(false); });
   });
   $("reset").addEventListener("click", function (e) { e.preventDefault(); edited = {}; CATS.forEach(function (c) { $("c-" + c.k).value = ""; }); calc(false); });
-  $("share").addEventListener("click", function (e) {
-    e.preventDefault();
-    var done = function () { $("copied").hidden = false; setTimeout(function () { $("copied").hidden = true; }, 2000); };
-    if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, done); else done();
-  });
   calc(false);
 })();

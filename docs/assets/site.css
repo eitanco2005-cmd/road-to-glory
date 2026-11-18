@@ -459,3 +459,11 @@ td.num, th.num { text-align: end; font-variant-numeric: tabular-nums; }
   .site-header, .site-footer, .buy, .buy-bar, .theme-toggle, .btn-row { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* Share a calculator result (assets/share.js) */
+.share-bar { margin-top: 1rem; }
+.share-bar .btn-row { align-items: center; }
+.btn.wa-btn { --b: #167a41; background: #167a41; border-color: #167a41; color: #fff; gap: .45rem; }
+.btn.wa-btn:hover { background: #116334; border-color: #116334; color: #fff; }
+.share-note { margin: .45rem 0 0; }
+@media print { .share-bar { display: none; } }

@@ -13,8 +13,11 @@
 <meta property="og:site_name" content="תכנון פלוס">
 <meta property="og:title" content="מחשבון מע&quot;מ 18% – הוספה והורדה של מע&quot;מ בקליק | תכנון פלוס">
 <meta property="og:description" content="מחשבון מע&quot;מ 18% מעודכן ל-2026: הוספת מע&quot;מ למחיר, הורדת מע&quot;מ מסכום כולל, ומחשבון הצעת מחיר מהיר עם הנחה. חינם, בלי הרשמה.">
-<meta property="og:image" content="https://tichnun.netlify.app/p/price-quote-pack/img/all-designs.webp">
+<meta property="og:image" content="https://tichnun.netlify.app/assets/og/vat-calculator.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tichnun.netlify.app/assets/og/vat-calculator.png">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +49,7 @@
  <div class="container narrow">
   <h1>מחשבון מע"מ 18%</h1>
   <p class="lead muted">להוסיף מע"מ: <strong>× 1.18</strong>. להוריד מע"מ: <strong>÷ 1.18</strong>. או פשוט מקלידים סכום:</p>
-  <div class="tool-panel">
+  <div class="tool-panel" id="vat-panel">
    <div class="field"><span class="label">מה רוצים לחשב?</span>
     <div class="choices" role="radiogroup">
      <label><input type="radio" name="mode" value="add" checked> להוסיף מע"מ (יש לי מחיר לפני מע"מ)</label>
@@ -66,6 +69,8 @@
      <div class="kpi"><div class="v" id="v-total">–</div><div class="k">כולל מע"מ</div></div>
     </div>
     <p class="small muted mt-1" id="v-formula" dir="ltr" style="direction:ltr;unicode-bidi:isolate;text-align:right"></p>
+<div data-share data-share-scope="#vat-panel" data-share-result="#v-biglabel,#v-big" data-share-msg="{result}: {result2}. חישוב מע&quot;מ 18% במחשבון החינמי של תכנון פלוס:"></div>
+<script src="../../assets/share.js"></script>
    </div>
   </div>
 

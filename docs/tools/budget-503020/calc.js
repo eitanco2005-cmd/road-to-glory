@@ -78,11 +78,6 @@
     }
     $("calc").addEventListener("input", calc);
     $("calc").addEventListener("change", calc);
-    $("share").addEventListener("click", function (e) {
-      e.preventDefault();
-      var done = function () { $("copied").hidden = false; setTimeout(function () { $("copied").hidden = true; }, 2000); };
-      if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, done); else done();
-    });
     calc();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
