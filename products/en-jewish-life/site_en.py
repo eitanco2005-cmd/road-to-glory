@@ -32,6 +32,10 @@ HREFLANG = {
     "en/p/jewish-wedding-planner/": "p/wedding-planner/",
     "en/tools/bar-mitzvah-budget/": "tools/bar-mitzvah-cost/",
     "en/guides/jewish-wedding-checklist/": "guides/wedding-checklist/",
+    # Round 2 per-query pages with a Hebrew twin
+    "en/seating/how-to-make-a-wedding-seating-chart/": "p/seating-chart/guides/how-to-seat-guests/",
+    "en/seating/seating-chart-for-round-tables/": "p/seating-chart/guides/tables-and-seats/",
+    "en/guides/bar-mitzvah-planning-checklist/": "p/bar-mitzvah-planner/guides/bar-mitzvah-timeline/",
 }
 
 ICON = {
@@ -435,9 +439,9 @@ def tool_cards(prefix):
                      f'<div><h3>{E(t)}</h3><p>{E(d)}</p></div></a>' for s, i, t, d in TOOLS)
 
 
-def load_guides():
+def load_guides(folder="guides"):
     out = []
-    gdir = HERE / "guides"
+    gdir = HERE / folder
     for f in sorted(gdir.glob("*.json")) if gdir.exists() else []:
         out.append(json.loads(f.read_text(encoding="utf-8")))
     return out
@@ -594,7 +598,7 @@ def guides_index(guides):
 <section class="section">
  <div class="container">
   {{{{CRUMBS}}}}
-  <div class="section-head"><h1>Guides</h1><p class="lead muted">Practical, sourced guides for planning Jewish life events and holidays.</p></div>
+  <div class="section-head"><h1>Guides</h1><p class="lead muted">Practical, sourced guides for planning Jewish life events and holidays. Seating a wedding or bar mitzvah? See the <a href="{up(path)}en/seating/">seating chart guides</a>.</p></div>
   <div class="grid cols-2">
 {guide_cards(up(path), guides)}
   </div>
@@ -605,8 +609,15 @@ def guides_index(guides):
                      "meals, with sources.", body, crumbs=[("Guides", path)]))
 
 
-def guide_page(g):
-    path = f"en/guides/{g['slug']}/"
+SECTIONS = {"guides": ("Guides", "en/guides/"), "seating": ("Seating charts", "en/seating/")}
+SEATING_APP = ("en/apps/seating/", "Free seating chart maker",
+               "Drag and drop guests onto round or long tables, auto-seat by group, keep-apart pairs, Excel import. "
+               "Free on screen; $9 one-time for a clean PDF, Excel export and table cards.")
+
+
+def guide_page(g, section="guides"):
+    sec_name, sec_path = SECTIONS[section]
+    path = f"{sec_path}{g['slug']}/"
     faq = [(x["q"], E(x["a"])) for x in g.get("faq", [])]
     src = "".join(f'<li><a href="{E(s["url"])}" target="_blank" rel="noopener">{E(s["label"])}</a></li>' for s in g.get("sources", []))
     cta = ""
@@ -618,7 +629,17 @@ def guide_page(g):
     if tool:
         cta += (f'<div class="callout mt-3"><strong>Free tool:</strong> <a href="{{{{UP}}}}en/tools/{tool[0]}/">{E(tool[2])}</a>: '
                 f'{E(tool[3])}.</div>')
-    others = "".join(f'<li><a href="{{{{UP}}}}en/guides/{o["slug"]}/">{E(o["h1"])}</a></li>' for o in load_guides() if o["slug"] != g["slug"])
+    if g.get("related_app") == "seating":
+        cta = (f'<div class="cta-box mt-3"><div><h2 style="font-size:1.2rem">{E(SEATING_APP[1])}</h2><p>{E(SEATING_APP[2])}</p></div>'
+               f'<div><a class="btn accent" href="{{{{UP}}}}{SEATING_APP[0]}">Open the seating tool</a></div></div>') + cta
+    pool = [(f"en/seating/{o['slug']}/", o["h1"]) for o in load_guides("seating")] + \
+           [(f"en/guides/{o['slug']}/", o["h1"]) for o in load_guides()]
+    if section == "seating":  # seating pages: other seating pages first, then the event guides
+        pool = [x for x in pool if x[0].startswith("en/seating/")] + \
+               [x for x in pool if x[0] in g.get("more", [])]
+    else:
+        pool = [x for x in pool if x[0].startswith("en/guides/")] + [x for x in pool if x[0] in g.get("more", [])]
+    others = "".join(f'<li><a href="{{{{UP}}}}{u}">{E(t)}</a></li>' for u, t in pool if u != path)
     body = f"""
 <section class="section">
  <div class="container">
@@ -641,10 +662,40 @@ def guide_page(g):
            "datePublished": g.get("updated", UPDATED), "dateModified": g.get("updated", UPDATED),
            "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND},
            "mainEntityOfPage": BASE_URL + path}]
+    if g.get("howto"):
+        h = g["howto"]
+        ld.append({"@type": "HowTo", "name": h["name"], "description": g["description"], "inLanguage": "en-US",
+                   **({"totalTime": h["totalTime"]} if h.get("totalTime") else {}),
+                   **({"tool": [{"@type": "HowToTool", "name": t} for t in h["tools"]]} if h.get("tools") else {}),
+                   "step": [{"@type": "HowToStep", "position": i + 1, "name": st["name"], "text": st["text"],
+                             **({"url": BASE_URL + path + "#" + st["anchor"]} if st.get("anchor") else {})}
+                            for i, st in enumerate(h["steps"])]})
     if faq:
         ld.append(faq_ld(faq))
-    write(path, page(path, g["title"], g["description"], body, crumbs=[("Guides", "en/guides/"), (g["h1"], path)], jsonld=ld,
+    write(path, page(path, g["title"], g["description"], body, crumbs=[(sec_name, sec_path), (g["h1"], path)], jsonld=ld,
                      og_type="article"))
+
+
+def seating_index():
+    path = "en/seating/"
+    items = load_guides("seating")
+    cards = "\n".join(f'<a class="card tool-card" href="{up(path)}en/seating/{g["slug"]}/"><span class="ic" aria-hidden="true">🪑</span>'
+                      f'<div><h3>{E(g["h1"])}</h3><p>{E(short(g["lead"]))}</p></div></a>' for g in items)
+    body = f"""
+<section class="section">
+ <div class="container">
+  {{{{CRUMBS}}}}
+  <div class="section-head"><h1>Seating charts for weddings and b&rsquo;nai mitzvah</h1>
+  <p class="lead muted">How to plan who sits where: templates, round-table math, step-by-step methods and kids&rsquo; tables.
+  When you&rsquo;re ready, build the chart in our <a href="{up(path)}en/apps/seating/">free drag-and-drop seating tool</a>.</p></div>
+  <div class="grid cols-2">
+{cards}
+  </div>
+ </div>
+</section>"""
+    write(path, page(path, "Seating Chart Guides: Templates, Round Tables, Bar Mitzvah",
+                     "Practical seating chart guides for weddings and bar/bat mitzvahs: a fill-in template, round-table capacity, "
+                     "a step-by-step method and kids' tables.", body, crumbs=[("Seating charts", path)]))
 
 
 def thanks():
@@ -683,6 +734,9 @@ def main():
     guides_index(guides)
     for g in guides:
         guide_page(g)
+    seating_index()
+    for g in load_guides("seating"):
+        guide_page(g, "seating")
     thanks()
     legal()
     pairs = [{"en": k, "he": v} for k, v in HREFLANG.items()

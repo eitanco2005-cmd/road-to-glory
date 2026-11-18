@@ -467,3 +467,17 @@ td.num, th.num { text-align: end; font-variant-numeric: tabular-nums; }
 .btn.wa-btn:hover { background: #116334; border-color: #116334; color: #fff; }
 .share-note { margin: .45rem 0 0; }
 @media print { .share-bar { display: none; } }
+
+/* Printable checklists in guides (ul.checklist) */
+.prose ul.checklist { list-style: none; padding-inline-start: 0; }
+.prose ul.checklist li { position: relative; padding-inline-start: 1.9rem; margin-block: .35rem; }
+.prose ul.checklist li::before { content: ""; position: absolute; inset-inline-start: 0; top: .2em; width: 1.05em; height: 1.05em;
+  border: 2px solid var(--primary); border-radius: 4px; background: var(--surface); }
+.print-btn { margin-block: .5rem 1rem; }
+@media print {
+  .print-btn, .cta-box, .breadcrumbs, .faq, .tip-jar { display: none !important; }
+  .prose ul.checklist li { break-inside: avoid; }
+  .prose ul.checklist li::before { border-color: #000; }
+  .prose h2 { break-after: avoid; }
+  .prose a { color: #000; text-decoration: none; }
+}
