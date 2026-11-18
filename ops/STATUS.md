@@ -48,3 +48,4 @@
 - 2026-11-18: Round 2 launched (session_01WwXrbNG1skZriyvNmiH98U, ws/round2): WhatsApp share on all calculators + 8 English per-query pages (seating + planners).
 - 2026-11-18: Merged round 2: WhatsApp share on 13 calculators (links reopen same result), 8 English per-query pages, og images. 6 e2e suites pass. 112 URLs. Guarded stale products/en-jewish-life/site_en.py main().
 - 2026-11-18: Round 3 launched: 3A seasonal pre-positioning (budget 2027, Purim, Pesach 2027) + 3B link-earning (embeddable calculators, Israeli open data on GitHub).
+- 2026-11-18: Merged 3B: 10 embeddable calculators (/embed/, /en/embed/) with attribution links + data-il/ open dataset (holidays 2025–30, VAT, osek patur ceiling, min wage, BL) with JS/Python helpers. 7 e2e suites pass. 115 URLs.
