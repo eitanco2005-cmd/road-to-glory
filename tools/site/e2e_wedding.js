@@ -3,7 +3,8 @@
 // Hub + home + header/footer links -> wedding cost calculator -> timeline generator (ticks persist, ICS) ->
 // RSVP app (free use, CSV/Google-Contacts/VCF import with picker, WhatsApp link, 80-invitation limit, test unlock,
 // Excel export read with openpyxl, one-click hand-off to the seating app) -> wedding bundle test purchase unlocks all
-// three apps -> 8 gift pages + 3 guest guides (JSON-LD, preset calculator link, hub link) -> 375/1280 layout.
+// three apps -> 8 gift pages + 3 guest guides (JSON-LD, preset calculator link, hub link) -> R5 vendor price guides
+// (hub + 10 pages: JSON-LD, cited sources, WhatsApp share, budget box = calculator total, presets) -> 375/1280 layout.
 const { chromium } = require("playwright");
 const { execFileSync } = require("child_process");
 const fs = require("fs");
@@ -284,6 +285,68 @@ async function upload(page, act, name, content) {
       await ctx.close();
     }
 
+    /* ---------- R5: vendor price guides (chatuna/mechirim/) ---------- */
+    {
+      const ctx = await newCtx(browser); const page = await newPage(ctx);
+      const slugs = ["ulam", "tzalam", "dj", "simlat-kala", "ipur-kala", "rav", "hasaot", "magnetim", "itzuv-prachim", "chalifat-chatan"];
+      const titles = new Set();
+      await page.goto(BASE + "tools/wedding-cost/");
+      const calcTotal = (await text(page, "#r-total")).trim();
+      ok(await page.locator('a[href="../../chatuna/mechirim/"]').count() >= 1, "cost calculator: links the price guides");
+      await page.goto(BASE + "chatuna/");
+      ok(await page.locator('main a[href="mechirim/"]').count() >= 1, "wedding hub: links the price guides");
+      await page.goto(BASE + "guides/wedding-vendor-contracts/");
+      ok(await page.locator('.wedding-next a[href$="chatuna/mechirim/"]').count() === 1, "vendor-contracts guide: next step links the price guides");
+      await page.goto(BASE + "chatuna/mechirim/");
+      titles.add(await page.title());
+      for (const sl of slugs) ok(await page.locator(`main a[href="${sl}/"]`).count() >= 1, "prices hub: links " + sl);
+      ok(await page.locator(".price-table tbody tr").count() === slugs.length, "prices hub: one summary row per vendor");
+      for (const u of ["chatuna/mechirim/"].concat(slugs.map(sl => "chatuna/mechirim/" + sl + "/"))) {
+        await page.goto(BASE + u);
+        if (u !== "chatuna/mechirim/") titles.add(await page.title());
+        const graph = JSON.parse(await page.locator('script[type="application/ld+json"]').first().innerText())["@graph"] || [];
+        const types = graph.map(x => x["@type"]);
+        ok(types.includes("Article") && types.includes("BreadcrumbList") && types.includes("FAQPage"), u + ": Article + BreadcrumbList + FAQPage JSON-LD");
+        const crumbs = graph.find(x => x["@type"] === "BreadcrumbList").itemListElement;
+        ok(crumbs[crumbs.length - 1].item === "https://tichnun.netlify.app/" + u, u + ": breadcrumb ends at the canonical URL");
+        const faq = graph.find(x => x["@type"] === "FAQPage");
+        const visible = await page.locator(".faq summary").allInnerTexts();
+        ok(faq.mainEntity.length === visible.length && faq.mainEntity.every((q, i) => q.name === visible[i].trim()), u + ": FAQ JSON-LD matches the visible FAQ");
+        ok(await page.locator('a[href$="tools/wedding-cost/"], a[href*="tools/wedding-cost/#c&"]').count() > 0, u + ": links the cost calculator");
+        ok(await page.locator('main a[href$="p/wedding-planner/"]').count() > 0 && await page.locator('main a[href$="#bundle"]').count() > 0, u + ": links the planner + bundle");
+        // WhatsApp share of the page itself
+        await page.locator("[data-share] [data-share-wa]").waitFor({ timeout: 5000 });
+        const wa = decodeURIComponent(await page.locator("[data-share] [data-share-wa]").getAttribute("href"));
+        ok(wa.startsWith("https://wa.me/?text=") && wa.includes(BASE + u), u + ": WhatsApp share links this page");
+        // budget box agrees with the calculator's default scenario
+        ok((await text(page, ".budget-fit")).includes(calcTotal), u + ": budget box uses the calculator total " + calcTotal);
+        if (u === "chatuna/mechirim/") continue;
+        // every price row cites at least one source, and every cited source exists with a link and a date line
+        const rows = await page.locator(".price-table tbody tr").count();
+        const cited = await page.locator(".price-table tbody tr").evaluateAll(trs => trs.map(tr => tr.querySelectorAll("a.ref").length));
+        ok(rows >= 3 && cited.every(n => n >= 1), u + ": " + rows + " price rows, each with a source reference");
+        const refs = await page.locator("a.ref").evaluateAll(as => [...new Set(as.map(a => a.getAttribute("href")))]);
+        const srcOk = await page.evaluate(ids => ids.every(id => { const li = document.querySelector(id); return li && li.querySelector('a[href^="https://"]') && /20\d\d|ללא תאריך/.test(li.textContent); }), refs);
+        ok(srcOk, u + ": all " + refs.length + " cited sources listed with link + date");
+        ok(await page.locator(".data-note").count() === 1, u + ": says how strong the data is");
+        ok(await page.locator(".price-table bdi[dir=ltr]").count() >= rows * 3, u + ": price cells are bidi-isolated (no reversed ranges in RTL)");
+        ok(await page.locator('main a[href="../"]').filter({ hasText: "מחירי ספקים" }).count() > 0, u + ": breadcrumb links the prices hub");
+      }
+      ok(titles.size === 11, "price guides: 11 unique titles");
+      // the rabbinate fee is the official 2026 figure
+      await page.goto(BASE + "chatuna/mechirim/rav/");
+      ok((await text(page, ".price-table")).includes("₪844"), "rav: official 2026 registration fee ₪844");
+      // transport page opens the calculator with the transport line switched on
+      await page.goto(BASE + "chatuna/mechirim/hasaot/");
+      const th = await page.locator('.budget-fit a[href*="tools/wedding-cost/#c&"]').getAttribute("href");
+      await page.goto(new URL(th, BASE + "chatuna/mechirim/hasaot/").href);
+      await page.waitForTimeout(200);
+      ok(await page.locator('[name="use_transport"]').isChecked(), "hasaot: preset link opens the calculator with transport on");
+      ok(fs.existsSync(path.join(DOCS, "assets/og/wedding-prices.png")), "price guides: og image exists");
+      ok(!page.errors.length, "price guides: no page errors " + page.errors.join("; "));
+      await ctx.close();
+    }
+
     /* ---------- older wedding pages link the hub + next step ---------- */
     {
       const ctx = await newCtx(browser); const page = await newPage(ctx);
@@ -297,7 +360,7 @@ async function upload(page, act, name, content) {
     /* ---------- layout ---------- */
     for (const vp of [{ width: 375, height: 800 }, { width: 1280, height: 900 }]) {
       const ctx = await newCtx(browser, vp); const page = await newPage(ctx);
-      for (const u of ["", "chatuna/", "tools/wedding-cost/", "tools/wedding-timeline/", "apps/rsvp/?demo=1", "chatuna/kama-lasim/zug/", "chatuna/haavarat-kesef/"]) {
+      for (const u of ["", "chatuna/", "tools/wedding-cost/", "tools/wedding-timeline/", "apps/rsvp/?demo=1", "chatuna/kama-lasim/zug/", "chatuna/haavarat-kesef/", "chatuna/mechirim/", "chatuna/mechirim/ulam/", "chatuna/mechirim/rav/"]) {
         await page.goto(BASE + u);
         await page.waitForTimeout(150);
         await noOverflow(page, (u || "home") + " @" + vp.width);

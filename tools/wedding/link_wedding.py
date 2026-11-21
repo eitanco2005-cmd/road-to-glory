@@ -20,17 +20,18 @@ TIMELINE = ("tools/wedding-timeline/", "לוח זמנים אישי לחתונה"
 SEATING = ("apps/seating/", "סידורי הושבה", "מעבירים את המאשרים ומושיבים אוטומטית לפי צד וקבוצה")
 INVITE = ("apps/invite/", "מעצב ההזמנות", "הזמנה לחתונה לוואטסאפ ולדפוס")
 BUNDLE = ("chatuna/#bundle", "חבילת החתונה ב-₪79", "מתכנן, אישורי הגעה, הושבה והזמנה במקום ₪126")
+PRICES = ("chatuna/mechirim/", "מחירון ספקים לחתונה 2026", "כמה עולה צלם, DJ, שמלה, איפור, רב והסעות, עם מקורות")
 GIVE = ("chatuna/haavarat-kesef/", "איך לתת כסף בחתונה", "צ'ק, ביט, פייבוקס או העברה, ומה לכתוב")
 WEAR = ("chatuna/ma-lilbosh/", "מה ללבוש לחתונה", "לפי סוג המקום והשעה")
 
 PAGES = {
     "tools/wedding-gift/index.html": dict(steps=[GIVE, WEAR], quick=True),
-    "guides/wedding-checklist/index.html": dict(steps=[TIMELINE, COST]),
+    "guides/wedding-checklist/index.html": dict(steps=[TIMELINE, COST, PRICES]),
     "guides/wedding-guest-list/index.html": dict(steps=[RSVP, SEATING]),
-    "guides/wedding-save-money/index.html": dict(steps=[COST, BUNDLE]),
-    "guides/wedding-vendor-contracts/index.html": dict(steps=[COST, TIMELINE]),
+    "guides/wedding-save-money/index.html": dict(steps=[PRICES, COST, BUNDLE]),
+    "guides/wedding-vendor-contracts/index.html": dict(steps=[PRICES, COST, TIMELINE]),
     "p/wedding-planner/index.html": dict(steps=[RSVP, BUNDLE]),
-    "p/wedding-planner/guides/wedding-budget-2026/index.html": dict(steps=[COST, TIMELINE]),
+    "p/wedding-planner/guides/wedding-budget-2026/index.html": dict(steps=[PRICES, COST, TIMELINE]),
     "p/wedding-planner/guides/rsvp-seating-gifts/index.html": dict(steps=[RSVP, SEATING]),
     "p/seating-chart/index.html": dict(steps=[RSVP, INVITE]),
     "p/seating-chart/guides/how-to-seat-guests/index.html": dict(steps=[RSVP, SEATING]),

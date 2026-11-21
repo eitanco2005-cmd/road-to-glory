@@ -128,6 +128,8 @@ def main():
             print("rendered", page.relative_to(REPO))
     print(f"{changed} page(s) updated")
     sys.path.insert(0, str(REPO / "tools" / "wedding"))
+    import build_price_pages  # R5: vendor price guides (docs/chatuna/mechirim/)
+    build_price_pages.main()
     import link_wedding  # R4: "next step" strip + hub link on older wedding pages
     link_wedding.main()
     try:  # embeddable calculators + data-il (R3B); optional so older checkouts still build

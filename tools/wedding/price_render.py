@@ -43,6 +43,24 @@ def ils(v):
     return "₪" + f"{int(v):,}"
 
 
+def cell(v):
+    return f'<bdi dir="ltr">{ils(v)}</bdi>'
+
+
+RANGE = re.compile(r"(?<![\w>])(\d[\d,.]*\s?[–-]\s?\d[\d,.]*)")
+
+
+def ltr_ranges(page):
+    """Wrap numeric ranges in visible body text in <bdi dir=ltr>, so "340–430" is not shown as "430–340" in RTL.
+    Leaves <head>, <script>, <style> and tag attributes alone."""
+    i = page.index("<body>")
+    head, body = page[:i], page[i:]
+    parts = re.split(r"(<script.*?</script>|<style.*?</style>|<[^>]+>)", body, flags=re.S)
+    for k in range(0, len(parts), 2):
+        parts[k] = RANGE.sub(r'<bdi dir="ltr">\1</bdi>', parts[k])
+    return head + "".join(parts)
+
+
 def strip(h):
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", h))).strip()
 
@@ -64,13 +82,12 @@ def collect_sources(p):
 
 
 def price_table(p, order):
-    head = '<thead><tr><th>מה</th><th class="num">זול</th><th class="num">טיפוסי</th><th class="num">יקר</th><th>מקור</th></tr></thead>'
+    head = '<thead><tr><th>מה (ומקור)</th><th class="num">זול</th><th class="num">טיפוסי</th><th class="num">יקר</th></tr></thead>'
     body = []
     for r in p["rows"]:
         note = f'<span class="row-note">{r["note"]}</span>' if r.get("note") else ""
-        body.append(f'<tr><td><strong>{r["label"]}</strong>{note}</td><td class="num">{ils(r["lo"])}</td>'
-                    f'<td class="num"><strong>{ils(r["mid"])}</strong></td><td class="num">{ils(r["hi"])}</td>'
-                    f'<td class="refs">{refs(r.get("src", []), order)}</td></tr>')
+        body.append(f'<tr><td><strong>{r["label"]}</strong> <span class="refs">{refs(r.get("src", []), order)}</span>{note}</td><td class="num">{cell(r["lo"])}</td>'
+                    f'<td class="num"><strong>{cell(r["mid"])}</strong></td><td class="num">{cell(r["hi"])}</td></tr>')
     return (f'<div class="table-wrap"><table class="price-table"><caption>{p["caption"]}</caption>{head}<tbody>\n'
             + "\n".join(body) + "\n</tbody></table></div>")
 
@@ -116,6 +133,7 @@ STYLE = """<style>
 .price-table td,.price-table th{vertical-align:top}
 .price-table .row-note{display:block;font-size:.85rem;color:var(--muted);font-weight:400}
 .price-table .refs{white-space:nowrap}
+.price-table td.num{white-space:nowrap}
 a.ref{font-size:.8rem;text-decoration:none;margin-inline-end:.15rem}
 .data-note{border-inline-start:4px solid var(--accent,#f0b44c)}
 ol.src-list{padding-inline-start:0;list-style:none}
@@ -124,7 +142,7 @@ ol.src-list li{margin-bottom:.5rem}
 .price-hub-grid a{display:block;height:100%;padding:1rem;border:1px solid var(--border);border-radius:12px;text-decoration:none;background:var(--surface)}
 .price-hub-grid strong{display:block;font-size:1.05rem}
 .price-hub-grid span{color:var(--muted);font-size:.92rem}
-@media (max-width:480px){.price-table .refs{white-space:normal}.price-table td,.price-table th{padding:.45rem .35rem;font-size:.9rem}}
+@media (max-width:480px){.price-table td,.price-table th{padding:.45rem .3rem;font-size:.88rem}.price-table .row-note{font-size:.8rem}}
 </style>"""
 
 
@@ -198,7 +216,11 @@ def faq_html(faq):
     return "\n".join(f"<details><summary>{e(q)}</summary><p>{a}</p></details>" for q, a in faq)
 
 
-def render_page(p, pages, SOURCES, model, date, updated_label):
+def render_page(*a, **k):
+    return ltr_ranges(_render_page(*a, **k))
+
+
+def _render_page(p, pages, SOURCES, model, date, updated_label):
     up = "../../../"
     url = f"{SITE}/chatuna/mechirim/{p['slug']}/"
     order = collect_sources(p)
