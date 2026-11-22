@@ -357,6 +357,43 @@ async function upload(page, act, name, content) {
       await ctx.close();
     }
 
+    /* ---------- R6A quality audit: worked examples match the calculators, about page, trust box, merges ---------- */
+    {
+      const ctx = await newCtx(browser); const page = await newPage(ctx);
+      await page.goto(BASE + "tools/wedding-gift/");
+      await page.check('input[name=closeness][value=friend]'); await page.check('input[name=adults][value="2"]');
+      await page.check('input[name=season][value=summer]'); await page.selectOption("#region", "center");
+      await page.selectOption("#day", "thursday");
+      ok(await text(page, "#r-amount") === "₪800", "gift: worked example (couple of friends, Thursday, center, summer) = ₪800 as on the page");
+      await page.selectOption("#day", "friday");
+      ok(await text(page, "#r-amount") === "₪600", "gift: same couple on Friday noon = ₪600 as on the page");
+      await page.selectOption("#day", "weekday");
+      ok(await text(page, "#r-amount") === "₪750", "gift: same couple mid-week = ₪750 as on the page");
+      const gsrc = fs.readFileSync(path.join(DOCS, "tools/wedding-gift/index.html"), "utf8");
+      ok(gsrc.includes("<strong>800 ₪</strong>") && gsrc.includes('id="how"'), "gift: page shows the worked example + #how anchor");
+      await page.goto(BASE + "tools/wedding-cost/");
+      ok(await text(page, "#r-total") === "₪185,000" && await page.locator("#budget-split").count() === 1, "cost: budget split section next to the ₪185,000 default");
+      const split = await page.locator("#budget-split + p + .table-wrap td.num, #budget-split ~ .table-wrap").first().count();
+      ok(split === 1, "cost: budget split table present");
+      await page.goto(BASE + "about/");
+      ok(await page.locator("h1").innerText() === "מי אנחנו" && await page.locator('main a[href^="mailto:"]').count() >= 1, "about: page with contact email");
+      ok(await page.locator('#site-footer a[href$="about/"]').count() === 1, "about: linked from the footer");
+      for (const u of ["chatuna/", "tools/wedding-gift/", "chatuna/kama-lasim/zug/", "chatuna/mechirim/ulam/", "p/seating-chart/", "apps/rsvp/"]) {
+        await page.goto(BASE + u);
+        ok(await page.locator(".trust-box time").count() === 1 && await page.locator('.trust-box a[href$="about/"]').count() === 1, u + ": who-wrote-it / how-we-checked box");
+      }
+      ok(!page.errors.length, "R6A pages: no page errors " + page.errors.join("; "));
+      await ctx.close();
+      const redirects = fs.readFileSync(path.join(DOCS, "_redirects"), "utf8");
+      const sm = fs.readFileSync(path.join(DOCS, "sitemap.xml"), "utf8");
+      ok(redirects.includes("/p/wedding-planner/guides/wedding-budget-2026/ /tools/wedding-cost/ 301!") &&
+         !fs.existsSync(path.join(DOCS, "p/wedding-planner/guides/wedding-budget-2026/index.html")) && !sm.includes("wedding-budget-2026"),
+         "merge: wedding-budget-2026 301s to the cost calculator and left the sitemap");
+      const seo = JSON.parse(fs.readFileSync(path.join(DOCS, "data/seo.json"), "utf8"));
+      ok(seo.noindex.every(u => !sm.includes(`<loc>https://tichnun.netlify.app/${u}</loc>`)), `noindex: none of the ${seo.noindex.length} noindexed pages is in the sitemap`);
+      ok(sm.includes("/about/</loc>") && sm.includes("/chatuna/</loc>"), "sitemap: about + hub listed");
+    }
+
     /* ---------- layout ---------- */
     for (const vp of [{ width: 375, height: 800 }, { width: 1280, height: 900 }]) {
       const ctx = await newCtx(browser, vp); const page = await newPage(ctx);

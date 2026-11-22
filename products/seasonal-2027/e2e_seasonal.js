@@ -131,7 +131,10 @@ async function buyFlow(browser, pagePath, slug, thanksRe, expectPrice, expectFil
       ok(body.slice(0, 4).toString("latin1") === "%PDF" && body.length > 20000, `free printable ${f} (${body.length} bytes)`);
     }
     const sm = fs.readFileSync(path.join(REPO, "docs/sitemap.xml"), "utf8");
-    ok(PAGES.every(p => sm.includes(`/${p}</loc>`)), "sitemap lists all 16 seasonal pages");
+    // R6A audit: thin seasonal articles/hubs are noindexed (docs/data/seo.json); the rest must stay in the sitemap
+    const NOINDEX = JSON.parse(fs.readFileSync(path.join(REPO, "docs/data/seo.json"), "utf8")).noindex;
+    const inSm = p => sm.includes(`<loc>https://tichnun.netlify.app/${p}</loc>`);
+    ok(PAGES.every(p => NOINDEX.includes(p) ? !inSm(p) : inSm(p)), `sitemap lists the ${PAGES.filter(p => !NOINDEX.includes(p)).length} indexable seasonal pages and none of the noindexed ones`);
     ok(/hreflang="he" href="[^"]+\/p\/seder-planner\/"/.test(sm) && sm.includes("en/p/passover-seder-planner/"), "sitemap pairs seder planner he<->en");
     const seder = fs.readFileSync(path.join(REPO, "docs/p/seder-planner/index.html"), "utf8");
     ok(/hreflang="en" href="[^"]+en\/p\/passover-seder-planner\/"/.test(seder), "seder planner page has hreflang=en to the English planner");

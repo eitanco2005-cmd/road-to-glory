@@ -132,12 +132,16 @@ def main():
     build_price_pages.main()
     import link_wedding  # R4: "next step" strip + hub link on older wedding pages
     link_wedding.main()
+    import trust_box  # R6A: who wrote it / how we checked, on the main wedding pages
+    trust_box.main()
     try:  # embeddable calculators + data-il (R3B); optional so older checkouts still build
         import build_embeds
         build_embeds.main()
         subprocess.run([sys.executable, str(REPO / "data-il/tools/build.py")], check=True)
     except ImportError:
         pass
+    import seo_rules  # R6A: noindex list + 301 merges from docs/data/seo.json
+    seo_rules.main()
     build_sitemap.build(a.base)
 
 
