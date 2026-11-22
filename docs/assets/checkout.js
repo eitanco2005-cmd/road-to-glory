@@ -231,6 +231,8 @@
     if (sdkCurrency && sdkCurrency !== CURRENCY) { holder.innerHTML = ""; setMsg(box, "error", T.mixed); return; }
     var value = price2(priceOf(p));
     var name = String(p.title || p.slug).slice(0, 127);
+    // R6B: the order description PayPal shows the buyer says what it is and who sells it (item name stays the plain title)
+    var descr = (name + (en ? " · digital product from " + (cfg.BRAND_LATIN || "Tichnun Plus") : " · מוצר דיגיטלי מ" + (cfg.BRAND || "תכנון פלוס"))).slice(0, 127);
     loadSdk(cfg, CURRENCY).then(function (paypal) {
       holder.innerHTML = "";
       return paypal.Buttons({
@@ -241,7 +243,7 @@
             purchase_units: [{
               reference_id: p.slug,
               custom_id: p.slug,
-              description: name,
+              description: descr,
               amount: { currency_code: CURRENCY, value: value, breakdown: { item_total: { currency_code: CURRENCY, value: value } } },
               items: [{ name: name, sku: p.slug, quantity: "1", category: "DIGITAL_GOODS", unit_amount: { currency_code: CURRENCY, value: value } }]
             }],

@@ -446,7 +446,8 @@
     var limitBar = $("#limit");
     limitBar.hidden = full || S.guests.length < FREE_MAX - 10;
     if (!limitBar.hidden) limitBar.innerHTML = (S.guests.length >= FREE_MAX ? "<strong>הגעתם ל-" + FREE_MAX + " הזמנות, המקסימום בגרסה החינמית.</strong>" : "<strong>נשארו " + room() + " הזמנות בגרסה החינמית.</strong>") +
-      ' כל מה שכבר הוזן נשמר ונשאר זמין. <button type="button" class="btn small accent" data-act="unlock">בלי הגבלה + אקסל · ₪29</button>';
+      ' כל מה שכבר הוזן נשמר ונשאר זמין. <button type="button" class="btn small accent" data-act="unlock">בלי הגבלה + אקסל · ₪29</button>' +
+      ' <a class="btn small secondary" href="../../p/wedding-bundle/" data-bundle-link>או כל 4 כלי החתונה ב-₪79 (הכי משתלם)</a>';
   }
   function fill(sel, all, items, cur) {
     sel.innerHTML = '<option value="">' + all + "</option>" + items.map(function (s) { return '<option' + (s === cur ? " selected" : "") + ' value="' + esc(s) + '">' + esc(s) + "</option>"; }).join("");

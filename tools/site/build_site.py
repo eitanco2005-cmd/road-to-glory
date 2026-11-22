@@ -132,6 +132,9 @@ def main():
     build_price_pages.main()
     import link_wedding  # R4: "next step" strip + hub link on older wedding pages
     link_wedding.main()
+    sys.path.insert(0, str(REPO / "tools" / "convert"))
+    import build_convert  # R6B: samples, "before you buy" blocks, RSVP + bundle pages, gift-calculator funnel box
+    build_convert.main()
     try:  # embeddable calculators + data-il (R3B); optional so older checkouts still build
         import build_embeds
         build_embeds.main()

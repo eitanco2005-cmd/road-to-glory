@@ -692,7 +692,16 @@
       "restore": function () { $("#file-json").click(); },
       "import": function () { $("#file-in").click(); },
       "reset": function () { if (confirm(L("למחוק את כל הנתונים בכלי? (מומלץ לשמור גיבוי קודם)", "Delete everything in the tool? (Save a backup first)"))) mutate(function () { S = blank(); }); },
-      "print": function () { printChart(AppUnlock.isUnlocked(SLUG)); },
+      "print": function () {
+        var full = AppUnlock.isUnlocked(SLUG);
+        printChart(full);
+        if (!full && AppUnlock.nudge) setTimeout(function () { // R6B: after the free watermarked export, a clear (non-blocking) upgrade message
+          AppUnlock.nudge(SLUG, { anchor: "#app > :first-child", title: L("ה-PDF החינמי יוצא עם סימן מים.", "The free PDF has a watermark."),
+            text: L("לאולם ולדפוס: PDF נקי, ייצוא לאקסל וכרטיסי שולחן בתשלום חד-פעמי של " + PRICE + ".", "For the venue and printing: a clean PDF, Excel export and table cards for a one-time " + PRICE + "."),
+            cta: L("PDF נקי + אקסל + כרטיסים · " + PRICE, "Clean PDF + Excel + cards · " + PRICE),
+            dialog: { title: UNLOCK_TITLE, reason: L("PDF נקי בלי סימן מים, מוכן לשליחה לאולם ולהדפסה.", "A clean PDF without watermark, ready for the venue and for printing."), features: UNLOCK_FEATS } });
+        }, 700);
+      },
       "pdf-clean": paid(function () { printChart(true); }, L("PDF נקי בלי סימן מים, מוכן לשליחה לאולם ולהדפסה.", "A clean PDF without watermark, ready for the venue and for printing.")),
       "xlsx": paid(exportXlsx, L("ייצוא לאקסל עם הושבה לפי שולחן ורשימת כניסה לפי א-ב.", "Excel export with seating by table and an A–Z escort list.")),
       "cards": paid(printCards, L("כרטיסי שולחן גדולים להדפסה: מספר השולחן ושמות היושבים.", "Large printable table cards: table number and guest names.")),
