@@ -446,10 +446,10 @@ def hub_samples():
 
 
 def gift_funnel():
-    # wrapped in embed-link markers so tools/site/build_embeds.py leaves it out of the third-party embed
-    return ('<!-- embed-link --><aside class="funnel-box" aria-label="לזוגות שמתחתנים"><strong>מתחתנים בעצמכם?</strong>'
+    # tools/site/build_embeds.py drops <aside class="funnel-box"> so the third-party embed stays clean
+    return ('<aside class="funnel-box" aria-label="לזוגות שמתחתנים"><strong>מתחתנים בעצמכם?</strong>'
             '<p class="small">אותו חשבון מהצד השני: כמה תעלה החתונה וכמה יחזור במתנות, מי מאשר הגעה ואיך מושיבים. '
-            'הכלים החינמיים לזוגות מחכים כאן: <a href="../../chatuna/#mitchatnim">מסלול "אנחנו מתחתנים" ←</a></p></aside>''<!-- /embed-link -->')
+            'הכלים החינמיים לזוגות מחכים כאן: <a href="../../chatuna/#mitchatnim">מסלול "אנחנו מתחתנים" ←</a></p></aside>')
 
 
 def main():

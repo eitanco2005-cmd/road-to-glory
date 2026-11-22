@@ -31,7 +31,7 @@ no PayPal account, we don't see card details), instant delivery explained per pr
 
 ### 3. Funnel
 - **Gift calculator** (`tools/wedding-gift/`): a gentle "מתחתנים בעצמכם?" box after the result + share button, linking to
-  `chatuna/#mitchatnim`. Wrapped in `embed-link` markers so it is NOT copied into the third-party embed.
+  `chatuna/#mitchatnim`. `build_embeds.py` drops it (`COMMON_DROP`), so the third-party embed stays clean.
 - **RSVP 80 limit**: the limit banner adds "או כל 4 כלי החתונה ב-₪79 (הכי משתלם)"; the unlock dialog now offers two
   choices: "רק הכלי הזה" (pre-selected) and "חבילת החתונה · הכי משתלם" (₪79 vs ₪126, live from the JSON). Choosing the bundle
   swaps the buy box and explains that after paying you land on a page with all four tools and your list stays saved.
@@ -59,13 +59,15 @@ bundle (`link_wedding.py` "next step" strips, hub samples) now go here instead o
   single buy box, bundle test purchase → thanks next steps + all 3 apps unlocked, RSVP limit dialog (bundle best value,
   single pre-selected, swap and back), seating watermark nudge (+ English has no Hebrew bundle), gift funnel position,
   PayPal order payload via a stubbed SDK, no overflow at 375/1280.
-- All suites from R4 + `e2e_wedding.js` + `e2e_convert.js`: see the run log at the end of this report.
+- Run log (2026-11-22, after `build_site.py`, 159-URL sitemap), all **ALL PASSED**:
+  e2e_test.js (needs `pip install fastapi uvicorn`), e2e_apps.js (111), e2e_tipskit.js, e2e_en.js, hanukkah test_e2e.js,
+  e2e_share.js, e2e_embed.js (152), e2e_seasonal.js, e2e_wedding.js (285), e2e_convert.js (126).
 
 ## Decisions
 - One script owns all inserted regions (marker comments), so ws/quality text edits elsewhere on the same pages merge cleanly.
   The only edits outside my own files: `site.css` (appended block at the end), `unlock.js` (+bundle choice, +nudge),
   `seating/app.js` (print action), `rsvp/app.js` (limit banner line), `checkout.js` (description), `thanks/index.html`
-  (next steps), `link_wedding.py` (bundle URL), `build_site.py` (+3 lines), `rsvp-tracker.json` (page/image).
+  (next steps), `link_wedding.py` (bundle URL), `build_site.py` (+3 lines), `build_embeds.py` (1 drop pattern), `rsvp-tracker.json` (page/image).
 - Single product stays pre-selected in the unlock dialog; the bundle is labelled best value but not forced.
 - Bundle bought from inside an app redirects to the thanks page (existing bundle flow), which unlocks all three apps in that
   browser; the app data is in localStorage so nothing is lost. Noted in the dialog.

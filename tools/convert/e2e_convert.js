@@ -215,6 +215,7 @@ print(json.dumps({"sheets":len(wb.sheetnames),"rtl":bool(ws.sheet_view.rightToLe
       ok(await fb.locator('a[href$="chatuna/#mitchatnim"]').count() === 1, "gift calculator: box links to the couple path");
       const order = await page.evaluate(() => { const r = document.querySelector(".result"), f = document.querySelector(".funnel-box"); return !!(r.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING); });
       ok(order, "gift calculator: box comes after the result");
+      ok(!/funnel-box/.test(fs.readFileSync(path.join(DOCS, "embed/wedding-gift/index.html"), "utf8")), "gift embed: couple box not copied into the third-party embed");
       await page.goto(BASE + "chatuna/");
       ok(await page.locator("#dugmaot [data-sample-dl]").count() === 3, "hub: 3 free samples");
       const f = await download(page, '#dugmaot [data-sample-dl="seating"]');

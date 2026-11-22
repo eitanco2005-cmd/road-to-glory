@@ -36,7 +36,8 @@ MAX_BYTES = 40 * 1024
 
 # root: regex for the start tag of the element to lift (first match after `after`, if given)
 # drop: regexes for start tags of elements removed from inside it
-COMMON_DROP = [r'<div class="cta-box', r'<h1\b', r'<p class="lead', r'<nav class="breadcrumbs', r'<noscript\b']
+COMMON_DROP = [r'<div class="cta-box', r'<h1\b', r'<p class="lead', r'<nav class="breadcrumbs', r'<noscript\b', r'<aside class="funnel-box'  # R6B couple funnel: site only
+               ]
 EMBEDS = [
     dict(slug="wedding-gift", lang="he", src="tools/wedding-gift/", root=r'<form id="gift-form"',
          title="כמה לשים בחתונה? מחשבון 2026", short="כמה לשים בחתונה",
