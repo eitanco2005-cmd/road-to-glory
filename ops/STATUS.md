@@ -60,3 +60,4 @@
 - 2026-11-22: Owner started Google Search Console (URL-prefix property https://tichnun.netlify.app/); HTML verification meta tag added to docs/index.html.
 - 2026-11-22: Google Search Console VERIFIED (HTML tag in docs/index.html — never remove it) and sitemap.xml submitted (157 URLs). Expect Google indexing within days; first impressions in 1–3 weeks.
 - 2026-11-22: Round 6 launched: 6A quality audit/pruning before Google indexing (ws/quality), 6B conversion readiness for wedding products (ws/convert).
+- 2026-11-22: Merged R6B conversion: free samples (docs/samples/), before-you-buy blocks, p/rsvp-tracker + p/wedding-bundle (₪126→₪79 compare), funnel boxes after gift calculator/RSVP limit/seating watermark, clearer PayPal descriptions, thanks next steps. 10 suites pass. 159 URLs.
