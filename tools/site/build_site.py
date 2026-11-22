@@ -132,6 +132,8 @@ def main():
     build_price_pages.main()
     import link_wedding  # R4: "next step" strip + hub link on older wedding pages
     link_wedding.main()
+    import trust_box  # R6A: who wrote it / how we checked, on the main wedding pages
+    trust_box.main()
     sys.path.insert(0, str(REPO / "tools" / "convert"))
     import build_convert  # R6B: samples, "before you buy" blocks, RSVP + bundle pages, gift-calculator funnel box
     build_convert.main()
@@ -141,6 +143,8 @@ def main():
         subprocess.run([sys.executable, str(REPO / "data-il/tools/build.py")], check=True)
     except ImportError:
         pass
+    import seo_rules  # R6A: noindex list + 301 merges from docs/data/seo.json
+    seo_rules.main()
     build_sitemap.build(a.base)
 
 

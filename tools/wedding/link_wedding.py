@@ -31,7 +31,6 @@ PAGES = {
     "guides/wedding-save-money/index.html": dict(steps=[PRICES, COST, BUNDLE]),
     "guides/wedding-vendor-contracts/index.html": dict(steps=[PRICES, COST, TIMELINE]),
     "p/wedding-planner/index.html": dict(steps=[RSVP, BUNDLE]),
-    "p/wedding-planner/guides/wedding-budget-2026/index.html": dict(steps=[PRICES, COST, TIMELINE]),
     "p/wedding-planner/guides/rsvp-seating-gifts/index.html": dict(steps=[RSVP, SEATING]),
     "p/seating-chart/index.html": dict(steps=[RSVP, INVITE]),
     "p/seating-chart/guides/how-to-seat-guests/index.html": dict(steps=[RSVP, SEATING]),

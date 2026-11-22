@@ -1,0 +1,28 @@
+{
+ "_doc": "R6A quality audit (research/content-audit.md). Enforced by tools/site/seo_rules.py on every build_site.py run: noindex pages get <meta name=robots content='noindex, follow'> (and so drop out of sitemap.xml); merged pages are 301'd in docs/_redirects. To re-index a page after improving it, remove it from 'noindex' and rebuild.",
+ "noindex": [
+  "devkit/demos/templates/launch/", "devkit/demos/templates/launch/tailwind.html",
+  "devkit/demos/templates/pocket/", "devkit/demos/templates/pocket/tailwind.html",
+  "devkit/demos/templates/studio/", "devkit/demos/templates/studio/tailwind.html",
+  "legal/", "en/hanukkah/terms/",
+  "en/tools/", "en/seating/", "en/planners/",
+  "apps/seating/", "apps/invite/", "apps/cv/",
+  "hanukkah/", "hanukkah/hanukkah-2026-dates/", "hanukkah/hanukkah-party/", "hanukkah/kids-activities/",
+  "en/hanukkah/", "en/hanukkah/how-to-play-dreidel/", "en/hanukkah/when-is-hanukkah-2026/",
+  "purim/", "purim/class-mishloach-manot/", "purim/mishloach-manot-ideas/", "purim/purim-halacha/",
+  "pesach/", "pesach/pesach-2027-dates/", "pesach/pesach-budget/", "pesach/seder-night-guide/", "pesach/cleaning-checklist/",
+  "p/bar-mitzvah-planner/guides/bar-mitzvah-timeline/",
+  "p/household-budget/guides/fixed-expenses-list/",
+  "p/osek-patur-tracker/guides/income-expense-tracking/",
+  "p/price-quote-pack/guides/how-to-write-a-quote/", "p/price-quote-pack/guides/quote-vs-invoice/",
+  "p/renovation-budget/guides/compare-quotes/",
+  "p/cv-builder/guides/cv-in-english/", "p/cv-builder/guides/how-to-write-cv/"
+ ],
+ "redirects": {
+  "p/wedding-planner/guides/wedding-budget-2026/": "tools/wedding-cost/",
+  "p/bar-mitzvah-planner/guides/bar-mitzvah-cost-2026/": "tools/bar-mitzvah-cost/",
+  "p/osek-patur-tracker/guides/osek-patur-ceiling-2026/": "tools/osek-patur-ceiling/",
+  "p/renovation-budget/guides/renovation-cost-2027/": "tools/renovation-cost/",
+  "p/household-budget/guides/family-budget-2027/": "budget-2027/"
+ }
+}

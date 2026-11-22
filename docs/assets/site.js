@@ -228,6 +228,7 @@
       '<li><a href="' + G.productUrl("osek-patur-tracker") + '">מעקב עוסק פטור</a></li>' +
       "</ul></div>" +
       "<div><h2 class=\"footer-h\">מידע</h2><ul>" +
+      '<li><a href="' + G.url("about/") + '">מי אנחנו</a></li>' +
       '<li><a href="' + G.url("legal/terms/") + '">תקנון ותנאי מכירה</a></li>' +
       '<li><a href="' + G.url("legal/refund/") + '">מדיניות ביטולים והחזרים</a></li>' +
       '<li><a href="' + G.url("legal/privacy/") + '">מדיניות פרטיות</a></li>' +

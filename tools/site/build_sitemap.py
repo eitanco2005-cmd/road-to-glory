@@ -56,7 +56,14 @@ def alternates():
     out = {}
     if not f.exists():
         return out
+    seo = DOCS / "data" / "seo.json"  # R6A: no hreflang pair when either side is noindexed or merged
+    skip = set()
+    if seo.exists():
+        cfg = json.loads(seo.read_text(encoding="utf-8"))
+        skip = set(cfg.get("noindex", [])) | set(cfg.get("redirects", {}))
     for p in json.loads(f.read_text(encoding="utf-8")).get("pairs", []):
+        if p["he"] in skip or p["en"] in skip:
+            continue
         alts = [("he", p["he"]), ("en", p["en"]), ("x-default", p["he"])]
         out[p["he"]] = out[p["en"]] = alts
     return out

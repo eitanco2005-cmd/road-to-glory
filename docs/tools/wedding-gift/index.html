@@ -21,7 +21,7 @@
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=optional" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=optional"></noscript>
 <link rel="stylesheet" href="../../assets/site.css">
 <script type="application/ld+json">
 {
@@ -257,9 +257,24 @@
 
 <section class="section alt">
  <div class="container narrow prose">
-  <h2>איך המחשבון קובע כמה לשים?</h2>
+  <h2 id="how">איך המחשבון קובע כמה לשים?</h2>
   <p>הנקודה המרכזית היא <strong>מחיר המנה</strong>: נוהג נפוץ בישראל הוא לנסות לפחות "לכסות את המנה". לכן המחשבון מתחיל ממחיר מנה משוער לפי עונה, אזור, יום וסוג המקום,
   ומכפיל במקדם לפי הקרבה: מכר/ה רחוק/ה מכסה כשני שלישים מהמנה, חבר/ה קצת פחות ממנה מלאה, וחבר/ה קרוב/ה או משפחה – יותר מהמנה.</p>
+  <p>כל המספרים שבהם המחשבון משתמש, בלי קופסה שחורה:</p>
+  <div class="table-wrap"><table>
+   <thead><tr><th>רכיב</th><th>ערך במחשבון</th></tr></thead>
+   <tbody>
+    <tr><td>מחיר מנה בסיסי (מרכז, אולם רגיל, ראשון–רביעי)</td><td>קיץ ₪480, חורף ₪385 (אמצע הטווחים המדווחים)</td></tr>
+    <tr><td>יום</td><td>חמישי ×1.12 · שישי / צהריים ×0.82</td></tr>
+    <tr><td>אזור</td><td>צפון / דרום / ירושלים ×0.9</td></tr>
+    <tr><td>סוג מקום</td><td>יוקרתי ×1.25 · צנוע / מסעדה ×0.75</td></tr>
+    <tr><td>חלק מהמנה לפי קרבה</td><td>מכר/ה 65% · עבודה 75% · חבר/ה 85% · חבר/ה קרוב/ה 115% · משפחה מורחבת 130% · משפחה קרובה 200%</td></tr>
+    <tr><td>זוג / ילדים / לא מגיעים</td><td>90% לכל מבוגר בזוג · ילד = חצי · לא מגיעים = כמחצית</td></tr>
+    <tr><td>עיגול</td><td>ל-50 ₪ (או לכפולה של 18 אם סימנתם "חי")</td></tr>
+   </tbody></table></div>
+  <p><strong>דוגמה מחושבת:</strong> זוג חברים, חתונה ביום חמישי באולם רגיל במרכז, בקיץ. מחיר מנה: 480 × 1.12 = כ-538 ₪. לכל מבוגר: 538 × 85% = כ-457 ₪.
+  לזוג: 457 × 2 × 90% = כ-823 ₪, ואחרי עיגול <strong>800 ₪</strong> (טווח מקובל 700–950 ₪). זה מכסה כ-74% מעלות שתי המנות (כ-1,075 ₪) – מקובל לחברים שאינם קרובים מאוד.
+  אותו זוג בחתונה באמצע השבוע: 750 ₪; ביום שישי בצהריים: 600 ₪.</p>
   <h2>כמה לשים בחתונה כזוג?</h2>
   <p>זוג נותן בדרך כלל קצת פחות מכפול מאדם שמגיע לבד, ולכן המחשבון מחשב 90% לכל מבוגר. דוגמה (קיץ, מרכז, אולם רגיל, ראשון–רביעי):</p>
   <div class="table-wrap"><table>
@@ -302,13 +317,14 @@
 <details><summary>מה זה &quot;לעגל לכפולה של 18&quot;?</summary><p>יש שנוהגים לתת סכום שמתחלק ב-18 ("חי"), כמו 360, 540 או 720 ₪. סמנו את האפשרות והמחשבון יעגל בהתאם.</p></details>
 <details><summary>האם המחשבון שומר את הנתונים שלי?</summary><p>לא. החישוב מתבצע כולו בדפדפן שלכם, ושום נתון לא נשלח לשרת.</p></details>
 </div>
-  <p class="mt-3">עוד: <a href="../../p/wedding-planner/guides/wedding-budget-2026/">תקציב חתונה 2026 – איך מחלקים</a> ·
+  <p class="mt-3">עוד: <a href="../../tools/wedding-cost/">תקציב חתונה 2026 – איך מחלקים</a> ·
   <a href="../../p/wedding-planner/guides/rsvp-seating-gifts/">אישורי הגעה, הושבה ורישום צ'קים</a> ·
   <a href="../bar-mitzvah-cost/">מחשבון עלות בר מצווה</a> ·
   <a href="../../p/invitation-maker/">מעצב הזמנות לחתונה אונליין</a></p>
  </div>
 </section>
 
+<!-- trust --><section class="section" style="padding-top:0" aria-label="מי אנחנו ואיך בדקנו"><div class="container narrow"><aside class="callout small trust-box"><p class="mb-1"><strong>מי כתב ואיך בדקנו</strong> · נסקר ועודכן: <time datetime="2026-11-22">22 בנובמבר 2026</time></p><p class="mb-1">החישוב רץ בדפדפן שלכם ושום נתון לא נשלח. כל המקדמים והנוסחה מפורטים בעמוד, והמחירים הבסיסיים לקוחים ממחירונים ומכתבות מתוארכים (קישורים בסעיף המקורות). כשאין נתון רשמי, כתוב במפורש שזו הערכה שלנו.</p><p class="mb-0">תכנון פלוס הוא פרויקט ישראלי קטן. <a href="../../about/">מי אנחנו, איך המחשבונים עובדים ומדיניות המקורות</a> · מצאתם טעות? <a href="mailto:eitanco2005@gmail.com">כתבו לנו</a> ונתקן.</p></aside></div></section><!-- /trust -->
 <!-- wedding-next --><section class="section wedding-next" style="padding-top:0" aria-label="הצעד הבא"><div class="container narrow"><div class="callout"><strong>הצעד הבא</strong><ul class="mb-1"><li><a href="../../chatuna/haavarat-kesef/"><strong>איך לתת כסף בחתונה</strong></a> – צ'ק, ביט, פייבוקס או העברה, ומה לכתוב</li><li><a href="../../chatuna/ma-lilbosh/"><strong>מה ללבוש לחתונה</strong></a> – לפי סוג המקום והשעה</li></ul><p class="small mb-0">תשובה מהירה: כמה לשים <a href="../../chatuna/kama-lasim/zug/">בזוג</a> · <a href="../../chatuna/kama-lasim/ben-dod/">לבן דוד</a> · <a href="../../chatuna/kama-lasim/lo-magiim/">אם לא מגיעים</a> · <a href="../../chatuna/kama-lasim/yom-shishi/">ביום שישי</a> · <a href="../../chatuna/kama-lasim/gan-eruim/">בגן אירועים</a> · <a href="../../chatuna/kama-lasim/makom-yukrati/">במקום יוקרתי</a> · <a href="../../chatuna/kama-lasim/chatuna-ktana/">בחתונה קטנה</a> · <a href="../../chatuna/kama-lasim/tzafon-darom/">בצפון ובדרום</a></p><p class="small mb-0">כל הכלים והמדריכים לחתונה, לאורחים ולזוגות: <a href="../../chatuna/">הכל לחתונה ←</a></p></div></div></section><!-- /wedding-next -->
 </main>
 <footer id="site-footer"></footer>
