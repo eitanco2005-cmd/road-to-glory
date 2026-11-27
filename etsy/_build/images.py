@@ -56,12 +56,12 @@ def hero(theme, title, subtitle, chips, pages, landscape=False, kicker=None):
     """pages: up to 3 image paths fanned on the right."""
     t = THEMES[theme]
     if landscape:
-        pw, ph = 500, 370
+        pw, ph = 600, 450
     else:
         pw, ph = 440, 570
     stack = ""
-    pos = [(-8, -110, 40), (6, 100, 10), (0, 0, 0)][-len(pages):]
-    cx = 1080 if landscape else 1120
+    pos = ([(-7, -80, 50), (5, 80, -20), (0, 0, 0)] if landscape else [(-8, -110, 40), (6, 100, 10), (0, 0, 0)])[-len(pages):]
+    cx = 1070 if landscape else 1120
     for (rot, dx, dy), p in zip(pos, pages):
         stack += (f'<div class=page style="position:absolute;width:{pw}px;height:{ph}px;left:{cx - pw // 2 + dx}px;'
                   f'top:{560 - ph // 2 + dy}px;transform:rotate({rot}deg)"><img src="{img(p)}"></div>')

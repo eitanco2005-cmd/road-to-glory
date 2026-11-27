@@ -103,9 +103,10 @@ def bundles():
                        ("09-jewish-holiday-hosting-planner", "4-Jewish-Holiday-Hosting-Planner.zip")]:
         zip_of(d / name, sorted((L / slug / "files").glob("*.xlsx")))
     d = files_dir("11-wedding-planning-bundle")
-    for slug in ["05-jewish-wedding-planner", "06-wedding-budget-planner", "07-wedding-seating-chart"]:
-        for f in sorted((L / slug / "files").iterdir()):
-            shutil.copy(f, d / f.name)
+    for slug, name in [("05-jewish-wedding-planner", "1-Jewish-Wedding-Planner.zip"),
+                       ("06-wedding-budget-planner", "2-Wedding-Budget-Planner.zip"),
+                       ("07-wedding-seating-chart", "3-Wedding-Seating-Chart.zip")]:
+        zip_of(d / name, sorted((L / slug / "files").iterdir()))
 
 
 if __name__ == "__main__":

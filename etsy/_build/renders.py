@@ -60,3 +60,47 @@ def xlsx_sheet(xlsx, marker, crop=(0, 1), dpi=260, nth=0, xcrop=(0, 1)):
     if not hits:
         raise SystemExit(f"{xlsx}: no page with {marker!r}")
     return pdf_page(pdf, hits[nth], dpi=dpi, key=f"{pathlib.Path(xlsx).stem}-{hits[nth]}-{dpi}", crop=crop, do_trim=True, xcrop=xcrop)
+
+
+def generator_shots(slug, dpi=220):
+    """High-res sheet screenshots of the en-jewish-life example workbooks, using that product's own print areas.
+    Returns {sheet title: png}. Areas are on data sheets only (no footer/link text)."""
+    import shutil
+    import sys
+    from PIL import Image as _I
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2] / "products" / "en-jewish-life"))
+    import shots
+    d = CACHE / f"gen-{slug}"
+    if d.exists() and any(d.glob("*.png")):
+        return {p.stem: p for p in d.glob("*.png")}
+    d.mkdir(parents=True, exist_ok=True)
+    wb, areas = shots.workbook(slug)
+    wanted = dict(areas)
+    for ws in wb.worksheets:
+        if ws.title not in wanted:
+            ws.sheet_state = "hidden"
+            continue
+        ws.freeze_panes = None
+        ws.print_area = wanted[ws.title]
+        ws.page_setup.orientation = "landscape"
+        ws.sheet_properties.pageSetUpPr.fitToPage = True
+        ws.page_setup.fitToHeight = 1
+        ws.page_setup.fitToWidth = 1
+        ws.print_options.gridLines = False
+    wb.active = wb.sheetnames.index(areas[0][0])
+    x = d / "shots.xlsx"
+    wb.save(x)
+    subprocess.run(["soffice", "--headless", "--convert-to", "pdf", "--outdir", str(d), str(x)], check=True,
+                   capture_output=True, timeout=300)
+    subprocess.run(["pdftoppm", "-r", str(dpi), "-png", str(d / "shots.pdf"), str(d / "p")], check=True)
+    pages = sorted(d.glob("p-*.png"))
+    order = [ws.title for ws in wb.worksheets if ws.title in wanted]
+    out = {}
+    for name, png in zip(order, pages):
+        im = trim(_I.open(png).convert("RGB"))
+        dst = d / f"{name}.png"
+        im.save(dst)
+        out[name] = dst
+    for p in pages:
+        p.unlink()
+    return out
