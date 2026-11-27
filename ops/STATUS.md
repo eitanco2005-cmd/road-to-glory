@@ -65,3 +65,4 @@
 - 2026-11-25: Check-in. Stats 7d: 6 visits, all home/direct/US/en-US. 4 coincide with deploys (Netlify preview bot); Nov 24 12:09 + Nov 25 07:20 UTC likely US scanners. Real Israeli visitors 0, sales 0. Search Console verified 3 days ago — Google crawl starting. Site healthy. No new worker (no traffic signal yet).
 - 2026-11-27: Owner said "etsy". Israel confirmed eligible for Etsy Payments. Round 7 (ws/etsy): full Etsy launch kit (Hebrew guide, shop texts, 10–12 listings with files/images, Hanukkah first).
 - 2026-11-27: Merged R7 Etsy kit (etsy/): Hebrew guide, checklist, shop texts, 11 listings with files+images; validator ALL PASSED. Sent owner etsy-kit.zip.
+- 2026-11-27: Owner declined Etsy (will not do any setup). Etsy kit kept in etsy/ for the future; do not raise Etsy again unless the owner does. Continue own-site path only.
